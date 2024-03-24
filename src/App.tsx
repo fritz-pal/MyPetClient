@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useTranslation } from 'react-i18next'
 
 
 function Header() {
@@ -13,7 +14,7 @@ function Header() {
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [t, _] = useTranslation("test")
   return (
     <>
       <Header />
@@ -28,7 +29,7 @@ function App() {
         </button>
       </div>
       <h2>
-        Welcome to MyPet
+        {t("test")}
       </h2>
     </>
   )
