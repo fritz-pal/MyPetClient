@@ -15,14 +15,17 @@ const pets: Pet[] = [
 
 const MyPetsModule = () => {
     const renderPet = (pet: Pet) => (
-        <div className="pet-tile" key={pet.name}>
-            <img className="pet-image" src={viteLogo} alt={pet.name} />
-            <div className="pet-info">
-                <div className="pet-name">{pet.name}</div>
-                <div className="pet-type">{pet.type}</div>
+        <>
+            <div className="pet-tile" key={pet.name}>
+                <img className="pet-image" src={viteLogo} alt={pet.name} />
+                <div className="pet-info">
+                    <div className="pet-name">{pet.name}</div>
+                    <div className="pet-type">{pet.type}</div>
+                </div>
+                <button className="view-pet-button">→</button>
             </div>
-            <button className="view-pet-button">→</button>
-        </div>
+            <hr  />
+        </>
     );
 
     return (

@@ -74,17 +74,25 @@ input {
   color: #43A4BC;
   padding: 20px;
   border-radius: 8px;
+  display: inline;
 }
 
 .my-pets-module h2 {
   font-size: 24px;
-  margin: 16px;
+  margin: 0px auto 20px auto;
+  background-color: #43A4BC;
+  border-radius: 10px;
+  color: #153B44;
 }
 
 .pet-tile {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+}
+
+hr {
+ color: #43A4BC;
 }
 
 .pet-image {
@@ -96,9 +104,29 @@ input {
 }
 
 .pet-info {
-  flex-direction: column;
+  text-align: left;
+  margin-right: 50px;
 }
 
 .view-pet-button {
   margin-left: auto;
+  color: #153B44;
 }
+
+.pet-name {
+  font-size: 20px;
+  margin: 0;
+}
+
+.pet-type {
+  font-size: 14px;
+  margin: 0;
+}
+
+.add-pet-button {
+  margin-top: 20px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  color:#153B44;
+  }
