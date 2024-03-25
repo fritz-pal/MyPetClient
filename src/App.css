@@ -1,43 +1,104 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
   text-align: center;
+  background-color: #071C21;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header {
+  width: 100%;
+  background-color: #41CC5F;
+  color: black;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.menu-line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  filter: drop-shadow(0 0 2em #646cffaa);
+  width: 50px;
+  height: 50px;
+  margin: 10px;
 }
 
-.header {
-  background-color: darkgreen;
-  color: lightgreen;
-  padding: 1em;
+.input-container {
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #00a8ff;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.card {
-  padding: 2em;
+.logo {
+  width: 30px;
+  height: 30px;
+  padding: 50px;
 }
 
-.read-the-docs {
-  color: #888;
+.register-link {
+  font-size: 14px;
+}
+
+.my-pets-module {
+  background-color: #153B44;
+  color: #43A4BC;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.my-pets-module h2 {
+  font-size: 24px;
+  margin: 16px;
+}
+
+.pet-tile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pet-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 16px;
+  position: relative;
+}
+
+.pet-info {
+  flex-direction: column;
+}
+
+.view-pet-button {
+  margin-left: auto;
 }

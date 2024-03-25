@@ -1,38 +1,64 @@
-import { useState } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useTranslation } from 'react-i18next'
-
+import MyPetsModule from './HomeScreen';
 
 function Header() {
   return (
-    <div className="header">
-      <h1>MyPet</h1>
-    </div>
+    <header className="App-header">
+      <div className="menu-icon">
+        <div className="menu-line"></div>
+        <div className="menu-line"></div>
+        <div className="menu-line"></div>
+      </div>
+      <h1>Login</h1>
+    </header>
   )
 }
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [t, _] = useTranslation("test")
   return (
     <>
-      <Header />
-      <img src={viteLogo} className="logo" alt="Vite logo" />
-      <h1>Vite + React</h1>
-      <a target="_blank" href="https://bitbucket-student.it.hs-heilbronn.de/users/hstaudenra/repos/mypetclient/browse">Client Repo</a>
-      <br /> 
-      <a target="_blank" href="https://bitbucket-student.it.hs-heilbronn.de/users/nvogel1/repos/mypet/browse">Server Repo</a>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <Header />
+    <div className="App">
+      
+      <img
+        src={viteLogo}
+        alt="Cat"
+        className="logo"
+      />
+      <div className="input-container">
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+        />
       </div>
-      <h2>
-        {t("test")}
-      </h2>
+      <div className="input-container">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+        />
+      </div>
+      <button className="login-button">Login</button>
+      <div className="social-icons">
+        <img
+          src={viteLogo}
+          alt="Twitter"
+          className="logo"
+        />
+      </div>
+      <p className="register-link">
+        Noch keinen Account? Jetzt registrieren
+      </p>
+      <MyPetsModule />
+    </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
