@@ -75,7 +75,12 @@ input {
   padding: 20px;
   border-radius: 8px;
   display: inline;
+  position: relative;
+  width: 50%;
+  margin-bottom: 20px;
 }
+
+.pets {}
 
 .my-pets-module h2 {
   font-size: 24px;
@@ -92,7 +97,7 @@ input {
 }
 
 hr {
- color: #43A4BC;
+  color: #43A4BC;
 }
 
 .pet-image {
@@ -125,8 +130,10 @@ hr {
 
 .add-pet-button {
   margin-top: 20px;
-  border-radius: 100%;
-  width: 50px;
-  height: 50px;
-  color:#153B44;
-  }
+  color:#43A4BC;
+}
+
+.add-pet-button:hover {
+  color: #071C21;
+  cursor: pointer;
+}

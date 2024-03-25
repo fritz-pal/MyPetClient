@@ -1,6 +1,6 @@
 import viteLogo from '/vite.svg'
 import './App.css'
-import MyPetsModule from './HomeScreen';
+import PetList from './components/PetList';
 
 function Header() {
   return (
@@ -55,7 +55,7 @@ function App() {
         <p className="register-link">
           Noch keinen Account? Jetzt registrieren
         </p>
-        <MyPetsModule />
+        <PetList />
       </div>
     </>
   );
