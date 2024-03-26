@@ -1,4 +1,7 @@
-interface Pet {
+import { Species } from "./Species"
+import { User } from "./User"
+
+export interface Pet {
     id: number
     name: string
     species: Species
@@ -14,7 +17,7 @@ interface Pet {
     lastVetVisit?: Date
 }
 
-interface JSONPet {
+export interface JSONPet {
     id: number
     name: string
     species: Species
@@ -65,3 +68,11 @@ const newPet = () : Pet => {
         isMale: false
     }
 }
+
+const Pets = {
+    JSONPetToPet,
+    PetToJSONPet,
+    newPet
+}
+
+export default Pets
