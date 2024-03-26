@@ -1,4 +1,4 @@
-interface Genus {
+export interface Genus {
     id: number;
     name: string;
 }

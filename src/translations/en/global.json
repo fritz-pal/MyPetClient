@@ -1,4 +1,7 @@
 {
+    "generics": {
+        "search": "Search"
+    },
     "genus": {
         "canis": "Dog"
     },
@@ -6,6 +9,24 @@
         "greeting": "Hello, {{firstName}}"
     },
     "error": {
-        "errorMessage": "404 Not found"
+        "errorMessage": "404 {{path}} not found"
+    },
+    "addPet": {
+        "page1Title": "What kind of animal do you have?",
+        "page2Title": "Let's get to know your animal",
+        "page3Title": "What race is {{name}}?",
+        "page4Title": "When was {{name}} born?",
+        "page5Title": "Name a few physical traits",
+        "page6Title": "What does {{name}} like?",
+        "noPicture": "Upload a picture",
+        "nameQuestion": "What is your animal called?",
+        "heightProp": "Size",
+        "weightProp": "Weight",
+        "castratedProp": "Castrated",
+        "foodProp": "Favorite Food",
+        "toyProp": "Favorite Toy",
+        "spotProp": "Favorite Spot",
+        "finishButton": "Save and finish",
+        "requieredNotice": "Requiered"
     }
 }
