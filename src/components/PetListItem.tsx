@@ -1,5 +1,5 @@
 import viteLogo from '/vite.svg';
-import '../App.css'
+import './css/PetList.css';
 
 const PetListItem = ({ pet }: { pet: Pet }) => (
     <>

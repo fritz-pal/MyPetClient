@@ -1,0 +1,68 @@
+.my-pets-module {
+    background-color: #153B44;
+    color: #43A4BC;
+    padding: 20px;
+    border-radius: 8px;
+    display: inline;
+    position: relative;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.my-pets-module h2 {
+    font-size: 24px;
+    margin: 0px auto 20px auto;
+    background-color: #43A4BC;
+    border-radius: 10px;
+    color: #153B44;
+}
+
+.pet-tile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+hr {
+    color: #43A4BC;
+}
+
+.pet-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 16px;
+    position: relative;
+}
+
+.pet-info {
+    text-align: left;
+    margin-right: 50px;
+}
+
+.view-pet-button {
+    margin-left: auto;
+    color: #153B44;
+}
+
+.pet-name {
+    font-size: 20px;
+    margin: 0;
+}
+
+.pet-type {
+    font-size: 14px;
+    margin: 0;
+}
+
+.add-pet-button {
+    margin-top: 20px;
+    color: #43A4BC;
+    width: 50px;
+    height: 50px;
+}
+
+.add-pet-button:hover {
+    color: #071C21;
+    cursor: pointer;
+}
