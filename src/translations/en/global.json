@@ -6,6 +6,6 @@
         "greeting": "Hello, {{firstName}}"
     },
     "error": {
-        "errorMessage": "404 {{path}} not found"
+        "errorMessage": "404 Not found"
     }
 }

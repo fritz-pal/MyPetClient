@@ -1,4 +1,8 @@
 .error-page {
-    width: 200px;
-    align-items: baseline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #43A4BC;
+    font-size: 100px;
 }

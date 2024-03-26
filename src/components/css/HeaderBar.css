@@ -1,0 +1,76 @@
+.app-header {
+    width: 100%;
+    height: 10vh;
+    background-image: linear-gradient(#41CC5F, transparent);
+    color: #add8e6;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+}
+
+.menu-icon {
+    margin-left: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-icon:hover .menu-line {
+    background-color: white;
+}
+
+.menu-line {
+    width: 30px;
+    height: 5px;
+    border-radius: 30%;
+    background-color: #add8e6;
+    margin: 3px 0;
+}
+
+.site-title {
+    font-size: 24px;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.menu-items {
+    display: flex;
+    margin-left: 50px;
+    margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+    .menu-items {
+        display: none; 
+    }
+    .menu-icon {
+        display: block; 
+    }
+}
+
+.menu-item a {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #add8e6;
+}
+
+.menu-item a:hover {
+    color: white;
+}
+
+.user-menu {
+    width: 7vh;
+    height: 7vh;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.user-menu:hover {
+    cursor: pointer;
+    color: white;
+}
