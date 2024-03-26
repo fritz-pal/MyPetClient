@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
 import '../css/AddPet.css'
+import { Pet } from "../../models/Pet";
 
 const AddPetPage1 = ({pet} : {pet: Pet}) => {
     return (
