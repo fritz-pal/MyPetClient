@@ -1,6 +1,7 @@
 import viteLogo from '/vite.svg'
 import './App.css'
 import PetList from './components/PetList';
+import LoginInput from './components/LoginInput';
 
 function Header() {
   return (
@@ -20,31 +21,12 @@ function App() {
     <>
       <Header />
       <div className="App">
-
         <img
           src={viteLogo}
           alt="Cat"
           className="logo"
         />
-        <div className="input-container">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter your username"
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-          />
-        </div>
-        <button className="login-button">Login</button>
+       <LoginInput />
         <div className="social-icons">
           <img
             src={viteLogo}
