@@ -9,8 +9,6 @@
         "greeting": "Hallo, {{firstName}}"
     },
     "error": {
-<<<<<<< HEAD
-=======
         "errorMessage": "404 {{path}} wurde nicht gefunden"
     },
     "addPet": {
@@ -30,6 +28,5 @@
         "spotProp": "Lieblingsplatz",
         "finishButton": "Speichern und beenden",
         "requieredNotice": "Plichtfeld"
->>>>>>> addpet
     }
 }
