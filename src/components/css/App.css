@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+  background-color: #071C21;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: auto;
+  height: 100vh;
+  display: grid;
+  row-gap: 20px;
+  grid-template-rows: 100px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  width: 100%;
+  background-color: #41CC5F;
+  color: black;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.menu-line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+}
