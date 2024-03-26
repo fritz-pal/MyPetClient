@@ -1,0 +1,11 @@
+{
+    "genus": {
+        "canis": "Dog"
+    },
+    "home": {
+        "greeting": "Hello, {{firstName}}"
+    },
+    "error": {
+        "errorMessage": "404 {{path}} not found"
+    }
+}

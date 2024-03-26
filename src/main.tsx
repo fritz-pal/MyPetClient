@@ -3,21 +3,21 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import i18next from 'i18next'
-
-import test_en from "./translations/en/test.json"
-import test_de from "./translations/de/test.json"
+import global_de from './translations/de/global.json'
+import global_en from './translations/en/global.json'
 import { I18nextProvider } from 'react-i18next'
 
 i18next.init({
   fallbackLng: 'en',
-  lng: 'en',
+  lng: 'de',
   debug: true,
   interpolation: { escapeValue: false },
-  supportedLngs: ['en', 'de']
+  supportedLngs: ['en', 'de'],
+  resources: {
+    "en": global_en,
+    "de": global_de
+  }
 })
-
-i18next.addResources("en", "test", test_en)
-i18next.addResources("de", "test", test_de)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
