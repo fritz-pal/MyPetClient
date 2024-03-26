@@ -1,7 +1,8 @@
-import viteLogo from '/vite.svg'
 import './App.css'
 import PetList from './components/PetList';
 import LoginInput from './components/LoginInput';
+import {Route, BrowserRouter as Router, Routes} from 'react-router-dom'
+import ErrorPage from './components/ErrorPage';
 
 function Header() {
   return (
@@ -18,28 +19,18 @@ function Header() {
 
 function App() {
   return (
-    <>
-      <Header />
+    <Router>
       <div className="App">
-        <img
-          src={viteLogo}
-          alt="Cat"
-          className="logo"
-        />
-       <LoginInput />
-        <div className="social-icons">
-          <img
-            src={viteLogo}
-            alt="Twitter"
-            className="logo"
-          />
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<PetList/>}/>
+            <Route path="/login"element={<LoginInput/>}/>
+            <Route path="*" element={<ErrorPage/>}/>
+          </Routes>
         </div>
-        <p className="register-link">
-          Noch keinen Account? Jetzt registrieren
-        </p>
-        <PetList />
       </div>
-    </>
+    </Router>
   );
 }
 
