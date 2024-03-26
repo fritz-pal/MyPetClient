@@ -1,6 +1,6 @@
 import './css/PetList.css';
 import PetListItem from './PetListItem';
-import useFetch from '../hooks/useFetch';
+import { useFetch } from '../hooks/useFetch';
 import Pets, { Pet, JSONPet} from '../models/Pet' 
 
 const PetList = () => {
