@@ -4,11 +4,7 @@ import { useFetch } from '../hooks/useFetch';
 import Pets, { Pet, JSONPet} from '../models/Pet' 
 
 const PetList = () => {
-<<<<<<< HEAD
-    const { data: data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets?userId=2');
-=======
-    const { data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets');
->>>>>>> PetCreation
+    const { data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets?userId=2');
     let pets: Array<Pet> = [];
     if (data != null)
         data.forEach(element => {
