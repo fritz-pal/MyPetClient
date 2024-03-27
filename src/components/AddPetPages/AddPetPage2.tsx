@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { Pet } from '../../models/Pet'
 import '../css/AddPet.css'
 import { PetContext } from '../PetCreationContext'
 import { useTranslation } from 'react-i18next'

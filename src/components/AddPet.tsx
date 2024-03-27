@@ -6,8 +6,6 @@ import AddPetPage2 from "./AddPetPages/AddPetPage2";
 import AddPetPage3 from "./AddPetPages/AddPetPage3";
 import AddPetPage4 from "./AddPetPages/AddPetPage4";
 import AddPetPage5 from "./AddPetPages/AddPetPage5";
-import AddPetPage6 from "./AddPetPages/AddPetPage6";
-import Pets from "../models/Pet";
 import PetCreationContext, { PetContext, getPageProgress } from "./PetCreationContext";
 
 const AddPet = () => {
