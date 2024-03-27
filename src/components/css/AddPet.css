@@ -56,16 +56,71 @@
     width: 200px;
     height: 50px;
     grid-template-columns: 50px 100px 50px;
-}
-
-.nav-button {
-    font-weight: bolder;
+    margin-top: 20px;
 }
 
 .page-back {
     grid-column: 1;
+    padding: 0;
+    height: 50px;
+    justify-content: center;
+    align-content: center;
 }
 
 .page-forward {
     grid-column: 3;
+    padding: 0;
+    height: 50px;
+    justify-content: center;
+    align-content: center;
+}
+
+.page-1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+.page-3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+.page-5 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-items: center;
+}
+
+.gender-buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.gender-button {
+    width: 80px;
+    height: 80px;
+    padding: 0px;
+    border-radius: 50%;
+}
+
+.input-label {
+    margin-top: 5px;
+    text-align: left;
+    justify-self: left;
+    width: 100%;
+}
+
+.castrated-box {
+    width: auto;
 }
