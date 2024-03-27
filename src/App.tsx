@@ -1,5 +1,4 @@
 import './components/css/App.css'
-import PetList from './components/PetList';
 import LoginInput from './components/LoginInput';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage';
@@ -8,6 +7,7 @@ import MobileNavbar from './components/MobileNavbar';
 import NavbarContext from './components/MenuContext';
 import { useState } from 'react';
 import AddPet from './components/AddPet';
+import Homepage from './components/Homepage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,7 @@ function App() {
         </NavbarContext.Provider>
         <div className="content">
           <Routes>
-            <Route path="/" element={<PetList/>}/>
+            <Route path="/" element={<Homepage/>}/>
             <Route path="/login" element={<LoginInput/>}/>
             <Route path="/newpet" element={<AddPet/>}/>
             <Route path="*" element={<ErrorPage/>}/>

@@ -6,7 +6,8 @@
         "canis": "Dog"
     },
     "home": {
-        "greeting": "Hello, {{firstName}}"
+        "greeting": "Welcome!",
+        "petlisttitle": "My Pets"
     },
     "error": {
         "errorMessage": "404 {{path}} not found"

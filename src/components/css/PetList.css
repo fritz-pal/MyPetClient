@@ -3,15 +3,22 @@
     color: #43A4BC;
     padding: 20px;
     border-radius: 8px;
-    display: inline;
-    position: relative;
+    display: flex;
     width: 50%;
-    margin-bottom: 20px;
+    flex-direction: column;
+    position: relative;
+    margin: 0 20px 20px 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .my-pets-module {
+        width: 100%;
+    }
 }
 
 .my-pets-module h2 {
     font-size: 24px;
-    margin: 0px auto 20px auto;
+    margin: 0px 20% 20px 20%;
     background-color: #43A4BC;
     border-radius: 10px;
     color: #153B44;
@@ -25,6 +32,13 @@
 
 hr {
     color: #43A4BC;
+}
+
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
 .pet-image {
@@ -60,9 +74,16 @@ hr {
     color: #43A4BC;
     width: 50px;
     height: 50px;
+    margin-right: 20px;
 }
 
 .add-pet-button:hover {
     color: #071C21;
     cursor: pointer;
+}
+
+.add-pet-button-container {
+    display: flex;
+    justify-content: right;
+    align-items: right;
 }
