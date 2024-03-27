@@ -12,6 +12,9 @@ interface Pet {
     favoriteSpot?: string
     favoriteToy?: string
     lastVetVisit?: Date
+    disabilityIds: number[];
+    medicationIds: number[];
+    allergyIds: number[];
 }
 
 interface JSONPet {

@@ -12,7 +12,7 @@ function App() {
         <HeaderBar />
         <div className="content">
           <Routes>
-            <Route path="/" element={<><PetList /><PetList /><PetList /><PetList /><PetList /></>} />
+            <Route path="/" element={<><PetList /></>} />
             <Route path="/login" element={<LoginInput />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

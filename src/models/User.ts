@@ -1,4 +1,8 @@
 interface User {
     id: number;
-    name: string;
+    username: string;
+    fullname: string;
+    address: string;
+    email: string;
+    petIds: number[];
 }

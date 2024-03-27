@@ -3,7 +3,7 @@ import PetListItem from './PetListItem';
 import useFetch from '../hooks/useFetch';
 
 const PetList = () => {
-    const { data: data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets');
+    const { data: data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets?userId=2');
     let pets: Array<Pet> = [];
     if (data != null)
         data.forEach(element => {
