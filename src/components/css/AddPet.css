@@ -78,3 +78,20 @@
     align-content: center;
     align-items: center;
 }
+
+.page-2 {
+    text-align: left;
+}
+
+.gender-buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.gender-button {
+    width: 80px;
+    height: 80px;
+    padding: 0px;
+    border-radius: 50%;
+}

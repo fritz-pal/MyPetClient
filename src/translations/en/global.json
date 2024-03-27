@@ -3,7 +3,15 @@
         "search": "Search"
     },
     "genus": {
-        "canis": "Dog"
+        "canis": "Dog",
+        "felis": "Cat",
+        "equus": "Horse",
+        "testudo": "Turtle",
+        "psittacus": "Parrot",
+        "columba": "Grey Parrot",
+        "oryctolagus": "Rabbit",
+        "cavia": "Guinea Pig",
+        "phodopus": "Hamster"
     },
     "home": {
         "greeting": "Hello, {{firstName}}"
