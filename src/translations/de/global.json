@@ -3,7 +3,15 @@
         "search": "Suche"
     },
     "genus": {
-        "canis": "Hund"
+        "canis": "Hund",
+        "felis": "Katze",
+        "equus": "Pferd",
+        "testudo": "Schildkröte",
+        "psittacus": "Papagei",
+        "columba": "Graupapageien",
+        "oryctolagus": "Kaninchen",
+        "cavia": "Meerschweinchen",
+        "phodopus": "Hamster"
     },
     "home": {
         "greeting": "Hallo, {{firstName}}"
