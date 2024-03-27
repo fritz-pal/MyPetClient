@@ -1,29 +1,31 @@
 import { Link } from "react-router-dom";
 import './css/HeaderBar.css';
-import { useState } from "react";
+import { useContext } from "react";
 import NavbarContext from "./MenuContext";
 
 const MobileNavbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const { isOpen, setIsOpen } = useContext(NavbarContext);
+
+    window.addEventListener("resize", () => setIsOpen(false));
 
     return (
-        <NavbarContext.Provider value={{ isOpen, setIsOpen }}>
-            <div className={`navbar ${isOpen ? 'open' : ''}`}>
-                <div className="navbar-items">
-                    <NavbarItem path="/" label="Home" />
-                    <NavbarItem path="/forum" label="Forum" />
-                    <NavbarItem path="/reminders" label="Reminders" />
-                    <NavbarItem path="/marketplace" label="Marketplace" />
-                </div>
+        <div className={`navbar ${isOpen ? 'open' : ''}`}>
+            <div className="navbar-items">
+                <NavbarItem path="/" label="Home" />
+                <NavbarItem path="/forum" label="Forum" />
+                <NavbarItem path="/reminders" label="Reminders" />
+                <NavbarItem path="/newpet" label="Test" />
             </div>
-        </NavbarContext.Provider>
+        </div>
     );
 };
 
 function NavbarItem({ path, label }: { path: string, label: string }) {
+    const { setIsOpen } = useContext(NavbarContext);
+
     return (
         <div className="navbar-item">
-            <Link to={path}>{label}</Link>
+            <Link onClick={() => setIsOpen(false)} to={path}>{label}</Link>
         </div>
     )
 }

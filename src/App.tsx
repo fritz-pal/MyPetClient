@@ -5,13 +5,19 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage';
 import HeaderBar from './components/HeaderBar';
 import MobileNavbar from './components/MobileNavbar';
+import NavbarContext from './components/MenuContext';
+import { useState } from 'react';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Router>
       <div className="App">
-        <HeaderBar />
-        <MobileNavbar />
+        <NavbarContext.Provider value={{ isOpen, setIsOpen }}>
+          <HeaderBar />
+          <MobileNavbar />
+        </NavbarContext.Provider>
         <div className="content">
           <Routes>
             <Route path="/" element={<><PetList /></>} />
