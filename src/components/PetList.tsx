@@ -1,13 +1,18 @@
 import './css/PetList.css';
 import PetListItem from './PetListItem';
-import useFetch from '../hooks/useFetch';
+import { useFetch } from '../hooks/useFetch';
+import Pets, { Pet, JSONPet} from '../models/Pet' 
 
 const PetList = () => {
+<<<<<<< HEAD
     const { data: data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets?userId=2');
+=======
+    const { data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets');
+>>>>>>> PetCreation
     let pets: Array<Pet> = [];
     if (data != null)
         data.forEach(element => {
-            pets.push(JSONPetToPet(element))
+            pets.push(Pets.JSONPetToPet(element))
         });
     return (
         <div className="my-pets-module">

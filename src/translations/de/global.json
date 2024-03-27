@@ -1,4 +1,7 @@
 {
+    "generics": {
+        "search": "Suche"
+    },
     "genus": {
         "canis": "Hund"
     },
@@ -6,5 +9,24 @@
         "greeting": "Hallo, {{firstName}}"
     },
     "error": {
+        "errorMessage": "404 {{path}} wurde nicht gefunden"
+    },
+    "addPet": {
+        "page1Title": "Welche Art von Tier hast du?",
+        "page2Title": "Lass uns dein Tier kennen lernen",
+        "page3Title": "Welche Rasse ist {{name}}?",
+        "page4Title": "Wann hat {{name}} Geburtstag?",
+        "page5Title": "Nenne paar weitere Merkmale",
+        "page6Title": "Was für Vorlieben hat {{name}}?",
+        "noPicture": "Lade ein Foto von deinem Tier hoch",
+        "nameQuestion": "Wie heißt dein Haustier?",
+        "heightProp": "Größe",
+        "weightProp": "Gewicht",
+        "castratedProp": "Kastriert",
+        "foodProp": "Lieblingsfutter",
+        "toyProp": "Lieblingsspielzeug",
+        "spotProp": "Lieblingsplatz",
+        "finishButton": "Speichern und beenden",
+        "requieredNotice": "Plichtfeld"
     }
 }
