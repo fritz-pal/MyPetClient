@@ -19,7 +19,7 @@ export function getPageProgress(pet: Pet) {
         return 2;
     if (pet.species.id == 0)
         return 3;
-    return 6;
+    return 5;
 }
 
 const PetCreationContext = ({children}: {children: JSX.Element}) =>{

@@ -32,13 +32,27 @@ const AddPetContent = () => {
                 { page == 3 && <AddPetPage3/> }
                 { page == 4 && <AddPetPage4/> }
                 { page == 5 && <AddPetPage5/> }
-                { page == 6 && <AddPetPage6/> }
                 <div className="page-navbar">
                     { page > 1 && 
-                        <button className="nav-button page-back" onClick={() => setPage(page - 1)}>&#x3c;</button> 
+                        <button className="page-back" onClick={() => setPage(page - 1)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
+                        </button> 
                     }
                     { page < getPageProgress(pet) &&
-                        <button className="nav-button page-forward" onClick={() => setPage(page + 1)}>&#x3e;</button> 
+                        <button className="page-forward" onClick={() => setPage(page + 1)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button> 
+                    }
+                    { page == 5 && 
+                        <button className="page-forward" onClick={() => setPage(page + 1)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button> 
                     }
                 </div>
             </div>
