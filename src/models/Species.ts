@@ -5,3 +5,14 @@ export interface Species {
     genus: Genus;
     race: string;
 }
+
+export const newSpecies = (): Species => {
+    return {
+        id: 0,
+        genus: {
+            id: 0,
+            name: "",
+        },
+        race: ""
+    }
+}

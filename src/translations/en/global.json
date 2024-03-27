@@ -29,5 +29,19 @@
         "spotProp": "Favorite Spot",
         "finishButton": "Save and finish",
         "requieredNotice": "Requiered"
+    },
+    "paths": {
+        "home": "Home",
+        "newpet": "Add Pet",
+        "login": "Login",
+        "admin": "Admin",
+        "forum": "Forum"
+    },
+    "admin": {
+        "genus": "Genus",
+        "race": "Race",
+        "selectGenus": "Select Genus",
+        "addGenus": "Add Genus",
+        "addSpecies": "Add Species"
     }
 }

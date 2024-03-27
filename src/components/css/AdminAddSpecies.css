@@ -1,0 +1,27 @@
+.post-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.post-button {
+    margin-left: 10px;
+}
+
+.post-input {
+    width: 50%;
+}
+
+.select-genus {
+    margin-bottom: 10px;
+}
+
+.load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}

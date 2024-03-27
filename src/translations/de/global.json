@@ -29,5 +29,19 @@
         "spotProp": "Lieblingsplatz",
         "finishButton": "Speichern und beenden",
         "requieredNotice": "Plichtfeld"
+    },
+    "paths": {
+        "home": "Home",
+        "newpet": "Tier Hinzufügen",
+        "login": "Login",
+        "admin": "Admin",
+        "forum": "Forum"
+    },
+    "admin": {
+        "genus": "Gattung",
+        "race": "Rasse",
+        "selectGenus": "Gattung auswählen",
+        "addGenus": "Gattung hinzufügen",
+        "addSpecies": "Spezies hinzufügen"
     }
 }

@@ -3,24 +3,18 @@ import './css/HeaderBar.css';
 import { Link } from 'react-router-dom';
 import NavbarContext from './MenuContext';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const HeaderBar = () => {
     const location = useLocation();
+    const [t, _] = useTranslation("paths");
+
     return (
         <div className="app-header">
             <BurgerMenu />
             <div className="site-title">
                 <h2>
-                    {(() => {
-                        switch (location.pathname) {
-                            case "/":
-                                return "Home";
-                            case "/login":
-                                return "Login";
-                            default:
-                                return "Error";
-                        }
-                    })()}
+                    {t(location.pathname === "/" ? "home" : location.pathname.replace("/", ""))}
                 </h2>
             </div>
             <div className="menu-items">
@@ -28,6 +22,7 @@ const HeaderBar = () => {
                 <MenuItem path="/forum" label="Forum" />
                 <MenuItem path="/reminders" label="Reminders" />
                 <MenuItem path="/newpet" label="Test" />
+                <MenuItem path="/admin" label="Admin" />
             </div>
             <div className="user-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

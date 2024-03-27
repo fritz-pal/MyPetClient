@@ -42,6 +42,40 @@ button {
   transition: background-color 0.25s;
 }
 
+select {
+  border-radius: 8px;
+  border: 2px solid #43A4BC;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #071c21;
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  border-radius: 8px;
+  border: 2px solid #43A4BC;
+}
+
+input:hover {
+  background-color: #1a1a1a;
+}
+
+input:focus {
+  background-color: #1a1a1a;
+}
+
+select:hover {
+  background-color: #1a1a1a;
+}
+
+option {
+  background-color: #071C21;
+  color: white;
+}
+
 button:hover {
   background-color: #1a1a1a;
   border-color: #43A4BC;

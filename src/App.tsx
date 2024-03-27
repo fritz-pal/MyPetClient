@@ -8,6 +8,7 @@ import NavbarContext from './components/MenuContext';
 import { useState } from 'react';
 import AddPet from './components/AddPet';
 import Homepage from './components/Homepage';
+import AdminAddSpecies from './components/AdminAddSpecies';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Homepage/>}/>
             <Route path="/login" element={<LoginInput/>}/>
             <Route path="/newpet" element={<AddPet/>}/>
+            <Route path="/admin" element={<AdminAddSpecies/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
