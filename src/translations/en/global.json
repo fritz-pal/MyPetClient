@@ -3,7 +3,15 @@
         "search": "Search"
     },
     "genus": {
-        "canis": "Dog"
+        "canis": "Dog",
+        "felis": "Cat",
+        "equus": "Horse",
+        "testudo": "Turtle",
+        "psittacus": "Parrot",
+        "columba": "Grey Parrot",
+        "oryctolagus": "Rabbit",
+        "cavia": "Guinea Pig",
+        "phodopus": "Hamster"
     },
     "home": {
         "greeting": "Hello, {{firstName}}"
@@ -20,7 +28,7 @@
         "page6Title": "What does {{name}} like?",
         "noPicture": "Upload a picture",
         "nameQuestion": "What is your animal called?",
-        "heightProp": "Size",
+        "sizeProp": "Size",
         "weightProp": "Weight",
         "castratedProp": "Castrated",
         "foodProp": "Favorite Food",

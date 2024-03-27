@@ -67,7 +67,8 @@ const newPet = () : Pet => {
             fullname: "",
             email: ""
         },
-        isMale: false
+        isMale: false,
+        castrated: false
     }
 }
 
