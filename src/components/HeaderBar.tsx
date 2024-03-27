@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router';
 import './css/HeaderBar.css';
 import { Link } from 'react-router-dom';
+import NavbarContext from './MenuContext';
+import { useContext } from 'react';
 
 const HeaderBar = () => {
     const location = useLocation();
@@ -25,7 +27,7 @@ const HeaderBar = () => {
                 <MenuItem path="/" label="Home" />
                 <MenuItem path="/forum" label="Forum" />
                 <MenuItem path="/reminders" label="Reminders" />
-                <MenuItem path="/marketplace" label="Marketplace" />
+                <MenuItem path="/newpet" label="Test" />
             </div>
             <div className="user-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -45,8 +47,12 @@ function MenuItem({ path, label }: { path: string, label: string }) {
 }
 
 function BurgerMenu() {
+    const { isOpen, setIsOpen } = useContext(NavbarContext);
+
     return (
-        <div className="menu-icon">
+        <div className="menu-icon" onClick={() => {
+            setIsOpen(!isOpen);
+        }}>
             <div className="menu-line"></div>
             <div className="menu-line"></div>
             <div className="menu-line"></div>
