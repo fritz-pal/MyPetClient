@@ -66,7 +66,9 @@ const newPet = () : Pet => {
         },
         owner: {
             id: 0,
-            name: ""
+            username: "",
+            fullname: "",
+            email: ""
         },
         isMale: false
     }
