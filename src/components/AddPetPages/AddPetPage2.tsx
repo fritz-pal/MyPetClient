@@ -1,7 +1,7 @@
 import { Pet } from '../../models/Pet'
 import '../css/AddPet.css'
 
-const AddPetPage2 = ({pet} : {pet: Pet}) => {
+const AddPetPage2 = () => {
     return (
         <div>
 
