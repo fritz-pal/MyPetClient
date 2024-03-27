@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router';
 import './css/HeaderBar.css';
 import { Link } from 'react-router-dom';
+import NavbarContext from './MenuContext';
+import { useContext } from 'react';
 
 const HeaderBar = () => {
     const location = useLocation();
@@ -45,8 +47,14 @@ function MenuItem({ path, label }: { path: string, label: string }) {
 }
 
 function BurgerMenu() {
+    const { isOpen, setIsOpen } = useContext(NavbarContext);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    }
+
     return (
-        <div className="menu-icon">
+        <div className="menu-icon" onClick={handleToggle}>
             <div className="menu-line"></div>
             <div className="menu-line"></div>
             <div className="menu-line"></div>
