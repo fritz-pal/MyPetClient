@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router';
 import './css/HeaderBar.css';
 import { Link } from 'react-router-dom';
-import NavbarContext from './MenuContext';
+import NavbarContext from '../context/MenuContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 

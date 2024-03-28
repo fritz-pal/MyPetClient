@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Pet } from '../../models/Pet'
 import '../css/AddPet.css'
 import { useTranslation } from 'react-i18next';
-import { PetContext } from '../PetCreationContext';
+import { PetContext } from '../../context/PetCreationContext';
 
 const AddPetPage5 = () => {
     const {pet, setPet} = useContext(PetContext);

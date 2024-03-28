@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import '../css/AddPet.css'
-import { PetContext } from '../PetCreationContext';
+import { PetContext } from '../../context/PetCreationContext';
 import { Species } from '../../models/Species';
 import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';

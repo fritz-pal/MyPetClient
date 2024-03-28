@@ -6,6 +6,8 @@ import i18next from 'i18next'
 import global_de from './translations/de/global.json'
 import global_en from './translations/en/global.json'
 import { I18nextProvider } from 'react-i18next'
+import UserContextProvider from './context/UserContext.tsx'
+import { devUser } from './models/User.ts'
 
 i18next.init({
   fallbackLng: 'en',
@@ -22,7 +24,9 @@ i18next.init({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next}>
-      <App />
+      <UserContextProvider initialUser={devUser()}>
+        <App />
+      </UserContextProvider>
     </I18nextProvider>
   </React.StrictMode>,
 )

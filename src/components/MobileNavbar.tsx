@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import './css/HeaderBar.css';
 import { useContext } from "react";
-import NavbarContext from "./MenuContext";
+import NavbarContext from "../context/MenuContext";
 
 const MobileNavbar = () => {
     const { isOpen, setIsOpen } = useContext(NavbarContext);

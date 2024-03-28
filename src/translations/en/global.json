@@ -26,7 +26,7 @@
         "page3Title": "What race is {{name}}?",
         "page4Title": "When was {{name}} born?",
         "page5Title": "Name a few physical traits",
-        "page6Title": "What does {{name}} like?",
+        "page6Title": "We will now add {{name}} for you",
         "noPicture": "Upload a picture",
         "nameQuestion": "What is your animal called?",
         "sizeProp": "Size",
@@ -35,7 +35,6 @@
         "foodProp": "Favorite Food",
         "toyProp": "Favorite Toy",
         "spotProp": "Favorite Spot",
-        "finishButton": "Save and finish",
         "requieredNotice": "Requiered"
     },
     "paths": {

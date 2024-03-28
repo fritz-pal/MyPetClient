@@ -5,7 +5,7 @@ import { Genus } from '../../models/Genus';
 import Loader from '../Loader';
 import GenusElement from '../GenusElement';
 import { useContext } from 'react';
-import { PetContext } from '../PetCreationContext';
+import { PetContext } from '../../context/PetCreationContext';
 
 const AddPetPage1 = () => {
     const {pet, setPet} = useContext(PetContext);

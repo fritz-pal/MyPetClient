@@ -6,7 +6,8 @@ import AddPetPage2 from "./AddPetPages/AddPetPage2";
 import AddPetPage3 from "./AddPetPages/AddPetPage3";
 import AddPetPage4 from "./AddPetPages/AddPetPage4";
 import AddPetPage5 from "./AddPetPages/AddPetPage5";
-import PetCreationContext, { PetContext, getPageProgress } from "./PetCreationContext";
+import PetCreationContext, { PetContext, getPageProgress } from "../context/PetCreationContext";
+import AddPetPost from "./AddPetPages/AddPetPost";
 
 const AddPet = () => {
     return (
@@ -30,6 +31,7 @@ const AddPetContent = () => {
                 { page == 3 && <AddPetPage3/> }
                 { page == 4 && <AddPetPage4/> }
                 { page == 5 && <AddPetPage5/> }
+                { page == 6 && <AddPetPost/>}
                 <div className="page-navbar">
                     { page > 1 && 
                         <button className="page-back" onClick={() => setPage(page - 1)}>

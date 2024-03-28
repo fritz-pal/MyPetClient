@@ -26,7 +26,7 @@
         "page3Title": "Welche Rasse ist {{name}}?",
         "page4Title": "Wann hat {{name}} Geburtstag?",
         "page5Title": "Nenne paar weitere Merkmale",
-        "page6Title": "Was für Vorlieben hat {{name}}?",
+        "page6Title": "Wir fügen jetzt {{name}} für dich hinzu",
         "noPicture": "Lade ein Foto von deinem Tier hoch",
         "nameQuestion": "Wie heißt dein Haustier?",
         "sizeProp": "Größe",
@@ -35,7 +35,6 @@
         "foodProp": "Lieblingsfutter",
         "toyProp": "Lieblingsspielzeug",
         "spotProp": "Lieblingsplatz",
-        "finishButton": "Speichern und beenden",
         "requieredNotice": "Plichtfeld"
     },
     "paths": {
