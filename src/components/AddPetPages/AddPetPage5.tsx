@@ -19,6 +19,18 @@ const AddPetPage5 = () => {
         pet.castrated = castrated;
         setPet({...pet});
     }
+    const setToy = (toy: string) => {
+        pet.favoriteToy = toy;
+        setPet({...pet});
+    }
+    const setSpot = (spot: string) => {
+        pet.favoriteSpot = spot;
+        setPet({...pet});
+    }
+    const setFood = (food: string) => {
+        pet.favoriteFood = food;
+        setPet({...pet});
+    }
     return (
         <div className='page-5'>
             <div className='input-label'>
@@ -30,21 +42,21 @@ const AddPetPage5 = () => {
             </div>
             <input type='number' min="0" value={pet.weight} onChange={(e) => setWeight(+e.target.value)}/>
             <div className='input-label'>
-                <input type='checkbox' className="castrated-box" onChange={(e) => setCastrated(e.target.checked)}/>
+                <input type='checkbox' className="castrated-box" defaultChecked={pet.castrated} onChange={(e) => setCastrated(e.target.checked)}/>
                 &nbsp;{t("castratedProp")}
             </div>
             <div className='input-label'>
                 {t("foodProp")}
             </div>
-            <input type='text' value={pet.favoriteFood}/>
+            <input type='text' value={pet.favoriteFood} onChange={(e) => setFood(e.target.value)}/>
             <div className='input-label'>
                 {t("toyProp")}
             </div>
-            <input type='text' value={pet.favoriteToy}/>
+            <input type='text' value={pet.favoriteToy} onChange={(e) => setToy(e.target.value)}/>
             <div className='input-label'>
                 {t("spotProp")}
             </div>
-            <input type='text' value={pet.favoriteSpot}/>
+            <input type='text' value={pet.favoriteSpot} onChange={(e) => setSpot(e.target.value)}/>
         </div>
     )
 }
