@@ -17,12 +17,12 @@ const getSpeciesByID = (id: Number): Promise<Species> => {
     return axiosClient.get(`/species/${id}`);
 }
 
-const updateSpecies = () => {
-
+const updateSpecies = (species: Species) => {
+    return axiosClient.put(`/species/${species.id}`, species);
 }
 
-const deleteSpecies = () => {
-
+const deleteSpecies = (id: Number) => {
+    return axiosClient.delete(`/species/${id}`);
 }
 
 const getAllSpecies = () => {
@@ -31,10 +31,4 @@ const getAllSpecies = () => {
 
 const postSpecies = () => {
 
-}
-
-
-
-export const MyPetQuery = {
-    
 }
