@@ -1,3 +1,8 @@
+import { APIClient } from "../constants";
+
+/**
+ * Represents a User
+ */
 export interface User {
     id: number;
     username: string;
@@ -6,6 +11,10 @@ export interface User {
     email: string;
 }
 
+/**
+ * Creates a new empty user
+ * @returns New User
+ */
 export const newUser = (): User => {
     return {
         id: 0,
@@ -15,12 +24,31 @@ export const newUser = (): User => {
     }
 }
 
-export const devUser = (): User => {
-    return {
-        id: 2,
-        username: "gpermant",
-        fullname: "Gerald",
-        address: "gerald.permantier@hs-heilbronn.de",
-        email: "Hochschule Heilbronn"
-    }
+/**
+ * User used for Debugging and Testing purposes
+ */
+export const devUser: User =   {
+    id: 12,
+    username: "testuser",
+    fullname: "user",
+    address: "xvcx",
+    email: "sddsf",
+}
+
+const MAPPING = "/users"
+
+
+/**
+ * Get All Users
+ * @returns Promise for all Users
+ */
+const getAllUsers = (): Promise<User[]> => {
+    return APIClient.get(MAPPING);
+}
+
+/**
+ * Contains methods to communicate with the backend system
+ */
+export const UserAPI = {
+    getAllUsers
 }

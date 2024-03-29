@@ -25,31 +25,33 @@ export const newSpecies = (): Species => {
     }
 }
 
+const MAPPING = "/species"
+
 /**
- * Request to get a species by id: "GET to /species/{id}"
+ * Request to get a species by id
  * @param id ID of Species you want to fetch
  * @returns Promise of requested Species
  */
 const getSpeciesByID = (id: Number): Promise<Species> => {
-    return APIClient.get(`/species/${id}`);
+    return APIClient.get(`${MAPPING}/${id}`);
 }
 
 /**
- * Update a species "PUT to /species/{id}"
+ * Update a species
  * @param species Updated Species
  * @returns Promise of updated Species
  */
 const updateSpecies = (species: Species): Promise<Species> => {
-    return APIClient.put(`/species/${species.id}`, species);
+    return APIClient.put(`${MAPPING}/${species.id}`, species);
 }
 
 /**
- * Delete a species by id "DELETE to /species/{id}"
+ * Delete a species by id
  * @param id ID of Species you want to delete
  * @returns Promise
  */
 const deleteSpecies = (id: Number): Promise<void> => {
-    return APIClient.delete(`/species/${id}`);
+    return APIClient.delete(`${MAPPING}/${id}`);
 }
 
 /**
@@ -57,19 +59,19 @@ const deleteSpecies = (id: Number): Promise<void> => {
  * @returns Promise of a Species Array
  */
 const getAllSpecies = (): Promise<Species[]> => {
-    return APIClient.get(`/species`);
+    return APIClient.get(MAPPING);
 }
 
 /**
- * Adds a new Species "POST to /species"
+ * Adds a new Species
  * @param species New Species
- * @returns Pomise of added Species
+ * @returns Promise of added Species
  */
 const postSpecies = (species: Species) => {
-    return APIClient.post(`/species`, species);
+    return APIClient.post(MAPPING, species);
 }
 
-export const SpeciesQuery = {
+export const SpeciesAPI = {
     getSpeciesByID,
     getAllSpecies,
     updateSpecies,
