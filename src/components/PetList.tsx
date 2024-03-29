@@ -5,12 +5,15 @@ import Pets, { Pet, JSONPet } from '../models/Pet'
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const PetList = () => {
     const [t, _] = useTranslation("home");
     const navigate = useNavigate();
+    const {user} = useContext(UserContext);
 
-    const { data, loading, error } = useFetch<Array<JSONPet>>('http://localhost:8080/api/pets?userId=2');
+    const { data, loading, error } = useFetch<Array<JSONPet>>(`http://localhost:8080/api/pets?userId=${user.id}`);
     let pets: Array<Pet> = [];
     if (data != null) {
         data.forEach(element => {

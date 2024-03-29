@@ -99,7 +99,7 @@ const Pets = {
     newPet
 }
 
-const MAPPING = "/pet"
+const MAPPING = "/pets"
 
 /**
  * Request to get a Pet by id
@@ -115,7 +115,7 @@ const getPetByID = (id: Number): Promise<JSONPet> => {
  * @param species Updated Species
  * @returns Promise of updated Species
  */
-const updatePet = (pet: Pet): Promise<Pet> => {
+const updatePet = (pet: JSONPet): Promise<JSONPet> => {
     return APIClient.put(`${MAPPING}/${pet.id}`, pet);
 }
 
@@ -132,7 +132,7 @@ const deletePet = (id: Number): Promise<void> => {
  * Get all Pets of a user
  * @returns Promise of a Pet Array
  */
-const getAllPetsOfUser = (): Promise<Pet[]> => {
+const getAllPetsOfUser = (): Promise<JSONPet[]> => {
     return APIClient.get(MAPPING);
 }
 
@@ -141,7 +141,7 @@ const getAllPetsOfUser = (): Promise<Pet[]> => {
  * @param species New Pet
  * @returns Promise of added Pet
  */
-const addPet = (pet: Pet): Promise<Pet> => {
+const addPet = (pet: JSONPet): Promise<JSONPet> => {
     return APIClient.post(MAPPING, pet);
 }
 

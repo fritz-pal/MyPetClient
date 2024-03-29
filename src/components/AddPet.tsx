@@ -23,7 +23,6 @@ const AddPetContent = () => {
     const {pet} = useContext(PetContext);
     return (
         <div className="add-pet-page">
-            <progress max="6" value={page - 1} className="add-progress"/>
             <div className="add-pet-content">
                 <h2>{ t("page"+ page + "Title", {name: pet.name}) }</h2>
                 { page == 1 && <AddPetPage1/> }
