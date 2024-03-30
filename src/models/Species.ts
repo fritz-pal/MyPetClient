@@ -58,8 +58,8 @@ const deleteSpecies = (id: Number): Promise<void> => {
  * Get al species "GET to /species"
  * @returns Promise of a Species Array
  */
-const getAllSpecies = (): Promise<Species[]> => {
-    return APIClient.get(MAPPING);
+const getAllSpeciesOfGenus = (genusID: Number): Promise<Species[]> => {
+    return APIClient.get(`${MAPPING}?genusId=${genusID}`);
 }
 
 /**
@@ -73,7 +73,7 @@ const postSpecies = (species: Species) => {
 
 export const SpeciesAPI = {
     getSpeciesByID,
-    getAllSpecies,
+    getAllSpeciesOfGenus,
     updateSpecies,
     deleteSpecies,
     postSpecies
