@@ -42,8 +42,9 @@ const MAPPING = "/users"
  * Get All Users
  * @returns Promise for all Users
  */
-const getAllUsers = (): Promise<User[]> => {
-    return APIClient.get(MAPPING);
+const getAllUsers = async (): Promise<User[]> => {
+    const request = await APIClient.get(MAPPING);
+    return request.data;
 }
 
 /**

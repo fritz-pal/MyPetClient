@@ -25,14 +25,20 @@ const MAPPING = "/genus"
  * Get All Genus
  * @returns Promise for all Genus
  */
-const getAllGenus = (): Promise<Genus[]> => APIClient.get(MAPPING);
+const getAllGenus = async (): Promise<Genus[]>  => {
+    const request = await APIClient.get(MAPPING);
+    return request.data;
+}
 
 /**
  * Adds a new Genus
  * @param genus New Genus
  * @returns Promise of the new Genus
  */
-const addGenus = (genus: Genus): Promise<Genus> => APIClient.post(MAPPING, genus);
+const addGenus = async (genus: Genus): Promise<Genus> => {
+    const request = await APIClient.post(MAPPING, genus);
+    return request.data;
+} 
 
 /**
  * Contains methods to communicate with the backend system

@@ -23,7 +23,6 @@ const AddPet = () => {
     const genusQuery = useQuery({
         queryKey: ["genus"],
         queryFn: () => GenusAPI.getAllGenus(),
-        
     });
     const speciesQuery = useQuery({
         queryKey: ["species", genus ? genus.id : 0],
@@ -39,11 +38,6 @@ const AddPet = () => {
         if (species == null)
             return false;
         return true;
-    }
-
-    if (genusQuery.isSuccess) {
-        console.log("Data fetched!");
-        console.log(genusQuery.data);
     }
 
     return (
@@ -75,7 +69,7 @@ const AddPet = () => {
                 <div className="labeled-input">
                     <div>*Genus:</div>
                     {genusQuery.isLoading && <Loader/>}
-                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data}/>}
+                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data} onClickedElement={element => setGenus(element)}/>}
                     {genusQuery.isError && <>Error loading Genus</>}
                 </div>
             </div>

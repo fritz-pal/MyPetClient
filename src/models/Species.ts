@@ -32,8 +32,9 @@ const MAPPING = "/species"
  * @param id ID of Species you want to fetch
  * @returns Promise of requested Species
  */
-const getSpeciesByID = (id: Number): Promise<Species> => {
-    return APIClient.get(`${MAPPING}/${id}`);
+const getSpeciesByID = async (id: Number): Promise<Species> => {
+    const request = await APIClient.get(`${MAPPING}/${id}`);
+    return request.data; 
 }
 
 /**
@@ -41,8 +42,9 @@ const getSpeciesByID = (id: Number): Promise<Species> => {
  * @param species Updated Species
  * @returns Promise of updated Species
  */
-const updateSpecies = (species: Species): Promise<Species> => {
-    return APIClient.put(`${MAPPING}/${species.id}`, species);
+const updateSpecies = async (species: Species): Promise<Species> => {
+    const request = await APIClient.put(`${MAPPING}/${species.id}`, species);
+    return request.data; 
 }
 
 /**
@@ -50,16 +52,18 @@ const updateSpecies = (species: Species): Promise<Species> => {
  * @param id ID of Species you want to delete
  * @returns Promise
  */
-const deleteSpecies = (id: Number): Promise<void> => {
-    return APIClient.delete(`${MAPPING}/${id}`);
+const deleteSpecies = async (id: Number): Promise<void> => {
+    const request = await APIClient.delete(`${MAPPING}/${id}`);
+    return request.data;
 }
 
 /**
  * Get al species "GET to /species"
  * @returns Promise of a Species Array
  */
-const getAllSpeciesOfGenus = (genusID: number): Promise<Species[]> => {
-    return APIClient.get(`${MAPPING}?genusId=${genusID}`);
+const getAllSpeciesOfGenus = async (genusID: number): Promise<Species[]> => {
+    const request = await APIClient.get(`${MAPPING}?genusId=${genusID}`);
+    return request.data;
 }
 
 /**
@@ -67,8 +71,9 @@ const getAllSpeciesOfGenus = (genusID: number): Promise<Species[]> => {
  * @param species New Species
  * @returns Promise of added Species
  */
-const postSpecies = (species: Species) => {
-    return APIClient.post(MAPPING, species);
+const postSpecies = async (species: Species) => {
+    const request = await APIClient.post(MAPPING, species);
+    return request.data;
 }
 
 export const SpeciesAPI = {

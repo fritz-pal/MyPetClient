@@ -106,8 +106,9 @@ const MAPPING = "/pets"
  * @param id ID of Pet you want to fetch
  * @returns Promise of requested Pet
  */
-const getPetByID = (id: Number): Promise<JSONPet> => {
-    return APIClient.get(`${MAPPING}/${id}`);
+const getPetByID = async (id: Number): Promise<JSONPet> => {
+    const request = await APIClient.get(`${MAPPING}/${id}`);
+    return request.data;
 }
 
 /**
@@ -115,8 +116,9 @@ const getPetByID = (id: Number): Promise<JSONPet> => {
  * @param species Updated Species
  * @returns Promise of updated Species
  */
-const updatePet = (pet: JSONPet): Promise<JSONPet> => {
-    return APIClient.put(`${MAPPING}/${pet.id}`, pet);
+const updatePet = async (pet: JSONPet): Promise<JSONPet> => {
+    const request = await APIClient.put(`${MAPPING}/${pet.id}`, pet);
+    return request.data;
 }
 
 /**
@@ -124,16 +126,18 @@ const updatePet = (pet: JSONPet): Promise<JSONPet> => {
  * @param id ID of Pet you want to delete
  * @returns Promise
  */
-const deletePet = (id: Number): Promise<void> => {
-    return APIClient.delete(`${MAPPING}/${id}`);
+const deletePet = async (id: Number): Promise<void> => {
+    const request = await APIClient.delete(`${MAPPING}/${id}`);
+    return request.data;
 }
 
 /**
  * Get all Pets of a user
  * @returns Promise of a Pet Array
  */
-const getAllPetsOfUser = (): Promise<JSONPet[]> => {
-    return APIClient.get(MAPPING);
+const getAllPetsOfUser = async (): Promise<JSONPet[]> => {
+    const request = await APIClient.get(MAPPING);
+    return request.data;
 }
 
 /**
@@ -141,8 +145,9 @@ const getAllPetsOfUser = (): Promise<JSONPet[]> => {
  * @param species New Pet
  * @returns Promise of added Pet
  */
-const addPet = (pet: JSONPet): Promise<JSONPet> => {
-    return APIClient.post(MAPPING, pet);
+const addPet = async (pet: JSONPet): Promise<JSONPet> => {
+    const request = await APIClient.post(MAPPING, pet);
+    return request.data;
 }
 
 export const PetAPI = {
