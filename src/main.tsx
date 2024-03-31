@@ -9,10 +9,10 @@ import UserContextProvider from './context/UserContext.tsx'
 import { devUser } from './models/User.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
+import LanguageDetector from "i18next-browser-languagedetector";
 
-i18next.init({
+i18next.use(LanguageDetector).init({
   fallbackLng: 'en',
-  lng: 'de',
   debug: true,
   interpolation: { escapeValue: false },
   supportedLngs: ['en', 'de'],

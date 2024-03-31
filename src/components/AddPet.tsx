@@ -1,22 +1,28 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { Genus, GenusAPI } from "../models/Genus";
 import { Species, SpeciesAPI } from "../models/Species";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
 import GenusList from "./GenusList";
 import Loader from "./Loader";
+import SpeciesList from "./SpeciesList";
+import { useNavigate } from "react-router";
+import Pets, { JSONPet, PetAPI } from "../models/Pet";
+import { UserContext } from "../context/UserContext";
 
 const AddPet = () => {
     const queryClient = useQueryClient();
+    const {user} = useContext(UserContext);
     const [t,] = useTranslation("addPet"); // TODO Actually use it
+    const nav = useNavigate();
 
     const [name, setName] = useState<string>("");
     const [isMale, setIsMale] = useState<boolean>(false);
     const [castrated, setCastrated] = useState<boolean>(false);
     const [genus, setGenus] = useState<null | Genus>(null);
     const [species, setSpecies] = useState<null | Species>(null);
-    const [dateOfBirth, date] = useState<null | Date>(null);
+    const [dateOfBirth, setBirthday] = useState<null | Date>(null);
     const [size, setSize] = useState<number>(0);
     const [weight, setWeight] = useState<number>(0);
 
@@ -28,6 +34,13 @@ const AddPet = () => {
         queryKey: ["species", genus ? genus.id : 0],
         queryFn: () => SpeciesAPI.getAllSpeciesOfGenus(genus ? genus.id : 0),
         enabled: genus != null
+    })
+    const petMut = useMutation({
+        mutationFn: (pet: JSONPet) => PetAPI.addPet(pet),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["pets", user.id]});
+            nav("/");
+        }
     })
 
     const validate = (): boolean => {
@@ -49,12 +62,12 @@ const AddPet = () => {
                     <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
                 </div>
                 <div className="gender-selection">
-                    <button className="gender-button" onClick={() => setIsMale(true)}>
+                    <button className={"gender-button " + isMale ? "selected" : ""} onClick={() => setIsMale(true)}>
                         <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                             <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z"/>
                         </svg>
                     </button>
-                    <button className="gender-button" onClick={() => setIsMale(false)}>
+                    <button className={"gender-button " + isMale ? "" : "selected"} onClick={() => setIsMale(false)}>
                         <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                             <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z"/>
                         </svg>
@@ -69,22 +82,62 @@ const AddPet = () => {
                 <div className="labeled-input">
                     <div>*Genus:</div>
                     {genusQuery.isLoading && <Loader/>}
-                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data} onClickedElement={element => setGenus(element)}/>}
+                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data} selectedID={genus ? genus.id : 0} onClickedElement={
+                        element => {
+                            if(element != genus){
+                                setGenus(element);
+                                setSpecies(null);
+                            }
+                        }
+                    }/>}
                     {genusQuery.isError && <>Error loading Genus</>}
+                    <div>*Species:</div>
+                    {speciesQuery.isLoading && <>Loading</>}
+                    {genus == null && <>Select a Genus first</>}
+                    {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={
+                        element => setSpecies(element)
+                    }/>}
                 </div>
             </div>
             <div className="add-pet-additionals-frame">
-                {/* Date of birth size weight (favorites?) */}
+                <div className="labeled-input">
+                    <div>Geburtstag:</div>
+                    <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0,10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
+                </div>
+                <div className="labeled-input">
+                    <div>Größe:</div>
+                    <input type="number" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
+                </div>
+                <div className="labeled-input">
+                    <div>Gewicht:</div>
+                    <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
+                </div>
             </div>
             <div className="required-notice">
                 *{t("requieredNotice")}
             </div>
             <div className="add-pet-button-set">
-                <button className="cancel-button">
+                <button className="cancel-button" onClick={() => nav("/")}>
                     Cancel
                 </button>
-                <button className="submit-button">
-                    Submit
+                <button className="submit-button" disabled={!validate() || petMut.isPending} onClick={() => {
+                    if (!validate())
+                        return;
+                    if (species == null)
+                        return;
+                    petMut.mutate({
+                        id: 0,
+                        name: name,
+                        owner: user,
+                        isMale: isMale,
+                        castrated: castrated,
+                        species: species,
+                        dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
+                        size: size,
+                        weight: weight
+                    });
+                }}>
+                    {petMut.isPending ? <Loader/> : <>Submit</>}
                 </button>
             </div>
         </div>
