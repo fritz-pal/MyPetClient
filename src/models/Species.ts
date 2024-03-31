@@ -58,7 +58,7 @@ const deleteSpecies = (id: Number): Promise<void> => {
  * Get al species "GET to /species"
  * @returns Promise of a Species Array
  */
-const getAllSpeciesOfGenus = (genusID: Number): Promise<Species[]> => {
+const getAllSpeciesOfGenus = (genusID: number): Promise<Species[]> => {
     return APIClient.get(`${MAPPING}?genusId=${genusID}`);
 }
 

@@ -1,65 +1,100 @@
-import { useContext, useState } from "react"
-import './css/AddPet.css'
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { Genus, GenusAPI } from "../models/Genus";
+import { Species, SpeciesAPI } from "../models/Species";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import AddPetPage1 from "./AddPetPages/AddPetPage1";
-import AddPetPage2 from "./AddPetPages/AddPetPage2";
-import AddPetPage3 from "./AddPetPages/AddPetPage3";
-import AddPetPage4 from "./AddPetPages/AddPetPage4";
-import AddPetPage5 from "./AddPetPages/AddPetPage5";
-import PetCreationContext, { PetContext, getPageProgress } from "../context/PetCreationContext";
-import AddPetPost from "./AddPetPages/AddPetPost";
+import './css/AddPet.css'
+import GenusList from "./GenusList";
+import Loader from "./Loader";
 
 const AddPet = () => {
-    return (
-        <PetCreationContext>
-            <AddPetContent/>
-        </PetCreationContext>
-    )
-}
+    const queryClient = useQueryClient();
+    const [t,] = useTranslation("addPet"); // TODO Actually use it
 
-const AddPetContent = () => {
-    const [page, setPage] = useState(1);
-    const [t,] = useTranslation("addPet");
-    const {pet} = useContext(PetContext);
+    const [name, setName] = useState<string>("");
+    const [isMale, setIsMale] = useState<boolean>(false);
+    const [castrated, setCastrated] = useState<boolean>(false);
+    const [genus, setGenus] = useState<null | Genus>(null);
+    const [species, setSpecies] = useState<null | Species>(null);
+    const [dateOfBirth, date] = useState<null | Date>(null);
+    const [size, setSize] = useState<number>(0);
+    const [weight, setWeight] = useState<number>(0);
+
+    const genusQuery = useQuery({
+        queryKey: ["genus"],
+        queryFn: () => GenusAPI.getAllGenus(),
+        
+    });
+    const speciesQuery = useQuery({
+        queryKey: ["species", genus ? genus.id : 0],
+        queryFn: () => SpeciesAPI.getAllSpeciesOfGenus(genus ? genus.id : 0),
+        enabled: genus != null
+    })
+
+    const validate = (): boolean => {
+        if (name == "")
+            return false;
+        if (genus == null)
+            return false;
+        if (species == null)
+            return false;
+        return true;
+    }
+
+    if (genusQuery.isSuccess) {
+        console.log("Data fetched!");
+        console.log(genusQuery.data);
+    }
+
     return (
         <div className="add-pet-page">
-            <div className="add-pet-content">
-                <h2>{ t("page"+ page + "Title", {name: pet.name}) }</h2>
-                { page == 1 && <AddPetPage1/> }
-                { page == 2 && <AddPetPage2/> }
-                { page == 3 && <AddPetPage3/> }
-                { page == 4 && <AddPetPage4/> }
-                { page == 5 && <AddPetPage5/> }
-                { page == 6 && <AddPetPost/>}
-                <div className="page-navbar">
-                    { page > 1 && 
-                        <button className="page-back" onClick={() => setPage(page - 1)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                            </svg>
-                        </button> 
-                    }
-                    { page < getPageProgress(pet) &&
-                        <button className="page-forward" onClick={() => setPage(page + 1)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button> 
-                    }
-                    { page == 5 && 
-                        <button className="page-forward" onClick={() => setPage(page + 1)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button> 
-                    }
+            <div className="add-pet-essentials-frame">
+                {/* Image? */}
+                <div className="labeled-input">
+                    <div>*Haustiername:</div>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                </div>
+                <div className="gender-selection">
+                    <button className="gender-button" onClick={() => setIsMale(true)}>
+                        <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                            <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z"/>
+                        </svg>
+                    </button>
+                    <button className="gender-button" onClick={() => setIsMale(false)}>
+                        <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                            <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div className="labeled-checkbox">
+                    <input type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
+                    Castrated
                 </div>
             </div>
-            <div className="requiered-label">
-                *{ t("requieredNotice") }
+            <div className="add-pet-species-frame">
+                <div className="labeled-input">
+                    <div>*Genus:</div>
+                    {genusQuery.isLoading && <Loader/>}
+                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data}/>}
+                    {genusQuery.isError && <>Error loading Genus</>}
+                </div>
+            </div>
+            <div className="add-pet-additionals-frame">
+                {/* Date of birth size weight (favorites?) */}
+            </div>
+            <div className="required-notice">
+                *{t("requieredNotice")}
+            </div>
+            <div className="add-pet-button-set">
+                <button className="cancel-button">
+                    Cancel
+                </button>
+                <button className="submit-button">
+                    Submit
+                </button>
             </div>
         </div>
     )
 }
 
-export default AddPet;
+export default AddPet

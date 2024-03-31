@@ -1,16 +1,10 @@
 .App {
   text-align: center;
-  background-color: #071C21;
-  color: white;
-  font-family: Arial, sans-serif;
-  height: auto;
   height: 100vh;
   display: grid;
-  row-gap: 20px;
-  grid-template-rows: 100px;
+  grid-template-rows: min-content auto;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
+
 }
