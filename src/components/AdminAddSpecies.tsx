@@ -1,88 +1,30 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './css/AdminAddSpecies.css';
-import { useFetch } from '../hooks/useFetch';
-import { Species } from '../models/Species';
-import { API_BASE_URL } from '../constants';
-import Loader from './Loader';
+import { Species, SpeciesAPI } from '../models/Species';
 import { useTranslation } from 'react-i18next';
-import postData from '../hooks/postData';
-import { newSpecies } from '../models/Species';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const AdminAddSpecies: React.FC = () => {
-    const [genusName, setGenusName] = useState('');
-    const [genusSpecies, setGenusSpecies] = useState('');
-    const [raceName, setRaceName] = useState('');
+const AdminAddSpecies = () => {
+    const [speciesName, setSpeciesName] = useState('');
     const [t, _] = useTranslation("admin");
+    const queryClient = useQueryClient();
 
-    const { data, loading, error } = useFetch<Array<Species>>(API_BASE_URL + "/genus");
-    let genuses: Array<string> = [];
-    if (data != null) {
-        data.forEach(element => {
-            genuses.push(element.name)
-        });
-    }
-    let creatingSpecies = newSpecies();
-
-    const getSelectedGenus = () => {
-        if (data != null) {
-            data.forEach(element => {
-                if (element.name === genusSpecies) {
-                    console.log(element);
-                    creatingSpecies.genus = element;
-                }
-            });
+    const speciesAdd = useMutation({
+        mutationFn: (species: Species) => SpeciesAPI.addSpecies(species),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["species"]});
+            // Feedback
         }
-    }
-
-    const handleGenusSubmit = () => {
-        const newGenus = {
-            id: "0",
-            name: genusName,
-        };
-        postData(API_BASE_URL + "/genus", newGenus);
-        genuses.push(genusName);
-        setGenusName('');
-    };
-
-    const handleSpeciesSubmit = () => {
-        getSelectedGenus();
-        if (creatingSpecies.genus.name === '') {
-            console.log("Genus not selected");
-            return;
-        }
-        creatingSpecies.race = raceName;
-
-        postData(API_BASE_URL + "/species", creatingSpecies);
-        setRaceName('');
-        creatingSpecies = newSpecies();
-    };
+    });
 
     return (
-        <>
-            {loading && <div className='load'><Loader /></div>}
-            {!loading && error && <>Error</>}
-            {!loading && !error && data != null &&
-                <div>
-                    <h2>{t("genus")}:</h2>
-                    <div className="post-form">
-                        <input className="post-input" type="text" value={genusName} onChange={(e) => setGenusName(e.target.value)} />
-                        <button className="post-button" onClick={handleGenusSubmit}>{t("addGenus")}</button>
-                    </div>
-                    <h2>{t("race")}:</h2>
-                    <select className="select-genus" value={genusSpecies} onChange={(e) => setGenusSpecies(e.target.value)}>
-                        <option value="">{t("selectGenus")}</option>
-                        {genuses.map((genus) => (
-                            <option key={genus} value={genus}>
-                                {genus}
-                            </option>
-                        ))}
-                    </select>
-                    <div className="post-form">
-                        <input className="post-input" type="text" value={raceName} onChange={(e) => setRaceName(e.target.value)} />
-                        <button className="post-button" onClick={handleSpeciesSubmit}>{t("addSpecies")}</button>
-                    </div>
-                </div>}
-        </>
+            <div>
+                <h2>{t("genus")}:</h2>
+                <div className="post-form">
+                    <input className="post-input" type="text" value={speciesName} onChange={(e) => setSpeciesName(e.target.value.trim())} />
+                    <button className="post-button" onClick={() => speciesAdd.mutate({id: 0, name: speciesName})} disabled={speciesName == ""}>{t("addGenus")}</button>
+                </div>
+            </div>
     );
 };
 

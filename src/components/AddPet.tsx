@@ -6,7 +6,7 @@ import './css/AddPet.css'
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
-import Pets, { JSONPet, PetAPI } from "../models/Pet";
+import { JSONPet, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 
 const AddPet = () => {
