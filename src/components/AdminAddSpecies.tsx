@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './css/AdminAddSpecies.css';
 import { useFetch } from '../hooks/useFetch';
-import { Genus } from '../models/Genus';
+import { Species } from '../models/Species';
 import { API_BASE_URL } from '../constants';
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ const AdminAddSpecies: React.FC = () => {
     const [raceName, setRaceName] = useState('');
     const [t, _] = useTranslation("admin");
 
-    const { data, loading, error } = useFetch<Array<Genus>>(API_BASE_URL + "/genus");
+    const { data, loading, error } = useFetch<Array<Species>>(API_BASE_URL + "/genus");
     let genuses: Array<string> = [];
     if (data != null) {
         data.forEach(element => {

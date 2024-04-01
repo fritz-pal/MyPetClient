@@ -9,15 +9,13 @@ export interface Pet {
     id: number
     name: string
     species: Species
+    subSpecies: string
     owner: User
     dateOfBirth?: Date
     size?: number
     weight?: number
     castrated?: boolean
     isMale: boolean
-    favoriteFood?: string
-    favoriteSpot?: string
-    favoriteToy?: string
     lastVetVisit?: Date
 }
 
@@ -28,15 +26,13 @@ export interface JSONPet {
     id: number
     name: string
     species: Species
+    subSpecies: string
     owner: User
     dateOfBirth?: string
     size?: number
     weight?: number
     castrated?: boolean
     isMale: boolean
-    favoriteFood?: string
-    favoriteSpot?: string
-    favoriteToy?: string
     lastVetVisit?: string
 }
 
@@ -76,12 +72,9 @@ const newPet = () : Pet => {
         name: "",
         species: {
             id: 0,
-            genus: {
-                id: 0,
-                name: "",
-            },
-            race: ""
+            name: "",
         },
+        subSpecies: "",
         owner: {
             id: 0,
             username: "",

@@ -1,85 +1,49 @@
-import { Genus } from "./Genus";
 import { APIClient } from "../constants";
 
 /**
- * Represents the Species of a Pet
+ * Represents a Species of Pets
  */
 export interface Species {
     id: number;
-    genus: Genus;
-    race: string;
+    name: string;
 }
 
 /**
- * Creates a empty Species
- * @returns Empty Species
+ * Creates a new empty Species
+ * @returns New Species
  */
-export const newSpecies = (): Species => {
+export const newSpecies = () : Species => {
     return {
         id: 0,
-        genus: {
-            id: 0,
-            name: "",
-        },
-        race: ""
+        name: "",
     }
 }
 
 const MAPPING = "/species"
 
 /**
- * Request to get a species by id
- * @param id ID of Species you want to fetch
- * @returns Promise of requested Species
+ * Get All Species
+ * @returns Promise for all Species
  */
-const getSpeciesByID = async (id: Number): Promise<Species> => {
-    const request = await APIClient.get(`${MAPPING}/${id}`);
-    return request.data; 
-}
-
-/**
- * Update a species
- * @param species Updated Species
- * @returns Promise of updated Species
- */
-const updateSpecies = async (species: Species): Promise<Species> => {
-    const request = await APIClient.put(`${MAPPING}/${species.id}`, species);
-    return request.data; 
-}
-
-/**
- * Delete a species by id
- * @param id ID of Species you want to delete
- * @returns Promise
- */
-const deleteSpecies = async (id: Number): Promise<void> => {
-    const request = await APIClient.delete(`${MAPPING}/${id}`);
-    return request.data;
-}
-
-/**
- * Get al species "GET to /species"
- * @returns Promise of a Species Array
- */
-const getAllSpeciesOfGenus = async (genusID: number): Promise<Species[]> => {
-    const request = await APIClient.get(`${MAPPING}?genusId=${genusID}`);
+const getAllSpecies = async (): Promise<Species[]>  => {
+    const request = await APIClient.get(MAPPING);
     return request.data;
 }
 
 /**
  * Adds a new Species
  * @param species New Species
- * @returns Promise of added Species
+ * @returns Promise of the new Species
  */
-const postSpecies = async (species: Species) => {
+const addSpecies = async (species: Species): Promise<Species> => {
     const request = await APIClient.post(MAPPING, species);
     return request.data;
-}
+} 
 
+/**
+ * Contains methods to communicate with the backend system
+ */
 export const SpeciesAPI = {
-    getSpeciesByID,
-    getAllSpeciesOfGenus,
-    updateSpecies,
-    deleteSpecies,
-    postSpecies
+    getAllSpecies,
+    addSpecies
 }

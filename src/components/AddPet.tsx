@@ -1,12 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { Genus, GenusAPI } from "../models/Genus";
 import { Species, SpeciesAPI } from "../models/Species";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
-import GenusList from "./GenusList";
-import Loader from "./Loader";
 import SpeciesList from "./SpeciesList";
+import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import Pets, { JSONPet, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
@@ -20,21 +18,16 @@ const AddPet = () => {
     const [name, setName] = useState<string>("");
     const [isMale, setIsMale] = useState<boolean>(false);
     const [castrated, setCastrated] = useState<boolean>(false);
-    const [genus, setGenus] = useState<null | Genus>(null);
     const [species, setSpecies] = useState<null | Species>(null);
+    const [subSpecies, setSubSpecies] = useState<string>("");
     const [dateOfBirth, setBirthday] = useState<null | Date>(null);
     const [size, setSize] = useState<number>(0);
     const [weight, setWeight] = useState<number>(0);
 
-    const genusQuery = useQuery({
-        queryKey: ["genus"],
-        queryFn: () => GenusAPI.getAllGenus(),
-    });
     const speciesQuery = useQuery({
-        queryKey: ["species", genus ? genus.id : 0],
-        queryFn: () => SpeciesAPI.getAllSpeciesOfGenus(genus ? genus.id : 0),
-        enabled: genus != null
-    })
+        queryKey: ["species"],
+        queryFn: () => SpeciesAPI.getAllSpecies(),
+    });
     const petMut = useMutation({
         mutationFn: (pet: JSONPet) => PetAPI.addPet(pet),
         onSuccess: () => {
@@ -45,8 +38,6 @@ const AddPet = () => {
 
     const validate = (): boolean => {
         if (name == "")
-            return false;
-        if (genus == null)
             return false;
         if (species == null)
             return false;
@@ -80,23 +71,14 @@ const AddPet = () => {
             </div>
             <div className="add-pet-species-frame">
                 <div className="labeled-input">
-                    <div>*Genus:</div>
-                    {genusQuery.isLoading && <Loader/>}
-                    {genusQuery.isSuccess && <GenusList genusList={genusQuery.data} selectedID={genus ? genus.id : 0} onClickedElement={
-                        element => {
-                            if(element != genus){
-                                setGenus(element);
-                                setSpecies(null);
-                            }
-                        }
-                    }/>}
-                    {genusQuery.isError && <>Error loading Genus</>}
                     <div>*Species:</div>
-                    {speciesQuery.isLoading && <>Loading</>}
-                    {genus == null && <>Select a Genus first</>}
-                    {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={
-                        element => setSpecies(element)
-                    }/>}
+                    {speciesQuery.isLoading && <Loader/>}
+                    {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)}/>}
+                    {speciesQuery.isError && <>Error loading Species</>}
+                    <div className="labeled-input">
+                        <div>*Unterart:</div>
+                        <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value.trim())} />
+                    </div>
                 </div>
             </div>
             <div className="add-pet-additionals-frame">
@@ -132,6 +114,7 @@ const AddPet = () => {
                         isMale: isMale,
                         castrated: castrated,
                         species: species,
+                        subSpecies: subSpecies,
                         dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
                         size: size,
                         weight: weight
