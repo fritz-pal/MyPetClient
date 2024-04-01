@@ -3,15 +3,16 @@
         "search": "Search"
     },
     "species": {
-        "canis": "Dog",
-        "felis": "Cat",
-        "equus": "Horse",
-        "testudo": "Turtle",
-        "psittacus": "Parrot",
-        "columba": "Grey Parrot",
-        "oryctolagus": "Rabbit",
-        "cavia": "Guinea Pig",
-        "phodopus": "Hamster"
+        "dog": "Dog",
+        "cat": "Cat",
+        "horse": "Horse",
+        "turtle": "Turtle",
+        "parrot": "Parrot",
+        "pigeon": "Pigeon",
+        "guinea pig": "Guinea Pig",
+        "hamster": "Hamster",
+        "fish": "Fish",
+        "rabbit": "Rabbit"
     },
     "home": {
         "greeting": "Welcome!",

@@ -3,6 +3,7 @@ import { Species, SpeciesAPI } from "../models/Species";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
+import petImage from '/testpet.png';
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
@@ -46,42 +47,44 @@ const AddPet = () => {
 
     return (
         <div className="add-pet-page">
-            <div className="add-pet-essentials-frame">
-                {/* Image? */}
-                <div className="labeled-input">
-                    <div>*Haustiername:</div>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
-                </div>
-                <div className="gender-selection">
-                    <button className={"gender-button " + isMale ? "selected" : ""} onClick={() => setIsMale(true)}>
-                        <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
-                            <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z"/>
-                        </svg>
-                    </button>
-                    <button className={"gender-button " + isMale ? "" : "selected"} onClick={() => setIsMale(false)}>
-                        <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
-                            <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z"/>
-                        </svg>
-                    </button>
-                </div>
-                <div className="labeled-checkbox">
-                    <input type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
-                    Castrated
-                </div>
-            </div>
-            <div className="add-pet-species-frame">
-                <div className="labeled-input">
-                    <div>*Species:</div>
-                    {speciesQuery.isLoading && <Loader/>}
-                    {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)}/>}
-                    {speciesQuery.isError && <>Error loading Species</>}
+            <div className="add-pet-collapsing-panels">
+                <div className="add-pet-frame add-pet-essentials">
+                    <img className="add-pet-image" src={petImage} />
                     <div className="labeled-input">
-                        <div>*Unterart:</div>
-                        <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value.trim())} />
+                        <div>*Haustiername:</div>
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                    </div>
+                    <div className="gender-selection">
+                        <button className={"gender-button " + isMale ? "selected" : ""} onClick={() => setIsMale(true)}>
+                            <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                                <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z"/>
+                            </svg>
+                        </button>
+                        <button className={"gender-button " + isMale ? "" : "selected"} onClick={() => setIsMale(false)}>
+                            <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                                <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="labeled-checkbox">
+                        <input type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
+                        Castrated
+                    </div>
+                </div>
+                <div className="add-pet-frame">
+                    <div className="labeled-input">
+                        <div>*Species:</div>
+                        {speciesQuery.isLoading && <Loader/>}
+                        {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)}/>}
+                        {speciesQuery.isError && <>Error loading Species</>}
+                        <div className="labeled-input">
+                            <div>*Unterart:</div>
+                            <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value.trim())} />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="add-pet-additionals-frame">
+            <div className="add-pet-frame">
                 <div className="labeled-input">
                     <div>Geburtstag:</div>
                     <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0,10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
@@ -95,7 +98,7 @@ const AddPet = () => {
                     <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
                 </div>
             </div>
-            <div className="required-notice">
+            <div className="add-pet-required-notice">
                 *{t("requieredNotice")}
             </div>
             <div className="add-pet-button-set">

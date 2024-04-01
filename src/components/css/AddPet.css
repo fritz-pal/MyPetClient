@@ -1,0 +1,60 @@
+.add-pet-page {
+    padding: 50px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
+    grid-gap: 10px;
+}
+
+.add-pet-collapsing-panels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: inherit;
+}
+
+@media(max-width:800px){
+    .add-pet-collapsing-panels {
+       grid-template-columns: 1fr;
+    }
+}
+
+.add-pet-frame {
+    display: inline-flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 50px 10px;
+    background-color: #153B44;
+}
+
+.add-pet-essentials {
+    align-items: center;
+}
+
+.add-pet-required-notice {
+    text-align: end;
+    color: gray;
+    font-style: italic;
+}
+
+.add-pet-button-set {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.labeled-input {
+    
+}
+
+.add-pet-image {
+    width: 150px;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+}

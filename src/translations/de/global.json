@@ -3,15 +3,16 @@
         "search": "Suche"
     },
     "species": {
-        "canis": "Hund",
-        "felis": "Katze",
-        "equus": "Pferd",
-        "testudo": "Schildkröte",
-        "psittacus": "Papagei",
-        "columba": "Graupapageien",
-        "oryctolagus": "Kaninchen",
-        "cavia": "Meerschweinchen",
-        "phodopus": "Hamster"
+        "dog": "Hund",
+        "cat": "Katze",
+        "horse": "Pferd",
+        "turtle": "Schildkröte",
+        "parrot": "Papagei",
+        "pigeon": "Taube",
+        "guinea pig": "Meerschweinchen",
+        "hamster": "Hamster",
+        "fish": "Fisch",
+        "rabbit": "Hase"
     },
     "home": {
         "greeting": "Willkommen!",
