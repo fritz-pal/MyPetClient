@@ -128,8 +128,8 @@ const deletePet = async (id: Number): Promise<void> => {
  * Get all Pets of a user
  * @returns Promise of a Pet Array
  */
-const getAllPetsOfUser = async (): Promise<JSONPet[]> => {
-    const request = await APIClient.get(MAPPING);
+const getAllPetsOfUser = async (userID: number): Promise<JSONPet[]> => {
+    const request = await APIClient.get(`${MAPPING}?userId=${userID}`);
     return request.data;
 }
 
