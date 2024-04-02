@@ -2,6 +2,15 @@
     "generics": {
         "search": "Suche"
     },
+    "settings": {
+        "settings": "Einstellungen",
+        "language": "Sprache",
+        "apply": "Übernehmen"
+    },
+    "language": {
+        "de": "Deutsch",
+        "en": "Englisch"
+    },
     "species": {
         "dog": "Hund",
         "cat": "Katze",

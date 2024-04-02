@@ -10,12 +10,13 @@ import { devUser } from './models/User.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import LanguageDetector from "i18next-browser-languagedetector";
+import { SUPPORTED_LANGS } from './constants.ts'
 
 i18next.use(LanguageDetector).init({
   fallbackLng: 'en',
   debug: true,
   interpolation: { escapeValue: false },
-  supportedLngs: ['en', 'de'],
+  supportedLngs: SUPPORTED_LANGS,
   resources: {
     "en": global_en,
     "de": global_de

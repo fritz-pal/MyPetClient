@@ -1,0 +1,49 @@
+.settings-page {
+    display: grid;
+    height: 100%;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:    
+        "header header"
+        "nav main"
+        "foot foot";
+    grid-gap: 20px;
+    padding: 50px;
+}
+
+.settings-title {
+    grid-area: header;
+}
+
+.settings-nav {
+    grid-area: nav;
+    overflow-y: auto;
+}
+
+.settings-options {
+    grid-area: main;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-auto-rows: min-content;
+    align-items: center;
+    justify-items: start;
+    grid-gap: 20px;
+}
+
+.settings-submit-button {
+    grid-area: foot;
+    justify-self: right;
+}
+
+.settings-category-title {
+    grid-column: span 2;
+}
+
+.setting-label {
+    justify-self: right;
+}
+
+.settings-changed {
+    font-weight: bold;
+}

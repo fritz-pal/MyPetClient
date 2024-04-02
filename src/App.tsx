@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import AddPet from './components/AddPet';
 import Homepage from './components/Homepage';
 import AdminAddSpecies from './components/AdminAddSpecies';
+import Settings from './components/Settings';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
             <Route path="/login" element={<LoginInput/>}/>
             <Route path="/newpet" element={<AddPet/>}/>
             <Route path="/admin" element={<AdminAddSpecies/>}/>
+            <Route path="/settings" element={<Settings/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
