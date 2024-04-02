@@ -50,7 +50,7 @@ const AddPet = () => {
                 <div className="add-pet-frame add-pet-essentials">
                     <img className="add-pet-image" src={petImage} />
                     <div className="labeled-input">
-                        <div>*Haustiername:</div>
+                        <div>*{t("petName")}:</div>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
                     </div>
                     <div className="gender-selection">
@@ -67,17 +67,17 @@ const AddPet = () => {
                     </div>
                     <div className="labeled-checkbox">
                         <input type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
-                        Castrated
+                        {t("castrated")}
                     </div>
                 </div>
                 <div className="add-pet-frame">
                     <div className="labeled-input">
-                        <div>*Species:</div>
+                        <div>*{t("species")}:</div>
                         {speciesQuery.isLoading && <Loader/>}
                         {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)}/>}
-                        {speciesQuery.isError && <>Error loading Species</>}
+                        {speciesQuery.isError && t("speciesLoadError")}
                         <div className="labeled-input">
-                            <div>*Unterart:</div>
+                            <div>{t("subSpecies")}:</div>
                             <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value.trim())} />
                         </div>
                     </div>
@@ -85,15 +85,15 @@ const AddPet = () => {
             </div>
             <div className="add-pet-frame">
                 <div className="labeled-input">
-                    <div>Geburtstag:</div>
+                    <div>{t("birthday")}:</div>
                     <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0,10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
                 </div>
                 <div className="labeled-input">
-                    <div>Größe:</div>
+                    <div>{t("size")}:</div>
                     <input type="number" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
                 </div>
                 <div className="labeled-input">
-                    <div>Gewicht:</div>
+                    <div>{t("weight")}:</div>
                     <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
                 </div>
             </div>
@@ -102,7 +102,7 @@ const AddPet = () => {
             </div>
             <div className="add-pet-button-set">
                 <button className="cancel-button" onClick={() => nav("/")}>
-                    Cancel
+                    {t("cancel")}
                 </button>
                 <button className="submit-button" disabled={!validate() || petMut.isPending} onClick={() => {
                     if (!validate())
@@ -122,7 +122,7 @@ const AddPet = () => {
                         weight: weight
                     });
                 }}>
-                    {petMut.isPending ? <Loader/> : <>Submit</>}
+                    {petMut.isPending ? <Loader/> : t("submit")}
                 </button>
             </div>
         </div>
