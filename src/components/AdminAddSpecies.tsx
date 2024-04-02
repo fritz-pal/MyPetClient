@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import './css/AdminAddSpecies.css';
 import { Species, SpeciesAPI } from '../models/Species';
-import React, { useState } from 'react';
 import './css/card.css';
-import { useFetch } from '../hooks/useFetch';
-import { Genus } from '../models/Genus';
-import { API_BASE_URL } from '../constants';
-import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
