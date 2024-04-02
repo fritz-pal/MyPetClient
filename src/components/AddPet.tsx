@@ -10,6 +10,15 @@ import { useNavigate } from "react-router";
 import { JSONPet, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 
+/**
+ * React Component Displaying the form for adding a new Pet.
+ * 
+ * Needs:
+ *  - UserContext
+ *  - QueryClient
+ *  - Translations
+ *  - Router
+ */
 const AddPet = () => {
     const queryClient = useQueryClient();
     const {user} = useContext(UserContext);

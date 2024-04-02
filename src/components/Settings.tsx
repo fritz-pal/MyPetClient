@@ -3,6 +3,13 @@ import { useTranslation } from "react-i18next"
 import "./css/Settings.css"
 import { SUPPORTED_LANGS } from "../constants";
 
+
+/**
+ * React Component that displays a settings page
+ * 
+ * Needs:
+ *  - Translation
+ */
 const Settings = () => {
     const [settingsT, i18n] = useTranslation("settings");
     const [langT,] = useTranslation("language");

@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 
+/**
+ * React Hook that represents the current window dimensions
+ * 
+ * CAN CREATE PERFORMANCE ISSUES
+ */
 export default function useWindowDimensions() {
 
   const hasWindow = typeof window !== 'undefined';

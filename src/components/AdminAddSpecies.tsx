@@ -4,6 +4,9 @@ import { Species, SpeciesAPI } from '../models/Species';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+/**
+ * React Component that displays a Admin Page for adding a species
+ */
 const AdminAddSpecies = () => {
     const [speciesName, setSpeciesName] = useState('');
     const [t, _] = useTranslation("admin");
