@@ -16,7 +16,7 @@ html, body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #071C21;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -62,7 +62,7 @@ select {
 
 input {
   border-radius: 8px;
-  border: 2px solid #43A4BC;
+  border: 2px solid #757575;
 }
 
 input:hover {
@@ -84,7 +84,7 @@ option {
 
 button:hover {
   background-color: #1a1a1a;
-  border-color: #43A4BC;
+  border-color: #51bc43;
 }
 
 button:focus,

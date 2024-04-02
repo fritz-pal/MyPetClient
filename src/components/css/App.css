@@ -1,4 +1,7 @@
 .App {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-family: Arial, sans-serif;
   height: 100vh;
   display: grid;
   grid-template-rows: min-content auto;
