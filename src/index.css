@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
+  padding: 10px;
 }
 
 *, *:before, *:after {
@@ -13,10 +14,20 @@ html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --primary-color: #9F887E;
+  --secondary-color: #5b4c3b;
+  --thrid-color: #52361c96;
+  --fourth-color: #594236;
+  --fifth-color: #48ACF0;
+  --sixth-color: #93A3BC;
+  --seventh-color: #CCDDE2;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
+  background-image: url('/wool.jpg'); /* Replace 'path/to/your/texture.jpg' with the path to your texture image */
+  background-size: cover; /* Adjust the background size */
+  background-repeat: repeat; /* Adjust the background repeat property as needed */
+  background-color: var(--secondary-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -55,7 +66,6 @@ select {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #071c21;
   color: white;
   cursor: pointer;
 }
@@ -78,12 +88,10 @@ select:hover {
 }
 
 option {
-  background-color: #071C21;
   color: white;
 }
 
 button:hover {
-  background-color: #1a1a1a;
   border-color: #51bc43;
 }
 

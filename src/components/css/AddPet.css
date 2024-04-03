@@ -13,6 +13,15 @@
     grid-gap: inherit;
 }
 
+.add-pet-elements {
+    padding: 50px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
+    grid-gap: 10px;
+}
+
 @media(max-width:800px){
     .add-pet-collapsing-panels {
        grid-template-columns: 1fr;
@@ -24,7 +33,8 @@
     flex-direction: column;
     row-gap: 10px;
     padding: 50px 10px;
-    background-color: #153B44;
+    background-color: var(--thrid-color);
+    box-shadow: 4px 4px 20px 0px #000000;
 }
 
 .add-pet-essentials {
@@ -50,7 +60,12 @@
 }
 
 .labeled-input {
-    
+    width: 50%;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
+    grid-gap: 10px;
 }
 
 .add-pet-image {
