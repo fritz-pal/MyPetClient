@@ -44,10 +44,7 @@ var {
     transform: rotateY(180deg);
 }
 
-input {
-    position: absolute;
-    scale: 0;
-}
+
 
 input:checked ~ .card .back{
     transform: rotateY(0);

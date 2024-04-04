@@ -12,6 +12,7 @@ import AdminAddSpecies from './components/AdminAddSpecies';
 import Settings from './components/Settings';
 import { Card } from './components/Card';
 import ForumPage from './components/ForumPage';
+import AddForum from './components/AddForum';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<Homepage/>}/>
+            <Route path="newForum" element={<AddForum/>}/>
             <Route path="/login" element={<LoginInput/>}/>
             <Route path="/newpet" element={<AddPet/>}/>
             <Route path="/forum" element={<ForumPage/>}/>
