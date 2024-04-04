@@ -15,10 +15,10 @@ html, body {
   font-weight: 400;
   --primary-color: #000000;
   --secondary-color: #3f3f3f;
-  --thrid-color: #6b6b6b96;
+  --third-color: #6b6b6b96;
   --fourth-color: rgb(181, 181, 181);
   --fifth-color: #c3c3c3;
-  --sixth-color: #e9e9e9;
+  --sixth-color: red;
   --seventh-color: #ffffff;
 
   color-scheme: light dark;

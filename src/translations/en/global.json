@@ -11,6 +11,10 @@
         "de": "German",
         "en": "English"
     },
+    "forum": {
+        "search": "Search",
+        "newThread": "New Thread"
+    },
     "species": {
         "dog": "Dog",
         "cat": "Cat",
