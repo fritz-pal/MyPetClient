@@ -7,7 +7,11 @@ const Homepage = () => {
 
     return (
         <div className='home'>
-            <h1>{t("greeting")}</h1>
+            <div className="greeting">
+                <h3 className="home_greeting">{t("greeting")}</h3>
+                <h3 className="home_title">MyPet</h3>
+            </div>
+            <div className="full-width-image"></div>
             <div className='petlist-container'>
                 <PetList />
             </div>

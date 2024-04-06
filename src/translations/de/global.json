@@ -56,5 +56,10 @@
         "selectGenus": "Gattung auswählen",
         "addGenus": "Gattung hinzufügen",
         "addSpecies": "Spezies hinzufügen"
+    },
+
+    "card": {
+        "more_details": "weitere Infos",
+        "go_back": "zurück"
     }
 }

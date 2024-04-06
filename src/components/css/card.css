@@ -26,19 +26,6 @@ var {
     margin-bottom: 26px;
 }
 
-.card .front, .card .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgb(75, 75, 75);
-    border-radius: 10px;
-    padding: 36px 36px 44px 44px;
-    transition: 0.6s;
-    cursor: pointer;
-    backface-visibility: hidden;
-}
 
 .back {
     transform: rotateY(180deg);
