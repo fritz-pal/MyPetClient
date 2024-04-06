@@ -18,7 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -150px;
+    margin-top: -220px;
       
 }
 
@@ -27,6 +27,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen Schatten zur Überschrift hinzu */
     background-color: #f1f1f1;
     text-transform: uppercase;
+    margin-top: -100px;
 }
 
 .home_greeting {
@@ -38,7 +39,7 @@
 }
 
 .home_title {
-    margin-top: -20px;
+    margin-top: -130px;
     font-size: 100px;
     font-family: "Poppins";
     color: #1a1a1aa8;
