@@ -13,7 +13,21 @@
     },
     "forum": {
         "search": "Suchen",
-        "newThread": "Neuer Thread"
+        "newThread": "Neuer Thread",
+        "by": "erstellt von"
+    },
+    "time": {
+        "minutes": "vor {{number}} Minuten",
+        "hours": "vor {{number}} Stunden",
+        "days": "vor {{number}} Tagen",
+        "months": "vor {{number}} Monaten",
+        "years": "vor {{number}} Jahren",
+        "minute": "vor {{number}} Minute",
+        "hour": "vor {{number}} Stunde",
+        "day": "vor {{number}} Tag",
+        "month": "vor {{number}} Monat",
+        "year": "vor {{number}} Jahr",
+        "justNow": "gerade eben"
     },
     "species": {
         "dog": "Hund",
@@ -69,7 +83,6 @@
         "addGenus": "Gattung hinzufügen",
         "addSpecies": "Spezies hinzufügen"
     },
-
     "card": {
         "more_details": "weitere Infos",
         "go_back": "zurück"

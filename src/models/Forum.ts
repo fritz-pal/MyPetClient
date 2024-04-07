@@ -7,7 +7,7 @@ export interface Thread {
     name: string,
     species: Species,
     description: string,
-    createdAt?: number,
+    createdAt: number,
     creator?: User,
     commentCount?: number
 }

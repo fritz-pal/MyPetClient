@@ -13,7 +13,21 @@
     },
     "forum": {
         "search": "Search",
-        "newThread": "New Thread"
+        "newThread": "New Thread",
+        "by": "created by"
+    },
+    "time": {
+        "minutes": "{{number}} minutes ago",
+        "hours": "{{number}} hours ago",
+        "days": "{{number}} days ago",
+        "months": "{{number}} months ago",
+        "years": "vor {{number}} years ago",
+        "minute": "vor {{number}} minute ago",
+        "hour": "vor {{number}} hour ago",
+        "day": "vor {{number}} day ago",
+        "month": "vor {{number}} month ago",
+        "year": "vor {{number}} year ago",
+        "justNow": "just now"
     },
     "species": {
         "dog": "Dog",

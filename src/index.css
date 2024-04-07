@@ -18,8 +18,9 @@ html, body {
   --third-color: #6b6b6be7;
   --fourth-color: rgba(255, 255, 255, 0.856);
   --fifth-color: #7f7f7f;
-  --sixth-color: #e9e9e9;
+  --sixth-color: #bc4343;
   --seventh-color: #ffffff;
+  --eighth-color: #dddddd;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
