@@ -43,6 +43,14 @@
         "submit": "Submit",
         "requieredNotice": "Requiered"
     },
+    "addThread": {
+        "pageTitle": "New Discussion",
+        "title": "Title",
+        "species": "Topic",
+        "description": "What do you want to discuss?",
+        "cancel": "Cancel",
+        "submit": "Submit"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Add Pet",

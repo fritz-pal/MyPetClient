@@ -43,6 +43,14 @@
         "submit": "Speichern",
         "requieredNotice": "Plichtfeld"
     },
+    "addThread": {
+        "pageTitle": "Neue Diskussion",
+        "title": "Titel",
+        "species": "Thema",
+        "description": "Worüber willst du diskutieren?",
+        "cancel": "Abbrechen",
+        "submit": "Speichern"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Tier Hinzufügen",
