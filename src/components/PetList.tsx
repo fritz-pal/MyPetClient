@@ -1,6 +1,6 @@
 import './css/PetList.css';
-import petImage from '/testpet.png';
-import Pets, { Pet, JSONPet, PetAPI } from '../models/Pet'
+import petImage from '/hund.jpg';
+import Pets, { Pet, JSONPet, PetAPI } from '../models/Pet';
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 const PetList = () => {
     const [t, _] = useTranslation("home");
     const navigate = useNavigate();
-    const {user} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     const petQuery = useQuery({
         queryKey: ["pets", user.id],
@@ -24,14 +24,14 @@ const PetList = () => {
         });
     }
 
-
     const addPetClicked = () => {
         navigate('/newpet');
     }
 
     return (
         <div className="my-pets-module">
-            <h2>{t("petlisttitle")}</h2>
+            <div className="title_pets">{t("petlisttitle")}</div>
+            <Card pets={pets} />
             {petQuery.isLoading && <div className='load'><Loader /></div>}
             {petQuery.isSuccess && <div className="pets">
                 {pets.map(pet => <PetListItem pet={pet} key={pet.id}></PetListItem>)}
@@ -42,23 +42,51 @@ const PetList = () => {
                     <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" />
                 </svg>
             </div>
+            
         </div>
     );
 };
 
 const PetListItem = ({ pet }: { pet: Pet }) => (
     <>
-        <div className="pet-tile" key={pet.name}>
-            <img className="pet-image" src={petImage} alt={pet.name} />
-            <div className="pet-info">
-                <div className="pet-name">{pet.name}</div>
-                <div className="pet-type">{pet.species.name}</div>
-            </div>
-            <button className="view-pet-button">→</button>
-        </div>
-        <hr />
+        
     </>
 );
 
+const Card = ({ pets }: { pets: Pet[] }) => {
+    const [tcard, _card] = useTranslation("card");
+    const [t, _] = useTranslation("addpet");
+
+    return (
+        <div className="cards">
+            {pets.map((pet) => (
+                <label key={pet.name} id={pet.name}>
+                    <input className="novision" type="checkbox" />
+                    <div className="card">
+                        <div className="front">
+                            <header>
+                                <div className="pet-tile">{pet.name}</div>
+                                <span>{tcard("more_details")}</span>
+                            </header>
+                            <img className="pet-image2" src={petImage} alt={pet.name} />
+                            <h3 className="pet_name_css">{pet.species.name}</h3>
+                            
+                        </div>
+                        <div className="back">
+                            <header>
+                                <div className="pet-tile">{pet.name}</div>
+                                <span>{tcard("more_details")}</span>
+                            </header>
+                            <h2>{pet.subSpecies}</h2>
+                            <h2>{pet.castrated ? t("castrated") : "false" }</h2>
+                            <h3 className="pet_name_css">{pet.species.name}</h3>
+                            
+                        </div>
+                    </div>
+                </label>
+            ))}
+        </div>
+    );
+};
 
 export default PetList;

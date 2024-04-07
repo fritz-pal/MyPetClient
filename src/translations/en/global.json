@@ -64,5 +64,10 @@
         "selectGenus": "Select Genus",
         "addGenus": "Add Genus",
         "addSpecies": "Add Species"
+    },
+
+    "card": {
+        "more_details": "more details",
+        "go_back": "back"
     }
 }

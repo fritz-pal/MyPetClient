@@ -5,6 +5,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
     grid-gap: 10px;
+    color: #000000;
 }
 
 .add-pet-collapsing-panels {
@@ -33,7 +34,7 @@
     flex-direction: column;
     row-gap: 10px;
     padding: 50px 10px;
-    background-color: var(--thrid-color);
+    background-color: var(--seventh-color);
     box-shadow: 4px 4px 20px 0px #000000;
 }
 
@@ -43,7 +44,7 @@
 
 .add-pet-required-notice {
     text-align: end;
-    color: gray;
+    color: rgb(0, 0, 0);
     font-style: italic;
 }
 
