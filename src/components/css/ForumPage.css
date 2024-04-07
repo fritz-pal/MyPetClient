@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: right;
     z-index: 5;
-    box-shadow: 2px 2px 2px 2px rgb(128, 128, 128);
+    box-shadow: 2px 2px 2px 2px grey;
 }
 
 .search-button {
@@ -26,4 +26,20 @@
 
 .search-input {
     width: 20%;
+}
+
+.thread-card {
+
+}
+
+.thread-info {
+
+}
+
+.thread-title {
+
+}
+
+.view-thread-button {
+
 }
