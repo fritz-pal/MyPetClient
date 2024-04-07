@@ -19,7 +19,8 @@
 
 .add-thread-form {
     padding: 10px;
-    background-color: grey;
+    background-color: var(--seventh-color);
+    color: #000000; 
     overflow-y: auto;
     display: flex;
     flex-direction: column;
