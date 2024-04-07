@@ -1,13 +1,14 @@
 .my-pets-module {
-    color: #000000;
+    color: #757575;
     padding: 20px;
     display: flex;
     width: 50%;
     flex-direction: column;
     position: relative;
-    background-color: var(--secondary-color);
-    box-shadow: 4px 4px 20px 0px #000000;
+    background-color: var(--seventh-color);
+    box-shadow: 4px 4px 30px 0px #000000;
     margin: 0 20px 20px 20px;
+    border-radius: 20px;
 }
 
 @media screen and (max-width: 800px) {
@@ -19,15 +20,14 @@
 .my-pets-module h2 {
     font-size: 24px;
     margin: 0px 20% 20px 20%;
-    box-shadow: 3px 3px 0px 0px #000000;
-    color: #ffffff;
-    background-color: var(--third-color);
+    color: #757575;
 }
 
 .pet-tile {
     display: flex;
+    font-size: 30px;
     align-items: center;
-    margin-bottom: 16px;
+    justify-content: center;
 }
 
 hr {
@@ -41,12 +41,21 @@ hr {
     height: 100px;
 }
 
-.pet-image {
-    width: 50px;
-    height: 50px;
+
+.pet-image2 {
+    width: 180px;
+    height: 130px;
     border-radius: 50%;
     margin-right: 16px;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 20px 0px #000000;
+}
+
+.pet_name_css {
+    font-size: 40px;
+    margin: 0;
 }
 
 .pet-info {
@@ -88,15 +97,6 @@ hr {
     align-items: right;
 }
 
-h2, h3 ,h4 {
-    margin: 0;
-    font-weight: 500;
-}
-
-h1 {
-    color: #000000;
-}
-
 .card {
     position: relative;
     perspective: 1000px;
@@ -118,12 +118,22 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: grey;
-    border-radius: 10px;
+    font-family: Poppins;
+    font-size: 18px;
     padding: 36px 36px 44px 44px;
+    border-radius: 10px;
+    background-color: rgba(57, 57, 57, 0.172);
     transition: 0.6s;
     cursor: pointer;
     backface-visibility: hidden;
+    text-align: center;
+    line-height: 185%;
+    color: rgba(62, 62, 62, 0.837);
+    
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.09);
 }
 
 .back {
@@ -151,3 +161,32 @@ input:checked + .card .front{
 .card p {
     margin-top: 76px;
 }
+
+.novision {
+    display: none;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.title_pets {
+    padding-bottom: 20px;
+    font-size: 30px;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Poppins";
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: url(/leaves-natural.jpg);
+    background-repeat: repeat;
+    text-align: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 30px;
+}
+

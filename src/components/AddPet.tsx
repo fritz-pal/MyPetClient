@@ -47,7 +47,7 @@ const AddPet = () => {
     })
 
     const validate = (): boolean => {
-        if (name == "")
+        if (name.trim() == "")
             return false;
         if (species == null)
             return false;
@@ -60,7 +60,7 @@ const AddPet = () => {
                     <img className="add-pet-image" src={petImage} />
                     <div className="labeled-input">
                         <div>*{t("petName")}:</div>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="gender-selection">
                         <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
@@ -120,12 +120,12 @@ const AddPet = () => {
                         return;
                     petMut.mutate({
                         id: 0,
-                        name: name,
+                        name: name.trim(),
                         owner: user,
                         isMale: isMale,
                         castrated: castrated,
                         species: species,
-                        subSpecies: subSpecies,
+                        subSpecies: subSpecies.trim(),
                         dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
                         size: size,
                         weight: weight

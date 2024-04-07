@@ -1,0 +1,41 @@
+.add-thread-page {
+    height: 100%;
+    padding: 50px;
+}
+
+.add-thread-main-grid {
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: min-content 1fr min-content;
+    overflow: hidden;
+}
+
+.add-thread-title {
+
+}
+
+.add-thread-form {
+    padding: 10px;
+    background-color: var(--seventh-color);
+    color: #000000; 
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: min-content;
+}
+
+.add-thread-description-area {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+
+.add-thread-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}

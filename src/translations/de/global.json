@@ -47,6 +47,14 @@
         "submit": "Speichern",
         "requieredNotice": "Plichtfeld"
     },
+    "addThread": {
+        "pageTitle": "Neue Diskussion",
+        "title": "Titel",
+        "species": "Thema",
+        "description": "Worüber willst du diskutieren?",
+        "cancel": "Abbrechen",
+        "submit": "Speichern"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Tier Hinzufügen",
@@ -60,5 +68,10 @@
         "selectGenus": "Gattung auswählen",
         "addGenus": "Gattung hinzufügen",
         "addSpecies": "Spezies hinzufügen"
+    },
+
+    "card": {
+        "more_details": "weitere Infos",
+        "go_back": "zurück"
     }
 }

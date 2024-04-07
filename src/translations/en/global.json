@@ -47,6 +47,14 @@
         "submit": "Submit",
         "requieredNotice": "Requiered"
     },
+    "addThread": {
+        "pageTitle": "New Discussion",
+        "title": "Title",
+        "species": "Topic",
+        "description": "What do you want to discuss?",
+        "cancel": "Cancel",
+        "submit": "Submit"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Add Pet",
@@ -60,5 +68,10 @@
         "selectGenus": "Select Genus",
         "addGenus": "Add Genus",
         "addSpecies": "Add Species"
+    },
+
+    "card": {
+        "more_details": "more details",
+        "go_back": "back"
     }
 }
