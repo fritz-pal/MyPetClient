@@ -33,6 +33,7 @@
 }
 
 .thread-card {
+    line-height: 1.5;
     color: var(--primary-color);
     padding: 20px;
     flex-grow: 1;
