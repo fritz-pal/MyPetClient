@@ -2,9 +2,11 @@ import { useTranslation } from 'react-i18next';
 import './css/ForumPage.css';
 import { Thread } from '../models/Forum';
 import ThreadCard from './ThreadCard';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
     const [t, _] = useTranslation("forum");
+    const navigate = useNavigate();
     const testThread: Thread = {
         id: 0,
         name: 'Dalmatiner',
@@ -16,7 +18,7 @@ const Homepage = () => {
     }
 
     const newThreadClicked = () => {
-        console.log("newThread clicked");
+        navigate("/newthread");
     }
 
     return (
