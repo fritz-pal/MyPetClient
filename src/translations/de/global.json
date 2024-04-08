@@ -56,5 +56,11 @@
         "selectGenus": "Gattung auswählen",
         "addGenus": "Gattung hinzufügen",
         "addSpecies": "Spezies hinzufügen"
+    },
+    "reminders": {
+        "reminderListTitle": "Meine Termine",
+        "reminderName": "Titel",
+        "reminderDate": "Datum",
+        "reminderPet": "Zu welchem Tier gehört der Termin?"
     }
 }
