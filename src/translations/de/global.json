@@ -14,7 +14,8 @@
     "forum": {
         "search": "Suchen",
         "newThread": "Neuer Thread",
-        "by": "erstellt von"
+        "by": "erstellt von",
+        "you": "Ihnen"
     },
     "time": {
         "minutes": "vor {{number}} Minuten",
