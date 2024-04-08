@@ -16,7 +16,6 @@ const ThreadCard = ({ thread }: { thread: Thread }) => {
     }
 
     const byMe = thread.creator?.id === user.id;
-
     return (
         <div onClick={handleClick} className={`thread-card ${byMe ? "own" : ""}`}>
             {byMe &&
