@@ -24,6 +24,15 @@ const getAllThreads = async (): Promise<Thread[]> => {
 }
 
 /**
+ * Get a thread by id
+ * @returns Promise for Thread
+ */
+const getThreadById = async (id: string): Promise<Thread> => {
+    const request = await APIClient.get(`${MAPPING}/${id}`);
+    return request.data;
+}
+
+/**
  * Add a Thread
  * @param thread the new Thread
  * @returns Promise for the newly added Thread
@@ -35,5 +44,6 @@ const addThread = async (thread: Thread): Promise<Thread> => {
 
 export const ForumAPI = {
     getAllThreads,
+    getThreadById,
     addThread
 }
