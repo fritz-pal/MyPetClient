@@ -86,5 +86,11 @@
     "card": {
         "more_details": "weitere Infos",
         "go_back": "zurück"
+    },
+    "reminders": {
+        "reminderListTitle": "Meine Termine",
+        "reminderName": "Titel",
+        "reminderDate": "Datum",
+        "reminderPet": "Zu welchem Tier gehört der Termin?"
     }
 }

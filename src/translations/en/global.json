@@ -87,5 +87,11 @@
     "card": {
         "more_details": "more details",
         "go_back": "back"
+    },
+    "reminders": {
+        "reminderListTitle": "My Reminders",
+        "reminderName": "Title",
+        "reminderDate": "Date",
+        "reminderPet": "What pet is the reminder for?"
     }
 }

@@ -13,6 +13,7 @@ import Settings from './components/Settings';
 import { Card } from './components/Card';
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
+import ReminderPage from './components/ReminderPage'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/admin" element={<AdminAddSpecies/>}/>
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/card" element={<Card/>}/>
+            <Route path="/reminders" element={<ReminderPage/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
