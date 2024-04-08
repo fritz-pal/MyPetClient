@@ -33,6 +33,7 @@
 }
 
 .thread-card {
+    line-height: 1.5;
     color: var(--primary-color);
     padding: 20px;
     flex-grow: 1;
@@ -43,6 +44,20 @@
     margin: 30px;
     border-radius: 20px;
     transition: 0.2s;
+    position: relative;
+}
+
+.creator-icon {
+    width: 30px;
+    height: 30px;
+    color: #0079d3;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.thread-card.own {
+    border: 2px solid #0079d3;
 }
 
 @media screen and (max-width: 600px) {
@@ -71,6 +86,10 @@
 .thread-timestamp {
     color: var(--third-color);
     font-size: 0.8em;
+} 
+
+.thread-timestamp.own {
+    margin-left: 40px;
 }
 
 .thread-species {

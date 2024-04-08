@@ -48,10 +48,11 @@
 
 @media (max-width: 850px) {
     .menu-items {
-        display: none; 
+        display: none;
     }
+
     .menu-icon {
-        display: block; 
+        display: block;
     }
 }
 
@@ -98,28 +99,24 @@
 .navbar {
     justify-content: space-between;
     align-items: center;
-    background-color: #ff0000;
+    background-color: var(--third-color);
     left: -65%;
     position: fixed;
-    display: none;
     width: 60%;
-    height: 80%;
+    height: 100%;
     transition: left 0.3s ease-in-out;
-    z-index: 3;
+    z-index: 10;
     border-right: 3px solid #071C21;
-    border-bottom: 3px solid #071C21;
-    border-radius: 0 0 20px 0;
 }
 
 .navbar.open {
-    display: inline;
     left: 0;
 }
 
 .navbar-items {
     margin-top: 15vh;
     margin-left: 20%;
-    width: 100%;
+    width: min-content;
     height: 100%;
     text-align: left;
     line-height: 2.5;

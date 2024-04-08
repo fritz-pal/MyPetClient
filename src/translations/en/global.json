@@ -14,7 +14,8 @@
     "forum": {
         "search": "Search",
         "newThread": "New Thread",
-        "by": "created by"
+        "by": "created by",
+        "you": "you"
     },
     "time": {
         "minutes": "{{number}} minutes ago",
@@ -77,11 +78,9 @@
         "forum": "Forum"
     },
     "admin": {
-        "genus": "Genus",
-        "race": "Race",
-        "selectGenus": "Select Genus",
-        "addGenus": "Add Genus",
-        "addSpecies": "Add Species"
+        "species": "Species",
+        "addSpecies": "Add Species",
+        "addedSpecies": "Successfully added \"{{species}}\" to the database"
     },
 
     "card": {
