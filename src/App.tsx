@@ -13,6 +13,7 @@ import Settings from './components/Settings';
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
+import ReminderPage from './components/ReminderPage'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/thread/:id" element={<ThreadView/>}/>
             <Route path="/admin" element={<AdminAddSpecies/>}/>
             <Route path="/settings" element={<Settings/>}/>
+            <Route path="/reminders" element={<ReminderPage/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
