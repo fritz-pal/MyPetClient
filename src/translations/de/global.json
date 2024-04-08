@@ -77,11 +77,9 @@
         "forum": "Forum"
     },
     "admin": {
-        "genus": "Gattung",
-        "race": "Rasse",
-        "selectGenus": "Gattung auswählen",
-        "addGenus": "Gattung hinzufügen",
-        "addSpecies": "Spezies hinzufügen"
+        "species": "Spezies",
+        "addSpecies": "Spezies hinzufügen",
+        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt"
     },
     "card": {
         "more_details": "weitere Infos",

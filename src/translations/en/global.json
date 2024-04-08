@@ -77,11 +77,9 @@
         "forum": "Forum"
     },
     "admin": {
-        "genus": "Genus",
-        "race": "Race",
-        "selectGenus": "Select Genus",
-        "addGenus": "Add Genus",
-        "addSpecies": "Add Species"
+        "species": "Species",
+        "addSpecies": "Add Species",
+        "addedSpecies": "Successfully added \"{{species}}\" to the database"
     },
 
     "card": {

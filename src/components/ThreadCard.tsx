@@ -1,14 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { Thread } from "../models/Forum";
 import './css/ForumPage.css';
+import { useNavigate } from "react-router-dom";
 
 const ThreadCard = ({ thread }: { thread: Thread }) => {
-    const [t, _] = useTranslation("species");
-    const [k, __] = useTranslation("forum");
+    const [t,] = useTranslation("species");
+    const navigate = useNavigate();
+    const [k,] = useTranslation("forum");
 
 
     const handleClick = () => {
-        console.log(`Thread ${thread.id} clicked`);
+        navigate("/thread/" + thread.id);
     }
 
     return (
@@ -29,7 +31,7 @@ const ThreadCard = ({ thread }: { thread: Thread }) => {
 function timeSince(seconds: number): string {
     const now = new Date();
     const secondsSince = Math.floor((now.getTime() - seconds * 1000) / 1000);
-    const [t, _] = useTranslation("time");
+    const [t,] = useTranslation("time");
 
     const interval = Math.floor(secondsSince / 31536000);
     if (interval > 1) {
