@@ -19,7 +19,7 @@ html, body {
   --fifth-color: #7f7f7f;
   --sixth-color: #bc4343;
   --seventh-color: #ffffff;
-  --eighth-color: #dddddd;
+  --eighth-color: #ddddff;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
