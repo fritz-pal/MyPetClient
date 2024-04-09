@@ -15,7 +15,9 @@
         "search": "Suchen",
         "newThread": "Neuer Thread",
         "by": "erstellt von",
-        "you": "Ihnen"
+        "you": "Ihnen",
+        "noSearchResults": "Es gibt keine Ergebnisse für \"{{query}}\" :(",
+        "searchResults": "{{count}} Ergebnisse gefunden für \"{{query}}\""
     },
     "time": {
         "minutes": "vor {{number}} Minuten",
