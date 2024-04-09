@@ -20,6 +20,7 @@ html, body {
   --sixth-color: #bc4343;
   --seventh-color: #ffffff;
   --eighth-color: #ddddff;
+  --tenth-color: #0079d3;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);

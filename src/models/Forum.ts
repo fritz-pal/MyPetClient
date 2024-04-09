@@ -17,11 +17,20 @@ export interface Thread {
 const MAPPING = "/threads"
 
 /**
- * Get all threads
+ * Get all threads for user
  * @returns Promise for List of Threads
  */
-const getAllThreads = async (): Promise<Thread[]> => {
-    const request = await APIClient.get(MAPPING);
+const getAllThreadsforUser = async (userID: number): Promise<Thread[]> => {
+    const request = await APIClient.get(`${MAPPING}?userId=${userID}`);
+    return request.data;
+}
+
+/**
+ * Get all threads for search query
+ * @returns Promise for List of Threads
+ */
+const getAllThreadsforQuery = async (userID: number, query: string): Promise<Thread[]> => {
+    const request = await APIClient.get(`${MAPPING}?query=${query}&userId=${userID}`);
     return request.data;
 }
 
@@ -60,7 +69,8 @@ const postCommentToThread = async (threadId: string, comment: Comment): Promise<
 }
 
 export const ForumAPI = {
-    getAllThreads,
+    getAllThreadsforUser,
+    getAllThreadsforQuery,
     getThreadById,
     addThread,
     getCommentsOfThread,

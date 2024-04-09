@@ -2,38 +2,33 @@ import { useTranslation } from "react-i18next";
 import { Thread } from "../models/Forum";
 import './css/ForumPage.css';
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
 
-const ThreadCard = ({ thread }: { thread: Thread }) => {
+const ThreadCard = ({ thread, byUser }: { thread: Thread, byUser: boolean }) => {
     const [t,] = useTranslation("species");
     const navigate = useNavigate();
     const [k,] = useTranslation("forum");
-    const { user } = useContext(UserContext);
 
     const handleClick = () => {
         navigate("/thread/" + thread.id);
     }
 
-    const byMe = thread.creator?.id === user.id;
-
     return (
-        <div onClick={handleClick} className={`thread-card ${byMe ? "own" : ""}`}>
-            {byMe &&
+        <div onClick={handleClick} className={`thread-card ${byUser ? "own" : ""}`}>
+            {byUser &&
                 <svg className="creator-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
                 </svg>
             }
             <div className="thread-info">
-                <div className={`thread-timestamp ${byMe ? "own" : ""}`}>{timeSince(thread.createdAt)}</div>
+                <div className={`thread-timestamp ${byUser ? "own" : ""}`}>{timeSince(thread.createdAt)}</div>
                 <div className="thread-species">{t(thread.species.name)}</div>
             </div>
             <div className="thread-title">
                 <div className="thread-name">{thread.name}</div>
                 <div className="thread-description">{thread.description}</div>
             </div>
-            <div className="thread-creator">{k("by")} {byMe ? k("you") : thread.creator?.username}</div>
+            <div className="thread-creator">{k("by")} {byUser ? k("you") : thread.creator?.username}</div>
         </div>
     )
 };
