@@ -23,12 +23,6 @@
     grid-gap: 10px;
 }
 
-@media(max-width:800px){
-    .add-pet-collapsing-panels {
-       grid-template-columns: 1fr;
-    }
-}
-
 .add-pet-frame {
     display: inline-flex;
     flex-direction: column;
@@ -61,8 +55,6 @@
 }
 
 .labeled-input {
-    width: 50%;
-    padding-left: 20px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
@@ -73,4 +65,21 @@
     width: 150px;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
+}
+
+@media(max-width:800px){
+    .add-pet-collapsing-panels {
+       grid-template-columns: 1fr;
+       grid-gap: 0;
+    }
+
+    .add-pet-frame {
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    .add-pet-page {
+        padding: 20px 10px;
+        grid-gap: 0;
+    }
 }

@@ -1,0 +1,13 @@
+.poster-info {
+    width: min-content;
+    height: min-content;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.poster-info-image {
+    width: 2em;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}

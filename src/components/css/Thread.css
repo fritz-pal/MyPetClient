@@ -1,0 +1,21 @@
+.thread-page {
+    width: calc(100% - 20px);
+    max-width: 1500px;
+    margin: 50px auto 20px auto;
+    padding: 10px;
+    background-color: var(--seventh-color);
+    color: black;
+    box-shadow: 4px 4px 20px 0px #000000;
+}
+
+.thread-head {
+
+}
+
+.thread-title {
+
+}
+
+.thread-description {
+
+}

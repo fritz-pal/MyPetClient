@@ -1,15 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next"
 import { ForumAPI, Thread } from "../models/Forum";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Species, SpeciesAPI } from "../models/Species";
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import "./css/AddThread.css"
 import { useNavigate } from "react-router";
+import { UserContext } from "../context/UserContext";
 
 const AddThread = () => {
     const queryClient = useQueryClient();
+    const {user} = useContext(UserContext)
     const [t,] = useTranslation("addThread");
     const nav = useNavigate();
     const addThreadMut = useMutation({
@@ -49,7 +51,9 @@ const AddThread = () => {
             id: 0,
             name: title.trim(),
             species: species,
-            description: description.trim()
+            description: description.trim(),
+            creator: user,
+            createdAt: Date.now()
         });
     }
 

@@ -87,7 +87,7 @@ const AddPet = () => {
                         {speciesQuery.isError && t("speciesLoadError")}
                         <div className="labeled-input">
                             <div>{t("subSpecies")}:</div>
-                            <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value.trim())} />
+                            <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value)} />
                         </div>
                     </div>
                 </div>
