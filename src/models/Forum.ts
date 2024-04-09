@@ -1,4 +1,6 @@
 import { APIClient } from "../constants";
+import { Comment } from "./Comment";
+import { Page } from "./Page";
 import { Species } from "./Species";
 import { User } from "./User";
 
@@ -42,8 +44,19 @@ const addThread = async (thread: Thread): Promise<Thread> => {
     return request.data;
 }
 
+const getCommentsOfThread = async (threadId: string, page?: number, pageSize?: number): Promise<Page<Comment>> => {
+    const request = await APIClient.get(`${MAPPING}/${threadId}/comments`, {
+        params: {
+            page: page,
+            pageSize: pageSize
+        }
+    });
+    return request.data;
+}
+
 export const ForumAPI = {
     getAllThreads,
     getThreadById,
-    addThread
+    addThread,
+    getCommentsOfThread
 }
