@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import CommentElement from "./CommentElement";
 import { Comment } from "../models/Comment";
+import "./css/CommentSection.css"
 
 const CommentSection = ({comments} : {comments: Comment[]}) => {
     const [t,] = useTranslation("commentSection");

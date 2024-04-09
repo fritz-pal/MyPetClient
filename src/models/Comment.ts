@@ -5,5 +5,5 @@ export interface Comment {
     text: string,
     poster: User,
     createdAt: number,
-    directAnswers: number
+    directAnswers?: number
 }

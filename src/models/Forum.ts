@@ -54,9 +54,15 @@ const getCommentsOfThread = async (threadId: string, page?: number, pageSize?: n
     return request.data;
 }
 
+const postCommentToThread = async (threadId: string, comment: Comment): Promise<Comment> => {
+    const request = await APIClient.post(`${MAPPING}/${threadId}/comments`, comment);
+    return request.data;
+}
+
 export const ForumAPI = {
     getAllThreads,
     getThreadById,
     addThread,
-    getCommentsOfThread
+    getCommentsOfThread,
+    postCommentToThread
 }

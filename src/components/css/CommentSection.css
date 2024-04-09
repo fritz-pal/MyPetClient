@@ -1,0 +1,6 @@
+.comment-section {
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: min-content;
+    grid-template-columns: 1fr;
+}
