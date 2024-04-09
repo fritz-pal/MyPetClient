@@ -30,10 +30,6 @@
     justify-content: center;
 }
 
-hr {
-    color: #43A4BC;
-}
-
 .load {
     display: flex;
     justify-content: center;

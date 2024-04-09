@@ -28,7 +28,7 @@ const Thread = () => {
     return (
         <div className="thread-page">
             <div className="thread-head">
-                {threadQuery.data?.creator ? <PosterInfo user={threadQuery.data?.creator}/> : <></>}
+                {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
                 <h2 className="thread-title">
                     {threadQuery.data?.name}
                 </h2>
