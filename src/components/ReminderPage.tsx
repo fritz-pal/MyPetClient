@@ -1,20 +1,70 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { SetStateAction, useContext, useState } from "react";
+import { SetStateAction, useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import { JSONReminder, ReminderAPI } from "../models/Reminder";
 import { UserContext } from "../context/UserContext";
 import ReminderList from './ReminderList';
-import { Pet, PetAPI } from "../models/Pet";
+import Pets, { JSONPet, Pet, PetAPI } from "../models/Pet";
+import './css/ReminderPage.css'
 
+interface PetSelectionProps {
+    userId: number;
+}
+
+const PetSelection: React.FC<PetSelectionProps> = ({ userId }) => {
+    const [selection, setSelection] = useState<string[]>([]); 
+    const [availablePets, setAvailablePets] = useState<Pet[]>([]);
+  
+    useEffect(() => {
+      loadAvailablePets();
+    }, []);
+  
+    const loadAvailablePets = async () => {
+      try {
+        const availableJSONPets: JSONPet[] = await PetAPI.getAllPetsOfUser(userId);
+        const availablePets: Pet[] = availableJSONPets.map(Pets.JSONPetToPet);
+        setAvailablePets(availablePets);
+      } catch (error) {
+        console.error('kaput', error);
+      }
+    };
+  
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value, checked } = event.target;
+      if (checked) {
+        setSelection([...selection, value]);
+      } else {
+        setSelection(selection.filter(item => item !== value));
+      }
+    };
+
+    return (
+        <div className="set-reminder-pet">
+            <div>Reminder Pet:</div>
+            {availablePets.map(pet => (
+                <div key={pet.id}>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value={pet.id}
+                            onChange={handleCheckboxChange}
+                            checked={selection.includes(pet.name)}
+                        />
+                        {pet.name}
+                    </label>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 const ReminderPage = () => {
     const queryClient = useQueryClient();
     const {user} = useContext(UserContext);
     const [t,] = useTranslation("reminders");
     const nav = useNavigate();
-    const [userPets] = PetAPI.getAllPetsOfUser(user.id);
 
     const [name, setName] = useState<string>("");
     const [date, setDate] = useState<Date>(new Date());
@@ -61,16 +111,10 @@ const ReminderPage = () => {
             <div className="reminder-datepicker">
                 <div>{t("reminderDate")}:</div>
                 <input type="date" value={date ? date.toISOString().substring(0,10) : ""} onChange={(e) => setDate(new Date(e.target.value))} />
-            </div>
-            <div className="set-reminder-pet">
-                <div>{t("reminderPet")}:</div>
-                <select name="pets" onChange={e => setAssociatedPet(e.target.value)}>
-                    {userPets.map(element => 
-                        <option value={element} key={element}>{userPets(element)}</option>
-                    )}
-                </select>
-            </div>
-            
+            </div>   
+            <div>
+                <PetSelection userId={user.id}/>
+            </div>         
             <div className="add-reminder-buttons">
                 <button className="cancel-button" onClick={() => nav("/")}>
                     {t("cancel")}
@@ -98,4 +142,4 @@ const ReminderPage = () => {
     )
 }
 
-export default ReminderPage
+export default ReminderPage;

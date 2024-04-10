@@ -97,4 +97,4 @@ export const ReminderAPI = {
     addReminder
 }
 
-export default Reminder
+export default Reminders
