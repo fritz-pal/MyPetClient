@@ -18,7 +18,7 @@ const ReminderList = () => {
     let reminders: Array<Reminder> = [];
     if (petQuery.isSuccess) {
         petQuery.data.forEach(element => {
-            //reminders.push(Reminders.JSONReminderToReminder(element))
+            reminders.push(Reminders.JSONReminderToReminder(element))
         });
     }
 

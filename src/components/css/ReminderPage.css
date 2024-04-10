@@ -1,0 +1,29 @@
+/* Stil für Textboxen */
+input[type="text"],
+input[type="date"] {
+  padding: 8px 12px; /* Innenabstand */
+  border: 1px solid #ccc; /* Randfarbe und -stärke */
+  border-radius: 4px; /* Abrundung der Ecken */
+  font-size: 16px; /* Schriftgröße */
+  width: 100%; /* Vollständige Breite */
+  box-sizing: border-box; /* Das Padding wird in die Gesamtbreite einbezogen */
+  margin-bottom: 10px; /* Abstand nach unten */
+}
+
+/* Stil für Checkboxen */
+input[type="checkbox"] {
+  margin-right: 8px; /* Abstand nach rechts */
+}
+
+/* Überprüfen Sie, ob die Checkbox angeklickt wurde, und ändern Sie den Stil des zugehörigen Labels */
+input[type="checkbox"]:checked + label {
+  font-weight: bold; /* Fettgedruckte Schrift für ausgewählte Elemente */
+  color: #333; /* Farbe für ausgewählte Elemente */
+}
+
+/* Basisstil für Labels */
+label {
+  font-size: 16px; /* Schriftgröße */
+  display: inline-block; /* Blockelement, um Abstand zu ermöglichen */
+  margin-bottom: 8px; /* Abstand nach unten */
+}
