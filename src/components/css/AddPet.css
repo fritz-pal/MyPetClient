@@ -68,6 +68,15 @@
     border-radius: 100%;
 }
 
+.test_checkbox {
+    box-shadow: 0px 0px 0px 0px #000000;
+}
+
+.labeled-checkbox {
+    display: flex;
+}
+
+
 @media(max-width:800px){
     .add-pet-collapsing-panels {
        grid-template-columns: 1fr;
