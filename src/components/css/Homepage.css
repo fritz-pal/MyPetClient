@@ -45,3 +45,21 @@
     color: #1a1a1aa8;
     text-shadow: 0px 2px 40px 0px rgba(0, 0, 0, 0.5);
 }
+
+
+@media (max-width: 850px) {
+    .home_greeting {    
+        font-size: 50px;
+        margin-top: 100px;
+    }
+    .home_title {
+        font-size: 50px;
+        margin-top: -50px;
+    }
+
+    .full-width-image {
+        margin-top: -60px;
+        background-position: center; /* Das Bild wird zentriert positioniert */
+        height: 400px;
+    }
+}

@@ -37,7 +37,6 @@ function App() {
             <Route path="/thread/:id" element={<ThreadView/>}/>
             <Route path="/admin" element={<AdminAddSpecies/>}/>
             <Route path="/settings" element={<Settings/>}/>
-            <Route path="/card" element={<Card/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
