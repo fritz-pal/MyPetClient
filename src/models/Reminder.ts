@@ -6,14 +6,14 @@ export interface Reminder {
     id: number
     name: string
     date: Date
-    associatedPet: Pet
+    associatedPets: Pet[]
 }
 
 export interface JSONReminder {
     id: number
     name: string
     date: string
-    associatedPet: Pet
+    associatedPets: Pet[]
 }
 
 const JSONReminderToReminder = (data: JSONReminder) => {
@@ -35,23 +35,7 @@ const newReminder = () : Reminder => {
         id: 0,
         name: "",
         date: new Date(),
-        associatedPet: {
-            id: 0,
-            name: "",
-            species: {
-                id: 0,
-                name: "",
-            },
-            subSpecies: "",
-            owner: {
-                id: 0,
-                username: "",
-                fullname: "",
-                email: ""
-            },
-            isMale: false,
-            castrated: false
-        }
+        associatedPets: []
     }
 }
 

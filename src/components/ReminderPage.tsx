@@ -8,57 +8,9 @@ import { UserContext } from "../context/UserContext";
 import ReminderList from './ReminderList';
 import Pets, { JSONPet, Pet, PetAPI } from "../models/Pet";
 import './css/ReminderPage.css'
+import PetSelection from "./PetSelection"
 
-interface PetSelectionProps {
-    userId: number;
-}
 
-const PetSelection: React.FC<PetSelectionProps> = ({ userId }) => {
-    const [selection, setSelection] = useState<string[]>([]); 
-    const [availablePets, setAvailablePets] = useState<Pet[]>([]);
-  
-    useEffect(() => {
-      loadAvailablePets();
-    }, []);
-  
-    const loadAvailablePets = async () => {
-      try {
-        const availableJSONPets: JSONPet[] = await PetAPI.getAllPetsOfUser(userId);
-        const availablePets: Pet[] = availableJSONPets.map(Pets.JSONPetToPet);
-        setAvailablePets(availablePets);
-      } catch (error) {
-        console.error('kaput', error);
-      }
-    };
-  
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value, checked } = event.target;
-      if (checked) {
-        setSelection([...selection, value]);
-      } else {
-        setSelection(selection.filter(item => item !== value));
-      }
-    };
-
-    return (
-        <div className="set-reminder-pet">
-            <div>Reminder Pet:</div>
-            {availablePets.map(pet => (
-                <div key={pet.id}>
-                    <label>
-                        <input
-                            type="checkbox"
-                            value={pet.id}
-                            onChange={handleCheckboxChange}
-                            checked={selection.includes(pet.name)}
-                        />
-                        {pet.name}
-                    </label>
-                </div>
-            ))}
-        </div>
-    );
-};
 
 const ReminderPage = () => {
     const queryClient = useQueryClient();
@@ -68,23 +20,7 @@ const ReminderPage = () => {
 
     const [name, setName] = useState<string>("");
     const [date, setDate] = useState<Date>(new Date());
-    const [associatedPet, setAssociatedPet] = useState<Pet>({
-        id: 0,
-        name: "",
-        species: {
-            id: 0,
-            name: "",
-        },
-        subSpecies: "",
-        owner: {
-            id: 0,
-            username: "",
-            fullname: "",
-            email: ""
-        },
-        isMale: false,
-        castrated: false
-    })
+    const [associatedPets, setAssociatedPets] = useState<Pet[]>([])
 
     
     const reminderMut = useMutation({
@@ -113,7 +49,7 @@ const ReminderPage = () => {
                 <input type="date" value={date ? date.toISOString().substring(0,10) : ""} onChange={(e) => setDate(new Date(e.target.value))} />
             </div>   
             <div>
-                <PetSelection userId={user.id}/>
+                <PetSelection userId={user.id} setAssociatedPets={setAssociatedPets}/>
             </div>         
             <div className="add-reminder-buttons">
                 <button className="cancel-button" onClick={() => nav("/")}>
@@ -124,13 +60,13 @@ const ReminderPage = () => {
                         return;
                     if (date == null)
                         return;
-                    /*reminderMut.mutate({
+                    reminderMut.mutate({
                         id: 0,
                         name: name,
                         date: new Date().toISOString().substring(0, 10),
-                        associatedPet: 
+                        associatedPets: associatedPets
                     });
-                    */
+                    
                 }}>
                     {reminderMut.isPending ? <Loader/> : t("submit")}
                 </button>

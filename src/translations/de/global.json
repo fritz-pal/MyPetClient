@@ -91,6 +91,8 @@
         "reminderListTitle": "Meine Termine",
         "reminderName": "Titel",
         "reminderDate": "Datum",
-        "reminderPet": "Zu welchem Tier gehört der Termin?"
+        "reminderPet": "Zu welchem Tier gehört der Termin?",
+        "submit": "Speichern",
+        "cancel": "Abbrechen"
     }
 }
