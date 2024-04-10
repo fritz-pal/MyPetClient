@@ -11,9 +11,9 @@ import Homepage from './components/Homepage';
 import AdminAddSpecies from './components/AdminAddSpecies';
 import Settings from './components/Settings';
 import { Card } from './components/Card';
+import ReminderPage from './components/ReminderPage'
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
-import ReminderPage from './components/ReminderPage'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
