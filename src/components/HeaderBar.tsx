@@ -28,7 +28,6 @@ const HeaderBar = () => {
                 <MenuItem path="/reminders" label="Reminders" />
                 <MenuItem path="/newpet" label="Test" />
                 <MenuItem path="/admin" label="Admin" />
-                <MenuItem path='/card' label='Card' />
             </div>
             <div className="user-settings">
                 <svg onClick={handleSettingsClick} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

@@ -35,7 +35,6 @@ function App() {
             <Route path="/forum" element={<ForumPage/>}/>
             <Route path="/admin" element={<AdminAddSpecies/>}/>
             <Route path="/settings" element={<Settings/>}/>
-            <Route path="/card" element={<Card/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </div>
