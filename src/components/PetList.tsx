@@ -1,6 +1,6 @@
 import './css/PetList.css';
 import petImage from '/hund.jpg';
-import Pets, { Pet, JSONPet, PetAPI } from '../models/Pet';
+import Pets, { Pet, PetAPI } from '../models/Pet';
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -31,10 +31,10 @@ const PetList = () => {
     return (
         <div className="my-pets-module">
             <div className="title_pets">{t("petlisttitle")}</div>
-            <Card pets={pets} />
+
             {petQuery.isLoading && <div className='load'><Loader /></div>}
             {petQuery.isSuccess && <div className="pets">
-                {pets.map(pet => <PetListItem pet={pet} key={pet.id}></PetListItem>)}
+                <Card pets={pets} />
             </div>}
             {petQuery.isError && <div>Error fetching pets</div>}
             <div className="add-pet-button-container">
@@ -42,16 +42,9 @@ const PetList = () => {
                     <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" />
                 </svg>
             </div>
-            
         </div>
     );
 };
-
-const PetListItem = ({ pet }: { pet: Pet }) => (
-    <>
-        
-    </>
-);
 
 const Card = ({ pets }: { pets: Pet[] }) => {
     const [tcard, _card] = useTranslation("card");
@@ -70,7 +63,7 @@ const Card = ({ pets }: { pets: Pet[] }) => {
                             </header>
                             <img className="pet-image2" src={petImage} alt={pet.name} />
                             <h3 className="pet_name_css">{pet.species.name}</h3>
-                            
+
                         </div>
                         <div className="back">
                             <header>
@@ -78,9 +71,9 @@ const Card = ({ pets }: { pets: Pet[] }) => {
                                 <span>{tcard("more_details")}</span>
                             </header>
                             <h2>{pet.subSpecies}</h2>
-                            <h2>{pet.castrated ? t("castrated") : "false" }</h2>
+                            <h2>{pet.castrated ? t("castrated") : "false"}</h2>
                             <h3 className="pet_name_css">{pet.species.name}</h3>
-                            
+
                         </div>
                     </div>
                 </label>
