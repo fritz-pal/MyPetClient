@@ -10,7 +10,6 @@ import AddPet from './components/AddPet';
 import Homepage from './components/Homepage';
 import AdminAddSpecies from './components/AdminAddSpecies';
 import Settings from './components/Settings';
-import { Card } from './components/Card';
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
