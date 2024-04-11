@@ -102,7 +102,7 @@ input:hover {
 
 input:focus {
   background-color: rgb(230, 230, 230);
-  border-color: var(--eighth-color);
+  border-color: var(--ninth-color);
 }
 
 option {
