@@ -5,38 +5,40 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ForumAPI } from '../models/Forum';
 import Loader from './Loader';
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { useDebouncedSearch } from '../hooks/useDebouncedSearch';
 
 
 const ForumPage = () => {
     const [t,] = useTranslation("forum");
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
-    const [searched, setSearched] = useState(false);
     const { user } = useContext(UserContext);
+    const [debouncedSearch, setDebouncedSearch] = useDebouncedSearch(search, 500);
 
     const query = useQuery({
-        queryKey: ["threads", search],
-        queryFn: () => ForumAPI.getAllThreadsforQuery(user.id, search)
+        queryKey: ["threads", debouncedSearch],
+        queryFn: () => ForumAPI.getAllThreadsforQuery(user.id, debouncedSearch)
     });
 
-    const newThreadClicked = () => {
-        navigate("/newthread");
-    }
+    const searched = useMemo(() => search !== "", [debouncedSearch]);
+
+    const enterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            setDebouncedSearch(search);
+        }
+    };
 
     return (
         <div className='forum-page'>
             <div className='forum-header'>
-                <input value={search} onChange={(e) => {
-                     setSearch(e.target.value);
-                     setSearched(e.target.value !== "");
-                }} maxLength={30} className='search-input' type="search" placeholder={t("search")} />
+                <input onKeyDown={enterPressed} value={search} onChange={(e) => setSearch(e.target.value)} maxLength={30} className='search-input' type="search" placeholder={t("search")} />
                 <svg className='search-button' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
             </div>
-            {searched && query.isSuccess && <SearchResults count={query.data?.length || 0} query={search} />}
+            {searched && query.isSuccess && <SearchResults count={query.data?.length || 0} query={debouncedSearch} />}
             {(query.isLoading || query.isError) && <div className='load'><Loader /></div>}
             {query.isSuccess &&
                 <div className={`forum-threads ${searched ? "results" : ""}`}>
@@ -44,7 +46,7 @@ const ForumPage = () => {
                 </div>
             }
             <div className="new-thread-button-container">
-                <svg onClick={newThreadClicked} className="new-thread-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <svg onClick={() => navigate("/newthread")} className="new-thread-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" />
                 </svg>
             </div>
@@ -54,13 +56,11 @@ const ForumPage = () => {
 
 const SearchResults = ({ count, query }: { count: number, query: string }) => {
     const [t,] = useTranslation("forum");
-
     return (
         <div className="search-results">
             {count === 0 ? t("noSearchResults", { query }) : t("searchResults", { count, query })}
         </div>
     );
 };
-
 
 export default ForumPage;
