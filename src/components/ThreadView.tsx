@@ -50,6 +50,7 @@ const ThreadView = () => {
             poster: user,
             createdAt: Date.now(),
         })
+        setCommentText("");
     }
 
     const maxPage = useMemo(() => {

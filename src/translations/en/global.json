@@ -11,6 +11,12 @@
         "de": "German",
         "en": "English"
     },
+    "thread": {
+        "post": "Post"
+    },
+    "commentSection": {
+        "noPost": "No comments yet. Be the first to comment something!"
+    },
     "forum": {
         "search": "Search",
         "newThread": "New Thread",

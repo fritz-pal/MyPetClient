@@ -11,6 +11,12 @@
         "de": "Deutsch",
         "en": "Englisch"
     },
+    "thread": {
+        "post": "Senden"
+    },
+    "commentSection": {
+        "noPost": "Hier sieht es leer aus. Sei der erste der etwas kommentiert!"
+    },
     "forum": {
         "search": "Suchen",
         "newThread": "Neuer Thread",
