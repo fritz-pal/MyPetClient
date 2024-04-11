@@ -14,13 +14,14 @@ html, body {
   font-weight: 400;
   --primary-color: #000000;
   --secondary-color: #3f3f3f;
-  --third-color: #6b6b6be7;
+  --thrid-color: #6b6b6be7;
   --fourth-color: rgba(255, 255, 255, 0.856);
   --fifth-color: #7f7f7f;
-  --sixth-color: #bc4343;
+  --sixth-color: #e9e9e9;
   --seventh-color: #ffffff;
-  --eighth-color: #ddddff;
-  --tenth-color: #0079d3;
+  --eighth-color: #dddddd;
+  --ninth-color: #00a6ff;
+  --tenth-color: #0084ff8a;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -77,16 +78,31 @@ input {
   font-size: 16px;
   outline: none;
   transition: border-color 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: white;
   color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+input.normal_checkbox {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background: white;
+  color: black;
+  box-shadow: none; /* Hier wird der box-shadow entfernt */
 }
 
 input:hover {
+  border-color: var(--ninth-color);
 }
 
 input:focus {
+  background-color: rgb(230, 230, 230);
+  border-color: var(--thrid-color);
 }
 
 select:hover {
@@ -97,10 +113,12 @@ option {
 }
 
 button:hover {
-  border-color: #51bc43;
+  border-color: var(--ninth-color);
+    background-color: var(--tenth-color);
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+
 }

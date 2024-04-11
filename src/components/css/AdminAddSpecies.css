@@ -1,3 +1,6 @@
+Admin 
+
+
 .post-form {
     display: flex;
     justify-content: center;
@@ -25,6 +28,44 @@
     align-items: center;
     height: 100px;
 }
+
+.genus_style {
+    color: #757575;
+    padding: 20px;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--seventh-color);
+    box-shadow: 4px 4px 30px 0px #000000;
+    margin: 0 20px 20px 20px;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.genus_title {
+    padding-bottom: 20px;
+    font-size: 30px;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Poppins";
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: url(/leaves-natural.jpg);
+    background-repeat: repeat;
+    text-align: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 30px;
+}
+
+.genus_main_style {
+    text-align: -webkit-center;
+    padding-top: 30px;
+}
+
 
 .feedback {
     color: var(--sixth-color);

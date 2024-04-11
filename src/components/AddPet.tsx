@@ -47,7 +47,7 @@ const AddPet = () => {
     })
 
     const validate = (): boolean => {
-        if (name.trim() == "")
+        if (name == "")
             return false;
         if (species == null)
             return false;
@@ -60,7 +60,7 @@ const AddPet = () => {
                     <img className="add-pet-image" src={petImage} />
                     <div className="labeled-input">
                         <div>*{t("petName")}:</div>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
                     </div>
                     <div className="gender-selection">
                         <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
@@ -75,7 +75,7 @@ const AddPet = () => {
                         </button>
                     </div>
                     <div className="labeled-checkbox">
-                        <input type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
+                        <input className="normal_checkbox" type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
                         {t("castrated")}
                     </div>
                 </div>
@@ -120,12 +120,12 @@ const AddPet = () => {
                         return;
                     petMut.mutate({
                         id: 0,
-                        name: name.trim(),
+                        name: name,
                         owner: user,
                         isMale: isMale,
                         castrated: castrated,
                         species: species,
-                        subSpecies: subSpecies.trim(),
+                        subSpecies: subSpecies,
                         dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
                         size: size,
                         weight: weight

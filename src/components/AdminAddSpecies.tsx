@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './css/AdminAddSpecies.css';
 import { Species, SpeciesAPI } from '../models/Species';
-import './css/card.css';
+import './css/AdminAddSpecies.css';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
