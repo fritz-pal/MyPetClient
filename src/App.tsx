@@ -20,7 +20,7 @@ function App() {
     console.log("App mounted!");
   }, []);
   return (
-    <Router>
+    <Router basename={process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/'}>
       <div className="App">
         <NavbarContext.Provider value={{ isOpen, setIsOpen }}>
           <HeaderBar />
