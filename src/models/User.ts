@@ -6,9 +6,10 @@ import { APIClient } from "../constants";
 export interface User {
     id: number;
     username: string;
-    fullname: string;
+    fullname?: string;
     address?: string;
-    email: string;
+    email?: string;
+    password?: string;
 }
 
 /**
@@ -48,8 +49,19 @@ const getAllUsers = async (): Promise<User[]> => {
 }
 
 /**
+ * Adds a new User
+ * @param User New user
+ * @returns Promise of added user
+ */
+const addUser = async (user: User): Promise<User> => {
+    const request = await APIClient.post(MAPPING, user);
+    return request.data;
+}
+
+/**
  * Contains methods to communicate with the backend system
  */
 export const UserAPI = {
-    getAllUsers
+    getAllUsers,
+    addUser
 }

@@ -37,12 +37,12 @@ html, body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #2c32a9;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  text-decoration: underline;
 }
 
 button {
@@ -81,6 +81,11 @@ input {
   background: white;
   color: black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Änderung von Henri (steht noch zur diskussion)*/
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 input.normal_checkbox {
