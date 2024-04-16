@@ -27,12 +27,15 @@ const AdminAddSpecies = () => {
     });
 
     return (
-        <div>
+        <div className="admin_container">
+        <div className="post-form-container">
+            <div className="title_admin">{t("addSpecies")}</div>
             <div className="post-form">
                 <input placeholder={t("species")} className="post-input" type="text" value={speciesName} onChange={(e) => setSpeciesName(e.target.value.trim())} />
                 <button className="post-button" onClick={() => speciesAdd.mutate({ id: 0, name: speciesName })} disabled={speciesName == ""}>{t("addSpecies")}</button>
             </div>
             <div className={`feedback ${showFeedback ? 'shown' : ''}`}>{t("addedSpecies", {species : speciesFeedback})}</div>
+        </div>
         </div>
     );
 };

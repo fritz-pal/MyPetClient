@@ -53,6 +53,19 @@ const ThreadView = () => {
         setCommentText("");
     }
 
+    const deleteCommentMut = useMutation({
+        mutationFn: (id: number) => ForumAPI.deleteComment(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["threads", id]
+            })
+        }
+    })
+    
+    const deleteComment = (id: number) => {
+        deleteCommentMut.mutate(id);
+    }
+
     const maxPage = useMemo(() => {
         if (commentQuery.isLoading || commentQuery.isError || !commentQuery.data)
             return 0;

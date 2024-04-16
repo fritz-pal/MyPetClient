@@ -68,11 +68,17 @@ const postCommentToThread = async (threadId: string, comment: Comment): Promise<
     return request.data;
 }
 
+const deleteComment = async (id: Number): Promise<void> => {
+    const request = await APIClient.delete(`${MAPPING}/${id}`);
+    return request.data;
+}
+
 export const ForumAPI = {
     getAllThreadsforUser,
     getAllThreadsforQuery,
     getThreadById,
     addThread,
     getCommentsOfThread,
-    postCommentToThread
+    postCommentToThread,
+    deleteComment
 }
