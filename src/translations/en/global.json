@@ -88,7 +88,9 @@
         "newpet": "Add Pet",
         "login": "Login",
         "admin": "Admin",
-        "forum": "Forum"
+        "forum": "Forum",
+        "reminders": "Reminders",
+        "newreminder": "Add Reminder"
     },
     "admin": {
         "species": "Species",
@@ -106,6 +108,8 @@
         "reminderDate": "Date",
         "reminderPet": "What pet is the reminder for?",
         "submit": "Submit",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "reminderTime": "Time",
+        "delete": "Delete"
     }
 }

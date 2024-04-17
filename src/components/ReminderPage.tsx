@@ -20,6 +20,7 @@ const ReminderPage = () => {
 
     const [name, setName] = useState<string>("");
     const [date, setDate] = useState<Date>(new Date());
+    const [time, setTime] = useState(new Date());
     const [associatedPets, setAssociatedPets] = useState<Pet[]>([])
 
     
@@ -27,7 +28,7 @@ const ReminderPage = () => {
         mutationFn: (reminder: JSONReminder) => ReminderAPI.addReminder(reminder),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["reminders", user.id]});
-            nav("/");
+            nav("/reminders");
         }
     })
 
@@ -36,43 +37,80 @@ const ReminderPage = () => {
             return false;
         if (date == null)
             return false;
+        if (associatedPets.length === 0)
+            return false;
         return true;
     }
+
+    const handleTimeChange = (e: { target: { value: any; }; }) => {
+        const newTime = e.target.value;
+        const [hours, minutes] = newTime.split(':');
+        const updatedTime = new Date(date);
+        updatedTime.setHours(parseInt(hours, 10));
+        updatedTime.setMinutes(parseInt(minutes, 10));
+        setTime(updatedTime);
+    };
+
+    const handleDateChange = (e: { target: { value: string | number | Date; }; }) => {
+        const selectedDate = e.target.value;
+        if (selectedDate === "") {
+            setDate(new Date());
+        } else {
+            const newDate = new Date(e.target.value);
+            setDate(newDate);
+        }
+        
+    };
+    
+
     return (
         <div className="reminder-page">
+            <div className="add-reminder-frame">
             <div className="set-reminder-name">
-                <div>{t("reminderName")}:</div>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                <div className="inputLabel">{t("reminderName")}:</div>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="reminder-datepicker">
-                <div>{t("reminderDate")}:</div>
-                <input type="date" value={date ? date.toISOString().substring(0,10) : ""} onChange={(e) => setDate(new Date(e.target.value))} />
+                <div className="inputLabel">{t("reminderDate")}:</div>
+                <input 
+                    type="date"
+                    value={date ? date.toISOString().substring(0,10) : ""} 
+                    onChange={handleDateChange} />
+            </div>
+            <div className="reminder-timepicker">
+                <div className="inputLabel">{t("reminderTime")}:</div>
+                <input
+                    type="time"
+                    value={`${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}`}
+                    onChange={handleTimeChange}
+                />
             </div>   
-            <div>
+            <div className="inputLabel">
                 <PetSelection userId={user.id} setAssociatedPets={setAssociatedPets}/>
             </div>         
             <div className="add-reminder-buttons">
-                <button className="cancel-button" onClick={() => nav("/")}>
+                <button className="cancel-button" onClick={() => nav("/reminders")}>
                     {t("cancel")}
                 </button>
                 <button className="submit-button" disabled={!validate() || reminderMut.isPending} onClick={() => {
+                    const datetime = new Date(date)
+                    datetime.setHours(time.getHours())
+                    datetime.setMinutes(time.getMinutes())
                     if (!validate())
                         return;
                     if (date == null)
                         return;
                     reminderMut.mutate({
                         id: 0,
-                        name: name,
-                        date: new Date().toISOString().substring(0, 10),
-                        associatedPets: associatedPets
+                        name: name.trimStart().trimEnd(),
+                        date: datetime.toISOString().substring(0, 25),
+                        pets: associatedPets
                     });
                     
                 }}>
                     {reminderMut.isPending ? <Loader/> : t("submit")}
                 </button>
             </div>
-            <div className='reminderlist-container'>
-                <ReminderList />
             </div>
         </div>
     )

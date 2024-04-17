@@ -1,29 +1,51 @@
-/* Stil für Textboxen */
 input[type="text"],
 input[type="date"] {
-  padding: 8px 12px; /* Innenabstand */
-  border: 1px solid #ccc; /* Randfarbe und -stärke */
-  border-radius: 4px; /* Abrundung der Ecken */
-  font-size: 16px; /* Schriftgröße */
-  width: 100%; /* Vollständige Breite */
-  box-sizing: border-box; /* Das Padding wird in die Gesamtbreite einbezogen */
-  margin-bottom: 10px; /* Abstand nach unten */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
-/* Stil für Checkboxen */
 input[type="checkbox"] {
-  margin-right: 8px; /* Abstand nach rechts */
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
-/* Überprüfen Sie, ob die Checkbox angeklickt wurde, und ändern Sie den Stil des zugehörigen Labels */
 input[type="checkbox"]:checked + label {
-  font-weight: bold; /* Fettgedruckte Schrift für ausgewählte Elemente */
-  color: #333; /* Farbe für ausgewählte Elemente */
+  font-weight: bold;
+  color: #333;
+  vertical-align: middle;
 }
 
-/* Basisstil für Labels */
 label {
-  font-size: 16px; /* Schriftgröße */
-  display: inline-block; /* Blockelement, um Abstand zu ermöglichen */
-  margin-bottom: 8px; /* Abstand nach unten */
+  font-size: 16px;
+  margin-bottom: 8px;
+  vertical-align: middle;
+}
+
+.add-reminder-frame {
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 50px 10px;
+  background-color: var(--seventh-color);
+  box-shadow: 4px 4px 20px 0px #000000;
+  place-items: center;
+  height: 100vh;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto; 
+}
+
+.inputLabel {
+  color:#000000;
 }
