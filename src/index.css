@@ -22,6 +22,7 @@ html, body {
   --eighth-color: #ddddff;
   --ninth-color: #00a6ff;
   --tenth-color: #0079d3;
+  --eleventh-color: #5d5d5d;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -52,7 +53,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #5d5d5d;
+  background-color: var(--eleventh-color);
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;

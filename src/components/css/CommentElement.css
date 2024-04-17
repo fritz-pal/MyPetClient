@@ -9,3 +9,13 @@
 .comment-line {
     
 }
+
+.deleteButton-Comment {
+    float: right;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    padding: 0.2em 0.6em;
+    font-size: 0.7em;
+    font-weight: 300;
+    background-color: var(--ninth-color);
+}
