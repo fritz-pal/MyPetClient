@@ -74,7 +74,9 @@
         "newpet": "Tier Hinzufügen",
         "login": "Login",
         "admin": "Admin",
-        "forum": "Forum"
+        "forum": "Forum",
+        "reminders": "Termine",
+        "newreminder": "Termin hinzufügen"
     },
     "admin": {
         "genus": "Gattung",
@@ -93,6 +95,8 @@
         "reminderDate": "Datum",
         "reminderPet": "Zu welchem Tier gehört der Termin?",
         "submit": "Speichern",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "reminderTime": "Uhrzeit",
+        "delete": "Löschen"
     }
 }
