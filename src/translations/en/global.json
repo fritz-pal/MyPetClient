@@ -78,6 +78,10 @@
         "cancel": "Cancel",
         "submit": "Submit"
     },
+
+    "comment": {
+        "delete": "Delete"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Add Pet",

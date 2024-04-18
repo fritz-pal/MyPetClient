@@ -78,6 +78,11 @@
         "cancel": "Abbrechen",
         "submit": "Speichern"
     },
+
+    "comment": {
+        "delete": "Löschen"
+    },
+
     "paths": {
         "home": "Home",
         "newpet": "Tier Hinzufügen",
