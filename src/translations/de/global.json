@@ -80,7 +80,8 @@
     },
 
     "comment": {
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "confirm": "Bestätigen"
     },
 
     "paths": {
