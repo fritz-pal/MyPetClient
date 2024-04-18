@@ -13,6 +13,7 @@ import Settings from './components/Settings';
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
+import LoginPage from './components/LoginPage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage/>}/>
             <Route path="newThread" element={<AddThread/>}/>
-            <Route path="/login" element={<LoginInput/>}/>
+            <Route path="/login" element={<LoginPage/>}/>
             <Route path="/newpet" element={<AddPet/>}/>
             <Route path="/forum" element={<ForumPage/>}/>
             <Route path="/thread/:id" element={<ThreadView/>}/>
