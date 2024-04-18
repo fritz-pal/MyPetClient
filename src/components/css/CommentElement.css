@@ -19,3 +19,8 @@
     font-weight: 300;
     background-color: var(--ninth-color);
 }
+
+.deleteButton-Comment.confirm {
+    background-color: red;
+    color: white;
+   }
