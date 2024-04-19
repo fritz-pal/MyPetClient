@@ -1,4 +1,4 @@
-import Reminders, { Reminder, JSONReminder, ReminderAPI } from '../models/Reminder'
+import Reminders, { Reminder, ReminderAPI } from '../models/Reminder'
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
