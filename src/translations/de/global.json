@@ -2,6 +2,15 @@
     "generics": {
         "search": "Suche"
     },
+    "login": {
+        "title": "Anmelden",
+        "name": "Nutzername / E-Mail",
+        "noUser": "Nutzer exestiert nicht",
+        "password": "Passwort",
+        "wrongPassword": "Falsches Passwort",
+        "submit": "Einloggen",
+        "authFailed": "Etwas ging während der Authentifizierung schieff. Versuche dich nochmal anzumelden."
+    },
     "settings": {
         "settings": "Einstellungen",
         "language": "Sprache",
