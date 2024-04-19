@@ -1,11 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useContext, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { SetStateAction, useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import { JSONReminder, ReminderAPI } from "../models/Reminder";
 import { UserContext } from "../context/UserContext";
-import { Pet} from "../models/Pet";
+import ReminderList from './ReminderList';
+import Pets, { JSONPet, Pet, PetAPI } from "../models/Pet";
 import './css/ReminderPage.css'
 import PetSelection from "./PetSelection"
 

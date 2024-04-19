@@ -13,9 +13,13 @@ import Settings from './components/Settings';
 import { Card } from './components/Card';
 import ReminderPage from './components/ReminderPage'
 import ReminderList from './components/ReminderList'
+import { Card } from './components/Card';
+import ReminderPage from './components/ReminderPage'
+import ReminderList from './components/ReminderList'
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
+import ReminderPage from './components/ReminderPage'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
