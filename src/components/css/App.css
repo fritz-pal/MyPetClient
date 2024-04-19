@@ -5,3 +5,10 @@
   display: grid;
   grid-template-rows: min-content auto;
 }
+
+.no-auth {
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: rgb(255, 255, 255);
+  display: grid;
+}

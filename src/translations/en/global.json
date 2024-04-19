@@ -2,6 +2,17 @@
     "generics": {
         "search": "Search"
     },
+    "login": {
+        "title": "Login",
+        "name": "Username",
+        "noUser": "User does not exist",
+        "password": "Password",
+        "wrongPassword": "Wrong Password",
+        "submit": "Login",
+        "authFailed": "Something went wrong while authenticating. Please try logging in in again.",
+        "noAccount": "No Account yet? Register ",
+        "here": "here"
+    },
     "settings": {
         "settings": "Settings",
         "language": "Language",
