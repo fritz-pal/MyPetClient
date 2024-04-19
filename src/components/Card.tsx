@@ -1,5 +1,3 @@
-import './css/card.css';
-
 
 
     const cards = [

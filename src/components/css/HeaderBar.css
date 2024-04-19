@@ -22,7 +22,7 @@
 }
 
 .menu-icon:hover .menu-line {
-    background-color: red;
+    background-color: var(--tenth-color);
 }
 
 
@@ -67,7 +67,7 @@
 
 .menu-item a:hover {
     font-weight: bolder;
-    color: red;
+    color: var(--tenth-color);
 }
 
 .user-menu {
@@ -89,17 +89,17 @@
 }
 
 .user-settings:hover {
-    color: red;
+    color: var(--tenth-color);
 }
 
 .user-menu:hover {
-    color: red;
+    color: var(--tenth-color);
 }
 
 .navbar {
     justify-content: space-between;
     align-items: center;
-    background-color: var(--third-color);
+    background-color: var(--seventh-color);
     left: -65%;
     position: fixed;
     width: 60%;
@@ -126,9 +126,9 @@
     text-decoration: none;
     font-size: 24px;
     cursor: pointer;
-    color: #add8e6;
+    color: #000000;
 }
 
 .navbar-item a:hover {
-    color: white;
+    color: var(--tenth-color);
 }

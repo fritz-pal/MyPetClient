@@ -10,6 +10,7 @@ import { devUser } from './models/User.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import LanguageDetector from "i18next-browser-languagedetector";
 import { SUPPORTED_LANGS } from './constants.ts'
+import { CookiesProvider } from 'react-cookie'
 
 i18next.use(LanguageDetector).init({
   fallbackLng: 'en',
@@ -26,9 +27,11 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <I18nextProvider i18n={i18next}>
-      <UserContextProvider initialUser={devUser}>
-        <App />
-      </UserContextProvider>
+      <CookiesProvider defaultSetOptions={{ path: process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/' }}>
+        <UserContextProvider initialUser={devUser}>
+          <App />
+        </UserContextProvider>
+      </CookiesProvider>
     </I18nextProvider>
   </QueryClientProvider>,
 )

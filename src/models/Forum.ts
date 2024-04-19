@@ -68,6 +68,8 @@ const postCommentToThread = async (threadId: string, comment: Comment): Promise<
     return request.data;
 }
 
+
+
 export const ForumAPI = {
     getAllThreadsforUser,
     getAllThreadsforQuery,

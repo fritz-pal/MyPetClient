@@ -1,13 +1,9 @@
-Admin 
-
-
 .post-form {
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
     margin: 50px auto 10px auto;
-    width: 50%;
 }
 
 .post-button {
@@ -15,7 +11,40 @@ Admin
 }
 
 .post-input {
-    width: 50%;
+    width: 60%;
+}
+
+.post-form-container {
+    color: var(--primary-color);
+    line-height: 1.5;
+    padding: 20px;
+    flex-grow: 1;
+    min-height: 300px;
+    background-color: var(--seventh-color);
+    box-shadow: 4px 4px 30px 0px #000000;
+    margin: 20px;
+    border-radius: 20px;
+    transition: 0.2s;
+    position: relative;
+    width: 80%;
+}
+
+.title_admin {
+    font-size: 30px;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Poppins";
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: url(/leaves-natural.jpg);
+    background-repeat: repeat;
+    text-align: center;
+    align-items: center;
+    padding-top: 10px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 .select-genus {
@@ -77,4 +106,8 @@ Admin
 
 .feedback.shown {
     opacity: 1;
+}
+
+.admin_container {
+    text-align: -webkit-center;
 }

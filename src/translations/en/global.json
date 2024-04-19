@@ -2,6 +2,17 @@
     "generics": {
         "search": "Search"
     },
+    "login": {
+        "title": "Login",
+        "name": "Username",
+        "noUser": "User does not exist",
+        "password": "Password",
+        "wrongPassword": "Wrong Password",
+        "submit": "Login",
+        "authFailed": "Something went wrong while authenticating. Please try logging in in again.",
+        "noAccount": "No Account yet? Register ",
+        "here": "here"
+    },
     "settings": {
         "settings": "Settings",
         "language": "Language",
@@ -78,12 +89,19 @@
         "cancel": "Cancel",
         "submit": "Submit"
     },
+
+    "comment": {
+        "delete": "Delete",
+        "confirm": "Bestätigen"
+    },
     "paths": {
         "home": "Home",
         "newpet": "Add Pet",
         "login": "Login",
         "admin": "Admin",
-        "forum": "Forum"
+        "forum": "Forum",
+        "reminders": "Reminders",
+        "newreminder": "Add Reminder"
     },
     "admin": {
         "species": "Species",
@@ -94,5 +112,16 @@
     "card": {
         "more_details": "more details",
         "go_back": "back"
+    },
+    "reminders": {
+        "reminderListTitle": "My Reminders",
+        "reminderName": "Title",
+        "reminderDate": "Date",
+        "reminderPet": "What pet is the reminder for?",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "reminderTime": "Time",
+        "delete": "Delete",
+        "reminderRequirements": "The Reminder needs a name and at least one selected pet"
     }
 }

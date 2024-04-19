@@ -53,6 +53,8 @@ const ThreadView = () => {
         setCommentText("");
     }
 
+    
+
     const maxPage = useMemo(() => {
         if (commentQuery.isLoading || commentQuery.isError || !commentQuery.data)
             return 0;
