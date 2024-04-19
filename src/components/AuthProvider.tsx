@@ -69,11 +69,13 @@ const LoginSwitch = ({children} : {children: JSX.Element}) => {
 
 const NoAuth = () => {
     return (
-        <Routes>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/register" element={<ErrorPage/>}/>
-            <Route path="/*" element={<LoginRerouter/>}/>
-        </Routes>
+        <div className="no-auth">
+            <Routes>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/register" element={<ErrorPage/>}/>
+                <Route path="/*" element={<LoginRerouter/>}/>
+            </Routes>
+        </div>
     )
 }
 

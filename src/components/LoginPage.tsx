@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from "react"
-import { UserContext } from "../context/UserContext";
 import { useTranslation } from "react-i18next";
 import { AuthContext, AuthState } from "../context/AuthContext";
-import { stat } from "fs";
 import { useMutation } from "@tanstack/react-query";
 import { AuthAPI } from "../models/Auth";
-import { APIClient } from "../constants";
+import "./css/LoginPage.css"
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
-    const [t,] = useTranslation("Login");
+    const [t,] = useTranslation("login");
     const {validateSession, state} = useContext(AuthContext);
     const [errorText, setErrorText] = useState(state == AuthState.Failed ? "authFailed" : "");
 
@@ -32,8 +31,8 @@ const LoginPage = () => {
 
     return (
         <div className="login-page">
-            <h2>{t("title")}</h2>
             <div className="login-form">
+                <h2>{t("title")}</h2>
                 <div className="login-input-label-set">
                     {t("name")}
                     <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())}></input>
@@ -47,7 +46,8 @@ const LoginPage = () => {
                 <button onClick={() => loginMutation.mutate()}>
                     {t("submit")}
                 </button>
-                {errorText == "authFailed" ? <div className="login-failed-label">{t("authFailed")}</div> : <></>}
+                {errorText == "authFailed" ? <div className="login-error-message">{t("authFailed")}</div> : <></>}
+                <div className="login-no-account-text">{t("noAccount")} <Link to={"/register"}>{t("here")}</Link></div>
             </div>
         </div>
     )
