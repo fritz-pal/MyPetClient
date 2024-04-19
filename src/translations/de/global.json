@@ -110,6 +110,7 @@
         "submit": "Speichern",
         "cancel": "Abbrechen",
         "reminderTime": "Uhrzeit",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier"
     }
 }

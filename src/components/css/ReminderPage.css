@@ -46,6 +46,10 @@ label {
   margin: auto; 
 }
 
+.add-reminder-buttons {
+  gap: 20px;
+}
+
 .inputLabel {
   color:#000000;
 }

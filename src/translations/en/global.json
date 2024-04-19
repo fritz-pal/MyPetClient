@@ -110,6 +110,7 @@
         "submit": "Submit",
         "cancel": "Cancel",
         "reminderTime": "Time",
-        "delete": "Delete"
+        "delete": "Delete",
+        "reminderRequirements": "The Reminder needs a name and at least one selected pet"
     }
 }
