@@ -13,18 +13,13 @@ export interface LoginData {
     password: string;
 }
 
-export interface TokenResponse {
-    token: string
-}
-
 const MAPPING = "/auth"
-
-const register = async (data: RegisterData): Promise<OptionalResponse<TokenResponse>> => {
+const register = async (data: RegisterData): Promise<OptionalResponse<void>> => {
     const request = await APIClient.post(MAPPING + "/register", data);
     return request.data;
 }
 
-const login = async (data: LoginData): Promise<OptionalResponse<TokenResponse>> => {
+const login = async (data: LoginData): Promise<OptionalResponse<void>> => {
     const request = await APIClient.post(MAPPING + "/authenticate", data);
     return request.data;
 }

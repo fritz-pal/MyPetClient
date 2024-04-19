@@ -1,18 +1,20 @@
 import { createContext } from "react";
 
 export enum AuthState {
+    Success,
     Open,
     Pending,
-    Failed,
-    Success
+    Failed
 }
 
 interface AuthContextProps {
-    setSession: (token: string) => void,
+    validateSession: () => void,
+    validateSessionSilent: () => void,
     state: AuthState
 }
 
 export const AuthContext = createContext<AuthContextProps> ({
-    setSession: () => {},
+    validateSession: () => {},
+    validateSessionSilent: () => {},
     state: AuthState.Pending
 })
