@@ -9,7 +9,7 @@
         "password": "Passwort",
         "wrongPassword": "Falsches Passwort",
         "submit": "Einloggen",
-        "authFailed": "Etwas ging während der Authentifizierung schieff. Versuche dich nochmal anzumelden."
+        "authFailed": "Etwas ging während der Authentifizierung schief. Versuche dich nochmal anzumelden."
     },
     "settings": {
         "settings": "Einstellungen",
