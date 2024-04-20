@@ -8,6 +8,8 @@ import Loader from "./Loader";
 import "./css/AddThread.css"
 import { useNavigate } from "react-router";
 import { UserContext } from "../context/UserContext";
+import TextareaAutosize from "react-textarea-autosize";
+
 
 const AddThread = () => {
     const queryClient = useQueryClient();
@@ -76,7 +78,7 @@ const AddThread = () => {
                     </div>
                     <div>
                         {t("description")}<br/>
-                        <textarea className="add-thread-description-area" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                        <TextareaAutosize className="add-thread-description-area" value={description} onChange={(e) => setDescription(e.target.value)}/>
                     </div>
                 </div>
                 <div className="add-thread-buttons">

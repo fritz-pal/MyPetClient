@@ -40,7 +40,7 @@
 }
 
 .thread-comment-text {
-    resize: vertical;
+    resize: none;
     grid-row: 1 / 3;
 }
 

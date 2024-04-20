@@ -9,13 +9,14 @@ import PosterInfo from "./PosterInfo";
 import { useTranslation } from "react-i18next";
 import CommentSection from "./CommentSection";
 import { Comment } from "../models/Comment";
+import TextareaAutosize from "react-textarea-autosize";
 
 const ThreadView = () => {
     const { id } = useParams();
     const {user} = useContext(UserContext);
     const [t,] = useTranslation("thread");
     const queryClient = useQueryClient();
-    
+
     const [commentText, setCommentText] = useState("");
     
     const threadQuery = useQuery({
@@ -71,7 +72,7 @@ const ThreadView = () => {
             <hr/>
             <div className="thread-comment-section">
                 <div className="thread-post-comment">
-                    <textarea className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
+                    <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
                     <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
                 </div>
                 <div className="thread-comments-gap">
