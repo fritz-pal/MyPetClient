@@ -11,7 +11,7 @@
 }
 
 .full-width-image {
-    background-image: url('cute-animals.jpg'); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
+    background-image: url('/cute-animals.jpg'); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
     background-size: cover;
     background-position: center;
     height: 100vh; /* Höhe der Viewport-Höhe */

@@ -5,8 +5,6 @@ import i18next from 'i18next'
 import global_de from './translations/de/global.json'
 import global_en from './translations/en/global.json'
 import { I18nextProvider } from 'react-i18next'
-import UserContextProvider from './context/UserContext.tsx'
-import { devUser } from './models/User.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import LanguageDetector from "i18next-browser-languagedetector";
 import { SUPPORTED_LANGS } from './constants.ts'

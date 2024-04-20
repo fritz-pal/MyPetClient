@@ -1,6 +1,5 @@
 import { APIClient } from "../constants"
 import {Pet} from "./Pet"
-import { User } from "./User"
 
 export interface Reminder {
     id: number
