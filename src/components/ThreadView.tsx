@@ -15,8 +15,7 @@ const ThreadView = () => {
     const {user} = useContext(UserContext);
     const [t,] = useTranslation("thread");
     const queryClient = useQueryClient();
-
-    const [page, setPage] = useState(1);
+    
     const [commentText, setCommentText] = useState("");
     
     const threadQuery = useQuery({

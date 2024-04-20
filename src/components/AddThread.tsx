@@ -16,11 +16,11 @@ const AddThread = () => {
     const nav = useNavigate();
     const addThreadMut = useMutation({
         mutationFn: (thread: Thread) => ForumAPI.addThread(thread),
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({
                 queryKey: ["threads"]
             });
-            nav("/");
+            nav("/thread/" + data.id);
         }
     })
     const speciesQuery = useQuery({
