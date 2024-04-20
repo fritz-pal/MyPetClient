@@ -80,7 +80,7 @@ const AddThread = () => {
                     </div>
                 </div>
                 <div className="add-thread-buttons">
-                    <button onClick={() => nav("/")}>
+                    <button onClick={() => nav("/forum")}>
                         {t("cancel")}
                     </button>
                     <button disabled={!validate()} onClick={apply}>

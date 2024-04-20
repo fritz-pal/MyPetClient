@@ -16,12 +16,14 @@ import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
 import AuthProvider from './components/AuthProvider';
+import UserContextProvider from './context/UserContext';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Router basename={process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/'}>
       <AuthProvider>
+      <UserContextProvider>
         <div className="App">
           <NavbarContext.Provider value={{ isOpen, setIsOpen }}>
             <HeaderBar />
@@ -43,6 +45,7 @@ function App() {
             </Routes>
           </div>
         </div>
+      </UserContextProvider>
       </AuthProvider>
     </Router>
   );

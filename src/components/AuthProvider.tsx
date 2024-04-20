@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router"
 import LoginPage from "./LoginPage";
 import ErrorPage from "./ErrorPage";
-import { useCookies } from "react-cookie";
 import { AuthContext, AuthState } from "../context/AuthContext";
 import Loader from "./Loader";
 import { useMutation } from "@tanstack/react-query";
@@ -10,8 +9,7 @@ import { AuthAPI } from "../models/Auth";
 
 const AuthProvider = ({children} : {children: JSX.Element}) => {
     const nav = useNavigate();
-    const [cookies] = useCookies(["Authorization"]);
-    const [state, setState] = useState(cookies.Authorization ? AuthState.Pending : AuthState.Open);
+    const [state, setState] = useState(AuthState.Pending);
     const [isInitialAttempt, setIsInitialAttempt] = useState(state == AuthState.Pending);
 
     const validationQuery = useMutation({

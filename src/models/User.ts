@@ -24,17 +24,6 @@ export const newUser = (): User => {
     }
 }
 
-/**
- * User used for Debugging and Testing purposes
- */
-export const devUser: User =   {
-    id: 12,
-    username: "testuser",
-    fullname: "user",
-    address: "xvcx",
-    email: "sddsf",
-}
-
 const MAPPING = "/users"
 
 
@@ -48,8 +37,18 @@ const getAllUsers = async (): Promise<User[]> => {
 }
 
 /**
+ * Get the User that is currently logged in
+ * @returns Promise for User
+ */
+const getMyUser = async (): Promise<User> => {
+    const request = await APIClient.get(MAPPING + "/me");
+    return request.data;
+}
+
+/**
  * Contains methods to communicate with the backend system
  */
 export const UserAPI = {
-    getAllUsers
+    getAllUsers,
+    getMyUser
 }

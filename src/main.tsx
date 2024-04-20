@@ -28,9 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <I18nextProvider i18n={i18next}>
       <CookiesProvider defaultSetOptions={{ path: process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/' }}>
-        <UserContextProvider initialUser={devUser}>
           <App />
-        </UserContextProvider>
       </CookiesProvider>
     </I18nextProvider>
   </QueryClientProvider>,

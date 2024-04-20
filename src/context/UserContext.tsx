@@ -1,9 +1,10 @@
-import { createContext, SetStateAction, useState } from "react";
-import { newUser, User } from "../models/User";
+import { createContext } from "react";
+import { newUser, User, UserAPI } from "../models/User";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../components/Loader";
 
 interface UserContextProps {
     user: User;
-    setUser: React.Dispatch<SetStateAction<User>>;
 }
 
 /**
@@ -11,16 +12,24 @@ interface UserContextProps {
  */
 export const UserContext = createContext<UserContextProps>({
     user: newUser(),
-    setUser: () => {}
 });
 
 /**
  * Provides a user Context
  */
-const UserContextProvider = ({children, initialUser}: {children: JSX.Element, initialUser?: User}) => {
-    const [user, setUser] = useState(initialUser ? initialUser : newUser());
+const UserContextProvider = ({children}: {children: JSX.Element}) => {
+    const meQuery = useQuery({
+        queryKey: ["user", "me"],
+        queryFn: () => UserAPI.getMyUser()
+    })
+    if (meQuery.isLoading) {
+        return <Loader/>
+    }
+    if (meQuery.isError) {
+        return <>Unknown Error</>
+    }
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{user: meQuery.data ? meQuery.data : newUser()}}>
             {children}
         </UserContext.Provider>
     )
