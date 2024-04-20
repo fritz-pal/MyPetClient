@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { KeyboardEventHandler, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { AuthContext, AuthState } from "../context/AuthContext";
 import { useMutation } from "@tanstack/react-query";
@@ -29,18 +29,24 @@ const LoginPage = () => {
             setErrorText("authFailed")
     }, [state])
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key == 'Enter') {
+            loginMutation.mutate();
+        }
+    }
+
     return (
         <div className="login-page">
             <div className="login-form">
                 <h2>{t("title")}</h2>
                 <div className="login-input-label-set">
                     {t("name")}
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())}></input>
+                    <input type="text" value={name} onKeyDown={handleKeyDown} onChange={(e) => setName(e.target.value.trim())}></input>
                     {errorText == "UserNotFound" ? <div className="login-error-message">{t("noUser")}</div> : <></>}
                 </div>
                 <div className="login-input-label-set">
                     {t("password")}
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value.trim())}></input>
+                    <input type="password" value={password} onKeyDown={handleKeyDown} onChange={(e) => setPassword(e.target.value.trim())}></input>
                     {errorText == "InvalidPassword" ? <div className="login-error-message">{t("wrongPassword")}</div> : <></>}
                 </div>
                 <button onClick={() => loginMutation.mutate()}>
