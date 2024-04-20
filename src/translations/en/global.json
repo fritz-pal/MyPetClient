@@ -23,7 +23,9 @@
         "en": "English"
     },
     "thread": {
-        "post": "Post"
+        "post": "Post",
+        "nextPage": "Load more comments...",
+        "commentLoadFailed": "Error loading comments, please try again later"
     },
     "commentSection": {
         "noPost": "No comments yet. Be the first to comment something!"

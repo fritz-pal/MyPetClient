@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router"
 import { ForumAPI } from "../models/Forum";
 import Loader from "./Loader";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import "./css/ThreadView.css"
 import PosterInfo from "./PosterInfo";
@@ -25,11 +25,7 @@ const ThreadView = () => {
         enabled: id != undefined
     });
 
-    const commentQuery = useQuery({
-        queryKey: ["threads", id ? id : "err", page],
-        queryFn: () => ForumAPI.getCommentsOfThread(id ? id : "0", page),
-        enabled: threadQuery.isSuccess
-    })
+    
 
     const postCommentMut = useMutation({
         mutationFn: (comment: Comment) => ForumAPI.postCommentToThread(id ? id : "err", comment),
@@ -53,14 +49,6 @@ const ThreadView = () => {
         setCommentText("");
     }
 
-    
-
-    const maxPage = useMemo(() => {
-        if (commentQuery.isLoading || commentQuery.isError || !commentQuery.data)
-            return 0;
-        else
-            return commentQuery.data.maxPage;
-    }, [commentQuery.data]);
 
     if (threadQuery.isLoading) {
         return (<Loader/>);
@@ -87,26 +75,42 @@ const ThreadView = () => {
                     <textarea className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
                     <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
                 </div>
-                {commentQuery.isLoading && <Loader/>}
-                {commentQuery.isError && <>Error Loading Comments</>}
-                {commentQuery.isSuccess && 
-                    <>
-                        {maxPage > 1 && <div className="thread-comment-section-nav">
-                            <button disabled={page <= 1} onClick={() => setPage(page - 1)}>b</button>
-                            {page}/{maxPage}
-                            <button disabled={page >= maxPage} onClick={() => setPage(page + 1)}>f</button>
-                        </div>}
-                        <CommentSection comments={commentQuery.data.elements}/>
-                        {maxPage > 1 && <div className="thread-comment-section-nav">
-                            <button disabled={page <= 1} onClick={() => setPage(page - 1)}>b</button>
-                            {page}/{maxPage}
-                            <button disabled={page >= maxPage} onClick={() => setPage(page + 1)}>f</button>
-                        </div>}
-                    </>
-                }
+                <div className="thread-comments-gap">
+                    <CommentPage threadID={id ? id : ""} page={1} />
+                </div>
             </div>
         </div>
-    )
+    );
+}
+
+const CommentPage = ({threadID, page} : {threadID: string, page: number}) => {
+    const [t,] = useTranslation("thread");
+    const [nextPageOpen, setNextPageOpen] = useState(false);
+
+    const commentQuery = useQuery({
+        queryKey: ["threads", threadID, page],
+        queryFn: () => ForumAPI.getCommentsOfThread(threadID, page)
+    })
+
+    if (commentQuery.isLoading) {
+        return <Loader/>
+    }
+
+    if (commentQuery.isError || commentQuery.data == undefined) {
+        return <>{t("commentLoadFailed")}</>
+    }
+    
+    return (
+        <>
+            <CommentSection comments={commentQuery.data.elements}/>
+            {
+                commentQuery.data.maxPage > page && !nextPageOpen ? 
+                <button className="thread-next-button" onClick={() => setNextPageOpen(true)}>{t("nextPage")}</button> : 
+                <></>
+            }
+            {nextPageOpen ? <CommentPage threadID={threadID} page={page + 1}></CommentPage> : <></> }
+        </>
+    );
 }
 
 export default ThreadView

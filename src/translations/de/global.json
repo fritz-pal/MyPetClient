@@ -23,7 +23,9 @@
         "en": "Englisch"
     },
     "thread": {
-        "post": "Senden"
+        "post": "Senden",
+        "nextPage": "Mehr Kommentare...",
+        "commentLoadFailed": "Fehler beim laden der Kommentare, versuche es später nochmal."
     },
     "commentSection": {
         "noPost": "Hier sieht es leer aus. Sei der erste der etwas kommentiert!"
