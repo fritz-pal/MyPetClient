@@ -8,7 +8,12 @@
         "nav main"
         "foot foot";
     grid-gap: 20px;
-    padding: 50px;
+    padding: 20px 40px;
+    margin: 50px;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    box-shadow: 4px 4px 20px 0px #000000;
 }
 
 .settings-title {
@@ -46,4 +51,24 @@
 
 .settings-changed {
     font-weight: bold;
+}
+
+@media(max-width:800px) {
+    .settings-page {
+        grid-template-columns: 1fr;
+        grid-template-areas:    
+            "header"
+            "main"
+            "foot";
+        padding: 20px;
+        margin: 20px 10px;
+    }
+
+    .settings-title {
+        text-align: center;
+    }
+
+    .settings-nav {
+        display: none;
+    }
 }
