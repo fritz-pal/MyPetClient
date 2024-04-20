@@ -3,6 +3,6 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    color: #43A4BC;
-    font-size: 100px;
+    color: var(--primary-color);
+    font-size: 4em;
 }

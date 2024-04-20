@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router"
 import LoginPage from "./LoginPage";
-import ErrorPage from "./ErrorPage";
 import { AuthContext, AuthState } from "../context/AuthContext";
 import Loader from "./Loader";
 import { useMutation } from "@tanstack/react-query";
 import { AuthAPI } from "../models/Auth";
+import SignUp from "./Signup";
 
 const AuthProvider = ({children} : {children: JSX.Element}) => {
     const nav = useNavigate();
@@ -70,7 +70,7 @@ const NoAuth = () => {
         <div className="no-auth">
             <Routes>
                 <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/register" element={<ErrorPage/>}/>
+                <Route path="/register" element={<SignUp/>}/>
                 <Route path="/*" element={<LoginRerouter/>}/>
             </Routes>
         </div>

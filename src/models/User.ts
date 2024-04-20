@@ -6,9 +6,10 @@ import { APIClient } from "../constants";
 export interface User {
     id: number;
     username: string;
-    fullname: string;
+    fullname?: string;
     address?: string;
-    email: string;
+    email?: string;
+    password?: string;
 }
 
 /**
