@@ -14,7 +14,6 @@ const MobileNavbar = () => {
                 <NavbarItem path="/" label="Home" />
                 <NavbarItem path="/forum" label="Forum" />
                 <NavbarItem path="/reminders" label="Reminders" />
-                <NavbarItem path="/newpet" label="Test" />
                 <NavbarItem path="/admin" label="Admin" />
             </div>
         </div>
