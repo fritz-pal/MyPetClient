@@ -26,7 +26,6 @@ const HeaderBar = () => {
                 <MenuItem path="/" label="Home" />
                 <MenuItem path="/forum" label="Forum" />
                 <MenuItem path="/reminders" label="Reminders" />
-                <MenuItem path="/thread/9" label="Test" />
                 <MenuItem path="/admin" label="Admin" />
             </div>
             <div className="user-settings">
