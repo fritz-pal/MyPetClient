@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './css/Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { User, UserAPI } from '../models/User';
 import Loader from './Loader';
+import { AuthContext, AuthState } from '../context/AuthContext';
+import { AuthAPI, RegisterData } from '../models/Auth';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [fullname, setFullname] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -17,13 +19,15 @@ const SignUp = () => {
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const {validateSession, state} = useContext(AuthContext);
 
     const userMutation = useMutation({
-        mutationFn: (user: User) => UserAPI.addUser(user),
+        mutationFn: (user: RegisterData) => AuthAPI.register(user),
         onSuccess: () => {
             console.log('User added successfully');
             queryClient.invalidateQueries({ queryKey: ["users"] });
-            navigate('/login');
+            validateSession();
+            if(state == AuthState.Failed) navigate('/login');
         },
         onError: (error) => {
             console.log('Error adding user:', error);
@@ -71,11 +75,9 @@ const SignUp = () => {
         if (!isValid) return;
 
         userMutation.mutate({
-            id: 0,
             username: username,
-            fullname: " ",
+            fullname: fullname,
             password: password,
-            address: " ",
             email: email
         });
     };
@@ -132,6 +134,16 @@ const SignUp = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     {confirmPasswordError && (<p className="error">{confirmPasswordError}</p>)}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="fullname">Full Name</label>
+                    <input
+                        name="fullname"
+                        className="signup-input"
+                        value={fullname}
+                        onChange={(e) => setFullname(e.target.value)}
+                        placeholder='(Optional)'
+                    />
                 </div>
                 <button type="submit">{userMutation.isPending ? <Loader /> : "Sign up"}</button>
             </form>

@@ -15,7 +15,6 @@ import ReminderList from './components/ReminderList'
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
-import Signup from './components/Signup';
 import AuthProvider from './components/AuthProvider';
 
 function App() {
@@ -40,7 +39,6 @@ function App() {
               <Route path="/card" element={<Card/>}/>
               <Route path="/reminders" element={<ReminderList/>}/>
               <Route path="/newreminder" element={<ReminderPage/>}/>
-              <Route path="/signup" element={<Signup/>}/>
               <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </div>
