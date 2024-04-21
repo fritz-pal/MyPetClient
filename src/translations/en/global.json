@@ -13,6 +13,24 @@
         "noAccount": "No Account yet? Register ",
         "here": "here"
     },
+    "signup": {
+        "account": "Already have an account?",
+        "usernameTaken": "That username is already taken.",
+        "emailtaken": "An account with this email address already exists.",
+        "required": "This field is required.",
+        "usernameLength": "Username must be at least 3 characters long.",
+        "invalidEmail": "Invalid email address.",
+        "passwordRequirements": "Password must be at least 8 characters long and contain at least one number and uppercase letter.",
+        "passwordMatch": "Passwords do not match.", 
+        "name": "Username",
+        "email": "Email",
+        "password": "Password",
+        "passwordRepeat": "Repeat Password",
+        "fullname": "Full Name",
+        "signup": "Sign up",
+        "login": "Log in",
+        "optional": "Optional"
+    },
     "settings": {
         "settings": "Settings",
         "language": "Language",
@@ -91,7 +109,6 @@
         "cancel": "Cancel",
         "submit": "Submit"
     },
-
     "comment": {
         "delete": "Delete",
         "confirm": "Bestätigen"
@@ -110,7 +127,6 @@
         "addSpecies": "Add Species",
         "addedSpecies": "Successfully added \"{{species}}\" to the database"
     },
-
     "card": {
         "more_details": "more details",
         "go_back": "back"

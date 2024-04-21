@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Loader from './Loader';
 import { AuthContext, AuthState } from '../context/AuthContext';
 import { AuthAPI, RegisterData } from '../models/Auth';
+import { useTranslation } from 'react-i18next';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -19,15 +20,20 @@ const SignUp = () => {
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const {validateSession, state} = useContext(AuthContext);
+    const { validateSession, state } = useContext(AuthContext);
+    const [t,] = useTranslation("signup");
 
     const userMutation = useMutation({
         mutationFn: (user: RegisterData) => AuthAPI.register(user),
-        onSuccess: () => {
-            console.log('User added successfully');
-            queryClient.invalidateQueries({ queryKey: ["users"] });
-            validateSession();
-            if(state == AuthState.Failed) navigate('/login');
+        onSuccess: (data) => {
+            if (data.success) {
+                queryClient.invalidateQueries({ queryKey: ["users"] });
+                validateSession();
+                if (state == AuthState.Failed) navigate('/login');
+            }else {
+                if(data.errorMessage === "UsernameTaken") setUsernameError(t("usernameTaken"));
+                else if(data.errorMessage === "EmailTaken") setEmailError(t("emailTaken"));
+            }
         },
         onError: (error) => {
             console.log('Error adding user:', error);
@@ -36,7 +42,7 @@ const SignUp = () => {
 
     const updateErrors = (set: React.Dispatch<React.SetStateAction<string>>, value: string, isError: boolean, errorMessage: string): boolean => {
         if (!value) {
-            set('This field is required.');
+            set(t("required"));
             return false;
         }
         if (isError) {
@@ -49,29 +55,29 @@ const SignUp = () => {
     };
 
     const checkUserName = (value: string): boolean => {
-        return updateErrors(setUsernameError, value, value.length < 3, 'Username must be at least 3 characters long.');
+        return updateErrors(setUsernameError, value, value.length < 3, t("usernameLength"));
     };
 
     const checkEmail = (value: string) => {
-        return updateErrors(setEmailError, value, !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)), 'Invalid email address.');
+        return updateErrors(setEmailError, value, !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)), t("invalidEmail"));
     };
 
     const checkPassword = (value: string) => {
         if (confirmPassword) checkConfirmPassword(confirmPassword);
-        return updateErrors(setPasswordError, value, !(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(value)), 'Password must be at least 8 characters long and contain at least one number and uppercase letter.');
+        return updateErrors(setPasswordError, value, !(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(value)), t("passwordRequirements"));
     }
 
     const checkConfirmPassword = (value: string) => {
-        return updateErrors(setConfirmPasswordError, value, value !== password, 'Passwords do not match.')
+        return updateErrors(setConfirmPasswordError, value, value !== password, t("passwordMatch"))
     }
 
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         let isValid = true;
-        if(!checkUserName(username)) isValid = false;
-        if(!checkEmail(email)) isValid = false;
-        if(!checkPassword(password)) isValid = false;
-        if(!checkConfirmPassword(confirmPassword)) isValid = false;
+        if (!checkUserName(username)) isValid = false;
+        if (!checkEmail(email)) isValid = false;
+        if (!checkPassword(password)) isValid = false;
+        if (!checkConfirmPassword(confirmPassword)) isValid = false;
         if (!isValid) return;
 
         userMutation.mutate({
@@ -84,10 +90,10 @@ const SignUp = () => {
 
     return (
         <div className="sign-up-container">
-            <h1>Sign Up</h1>
+            <h1>{t("signup")}</h1>
             <form onSubmit={handleFormSubmit}>
                 <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">{t("name")}</label>
                     <input
                         type="text"
                         name="username"
@@ -100,7 +106,7 @@ const SignUp = () => {
                     {usernameError && <p className="error">{usernameError}</p>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{t("email")}</label>
                     <input
                         type="email"
                         name="email"
@@ -112,7 +118,7 @@ const SignUp = () => {
                     {emailError && <p className="error">{emailError}</p>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{t("password")}</label>
                     <input
                         type="password"
                         name="password"
@@ -124,7 +130,7 @@ const SignUp = () => {
                     {passwordError && <p className="error">{passwordError}</p>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <label htmlFor="confirmPassword">{t("passwordRepeat")}</label>
                     <input
                         type="password"
                         name="confirmPassword"
@@ -136,19 +142,19 @@ const SignUp = () => {
                     {confirmPasswordError && (<p className="error">{confirmPasswordError}</p>)}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="fullname">Full Name</label>
+                    <label htmlFor="fullname">{t("fullname")}</label>
                     <input
                         name="fullname"
                         className="signup-input"
                         value={fullname}
                         onChange={(e) => setFullname(e.target.value)}
-                        placeholder='(Optional)'
+                        placeholder={"(" + t("optional") + ")"}
                     />
                 </div>
-                <button type="submit">{userMutation.isPending ? <Loader /> : "Sign up"}</button>
+                <button type="submit">{userMutation.isPending ? <Loader /> : t("signup")}</button>
             </form>
             <div className="loginQuestion">
-                Already have an account? <Link to="/login">Log in</Link>
+                {t("account")} <Link to="/login">{t("login")}</Link>
             </div>
         </div>
     );
