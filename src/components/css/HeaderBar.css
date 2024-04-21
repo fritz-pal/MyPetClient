@@ -1,4 +1,4 @@
-.app-header {
+.header-bar-app-header {
     width: 100%;
     height: 75px;
     background-color: var(--seventh-color);
@@ -13,7 +13,7 @@
 
 }
 
-.menu-icon {
+.header-bar-menu-icon {
     margin-left: 20px;
     cursor: pointer;
     display: none;
@@ -21,12 +21,12 @@
     color: rgb(0, 0, 0);
 }
 
-.menu-icon:hover .menu-line {
+.header-bar-menu-icon:hover .menu-line {
     background-color: var(--tenth-color);
 }
 
 
-.menu-line {
+.header-bar-menu-line {
     width: 30px;
     height: 5px;
     border-radius: 30%;
@@ -34,29 +34,29 @@
     margin: 3px 0;
 }
 
-.site-title {
+.header-bar-site-title {
     font-size: 24px;
     margin: 0;
     margin-left: 20px;
 }
 
-.menu-items {
+.header-bar-menu-items {
     display: flex;
     margin-left: 50px;
     margin-right: 20px;
 }
 
 @media (max-width: 850px) {
-    .menu-items {
+    .header-bar-menu-items {
         display: none;
     }
 
-    .menu-icon {
+    .header-bar-menu-icon {
         display: block;
     }
 }
 
-.menu-item a {
+.header-bar-menu-item a {
     margin-right: 20px;
     text-decoration: none;
     font-size: 18px;
@@ -65,12 +65,12 @@
     text-transform: uppercase;
 }
 
-.menu-item a:hover {
+.header-bar-menu-item a:hover {
     font-weight: bolder;
     color: var(--tenth-color);
 }
 
-.user-menu {
+.header-bar-user-menu {
     width: 50px;
     height: 50px;
     position: absolute;
@@ -80,7 +80,7 @@
     cursor: pointer;
 }
 
-.user-settings {
+.header-bar-user-settings {
     width: 40px;
     height: 40px;
     position: absolute;
@@ -88,15 +88,15 @@
     cursor: pointer;
 }
 
-.user-settings:hover {
+.header-bar-user-settings:hover {
     color: var(--tenth-color);
 }
 
-.user-menu:hover {
+.header-bar-user-menu:hover {
     color: var(--tenth-color);
 }
 
-.navbar {
+.header-bar-navbar {
     justify-content: space-between;
     align-items: center;
     background-color: var(--seventh-color);
@@ -109,11 +109,11 @@
     border-right: 3px solid #071C21;
 }
 
-.navbar.open {
+.header-bar-navbar.open {
     left: 0;
 }
 
-.navbar-items {
+.header-bar-navbar-items {
     margin-top: 15vh;
     margin-left: 20%;
     width: min-content;
@@ -122,13 +122,13 @@
     line-height: 2.5;
 }
 
-.navbar-item a {
+.header-bar-navbar-item a {
     text-decoration: none;
     font-size: 24px;
     cursor: pointer;
     color: #000000;
 }
 
-.navbar-item a:hover {
+.header-bar-navbar-item a:hover {
     color: var(--tenth-color);
 }
