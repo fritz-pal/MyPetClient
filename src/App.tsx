@@ -17,6 +17,7 @@ import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';
 import AuthProvider from './components/AuthProvider';
 import UserContextProvider from './context/UserContext';
+import "./components/css/aria.css"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);

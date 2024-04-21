@@ -1,6 +1,6 @@
 import { User } from "../models/User";
 import noIcon from '/no-profile-picture-icon.webp';
-import "./css/PoserInfo.css"
+import "./css/PosterInfo.css"
 import { timeSince } from "../util/time";
 import { useTranslation } from "react-i18next";
 
