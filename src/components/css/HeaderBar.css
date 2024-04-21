@@ -78,6 +78,9 @@
     right: 20px;
     transform: translateY(-50%);
     cursor: pointer;
+    padding: 0;
+    background-color: inherit;
+    color: black;
 }
 
 .header-bar-user-settings {
@@ -94,6 +97,9 @@
 
 .header-bar-user-menu:hover {
     color: var(--tenth-color);
+    border-color: transparent;
+    background-color: inherit;
+
 }
 
 .header-bar-navbar {

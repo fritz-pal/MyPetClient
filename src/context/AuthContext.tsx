@@ -10,11 +10,13 @@ export enum AuthState {
 interface AuthContextProps {
     validateSession: () => void,
     validateSessionSilent: () => void,
+    logout: () => void,
     state: AuthState
 }
 
 export const AuthContext = createContext<AuthContextProps> ({
     validateSession: () => {},
     validateSessionSilent: () => {},
+    logout: () => {},
     state: AuthState.Pending
 })
