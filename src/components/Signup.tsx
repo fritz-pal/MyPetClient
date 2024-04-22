@@ -30,9 +30,9 @@ const SignUp = () => {
                 queryClient.invalidateQueries({ queryKey: ["users"] });
                 validateSession();
                 if (state == AuthState.Failed) navigate('/login');
-            }else {
-                if(data.errorMessage === "UsernameTaken") setUsernameError(t("usernameTaken"));
-                else if(data.errorMessage === "EmailTaken") setEmailError(t("emailTaken"));
+            } else {
+                if (data.errorMessage === "UsernameTaken") setUsernameError(t("usernameTaken"));
+                else if (data.errorMessage === "EmailTaken") setEmailError(t("emailTaken"));
             }
         },
         onError: (error) => {
@@ -97,11 +97,11 @@ const SignUp = () => {
                     <input
                         type="text"
                         name="username"
-                        className={`signup-input ${usernameError && `input-error`}`}
+                        className={`signup-input ${usernameError && `signup-input-error`}`}
                         maxLength={32}
                         value={username}
                         onBlur={(e) => checkUserName(e.target.value)}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value.trim())}
                     />
                     {usernameError && <p className="error">{usernameError}</p>}
                 </div>
@@ -110,7 +110,7 @@ const SignUp = () => {
                     <input
                         type="email"
                         name="email"
-                        className={`signup-input ${emailError && `input-error`}`}
+                        className={`signup-input ${emailError && `signup-input-error`}`}
                         value={email}
                         onBlur={(e) => checkEmail(e.target.value)}
                         onChange={(e) => setEmail(e.target.value)}
@@ -122,7 +122,7 @@ const SignUp = () => {
                     <input
                         type="password"
                         name="password"
-                        className={`signup-input ${passwordError && `input-error`}`}
+                        className={`signup-input ${passwordError && `signup-input-error`}`}
                         value={password}
                         onBlur={(e) => checkPassword(e.target.value)}
                         onChange={(e) => setPassword(e.target.value)}
@@ -134,7 +134,7 @@ const SignUp = () => {
                     <input
                         type="password"
                         name="confirmPassword"
-                        className={`signup-input ${confirmPasswordError && `input-error`}`}
+                        className={`signup-input ${confirmPasswordError && `signup-input-error`}`}
                         value={confirmPassword}
                         onBlur={(e) => checkConfirmPassword(e.target.value)}
                         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -151,7 +151,9 @@ const SignUp = () => {
                         placeholder={"(" + t("optional") + ")"}
                     />
                 </div>
-                <button type="submit">{userMutation.isPending ? <Loader /> : t("signup")}</button>
+                <div className='button-container'>
+                    <button type="submit">{userMutation.isPending ? <Loader /> : t("signup")}</button>
+                </div>
             </form>
             <div className="loginQuestion">
                 {t("account")} <Link to="/login">{t("login")}</Link>

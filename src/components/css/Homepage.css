@@ -23,7 +23,6 @@
     margin-top: -220px;
       
 }
-
  
 .greeting {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen Schatten zur Überschrift hinzu */
@@ -57,6 +56,10 @@
     .home_title {
         font-size: 50px;
         margin-top: -50px;
+    }
+    .petlist-container {
+        width: 95%;
+        margin: auto;
     }
 
     .full-width-image {

@@ -18,6 +18,7 @@ import ThreadView from './components/ThreadView';
 import AuthProvider from './components/AuthProvider';
 import UserContextProvider from './context/UserContext';
 import "./components/css/aria.css"
+import UserView from './components/UserView';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,7 @@ function App() {
               <Route path="/card" element={<Card/>}/>
               <Route path="/reminders" element={<ReminderList/>}/>
               <Route path="/newreminder" element={<ReminderPage/>}/>
+              <Route path="/user/:id" element={<UserView/>}/>
               <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </div>
