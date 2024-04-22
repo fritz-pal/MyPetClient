@@ -5,7 +5,7 @@
   width: 500px;
   background-color: var(--seventh-color);
   box-shadow: 4px 4px 30px 0px black;
-  margin: 20px auto;
+  margin: auto;
   border-radius: 20px;
   transition: 0.2s;
   border: 2px solid var(--tenth-color);
@@ -55,15 +55,21 @@ label {
   box-sizing: border-box;
 }
 
-.input-error {
+.signup-input-error[type="text"], 
+.signup-input-error[type="password"], 
+.signup-input-error[type="email"]{
   border-color: red;
 }
-
 
 .error {
   font-size: 14px;
   color: red;
   margin-top: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
 }
 
 .loginQuestion {
