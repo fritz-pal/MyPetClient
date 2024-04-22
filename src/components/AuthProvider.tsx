@@ -15,10 +15,7 @@ const AuthProvider = ({children} : {children: JSX.Element}) => {
     const validationMut = useMutation({
         mutationFn: () => AuthAPI.validate(),
         onSuccess: (data) => {
-            let skipNav = false;
-            if (isInitialAttempt) {
-                skipNav = true;
-            }
+            const skipNav = isInitialAttempt || state == AuthState.Success;
             setState(data == true ? AuthState.Success : isInitialAttempt ? AuthState.Open : AuthState.Failed);
             setIsInitialAttempt(false);
             if (!skipNav)
