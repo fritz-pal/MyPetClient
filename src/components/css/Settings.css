@@ -1,6 +1,7 @@
 .settings-page {
     display: grid;
-    height: 100%;
+    overflow-y: hidden;
+    height: calc(100% - 100px);
     grid-template-columns: min-content 1fr;
     grid-template-rows: min-content 1fr min-content;
     grid-template-areas:    

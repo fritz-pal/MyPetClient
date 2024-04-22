@@ -59,26 +59,29 @@ const ThreadView = () => {
     }
 
     return (
-        <div className="thread-page">
-            <div className="thread-head">
-                {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
-                <h2 className="thread-title">
-                    {threadQuery.data?.name}
-                </h2>
-                <div className="thread-description">
-                    {threadQuery.data?.description}
+        <div className="scroll-page">
+            <div className="thread-main">
+                <div className="thread-head">
+                    {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
+                    <h2 className="thread-title">
+                        {threadQuery.data?.name}
+                    </h2>
+                    <div className="thread-description">
+                        {threadQuery.data?.description}
+                    </div>
+                </div>
+                <hr/>
+                <div className="thread-comment-section">
+                    <div className="thread-post-comment">
+                        <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
+                        <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
+                    </div>
+                    <div className="thread-comments-gap">
+                        <CommentPage threadID={id ? id : ""} page={1} />
+                    </div>
                 </div>
             </div>
-            <hr/>
-            <div className="thread-comment-section">
-                <div className="thread-post-comment">
-                    <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
-                    <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
-                </div>
-                <div className="thread-comments-gap">
-                    <CommentPage threadID={id ? id : ""} page={1} />
-                </div>
-            </div>
+
         </div>
     );
 }

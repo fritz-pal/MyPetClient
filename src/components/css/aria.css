@@ -17,3 +17,10 @@
 .react-aria-MenuItem:hover {
     background-color: var(--ninth-color);
 }
+
+.react-aria-Button {
+    &[data-disabled]{
+        background-color: var(--secondary-color);
+        color: var(--fifth-color);
+    }
+}

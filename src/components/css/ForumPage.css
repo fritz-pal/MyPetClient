@@ -1,3 +1,10 @@
+.forum-page {
+    height: 100%;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+}
+
 .forum-header {
     width: 100%;
     height: 75px;
@@ -30,7 +37,9 @@
 .forum-threads {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .thread-card {

@@ -8,6 +8,8 @@
 .home {
     text-align: center;
     font-family: "Poppins";
+    overflow-y: auto;
+    height: 100%;
 }
 
 .full-width-image {

@@ -5,6 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { AuthAPI } from "../models/Auth";
 import "./css/LoginPage.css"
 import { Link } from "react-router-dom";
+import { Button } from "react-aria-components";
+import Loader from "./Loader";
 
 const LoginPage = () => {
     const [t,] = useTranslation("login");
@@ -22,7 +24,16 @@ const LoginPage = () => {
             else
                 setErrorText(data.errorMessage ? data.errorMessage : "");
         },
+        onError: () => {
+            setErrorText("authFailed");
+        }
     })
+
+    const buttonDisabled = () => {
+        if (name == "" || password == "")
+            return true;
+        return false;
+    }
 
     useEffect(() => {
         if (state == AuthState.Failed)
@@ -38,20 +49,20 @@ const LoginPage = () => {
     return (
         <div className="login-page">
             <div className="login-form">
-                <h2>{t("title")}</h2>
+                <h1>{t("title")}</h1>
                 <div className="login-input-label-set">
-                    {t("name")}
+                    <label>{t("name")}</label>
                     <input type="text" value={name} onKeyDown={handleKeyDown} onChange={(e) => setName(e.target.value.trim())}></input>
                     {errorText == "UserNotFound" ? <div className="login-error-message">{t("noUser")}</div> : <></>}
                 </div>
                 <div className="login-input-label-set">
-                    {t("password")}
+                    <label>{t("password")}</label>
                     <input type="password" value={password} onKeyDown={handleKeyDown} onChange={(e) => setPassword(e.target.value.trim())}></input>
                     {errorText == "InvalidPassword" ? <div className="login-error-message">{t("wrongPassword")}</div> : <></>}
                 </div>
-                <button onClick={() => loginMutation.mutate()}>
+                <Button onPress={() => loginMutation.mutate()} isDisabled={buttonDisabled()}>
                     {t("submit")}
-                </button>
+                </Button>
                 {errorText == "authFailed" ? <div className="login-error-message">{t("authFailed")}</div> : <></>}
                 <div className="login-no-account-text">{t("noAccount")} <Link to={"/register"}>{t("here")}</Link></div>
             </div>
