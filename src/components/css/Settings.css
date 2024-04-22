@@ -63,6 +63,7 @@
             "foot";
         padding: 20px;
         margin: 20px 10px;
+        height: calc(100% - 40px);
     }
 
     .settings-title {
