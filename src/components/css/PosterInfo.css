@@ -6,8 +6,17 @@
     gap: 10px;
     align-items: center;
     font-size: 0.7em;
+    padding: 5px;
+    border-radius: 1px;
     white-space: nowrap;
     color: #2b2b2b;
+    cursor: pointer;
+    background-color: var(--seventh-color);
+    transition: all 0.2s;
+}
+
+.poster-info:hover {
+    background-color: var(--eighth-color);
 }
 
 .poster-info-image {    

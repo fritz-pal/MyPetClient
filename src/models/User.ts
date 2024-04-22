@@ -27,16 +27,6 @@ export const newUser = (): User => {
 
 const MAPPING = "/users"
 
-
-/**
- * Get All Users
- * @returns Promise for all Users
- */
-const getAllUsers = async (): Promise<User[]> => {
-    const request = await APIClient.get(MAPPING);
-    return request.data;
-}
-
 /**
  * Get the User that is currently logged in
  * @returns Promise for User
@@ -47,9 +37,18 @@ const getMyUser = async (): Promise<User> => {
 }
 
 /**
+ * Get a thread by id
+ * @returns Promise for User
+ */
+const getUserById = async (id: string): Promise<User> => {
+    const request = await APIClient.get(`${MAPPING}/${id}`);
+    return request.data;
+}
+
+/**
  * Contains methods to communicate with the backend system
  */
 export const UserAPI = {
-    getAllUsers,
+    getUserById,
     getMyUser
 }

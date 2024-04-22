@@ -127,7 +127,8 @@
     "admin": {
         "species": "Spezies",
         "addSpecies": "Spezies hinzufügen",
-        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt"
+        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt",
+        "exists": "Diese Spezies existiert bereits"
     },
     "card": {
         "more_details": "weitere Infos",

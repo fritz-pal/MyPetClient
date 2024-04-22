@@ -125,7 +125,8 @@
     "admin": {
         "species": "Species",
         "addSpecies": "Add Species",
-        "addedSpecies": "Successfully added \"{{species}}\" to the database"
+        "addedSpecies": "Successfully added \"{{species}}\" to the database",
+        "exists": "Species already exists"
     },
     "card": {
         "more_details": "more details",
