@@ -24,7 +24,7 @@ const AddThread = () => {
             });
             nav("/thread/" + data.id);
         }
-    })
+    });
     const speciesQuery = useQuery({
         queryKey: ["species"],
         queryFn: () => SpeciesAPI.getAllSpecies(),
