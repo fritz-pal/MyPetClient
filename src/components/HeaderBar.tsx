@@ -20,7 +20,7 @@ const HeaderBar = () => {
     const menuClick = (id: Key) => {
         switch(id) {
             case "profile":
-                navigate("/users/me");
+                navigate("/user/me");
                 break;
             case "logout":
                 auth.logout();
