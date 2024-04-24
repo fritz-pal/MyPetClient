@@ -34,7 +34,7 @@ const PetList = () => {
 
             {petQuery.isLoading && <div className='load'><Loader /></div>}
             {petQuery.isSuccess && <div className="pets">
-                <Card pets={pets} />
+                <PetCard pets={pets} />
             </div>}
             {petQuery.isError && <div>Error fetching pets</div>}
             <div className="add-pet-button-container">
@@ -46,7 +46,7 @@ const PetList = () => {
     );
 };
 
-const Card = ({ pets }: { pets: Pet[] }) => {
+export const PetCard = ({ pets }: { pets: Pet[] }) => {
     const [tcard, _card] = useTranslation("card");
     const [t, _] = useTranslation("addpet");
 
