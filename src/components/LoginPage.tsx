@@ -6,7 +6,6 @@ import { AuthAPI } from "../models/Auth";
 import "./css/LoginPage.css"
 import { Link } from "react-router-dom";
 import { Button } from "react-aria-components";
-import Loader from "./Loader";
 
 const LoginPage = () => {
     const [t,] = useTranslation("login");

@@ -122,7 +122,9 @@
         "admin": "Admin",
         "forum": "Forum",
         "reminders": "Termine",
-        "newreminder": "Termin hinzufügen"
+        "newreminder": "Termin hinzufügen",
+        "myProfile": "Mein Profil",
+        "logout": "Ausloggen"
     },
     "admin": {
         "species": "Spezies",
