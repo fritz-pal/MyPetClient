@@ -6,6 +6,7 @@ export interface Reminder {
     name: string
     date: Date
     pets: Pet[]
+    repeatingInterval: string
 }
 
 export interface JSONReminder {
@@ -13,6 +14,7 @@ export interface JSONReminder {
     name: string
     date: string
     pets: Pet[]
+    repeatingInterval: string
 }
 
 const JSONReminderToReminder = (data: JSONReminder) => {
@@ -34,7 +36,8 @@ const newReminder = () : Reminder => {
         id: 0,
         name: "",
         date: new Date(),
-        pets: []
+        pets: [],
+        repeatingInterval: ""
     }
 }
 

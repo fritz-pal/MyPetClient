@@ -2,35 +2,6 @@
     "generics": {
         "search": "Suche"
     },
-    "login": {
-        "title": "Anmelden",
-        "name": "Nutzername",
-        "noUser": "Nutzer existiert nicht",
-        "password": "Passwort",
-        "wrongPassword": "Falsches Passwort",
-        "submit": "Einloggen",
-        "authFailed": "Etwas ging während der Authentifizierung schief. Versuche dich nochmal anzumelden.",
-        "noAccount": "Noch kein Account? Registriere dich ",
-        "here": "hier"
-    },
-    "signup": {
-        "account": "Du hast schon ein Account?",
-        "usernameTaken": "Dieser Benutzername ist bereits vergeben. Bitte versuche es mit einem anderen.",
-        "emailtaken": "Ein Account mit dieser Email Adresse existiert bereits.",
-        "required": "Dieses Feld ist erforderlich.",
-        "usernameLength": "Der Benutzername muss mindestens 3 Buchstaben lang sein.",
-        "invalidEmail": "Ungültige Email Adresse",
-        "passwordRequirements": "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens eine Zahl und einen Großbuchstaben enthalten.",
-        "passwordMatch": "Passwörter stimmen nicht überein.", 
-        "name": "Benutzername",
-        "email": "Email",
-        "password": "Passwort",
-        "passwordRepeat": "Passwort wiederholen",
-        "fullname": "Vollständiger Name",
-        "signup": "Registrieren",
-        "login": "Einloggen",
-        "optional": "Optional"
-    },
     "settings": {
         "settings": "Einstellungen",
         "language": "Sprache",
@@ -41,9 +12,7 @@
         "en": "Englisch"
     },
     "thread": {
-        "post": "Senden",
-        "nextPage": "Mehr Kommentare...",
-        "commentLoadFailed": "Fehler beim laden der Kommentare, versuche es später nochmal."
+        "post": "Senden"
     },
     "commentSection": {
         "noPost": "Hier sieht es leer aus. Sei der erste der etwas kommentiert!"
@@ -122,15 +91,12 @@
         "admin": "Admin",
         "forum": "Forum",
         "reminders": "Termine",
-        "newreminder": "Termin hinzufügen",
-        "myProfile": "Mein Profil",
-        "logout": "Ausloggen"
+        "newreminder": "Termin hinzufügen"
     },
     "admin": {
         "species": "Spezies",
         "addSpecies": "Spezies hinzufügen",
-        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt",
-        "exists": "Diese Spezies existiert bereits"
+        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt"
     },
     "card": {
         "more_details": "weitere Infos",
@@ -145,6 +111,11 @@
         "cancel": "Abbrechen",
         "reminderTime": "Uhrzeit",
         "delete": "Löschen",
-        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier"
+        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier",
+        "reminderInterval": "Wie oft soll der Termin geplant werden",
+        "hours": "Stunden",
+        "days": "Tage",
+        "weeks": "Wochen",
+        "months": "Monate"
     }
 }
