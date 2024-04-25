@@ -11,6 +11,8 @@
   border-radius: 20px;
   transition: 0.2s;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .reminderlist-container {
@@ -131,8 +133,8 @@
 }
 
 .add-reminder-button-container {
-  float: right;
   display: grid;
+  align-self: end;
 }
 
 .reminder-pet-name {
