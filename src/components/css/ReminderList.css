@@ -1,15 +1,175 @@
-.add-reminder-button {
-    margin-top: 20px;
-    color: #bc4343;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
+.my-reminders-module {
+  color: var(--primary-color);
+  line-height: 1.5;
+  padding: 20px;
+  flex-grow: 1;
+  width: 50%;
+  min-height: 400px;
+  background-color: var(--seventh-color);
+  box-shadow: 4px 4px 30px 0px #000000;
+  margin: 20px;
+  border-radius: 20px;
+  transition: 0.2s;
+  position: relative;
 }
-.add-reminder-button:hover {
-    color: #071C21;
-    cursor: pointer;
+
+.reminderlist-container {
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+  justify-content: center;
 }
+
+.reminder-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .reminder-name {
-    font-size: 1.2em;
-    font-weight: bold;
+  justify-content: center;
+  display: grid;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.reminder-tag-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.scroll-page {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.reminder-tag {
+  color: var(--tenth-color);
+  font-size: 1em;
+  font-weight: bold;
+  background-color: var(--eighth-color);
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.reminder_title {
+  padding-bottom: 20px;
+  font-size: 30px;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Poppins";
+  font-weight: bold;
+  text-transform: uppercase;
+  background-image: url(/leaves-natural.jpg);
+  background-repeat: repeat;
+  text-align: center;
+  align-items: center;
+  padding-top: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 30px;
+}
+
+.pet-image3 {
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  border-radius: 50%;
+  display: inline;
+}
+
+.pet_reminder_container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.reminder-date {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+}
+
+.reminder-pets {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_reminder {
+  margin-top: 10px;
+}
+
+.add-reminder-button {
+  margin-top: 20px;
+  color: #bc4343;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.add-reminder-button:hover {
+  color: #071c21;
+  cursor: pointer;
+}
+
+.set-reminder-pet {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.set-reminder-pets {
+  display: grid;
+  justify-content: center;
+}
+
+.add-reminder-button-container {
+  float: right;
+  display: grid;
+}
+
+.reminder-pet-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.pet-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reminderPet-title {
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .my-reminders-module {
+    width: 90%;
+  }
+
+  .pet-image3 {
+    width: 40px;
+    height: 40px;
+  }
+
+  .add-reminder-button {
+    float: right;
+  }
+
+  .reminder-pet-name {
+    font-size: 15px;
+  }
 }

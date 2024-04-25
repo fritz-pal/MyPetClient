@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import PetList from './PetList';
 import './css/Homepage.css';
+import ReminderList from './ReminderList';
 
 const Homepage = () => {
     const [t, _] = useTranslation("home");
@@ -12,8 +13,9 @@ const Homepage = () => {
                 <h3 className="home_title">MyPet</h3>
             </div>
             <div className="full-width-image"></div>
-            <div className='petlist-container'>
+            <div className='homepage-container'>
                 <PetList />
+                <ReminderList />
             </div>
         </div>
     );
