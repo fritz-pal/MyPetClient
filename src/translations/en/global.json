@@ -16,7 +16,7 @@
     "signup": {
         "account": "Already have an account?",
         "usernameTaken": "That username is already taken.",
-        "emailtaken": "An account with this email address already exists.",
+        "emailTaken": "An account with this email address already exists.",
         "required": "This field is required.",
         "usernameLength": "Username must be at least 3 characters long.",
         "invalidEmail": "Invalid email address.",
