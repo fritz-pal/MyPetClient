@@ -13,6 +13,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  margin-top: 20px;
 }
 
 .reminderlist-container {
