@@ -29,9 +29,7 @@ body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-image: url("/leaves-natural.jpg");
-  background-repeat: repeat;
-  background-color: rgb(162, 162, 162);
+  background-color: rgb(254, 245, 245);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
