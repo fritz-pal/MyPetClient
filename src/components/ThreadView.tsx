@@ -31,7 +31,7 @@ const ThreadView = () => {
         mutationFn: (comment: Comment) => ForumAPI.postCommentToThread(id ? id : "err", comment),
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["threads", id ? id : "err"]
+                queryKey: ["threadComments", id ? id : "err"]
             })
         }
     })
@@ -91,7 +91,7 @@ const CommentPage = ({threadID, page} : {threadID: string, page: number}) => {
     const [nextPageOpen, setNextPageOpen] = useState(false);
 
     const commentQuery = useQuery({
-        queryKey: ["threads", threadID, page],
+        queryKey: ["threadComments", threadID, page],
         queryFn: () => ForumAPI.getCommentsOfThread(threadID, page)
     })
 

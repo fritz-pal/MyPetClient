@@ -1,5 +1,10 @@
 .comment {
+    padding: 10px;
+    border-radius: 10px;
+}
 
+.comment:nth-child(2n) {
+    background-color: var(--fourth-color);
 }
 
 .comment-body {
@@ -10,8 +15,13 @@
     
 }
 
-.deleteButton-Comment {
-    float: right;
+.comment-options {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.comment-option-button {
     border-radius: 3px;
     border: 1px solid transparent;
     padding: 0.2em 0.6em;
@@ -20,7 +30,11 @@
     background-color: var(--ninth-color);
 }
 
-.deleteButton-Comment.confirm {
+.comment-option-button.confirm {
     background-color: red;
     color: white;
-   }
+}
+
+.comment-option-button.hidden {
+    display: none;
+}
