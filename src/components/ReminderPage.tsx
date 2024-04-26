@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
@@ -21,7 +21,7 @@ const ReminderPage = () => {
     const [date, setDate] = useState<Date>(new Date());
     const [time, setTime] = useState(new Date());
     const [associatedPets, setAssociatedPets] = useState<Pet[]>([])
-    const [intervalString, setIntervalString] = useState<string>("")
+    const [intervalString, setIntervalString] = useState<string>("P0D")
     const [selectedTimeUnit, setSelectedTimeUnit] = useState('');
     const [intervalNumber, setIntervalNumber] = useState<number>(0);
 
@@ -68,29 +68,31 @@ const ReminderPage = () => {
     
     const updateIntervalString = () => {
         console.log("selectedTimeUnit:", selectedTimeUnit);
-        console.log("intervalNumber:", intervalNumber);
+        console.log("intervalNumber:", intervalNumber);        
     
-        let updatedInterval = 'P0D';
+        let updatedInterval = "P0D";
     
         switch (selectedTimeUnit) {
-            case 'hours':
-                setIntervalString(`PT${intervalNumber}H`);
+            case "hours":
+                updatedInterval = `PT${intervalNumber}H`;
                 break;
-            case 'days':
-                setIntervalString(`P${intervalNumber}D`);
+            case "days":
+                updatedInterval = `P${intervalNumber}D`;
                 break;
-            case 'weeks':
-                setIntervalString(`P${intervalNumber * 7}D`);
+            case "weeks":
+                updatedInterval = `P${intervalNumber * 7}D`;
                 break;
-            case 'months':
-                setIntervalString(`P${intervalNumber}M`);
+            case "months":
+                updatedInterval = `P${intervalNumber}M`;
+                break;
+            case "years":
+                updatedInterval = `P${intervalNumber}Y`;
                 break;
             default:
-                setIntervalString("P0D");
                 break;
         }
         console.log("updatedInterval: ", updatedInterval)
-        //setIntervalString(updatedInterval);
+        setIntervalString(updatedInterval);
         console.log("intervalString:", intervalString);
     };
     
@@ -123,13 +125,24 @@ const ReminderPage = () => {
             <div className="reminder-interval">
                 <div className="inputLabel">{t("reminderInterval")}</div>
                 <input
-                    type="number" value={intervalNumber} onChange={(e) => setIntervalNumber(e.target.valueAsNumber)}
+                    type="number" 
+                    value={intervalNumber} 
+                    onChange={(e) => {setIntervalNumber(e.target.valueAsNumber);
+                        updateIntervalString();
+                    }}
                 />
-                <select id="timeUnit" value={selectedTimeUnit} onChange={e => setSelectedTimeUnit(e.target.value)}>
+                <select 
+                    id="timeUnit" 
+                    value={selectedTimeUnit} 
+                    onChange={e => {setSelectedTimeUnit(e.target.value);
+                        updateIntervalString();
+                }}>
+                    <option value="">{t("selectTimeUnit")}</option>
                     <option value="hours">{t("hours")}</option>
                     <option value="days">{t("days")}</option>
                     <option value="weeks">{t("weeks")}</option>
                     <option value="months">{t("months")}</option>
+                    <option value="years">{t("years")}</option>
                 </select>
             </div>        
             <div className="add-reminder-buttons">
@@ -140,7 +153,6 @@ const ReminderPage = () => {
                     const datetime = new Date(date)
                     datetime.setHours(time.getHours())
                     datetime.setMinutes(time.getMinutes())
-                    updateIntervalString()
                     console.log("intervalString after method call: ", intervalString)
                     if (!validate())
                         return;

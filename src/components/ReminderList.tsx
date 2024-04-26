@@ -49,6 +49,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
     const [t, _] = useTranslation("reminders");
     const queryClient = useQueryClient();
     const { user } = useContext(UserContext);
+
     const deleteReminderMut = useMutation({
         mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
         onSuccess: () => {
@@ -76,6 +77,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
                 <div className="reminder-name">{reminder.name}</div>
                 <div className="reminder-date">{formatDateTime(reminder.date.toString())}</div>
                 <div className="reminder-pets">{reminder.pets.map(pet => pet.name).join(", ")}</div>
+                <div className="reminder-interval">{reminder.repeatingInterval}</div>
             </div>
             <button onClick={() => deleteReminder(reminder.id)}>{t("delete")}</button>
         </div>

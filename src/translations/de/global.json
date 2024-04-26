@@ -145,6 +145,8 @@
         "hours": "Stunden",
         "days": "Tage",
         "weeks": "Wochen",
-        "months": "Monate"
+        "months": "Monate",
+        "years": "Jahre",
+        "selectTimeUnit": "Dauer wählen..."
     }
 }
