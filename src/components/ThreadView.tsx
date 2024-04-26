@@ -25,8 +25,6 @@ const ThreadView = () => {
         enabled: id != undefined
     });
 
-    
-
     const postCommentMut = useMutation({
         mutationFn: (comment: Comment) => ForumAPI.postCommentToThread(id ? id : "err", comment),
         onSuccess: () => {

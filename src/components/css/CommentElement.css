@@ -24,8 +24,8 @@
 .comment-option-button {
     border-radius: 3px;
     border: 1px solid transparent;
-    padding: 0.2em 0.6em;
-    font-size: 0.7em;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
     font-weight: 300;
     background-color: var(--ninth-color);
 }
@@ -37,4 +37,27 @@
 
 .comment-option-button.hidden {
     display: none;
+}
+
+.comment-answer-post {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr min-content min-content;
+    grid-template-rows: min-content min-content;
+    grid-template-areas: 
+        "text text text"
+        "space cancel submit";
+}
+
+.comment-answer-text {
+    grid-area: text;
+    resize: none;
+}
+
+.comment-answer-button-cancel {
+    grid-area: cancel;
+}
+
+.comment-answer-button-submit {
+    grid-area: submit;
 }

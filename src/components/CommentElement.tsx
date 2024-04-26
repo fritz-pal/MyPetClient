@@ -8,16 +8,20 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useState } from 'react';
 import { Button } from "react-aria-components";
+import ReactTextareaAutosize from "react-textarea-autosize";
 
 
 const CommentElement = ({comment} : {comment: Comment}) => {
+    const queryClient = useQueryClient();
     const [t,] = useTranslation("comment");
     const { user } = useContext(UserContext); 
     const [deleteClicked, setDeleteClicked] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const [answerOpen, setAnswerOpen] = useState(false);
+    
+    /*Nico Anfang*/
+    /*Nico Ende*/
 
-    const queryClient = useQueryClient();
 
     const deleteCommentMut = useMutation({
         mutationFn: () => CommentAPI.deleteComment(comment.id),
@@ -42,7 +46,7 @@ const CommentElement = ({comment} : {comment: Comment}) => {
     }
 
     if (isDeleted) {
-        return <div>Deleted</div>
+        return <div className="comment">Deleted</div>
     }
 
     return (
@@ -57,6 +61,13 @@ const CommentElement = ({comment} : {comment: Comment}) => {
                 </Button>
                 <Button className="comment-option-button" onPress={handleAnswerClicked}>{t("answer")}</Button>
             </div>}
+            {answerOpen && <div className="comment-answer-post">
+                <ReactTextareaAutosize className="comment-answer-text"/>
+                <Button className="comment-answer-button-cancel">{t("cancel")}</Button>
+                <Button className="comment-answer-button-submit">{t("answer")}</Button>
+            </div>}
+            {/*Nico Anfang*/}
+            {/*Nico Ende*/}
         </div>
     )
 }
