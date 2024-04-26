@@ -96,11 +96,18 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
               {pet.name}
               <img className="pet-image3" src={petImage} />
             </div>
-            <button onClick={() => deleteReminder(reminder.id)}>{t("delete")}</button>
+          ))}
         </div>
-        <hr />
+      </div>
+      <button
+        className="delete_reminder"
+        onClick={() => deleteReminder(reminder.id)}
+      >
+        {t("delete")}
+      </button>
+      <hr />
     </>
-    );
+  );
 };
 
 
