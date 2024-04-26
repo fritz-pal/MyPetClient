@@ -46,38 +46,55 @@ const ReminderList = () => {
 };
 
 const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
-    const [t, _] = useTranslation("reminders");
-    const queryClient = useQueryClient();
-    const { user } = useContext(UserContext);
+  const [t, _] = useTranslation("reminders");
+  const queryClient = useQueryClient();
+  const { user } = useContext(UserContext);
+  const deleteReminderMut = useMutation({
+    mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["reminders", user.id],
+      });
+    },
+  });
 
-    const deleteReminderMut = useMutation({
-        mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["reminders", user.id]
-            })
-        }
-    })
-    
-    function formatDateTime(dateString: string): string {
-        const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-        const date = new Date(dateString);
-        const formattedDate = date.toLocaleDateString('en-EN', options).replace(',', '');
-    
-        return formattedDate;
-    }
-    
-    const deleteReminder = (id: number) => {
-        deleteReminderMut.mutate(id);
-    }
-    return(
+  function formatDateTime(dateString: string): string {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    const date = new Date(dateString);
+    const formattedDate = date
+      .toLocaleDateString("en-EN", options)
+      .replace(",", "");
+
+    return formattedDate;
+  }
+
+  const deleteReminder = (id: number) => {
+    deleteReminderMut.mutate(id);
+  };
+  return (
     <>
-        <div className="reminder-area" key={reminder.name}>
-            <div className="reminder-info">
-                <div className="reminder-name">{reminder.name}</div>
-                <div className="reminder-date">{formatDateTime(reminder.date.toString())}</div>
-                <div className="reminder-pets">{reminder.pets.map(pet => pet.name).join(", ")}</div>
-                <div className="reminder-interval">{reminder.repeatingInterval}</div>
+      <div className="reminder-tag-name">
+        <div className="reminder-name">{reminder.name}</div>
+        <div className="reminder-tag">alle </div>
+      </div>
+      <div className="reminder-area" key={reminder.name}>
+        <div className="reminder-info"></div>
+        <div className="reminder-date">
+          {formatDateTime(reminder.date.toString())}
+        </div>
+        <div className="pet_reminder_container">
+          {reminder.pets.map((pet, index) => (
+            <div className="reminder-pets" key={pet.name}>
+              {index > 0 && ", "}
+              {pet.name}
+              <img className="pet-image3" src={petImage} />
             </div>
             <button onClick={() => deleteReminder(reminder.id)}>{t("delete")}</button>
         </div>
