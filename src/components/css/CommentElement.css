@@ -9,6 +9,9 @@
 
 .comment:nth-child(odd) {
     background-color: var(--seventh-color);
+    border-width: 1px;
+    border-color: var(--fourth-color);
+    border-style: solid;
 }
 
 .comment-body {
@@ -65,6 +68,18 @@
 
 .comment-answer-button-submit {
     grid-area: submit;
+}
+
+.comment-answers-open-button {
+    padding: 5px;
+    background-color: inherit;
+    color: var(--secondary-color);
+    text-decoration: underline;
+    border-radius: 0;
+}
+
+.comment-answers-open-button:hover {
+    background-color: inherit;
 }
 
 .comment-answers-section {
