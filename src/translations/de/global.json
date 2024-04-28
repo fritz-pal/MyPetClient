@@ -112,7 +112,12 @@
 
     "comment": {
         "delete": "Löschen",
-        "confirm": "Bestätigen"
+        "confirm": "Bestätigen",
+        "answer": "Antworten",
+        "cancel": "Abbrechen",
+        "openAnswers_one": "Zeige {{count}} Antwort",
+        "openAnswers_other": "Zeige {{count}} Antworten",
+        "moreAnswers": "Weitere Antworten"
     },
 
     "paths": {
