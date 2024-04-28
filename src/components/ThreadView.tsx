@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import CommentSection from "./CommentSection";
 import { Comment } from "../models/Comment";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "react-aria-components";
 
 const ThreadView = () => {
     const { id } = useParams();
@@ -106,7 +107,7 @@ const CommentPage = ({threadID, page} : {threadID: string, page: number}) => {
             <CommentSection comments={commentQuery.data.elements}/>
             {
                 commentQuery.data.maxPage > page && !nextPageOpen ? 
-                <button className="thread-next-button" onClick={() => setNextPageOpen(true)}>{t("nextPage")}</button> : 
+                <Button className="thread-next-button" onPress={() => setNextPageOpen(true)}>{t("nextPage")}</Button> : 
                 <></>
             }
             {nextPageOpen ? <CommentPage threadID={threadID} page={page + 1}></CommentPage> : <></> }

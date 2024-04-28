@@ -3,8 +3,12 @@
     border-radius: 10px;
 }
 
-.comment:nth-child(2n) {
+.comment:nth-child(even) {
     background-color: var(--fourth-color);
+}
+
+.comment:nth-child(odd) {
+    background-color: var(--seventh-color);
 }
 
 .comment-body {
@@ -19,6 +23,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 5px;
+    margin: 5px;
 }
 
 .comment-option-button {
@@ -60,4 +65,57 @@
 
 .comment-answer-button-submit {
     grid-area: submit;
+}
+
+.comment-answers-section {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    grid-gap: 10px;
+}
+
+.comment-answers-left {
+    display: grid;
+    grid-template-rows: 1rem 1fr;
+    grid-gap: 5px;
+}
+
+.comment-answers-close-button {
+    padding: 0;
+    position: relative;
+    text-align: center;
+    line-height: 1rem;
+    background-color: inherit;
+    color: var(--eleventh-color);
+    border-color: var(--eleventh-color);
+    width: 1rem;
+    height: 1rem;
+}
+
+.comment-answers-close-button::before {
+    content: "";
+    position: absolute;
+    left: 0.2rem;
+    right: 0.2rem;
+    top: 0.35rem;
+    height: 1px;
+    background-color: var(--eleventh-color);
+    transform: translateY(50%);
+}
+
+.comment-answers-line {
+    position: relative;
+}
+
+.comment-answers-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background-color: var(--eleventh-color);
+    transform: translateX(-50%);
+}
+
+.comment-answers-content {
 }

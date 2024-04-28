@@ -111,7 +111,12 @@
     },
     "comment": {
         "delete": "Delete",
-        "confirm": "Bestätigen"
+        "confirm": "Bestätigen",
+        "answer": "Answer",
+        "cancel": "Cancel",
+        "openAnswers_one": "Show {{count}} answer",
+        "openAnswers_other": "Show {{count}} answers",
+        "moreAnswers": "Show more"
     },
     "paths": {
         "home": "Home",
