@@ -45,8 +45,8 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <img src="/logo2.svg" alt="logo" className="login-logo"></img>
       <div className="login-form">
+        <img src="/logo2.svg" alt="logo" className="login-logo"></img>
         <h1>{t("title")}</h1>
         <div className="login-input-label-set">
           <label>{t("name")}</label>
@@ -54,8 +54,7 @@ const LoginPage = () => {
             type="text"
             value={name}
             onKeyDown={handleKeyDown}
-            onChange={(e) => setName(e.target.value.trim())}
-          ></input>
+            onChange={(e) => setName(e.target.value.trim())}></input>
           {errorText == "UserNotFound" ? (
             <div className="login-error-message">{t("noUser")}</div>
           ) : (
@@ -68,8 +67,7 @@ const LoginPage = () => {
             type="password"
             value={password}
             onKeyDown={handleKeyDown}
-            onChange={(e) => setPassword(e.target.value.trim())}
-          ></input>
+            onChange={(e) => setPassword(e.target.value.trim())}></input>
           {errorText == "InvalidPassword" ? (
             <div className="login-error-message">{t("wrongPassword")}</div>
           ) : (
@@ -78,8 +76,7 @@ const LoginPage = () => {
         </div>
         <Button
           onPress={() => loginMutation.mutate()}
-          isDisabled={buttonDisabled()}
-        >
+          isDisabled={buttonDisabled()}>
           {t("submit")}
         </Button>
         {errorText == "authFailed" ? (

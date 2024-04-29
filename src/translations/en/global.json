@@ -21,7 +21,7 @@
         "usernameLength": "Username must be at least 3 characters long.",
         "invalidEmail": "Invalid email address.",
         "passwordRequirements": "Password must be at least 8 characters long and contain at least one number and uppercase letter.",
-        "passwordMatch": "Passwords do not match.", 
+        "passwordMatch": "Passwords do not match.",
         "name": "Username",
         "email": "Email",
         "password": "Password",
@@ -107,10 +107,16 @@
         "cancel": "Cancel",
         "submit": "Submit"
     },
-
     "comment": {
         "delete": "Delete",
-        "confirm": "Bestätigen"
+        "confirm": "Bestätigen",
+        "answer": "Answer",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "edit": "Edit",
+        "openAnswers_one": "Show {{count}} answer",
+        "openAnswers_other": "Show {{count}} answers",
+        "moreAnswers": "Show more"
     },
     "paths": {
         "home": "Home",
@@ -126,7 +132,6 @@
         "addSpecies": "Add Species",
         "addedSpecies": "Successfully added \"{{species}}\" to the database"
     },
-
     "card": {
         "more_details": "more details",
         "go_back": "back"

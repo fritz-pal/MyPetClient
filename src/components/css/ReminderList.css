@@ -99,12 +99,22 @@
   display: grid;
 }
 
-.reminder-pets {
+.reminder-pets-container {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 400px;
   justify-content: center;
-  align-items: center;
 }
+
+.reminder-pets {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 
 .delete_reminder {
   margin-top: 10px;
