@@ -2,16 +2,18 @@ import Reminders, { Reminder, ReminderAPI } from "../models/Reminder";
 import Loader from "./Loader";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import petImage from "/hund.jpg";
 import "./css/ReminderList.css";
+import React from "react";
 
 const ReminderList = () => {
   const [t, _] = useTranslation("reminders");
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+
 
   const reminderQuery = useQuery({
     queryKey: ["reminders", user.id],
@@ -67,6 +69,7 @@ const ReminderList = () => {
 const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
   const [t, _] = useTranslation("reminders");
   const queryClient = useQueryClient();
+  const [text, setText] = useState("p35d");
   const { user } = useContext(UserContext);
   const deleteReminderMut = useMutation({
     mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
@@ -76,6 +79,10 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
       });
     },
   });
+
+  function removeFirstLast(text: string) {
+    return text.slice(1, -1);
+  }
 
   function formatDateTime(dateString: string): string {
     const options: Intl.DateTimeFormatOptions = {
@@ -101,23 +108,33 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
     <>
       <div className="reminder-tag-name">
         <div className="reminder-name">{reminder.name}</div>
-        <div className="reminder-tag">alle </div>
+        <div>
+          {text.endsWith("d") ? `${t("every")} ${removeFirstLast(text)} ${t("day")}` :
+            text.endsWith("y") ? `${t("every")} ${removeFirstLast(text)} ${t("year")}` :
+              text.endsWith("m") ? `${t("every")} ${removeFirstLast(text)} ${t("month")}` :
+                ''}
+        </div>
       </div>
       <div className="reminder-area" key={reminder.name}>
         <div className="reminder-info"></div>
         <div className="reminder-date">
           {formatDateTime(reminder.date.toString())}
         </div>
-        <div className="pet_reminder_container">
+        <div className="reminder-pets-container">
           {reminder.pets.map((pet, index) => (
-            <div className="reminder-pets" key={pet.name}>
-              {index > 0 && ", "}
-              {pet.name}
-              <img className="pet-image3" src={petImage} />
-            </div>
+            <React.Fragment key={pet.name}>
+              <div className="reminder-pets">
+                {index > 0 && ", "}
+                {pet.name}
+                <img className="pet-image3" src={petImage} />
+              </div>
+              {(index + 1) % 5 === 0 && <br key={`linebreak-${index}`} />}
+            </React.Fragment>
           ))}
         </div>
-      </div>
+
+
+      </div >
       <button
         className="delete_reminder"
         onClick={() => deleteReminder(reminder.id)}

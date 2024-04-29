@@ -21,7 +21,7 @@
         "usernameLength": "Username must be at least 3 characters long.",
         "invalidEmail": "Invalid email address.",
         "passwordRequirements": "Password must be at least 8 characters long and contain at least one number and uppercase letter.",
-        "passwordMatch": "Passwords do not match.", 
+        "passwordMatch": "Passwords do not match.",
         "name": "Username",
         "email": "Email",
         "password": "Password",
@@ -150,6 +150,11 @@
         "cancel": "Cancel",
         "reminderTime": "Time",
         "delete": "Delete",
-        "reminderRequirements": "The Reminder needs a name and at least one selected pet"
+        "reminderRequirements": "The Reminder needs a name and at least one selected pet",
+        "every": "every",
+        "day": "days",
+        "week": "weeks",
+        "month": "months",
+        "year": "years"
     }
 }

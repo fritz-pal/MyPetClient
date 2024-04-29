@@ -20,6 +20,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
   const [newAnswerOpen, setNewAnswerOpen] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
   const [commentText, setCommentText] = useState(comment.text);
+  const [text, setText] = useState("p35y");
 
   /*Nico Anfang*/
   const [hasAnswers, setHasAnswers] = useState(
@@ -101,6 +102,11 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     setEditClicked(false);
   };
 
+  function removeFirstLast(text: string) {
+    return text.slice(1, -1);
+  }
+
+
   if (isDeleted) {
     return <div className="comment">Deleted</div>;
   }
@@ -140,9 +146,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
       {!newAnswerOpen && !editClicked && (
         <div className="comment-options">
           <Button
-            className={`comment-option-button${
-              deleteClicked ? " confirm" : ""
-            }${comment.poster.id != user.id ? " hidden" : ""}`}
+            className={`comment-option-button${deleteClicked ? " confirm" : ""
+              }${comment.poster.id != user.id ? " hidden" : ""}`}
             onPress={handleDeleteClick}>
             {deleteClicked ? t("confirm") : t("delete")}
           </Button>
@@ -156,6 +161,13 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
             onPress={() => setNewAnswerOpen(true)}>
             {t("answer")}
           </Button>
+          <button>
+            {text.endsWith("d") ? `${(t("answer"))} ${removeFirstLast(text)} ${(t("answer"))}` :
+              text.endsWith("y") ? `${(t("answer"))} ${removeFirstLast(text)} ${(t("answer"))}` :
+                text.endsWith("m") ? `${(t("answer"))} ${removeFirstLast(text)} ${(t("answer"))}` :
+                  'Standardbeschriftung'}
+          </button>
+
         </div>
       )}
       {newAnswerOpen && (
