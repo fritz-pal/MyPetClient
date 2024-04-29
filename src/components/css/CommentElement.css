@@ -14,11 +14,9 @@
   border-style: solid;
 }
 
-.comment-body {
-}
+.comment-body {}
 
-.comment-line {
-}
+.comment-line {}
 
 .editCommentButton {
   border-radius: 3px;
@@ -164,5 +162,4 @@
   transform: translateX(-50%);
 }
 
-.comment-answers-content {
-}
+.comment-answers-content {}

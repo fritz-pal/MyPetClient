@@ -109,10 +109,10 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
     <>
       <div className="reminder-tag-name">
         <div className="reminder-name">{reminder.name}</div>
-        <div>
-          {text.endsWith("d") ? `${t("every")} ${removeFirstLast(text)} ${t("day")}` :
-            text.endsWith("y") ? `${t("every")} ${removeFirstLast(text)} ${t("year")}` :
-              text.endsWith("m") ? `${t("every")} ${removeFirstLast(text)} ${t("month")}` :
+        <div className="reminder-tag">
+          {reminder.repeatingInterval?.toString().endsWith("D") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("day")}` :
+            reminder.repeatingInterval?.toString().endsWith("Y") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("year")}` :
+              reminder.repeatingInterval?.toString().endsWith("M") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("month")}` :
                 ''}
         </div>
       </div>
