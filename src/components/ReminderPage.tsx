@@ -21,7 +21,7 @@ const ReminderPage = () => {
     const [date, setDate] = useState<Date>(new Date());
     const [time, setTime] = useState(new Date());
     const [associatedPets, setAssociatedPets] = useState<Pet[]>([])
-    const [intervalString, setIntervalString] = useState<string>("P0D")
+    const [intervalString, setIntervalString] = useState<string>("")
     const [selectedTimeUnit, setSelectedTimeUnit] = useState('');
     const [intervalNumber, setIntervalNumber] = useState<number>(0);
 
@@ -40,8 +40,6 @@ const ReminderPage = () => {
         if (date == null)
             return false;
         if (associatedPets.length === 0)
-            return false;
-        if (intervalString == "")
             return false;
         return true;
     }
@@ -66,31 +64,32 @@ const ReminderPage = () => {
         
     };
     
-    const updateIntervalString = () => {
-        console.log("selectedTimeUnit:", selectedTimeUnit);
-        console.log("intervalNumber:", intervalNumber);        
+    const updateIntervalString = (numberparam: number, stringparam: string) => {
+        console.log("selectedTimeUnit:", stringparam);
+        console.log("intervalNumber:", numberparam);        
     
-        let updatedInterval = "P0D";
+        let updatedInterval = "";
     
-        switch (selectedTimeUnit) {
+        switch (stringparam) {
             case "hours":
-                updatedInterval = `PT${intervalNumber}H`;
+                updatedInterval = `PT${numberparam}H`;
                 break;
             case "days":
-                updatedInterval = `P${intervalNumber}D`;
+                updatedInterval = `P${numberparam}D`;
                 break;
             case "weeks":
-                updatedInterval = `P${intervalNumber * 7}D`;
+                updatedInterval = `P${numberparam * 7}D`;
                 break;
             case "months":
-                updatedInterval = `P${intervalNumber}M`;
+                updatedInterval = `P${numberparam}M`;
                 break;
             case "years":
-                updatedInterval = `P${intervalNumber}Y`;
+                updatedInterval = `P${numberparam}Y`;
                 break;
             default:
                 break;
         }
+        console.log("updatedInterval: ", updatedInterval)
         setIntervalString(updatedInterval);
     };
     
@@ -126,15 +125,17 @@ const ReminderPage = () => {
                 <input
                     type="number" 
                     value={intervalNumber} 
-                    onChange={(e) => {setIntervalNumber(e.target.valueAsNumber);
-                        updateIntervalString();
-                    }}
+                    onChange={async (e) => {
+                        setIntervalNumber(e.target.valueAsNumber)
+                        updateIntervalString(e.target.valueAsNumber, selectedTimeUnit);
+                }}
                 />
                 <select 
                     id="timeUnit" 
                     value={selectedTimeUnit} 
-                    onChange={e => {setSelectedTimeUnit(e.target.value);
-                        updateIntervalString();
+                    onChange={async e => {
+                        setSelectedTimeUnit(e.target.value)
+                        updateIntervalString(intervalNumber, e.target.value);
                 }}>
                     <option value="">{t("selectTimeUnit")}</option>
                     <option value="hours">{t("hours")}</option>
@@ -148,21 +149,27 @@ const ReminderPage = () => {
                 <button className="cancel-button" onClick={() => nav("/reminders")}>
                     {t("cancel")}
                 </button>
-                <button className="submit-button" disabled={!validate() || reminderMut.isPending} onClick={() => {
-                    const datetime = new Date(date)
-                    datetime.setHours(time.getHours())
-                    datetime.setMinutes(time.getMinutes())
-                    if (!validate())
-                        return;
-                    if (date == null)
-                        return;
-                    reminderMut.mutate({
-                        id: 0,
-                        name: name.trimStart().trimEnd(),
-                        date: datetime.toISOString().substring(0, 25),
-                        pets: associatedPets,
-                        repeatingInterval: intervalString
-                    });
+                <button className="submit-button" disabled={!validate() || reminderMut.isPending} onClick={async () => {
+                    const handleClick = async () => {
+                        const datetime = new Date(date);
+                        datetime.setHours(time.getHours());
+                        datetime.setMinutes(time.getMinutes());
+                        if (!validate()) return;
+                        if (date == null) return;
+                        
+            
+                        console.log("intervalstring was gesendet wird: ", intervalString);
+
+                        reminderMut.mutate({
+                            id: 0,
+                            name: name.trimStart().trimEnd(),
+                            date: datetime.toISOString().substring(0, 25),
+                            pets: associatedPets,
+                            repeatingInterval: intervalString
+                        });
+                    };
+            
+                    handleClick();
                     
                 }}>
                     {reminderMut.isPending ? <Loader/> : t("submit")}
