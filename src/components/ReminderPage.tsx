@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
@@ -91,13 +91,12 @@ const ReminderPage = () => {
             default:
                 break;
         }
-        console.log("updatedInterval: ", updatedInterval)
         setIntervalString(updatedInterval);
-        console.log("intervalString:", intervalString);
     };
     
 
     return (
+        <div className="scroll-page">
         <div className="reminder-page">
             <div className="add-reminder-frame">
             <div className="set-reminder-name">
@@ -153,12 +152,10 @@ const ReminderPage = () => {
                     const datetime = new Date(date)
                     datetime.setHours(time.getHours())
                     datetime.setMinutes(time.getMinutes())
-                    console.log("intervalString after method call: ", intervalString)
                     if (!validate())
                         return;
                     if (date == null)
                         return;
-                    console.log("intervalString after method call: ", intervalString)
                     reminderMut.mutate({
                         id: 0,
                         name: name.trimStart().trimEnd(),
@@ -172,6 +169,7 @@ const ReminderPage = () => {
                 </button>
             </div>
             </div>
+        </div>
         </div>
     )
 }
