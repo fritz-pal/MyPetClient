@@ -149,7 +149,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
           <Button
             className="editCommentButton"
             onPress={() => setEditClicked(true)}>
-            Bearbeiten
+            {t("edit")}
           </Button>
           <Button
             className="comment-option-button"

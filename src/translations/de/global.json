@@ -116,6 +116,7 @@
     "answer": "Antworten",
     "cancel": "Abbrechen",
     "submit": "Speichern",
+    "edit": "Bearbeiten",
     "openAnswers_one": "Zeige {{count}} Antwort",
     "openAnswers_other": "Zeige {{count}} Antworten",
     "moreAnswers": "Weitere Antworten"
