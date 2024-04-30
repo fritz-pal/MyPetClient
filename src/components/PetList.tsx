@@ -63,7 +63,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                                 <span>{tcard("more_details")}</span>
                             </header>
                             <img className="pet-image2" src={petImage} alt={pet.name} />
-                            <h3 className="pet_name_css">{k(pet.species.name)}</h3>
+                            <div className="pet_name_css">{k(pet.species.name)}</div>
 
                         </div>
                         <div className="back">
@@ -72,7 +72,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                                 <span>{tcard("more_details")}</span>
                             </header>
                             <h2>{pet.subSpecies}</h2>
-                            <h3 className="pet_name_css">{k(pet.species.name)}</h3>
+                            <div className="pet_name_css">{k(pet.species.name)}</div>
 
                         </div>
                     </div>

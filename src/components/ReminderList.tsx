@@ -29,39 +29,37 @@ const ReminderList = () => {
   }
 
   return (
-    <div className="scroll-page">
-      <div className="my-reminders-module">
-        <div className="reminder_title">{t("reminderListTitle")}</div>
-        {reminderQuery.isLoading && (
-          <div className="load">
-            <Loader />
-          </div>
-        )}
-        {reminderQuery.isSuccess && (
-          <div className="reminders">
-            {reminders.map((reminder) => (
-              <ReminderListItem
-                reminder={reminder}
-                key={reminder.id}
-              ></ReminderListItem>
-            ))}
-          </div>
-        )}
-        {reminderQuery.isError && <div>Error fetching reminders</div>}
-        <div className="add-reminder-button-container">
-          <svg
-            onClick={addReminderClicked}
-            className="add-reminder-button"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z"
-            />
-          </svg>
+    <div className="my-reminders-module">
+      <div className="reminder_title">{t("reminderListTitle")}</div>
+      {reminderQuery.isLoading && (
+        <div className="load">
+          <Loader />
         </div>
+      )}
+      {reminderQuery.isSuccess && (
+        <div className="reminders">
+          {reminders.map((reminder) => (
+            <ReminderListItem
+              reminder={reminder}
+              key={reminder.id}
+            ></ReminderListItem>
+          ))}
+        </div>
+      )}
+      {reminderQuery.isError && <div>Error fetching reminders</div>}
+      <div className="add-reminder-button-container">
+        <svg
+          onClick={addReminderClicked}
+          className="add-reminder-button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z"
+          />
+        </svg>
       </div>
     </div>
   );

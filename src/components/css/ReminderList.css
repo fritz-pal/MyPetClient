@@ -45,11 +45,6 @@
   margin-bottom: 3px;
 }
 
-.scroll-page {
-  overflow-y: auto;
-  height: 100%;
-}
-
 .reminder-tag {
   color: var(--tenth-color);
   font-size: 1em;

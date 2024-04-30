@@ -67,7 +67,7 @@
 }
 
 .pet_name_css {
-  font-size: 40px;
+  font-size: 25px;
   margin: 0;
 }
 
@@ -149,11 +149,11 @@
   transform: rotateY(180deg);
 }
 
-input:checked ~ .card .back {
+input:checked~.card .back {
   transform: rotateY(0);
 }
 
-input:checked ~ .card .front {
+input:checked~.card .front {
   transform: rotateY(-180deg);
 }
 
