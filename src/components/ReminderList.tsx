@@ -72,6 +72,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
   const queryClient = useQueryClient();
   const [text, setText] = useState("p35d");
   const { user } = useContext(UserContext);
+  const test = true;
   const deleteReminderMut = useMutation({
     mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
     onSuccess: () => {
@@ -82,7 +83,31 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
   });
 
   function removeFirstLast(text: string) {
-    return text.slice(1, -1);
+    let result = text.slice(1, -1) + t("day"); // Default-Wert
+
+    if (text.slice(1, -1) === "1") {
+      if (text.endsWith("D")) {
+        result = t("everySingle2") + " " + t("day");
+      } else if (text.endsWith("Y")) {
+        result = t("everySingle3") + " " + t("year");
+      } else if (text.endsWith("M")) {
+        result = t("everySingle2") + " " + t("month");
+      } else if (text.endsWith("H")) {
+        result = t("everySingle") + " " + t("hour");
+      }
+    } else {
+      if (text.endsWith("D")) {
+        result = t("everyPlural") + " " + text.slice(1, -1) + " " + t("days");
+      } else if (text.endsWith("Y")) {
+        result = t("everyPlural") + " " + text.slice(1, -1) + " " + t("years");
+      } else if (text.endsWith("M")) {
+        result = t("everyPlural") + " " + text.slice(1, -1) + " " + t("months");
+      } else if (text.endsWith("H")) {
+        result = t("everyPlural") + " " + text.slice(1, -1) + " " + t("hours");
+      }
+    }
+
+    return result;
   }
 
   function formatDateTime(dateString: string): string {
@@ -110,10 +135,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
       <div className="reminder-tag-name">
         <div className="reminder-name">{reminder.name}</div>
         <div className="reminder-tag">
-          {reminder.repeatingInterval?.toString().endsWith("D") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("day")}` :
-            reminder.repeatingInterval?.toString().endsWith("Y") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("year")}` :
-              reminder.repeatingInterval?.toString().endsWith("M") ? `${t("every")} ${removeFirstLast(reminder.repeatingInterval?.toString())} ${t("month")}` :
-                ''}
+          {reminder.repeatingInterval != null ? `${removeFirstLast(reminder.repeatingInterval?.toString())}` : ""}
         </div>
       </div>
       <div className="reminder-area" key={reminder.name}>

@@ -152,6 +152,15 @@
         "weeks": "Weeks",
         "months": "Months",
         "years": "Years",
+        "hour": "Hour",
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "year": "Year",
+        "everyPlural": "every",
+        "everySingle": "every",
+        "everySingle2": "every",
+        "everySingle3": "every",
         "selectTimeUnit": "Select Duration..."
     }
 }
