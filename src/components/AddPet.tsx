@@ -33,6 +33,9 @@ const AddPet = () => {
     const [dateOfBirth, setBirthday] = useState<null | Date>(null);
     const [size, setSize] = useState<number>(0);
     const [weight, setWeight] = useState<number>(0);
+    const [disabilities, setDisabilities] = useState<string[]>([]);
+    const [medications, setMedications] = useState<string[]>([]);
+    const [allergies, setAllergies] = useState<string[]>([]);
 
     const speciesQuery = useQuery({
         queryKey: ["species"],

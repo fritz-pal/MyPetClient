@@ -6,6 +6,9 @@ import { APIClient } from "../constants";
 export interface Species {
     id: number;
     name: string;
+    unitWeight?: string;
+    unitSize?: string;
+    typeOfSize?: string;
 }
 
 /**
@@ -16,6 +19,9 @@ export const newSpecies = (): Species => {
     return {
         id: 0,
         name: "",
+        unitWeight: "",
+        unitSize: "",
+        typeOfSize: "",
     }
 }
 

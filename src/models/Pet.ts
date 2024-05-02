@@ -17,6 +17,9 @@ export interface Pet {
     castrated?: boolean
     isMale: boolean
     lastVetVisit?: Date
+    disabilities?: string[]
+    medication?: string[]
+    allergies?: string[]
 }
 
 /**
@@ -34,6 +37,9 @@ export interface JSONPet {
     castrated?: boolean
     isMale: boolean
     lastVetVisit?: string
+    disabilities?: string[]
+    medication?: string[]
+    allergies?: string[]
 }
 
 /**
@@ -82,7 +88,10 @@ const newPet = () : Pet => {
             email: ""
         },
         isMale: false,
-        castrated: false
+        castrated: false,
+        disabilities: [],
+        medication: [],
+        allergies: [],
     }
 }
 

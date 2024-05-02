@@ -13,6 +13,7 @@ const AdminAddSpecies = () => {
     const [speciesName, setSpeciesName] = useState('');
     const [speciesFeedback, setSpeciesFeedback] = useState('');
     const [showFeedback, setShowFeedback] = useState(false);
+    const [detailSpecies, setDetailSpecies] = useState<Species | null>(null);
 
     const [t,] = useTranslation("admin");
     const queryClient = useQueryClient();
@@ -45,8 +46,12 @@ const AdminAddSpecies = () => {
         }
     })
 
-    const deleteSpecies = (species : Species) => {
+    const deleteSpecies = (species: Species) => {
         deleteSpeciesMut.mutate(species.id);
+    }
+
+    const showDetails = (species: Species) => {
+        setDetailSpecies(species);
     }
 
     return (
@@ -60,9 +65,18 @@ const AdminAddSpecies = () => {
                 <div className={`feedback ${showFeedback ? 'shown' : ''}`}>{speciesFeedback === 'error' ? t("exists") : t("addedSpecies", { species: speciesFeedback })}</div>
                 <div className="species-list">
                     {query.isLoading && <div>Loading...</div>}
-                    {query.isSuccess && query.data?.map(species => <SpeciesElement key={species.id} onClick={deleteSpecies} species={species} />)}
+                    {query.isSuccess && query.data?.map(species =>
+                        <SpeciesElement onMouseEnter={showDetails} key={species.id} onClick={deleteSpecies} species={species} />)}
                 </div>
             </div>
+            {detailSpecies && <div className="post-form-container">
+                <div className="details-content">
+                    <div>{t("name")}: {detailSpecies.name}</div>
+                    <div>{t("unitWeight")}: {detailSpecies.unitWeight}</div>
+                    <div>{t("unitSize")}: {detailSpecies.unitSize}</div>
+                    <div>{t("typeOfSize")}: {detailSpecies.typeOfSize}</div>
+                </div>
+            </div>}
         </div>
     );
 };
