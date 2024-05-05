@@ -99,7 +99,11 @@
         "weight": "Gewicht",
         "cancel": "Abbrechen",
         "submit": "Speichern",
-        "requieredNotice": "Plichtfeld"
+        "requieredNotice": "Plichtfeld",
+        "furtherInfo": "Weitere Details",
+        "allergies": "Allergien",
+        "medications": "Medikamente",
+        "disabilities": "Behinderungen"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",

@@ -99,7 +99,11 @@
         "weight": "Weight",
         "cancel": "Cancel",
         "submit": "Submit",
-        "requieredNotice": "Requiered"
+        "requieredNotice": "Requiered",
+        "furtherInfo": "Further Information",
+        "allergies": "Allergies",
+        "medications": "Medications",
+        "disabilities": "Disabilities"
     },
     "addThread": {
         "pageTitle": "New Discussion",

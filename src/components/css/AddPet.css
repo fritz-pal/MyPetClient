@@ -76,11 +76,43 @@
     display: flex;
 }
 
+.plus-button {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 
-@media(max-width:800px){
+.remove-item-button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.title-with-plus {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.list-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.title-further-info {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+@media(max-width:800px) {
     .add-pet-collapsing-panels {
-       grid-template-columns: 1fr;
-       grid-gap: 0;
+        grid-template-columns: 1fr;
+        grid-gap: 0;
     }
 
     .add-pet-frame {
