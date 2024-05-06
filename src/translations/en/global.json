@@ -16,12 +16,12 @@
     "signup": {
         "account": "Already have an account?",
         "usernameTaken": "That username is already taken.",
-        "emailtaken": "An account with this email address already exists.",
+        "emailTaken": "An account with this email address already exists.",
         "required": "This field is required.",
         "usernameLength": "Username must be at least 3 characters long.",
         "invalidEmail": "Invalid email address.",
         "passwordRequirements": "Password must be at least 8 characters long and contain at least one number and uppercase letter.",
-        "passwordMatch": "Passwords do not match.", 
+        "passwordMatch": "Passwords do not match.",
         "name": "Username",
         "email": "Email",
         "password": "Password",
@@ -41,9 +41,7 @@
         "en": "English"
     },
     "thread": {
-        "post": "Post",
-        "nextPage": "Load more comments...",
-        "commentLoadFailed": "Error loading comments, please try again later"
+        "post": "Post"
     },
     "commentSection": {
         "noPost": "No comments yet. Be the first to comment something!"
@@ -115,7 +113,14 @@
     },
     "comment": {
         "delete": "Delete",
-        "confirm": "Bestätigen"
+        "confirm": "Bestätigen",
+        "answer": "Answer",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "edit": "Edit",
+        "openAnswers_one": "Show {{count}} answer",
+        "openAnswers_other": "Show {{count}} answers",
+        "moreAnswers": "Show more"
     },
     "paths": {
         "home": "Home",
@@ -129,8 +134,7 @@
     "admin": {
         "species": "Species",
         "addSpecies": "Add Species",
-        "addedSpecies": "Successfully added \"{{species}}\" to the database",
-        "exists": "Species already exists"
+        "addedSpecies": "Successfully added \"{{species}}\" to the database"
     },
     "card": {
         "more_details": "more details",
@@ -145,6 +149,22 @@
         "cancel": "Cancel",
         "reminderTime": "Time",
         "delete": "Delete",
-        "reminderRequirements": "The Reminder needs a name and at least one selected pet"
+        "reminderRequirements": "The Reminder needs a name and at least one selected pet",
+        "reminderInterval": "How often should the reminder be scheduled",
+        "hours": "Hours",
+        "days": "Days",
+        "weeks": "Weeks",
+        "months": "Months",
+        "years": "Years",
+        "hour": "Hour",
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "year": "Year",
+        "everyPlural": "every",
+        "everySingle": "every",
+        "everySingle2": "every",
+        "everySingle3": "every",
+        "selectTimeUnit": "Select Duration..."
     }
 }

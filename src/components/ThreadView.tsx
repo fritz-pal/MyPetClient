@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import CommentSection from "./CommentSection";
 import { Comment } from "../models/Comment";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "react-aria-components";
 
 const ThreadView = () => {
     const { id } = useParams();
@@ -25,13 +26,11 @@ const ThreadView = () => {
         enabled: id != undefined
     });
 
-    
-
     const postCommentMut = useMutation({
         mutationFn: (comment: Comment) => ForumAPI.postCommentToThread(id ? id : "err", comment),
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["threads", id ? id : "err"]
+                queryKey: ["threadComments", id ? id : "err"]
             })
         }
     })
@@ -59,26 +58,29 @@ const ThreadView = () => {
     }
 
     return (
-        <div className="thread-page">
-            <div className="thread-head">
-                {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
-                <h2 className="thread-title">
-                    {threadQuery.data?.name}
-                </h2>
-                <div className="thread-description">
-                    {threadQuery.data?.description}
+        <div className="scroll-page">
+            <div className="thread-main">
+                <div className="thread-head">
+                    {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
+                    <h2 className="thread-title">
+                        {threadQuery.data?.name}
+                    </h2>
+                    <div className="thread-description">
+                        {threadQuery.data?.description}
+                    </div>
+                </div>
+                <hr/>
+                <div className="thread-comment-section">
+                    <div className="thread-post-comment">
+                        <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
+                        <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
+                    </div>
+                    <div className="thread-comments-gap">
+                        <CommentPage threadID={id ? id : ""} page={1} />
+                    </div>
                 </div>
             </div>
-            <hr/>
-            <div className="thread-comment-section">
-                <div className="thread-post-comment">
-                    <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
-                    <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
-                </div>
-                <div className="thread-comments-gap">
-                    <CommentPage threadID={id ? id : ""} page={1} />
-                </div>
-            </div>
+
         </div>
     );
 }
@@ -88,7 +90,7 @@ const CommentPage = ({threadID, page} : {threadID: string, page: number}) => {
     const [nextPageOpen, setNextPageOpen] = useState(false);
 
     const commentQuery = useQuery({
-        queryKey: ["threads", threadID, page],
+        queryKey: ["threadComments", threadID, page],
         queryFn: () => ForumAPI.getCommentsOfThread(threadID, page)
     })
 
@@ -105,7 +107,7 @@ const CommentPage = ({threadID, page} : {threadID: string, page: number}) => {
             <CommentSection comments={commentQuery.data.elements}/>
             {
                 commentQuery.data.maxPage > page && !nextPageOpen ? 
-                <button className="thread-next-button" onClick={() => setNextPageOpen(true)}>{t("nextPage")}</button> : 
+                <Button className="thread-next-button" onPress={() => setNextPageOpen(true)}>{t("nextPage")}</Button> : 
                 <></>
             }
             {nextPageOpen ? <CommentPage threadID={threadID} page={page + 1}></CommentPage> : <></> }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next"
 import "./css/Settings.css"
 import { SUPPORTED_LANGS } from "../constants";
+import { Button } from "react-aria-components"
 
 
 /**
@@ -43,7 +44,7 @@ const Settings = () => {
                     )}
                 </select>
             </div>
-            <button className="settings-submit-button" onClick={applySettings} disabled={!hasChanges()}>{settingsT("apply")}</button>
+            <Button className="settings-submit-button" onPress={applySettings} isDisabled={!hasChanges()}>{settingsT("apply")}</Button>
         </div>
     )
 }

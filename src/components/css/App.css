@@ -3,7 +3,12 @@
   font-family: Arial, sans-serif;
   height: 100vh;
   display: grid;
-  grid-template-rows: min-content auto;
+  grid-template-rows: min-content 1fr;
+}
+
+.content {
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .no-auth {
@@ -11,4 +16,9 @@
   font-family: Arial, sans-serif;
   color: rgb(255, 255, 255);
   display: grid;
+}
+
+.scroll-page {
+  overflow-y: auto;
+  height: 100%;
 }

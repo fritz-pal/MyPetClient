@@ -9,6 +9,7 @@ import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import { JSONPet, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
+import { Button } from "react-aria-components";
 
 /**
  * React Component Displaying the form for adding a new Pet.
@@ -64,56 +65,58 @@ const AddPet = () => {
     }
     return (
         <div className="add-pet-page">
-            <div className="add-pet-collapsing-panels">
-                <div className="add-pet-frame add-pet-essentials">
-                    <img className="add-pet-image" src={petImage} />
-                    <div className="labeled-input">
-                        <div>*{t("petName")}:</div>
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
-                    </div>
-                    <div className="gender-selection">
-                        <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
-                            <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
-                                <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z" />
-                            </svg>
-                        </button>
-                        <button className={"gender-button " + (isMale ? "" : "selected")} onClick={() => setIsMale(false)}>
-                            <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
-                                <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div className="labeled-checkbox">
-                        <input className="normal_checkbox" type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
-                        {t("castrated")}
-                    </div>
-                </div>
-                <div className="add-pet-frame">
-                    <div className="labeled-input">
-                        <div>*{t("species")}:</div>
-                        {speciesQuery.isLoading && <Loader />}
-                        {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)} />}
-                        {speciesQuery.isError && t("speciesLoadError")}
+            <div className="add-pet-panels">
+                <div className="add-pet-collapsing-panels">
+                    <div className="add-pet-frame add-pet-essentials">
+                        <img className="add-pet-image" src={petImage} />
                         <div className="labeled-input">
-                            <div>{t("subSpecies")}:</div>
-                            <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value)} />
+                            <div>*{t("petName")}:</div>
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                        </div>
+                        <div className="gender-selection">
+                            <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
+                                <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                                    <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z" />
+                                </svg>
+                            </button>
+                            <button className={"gender-button " + (isMale ? "" : "selected")} onClick={() => setIsMale(false)}>
+                                <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
+                                    <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="labeled-checkbox">
+                            <input className="normal_checkbox" type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
+                            {t("castrated")}
+                        </div>
+                    </div>
+                    <div className="add-pet-frame">
+                        <div className="labeled-input">
+                            <div>*{t("species")}:</div>
+                            {speciesQuery.isLoading && <Loader />}
+                            {speciesQuery.isSuccess && <SpeciesList speciesList={speciesQuery.data} selectedID={species ? species.id : 0} onClickedElement={element => setSpecies(element)} />}
+                            {speciesQuery.isError && t("speciesLoadError")}
+                            <div className="labeled-input">
+                                <div>{t("subSpecies")}:</div>
+                                <input type="text" value={subSpecies} onChange={(e) => setSubSpecies(e.target.value)} />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="add-pet-collapsing-panels">
+                <div className="add-pet-collapsing-panels">
                 <div className="add-pet-frame">
-                    <div className="labeled-input">
-                        <div>{t("birthday")}:</div>
-                        <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0, 10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
+                        <div className="labeled-input">
+                            <div>{t("birthday")}:</div>
+                            <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0, 10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
+                        </div>
+                        <div className="labeled-input">
+                            <div>{t("size")}{species?.typeOfSize && species.unitSize ? "(" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
+                            <input type="number" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
+                        </div>
+                        <div className="labeled-input">
+                            <div>{t("weight")}{species?.unitWeight ? "(" + t("weight") + " in " + t(species.unitWeight) + ")" : ""}:</div>
+                            <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
                     </div>
-                    <div className="labeled-input">
-                        <div>{t("size")}{species?.typeOfSize && species.unitSize ? "(" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
-                        <input type="number" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
-                    </div>
-                    <div className="labeled-input">
-                        <div>{t("weight")}{species?.unitWeight ? "(" + t("weight") + " in " + t(species.unitWeight) + ")" : ""}:</div>
-                        <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
                     </div>
                 </div>
                 <div className="add-pet-frame">
@@ -137,10 +140,10 @@ const AddPet = () => {
                 *{t("requieredNotice")}
             </div>
             <div className="add-pet-button-set">
-                <button className="cancel-button" onClick={() => nav("/")}>
+                <Button onPress={() => nav("/")}>
                     {t("cancel")}
-                </button>
-                <button className="submit-button" disabled={!validate() || petMut.isPending} onClick={() => {
+                </Button>
+                <Button isDisabled={!validate()} onPress={() => {
                     if (!validate())
                         return;
                     if (species == null)
@@ -158,8 +161,8 @@ const AddPet = () => {
                         weight: weight
                     });
                 }}>
-                    {petMut.isPending ? <Loader /> : t("submit")}
-                </button>
+                    {petMut.isPending ? <Loader/> : t("submit")}
+                </Button>
             </div>
         </div>
     )

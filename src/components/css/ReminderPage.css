@@ -20,6 +20,11 @@ input[type="checkbox"]:checked + label {
   vertical-align: middle;
 }
 
+.scroll-page {
+  overflow-y: auto;
+  height: 100%;
+}
+
 label {
   font-size: 16px;
   margin-bottom: 8px;
@@ -27,29 +32,40 @@ label {
 }
 
 .add-reminder-frame {
-  flex-direction: column;
-  row-gap: 10px;
-  padding: 50px 10px;
+  color: var(--primary-color);
+  line-height: 1.5;
+  padding: 20px;
+  flex-grow: 1;
+  min-height: 400px;
   background-color: var(--seventh-color);
-  box-shadow: 4px 4px 20px 0px #000000;
-  place-items: center;
-  height: 100vh;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto; 
+  box-shadow: 4px 4px 30px 0px #000000;
+  margin: 20px;
+  border-radius: 20px;
+  transition: 0.2s;
+  position: relative;
+  width: 80%;
+  margin: auto;
 }
 
 .add-reminder-buttons {
   gap: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
 }
 
 .inputLabel {
-  color:#000000;
+  color: #000000;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.reminder-page {
+  padding-top: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .inputLabel {
+    font-size: 15px;
+  }
 }

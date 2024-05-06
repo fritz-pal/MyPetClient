@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router"
 import LoginPage from "./LoginPage";
 import { AuthContext, AuthState } from "../context/AuthContext";
 import Loader from "./Loader";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useMutation } from "@tanstack/react-query";
 import { AuthAPI } from "../models/Auth";
 import SignUp from "./Signup";
 
@@ -12,13 +12,10 @@ const AuthProvider = ({children} : {children: JSX.Element}) => {
     const [state, setState] = useState(AuthState.Pending);
     const [isInitialAttempt, setIsInitialAttempt] = useState(state == AuthState.Pending);
 
-    const validationQuery = useMutation({
+    const validationMut = useMutation({
         mutationFn: () => AuthAPI.validate(),
         onSuccess: (data) => {
-            let skipNav = false;
-            if (isInitialAttempt) {
-                skipNav = true;
-            }
+            const skipNav = isInitialAttempt || state == AuthState.Success;
             setState(data == true ? AuthState.Success : isInitialAttempt ? AuthState.Open : AuthState.Failed);
             setIsInitialAttempt(false);
             if (!skipNav)
@@ -26,24 +23,36 @@ const AuthProvider = ({children} : {children: JSX.Element}) => {
         }
     });
 
+    const logoutMut = useMutation({
+        mutationFn: () => AuthAPI.logout(),
+        onSuccess: () => {
+            setState(AuthState.Open);
+        }
+    })
+
     const validateSession = () => {
         setState(AuthState.Pending);
-        validationQuery.mutate();
+        validationMut.mutate();
     }
 
     const validateSessionSilent = () => {
-        validationQuery.mutate();
+        validationMut.mutate();
+    }
+
+    const logout = () => {
+        logoutMut.mutate();
     }
 
     useEffect(() => {
         if (isInitialAttempt)
-            validationQuery.mutate();
+            validationMut.mutate();
     }, []);
 
     return (
         <AuthContext.Provider value={{
             validateSession: validateSession,
             validateSessionSilent: validateSessionSilent,
+            logout: logout,
             state: state
         }}>
             <LoginSwitch>
@@ -54,7 +63,16 @@ const AuthProvider = ({children} : {children: JSX.Element}) => {
 }
 
 const LoginSwitch = ({children} : {children: JSX.Element}) => {
-    const {state} = useContext(AuthContext);
+    const {state, validateSessionSilent} = useContext(AuthContext);
+
+    const {current: queryClientWithAuthCheck} = useRef(new QueryClient({
+        defaultOptions: {
+            mutations: {
+                onError: validateSessionSilent
+            }
+        }
+    }));
+
     switch (state) {
         case AuthState.Pending:
             return <Loader/>;
@@ -62,7 +80,11 @@ const LoginSwitch = ({children} : {children: JSX.Element}) => {
         case AuthState.Failed:
             return <NoAuth/>;
     }
-    return children;
+    return (
+        <QueryClientProvider client={queryClientWithAuthCheck}>
+            {children}
+        </QueryClientProvider>
+    );
 }
 
 const NoAuth = () => {

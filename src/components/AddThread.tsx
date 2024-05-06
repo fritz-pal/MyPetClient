@@ -9,6 +9,8 @@ import "./css/AddThread.css"
 import { useNavigate } from "react-router";
 import { UserContext } from "../context/UserContext";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "react-aria-components";
+
 
 
 const AddThread = () => {
@@ -24,7 +26,7 @@ const AddThread = () => {
             });
             nav("/thread/" + data.id);
         }
-    })
+    });
     const speciesQuery = useQuery({
         queryKey: ["species"],
         queryFn: () => SpeciesAPI.getAllSpecies(),
@@ -60,7 +62,7 @@ const AddThread = () => {
     }
 
     return (
-        <div className="add-thread-page">
+        <div className="add-thread-page scroll-page">
             <div className="add-thread-main-grid">
                 <h2 className="add-thread-title">
                     {t("pageTitle")}
@@ -82,12 +84,12 @@ const AddThread = () => {
                     </div>
                 </div>
                 <div className="add-thread-buttons">
-                    <button onClick={() => nav("/forum")}>
+                    <Button onPress={() => nav("/forum")}>
                         {t("cancel")}
-                    </button>
-                    <button disabled={!validate()} onClick={apply}>
+                    </Button>
+                    <Button isDisabled={!validate()} onPress={apply}>
                         {t("submit")}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

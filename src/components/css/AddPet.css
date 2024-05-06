@@ -1,11 +1,20 @@
 .add-pet-page {
-    padding: 50px;
+    padding: 25px;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: min-content minmax(min-content, 1fr) min-content min-content;
+    grid-template-rows: 1fr min-content min-content;
     grid-gap: 10px;
     color: #000000;
+}
+
+.add-pet-panels {
+    height: 100%;
+    padding: 25px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows:  minmax(min-content, 1fr) min-content;
+    grid-gap: 10px;
 }
 
 .add-pet-collapsing-panels {
@@ -111,17 +120,14 @@
 
 @media(max-width:800px) {
     .add-pet-collapsing-panels {
-        grid-template-columns: 1fr;
-        grid-gap: 0;
+       grid-template-columns: 1fr;
     }
 
     .add-pet-frame {
         padding: 20px;
-        box-shadow: none;
     }
 
     .add-pet-page {
         padding: 20px 10px;
-        grid-gap: 0;
     }
 }

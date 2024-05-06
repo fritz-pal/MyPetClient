@@ -16,12 +16,12 @@
     "signup": {
         "account": "Du hast schon ein Account?",
         "usernameTaken": "Dieser Benutzername ist bereits vergeben. Bitte versuche es mit einem anderen.",
-        "emailtaken": "Ein Account mit dieser Email Adresse existiert bereits.",
+        "emailTaken": "Ein Account mit dieser Email Adresse existiert bereits.",
         "required": "Dieses Feld ist erforderlich.",
         "usernameLength": "Der Benutzername muss mindestens 3 Buchstaben lang sein.",
         "invalidEmail": "Ungültige Email Adresse",
         "passwordRequirements": "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens eine Zahl und einen Großbuchstaben enthalten.",
-        "passwordMatch": "Passwörter stimmen nicht überein.", 
+        "passwordMatch": "Passwörter stimmen nicht überein.",
         "name": "Benutzername",
         "email": "Email",
         "password": "Passwort",
@@ -41,9 +41,7 @@
         "en": "Englisch"
     },
     "thread": {
-        "post": "Senden",
-        "nextPage": "Mehr Kommentare...",
-        "commentLoadFailed": "Fehler beim laden der Kommentare, versuche es später nochmal."
+        "post": "Senden"
     },
     "commentSection": {
         "noPost": "Hier sieht es leer aus. Sei der erste der etwas kommentiert!"
@@ -113,12 +111,17 @@
         "cancel": "Abbrechen",
         "submit": "Speichern"
     },
-
     "comment": {
         "delete": "Löschen",
-        "confirm": "Bestätigen"
+        "confirm": "Bestätigen",
+        "answer": "Antworten",
+        "cancel": "Abbrechen",
+        "submit": "Speichern",
+        "edit": "Bearbeiten",
+        "openAnswers_one": "Zeige {{count}} Antwort",
+        "openAnswers_other": "Zeige {{count}} Antworten",
+        "moreAnswers": "Weitere Antworten"
     },
-
     "paths": {
         "home": "Home",
         "newpet": "Tier Hinzufügen",
@@ -131,8 +134,7 @@
     "admin": {
         "species": "Spezies",
         "addSpecies": "Spezies hinzufügen",
-        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt",
-        "exists": "Diese Spezies existiert bereits"
+        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt"
     },
     "card": {
         "more_details": "weitere Infos",
@@ -147,6 +149,22 @@
         "cancel": "Abbrechen",
         "reminderTime": "Uhrzeit",
         "delete": "Löschen",
-        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier"
+        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier",
+        "reminderInterval": "Wie oft soll der Termin geplant werden",
+        "hours": "Stunden",
+        "days": "Tage",
+        "weeks": "Wochen",
+        "months": "Monate",
+        "years": "Jahre",
+        "hour": "Stunde",
+        "day": "Tag",
+        "week": "Woche",
+        "month": "Monat",
+        "year": "Jahr",
+        "everyPlural": "alle",
+        "everySingle": "jede",
+        "everySingle2": "jeden",
+        "everySingle3": "jedes",
+        "selectTimeUnit": "Dauer wählen..."
     }
 }

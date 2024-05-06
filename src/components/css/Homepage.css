@@ -1,68 +1,75 @@
 .petlist-container {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-    width: 50%;
+  display: flex;
+  align-items: center;
+  padding-top: 30px;
+  width: 50%;
 }
 
 .home {
-    text-align: center;
-    font-family: "Poppins";
+  text-align: center;
+  font-family: "Poppins";
+  overflow-y: auto;
+  height: 100%;
+}
+
+.homepage-container {
+  display: flex;
 }
 
 .full-width-image {
-    background-image: url('/cute-animals.jpg'); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
-    background-size: cover;
-    background-position: center;
-    height: 100vh; /* Höhe der Viewport-Höhe */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -220px;
-      
+  background-image: url("/Hintergrundtest.jpg"); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Höhe der Viewport-Höhe */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -330px;
 }
- 
+
 .greeting {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen Schatten zur Überschrift hinzu */
-    background-color: #f1f1f1;
-    text-transform: uppercase;
-    margin-top: -100px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen Schatten zur Überschrift hinzu */
+  background-color: #f1f1f1;
+  text-transform: uppercase;
+  margin-top: -100px;
 }
 
 .home_greeting {
-    font-size: 100px;
-    font-family: "Poppins";
-    color: #ffffff85;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    
+  font-size: 100px;
+  font-family: "Poppins";
+  color: #ffffff85;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .home_title {
-    margin-top: -130px;
-    font-size: 100px;
-    font-family: "Poppins";
-    color: #1a1a1aa8;
-    text-shadow: 0px 2px 40px 0px rgba(0, 0, 0, 0.5);
+  margin-top: -130px;
+  font-size: 100px;
+  font-family: "Poppins";
+  color: #1a1a1aa8;
+  text-shadow: 0px 2px 40px 0px rgba(0, 0, 0, 0.5);
 }
 
-
 @media (max-width: 850px) {
-    .home_greeting {    
-        font-size: 50px;
-        margin-top: 100px;
-    }
-    .home_title {
-        font-size: 50px;
-        margin-top: -50px;
-    }
-    .petlist-container {
-        width: 95%;
-        margin: auto;
-    }
+  .home_greeting {
+    font-size: 50px;
+    margin-top: 100px;
+  }
+  .home_title {
+    font-size: 50px;
+    margin-top: -50px;
+  }
+  .petlist-container {
+    width: 95%;
+    margin: auto;
+  }
 
-    .full-width-image {
-        margin-top: -60px;
-        background-position: center; /* Das Bild wird zentriert positioniert */
-        height: 400px;
-    }
+  .full-width-image {
+    margin-top: -220px;
+    background-position: center; /* Das Bild wird zentriert positioniert */
+    height: 400px;
+  }
+
+  .homepage-container {
+    display: grid;
+  }
 }
