@@ -19,9 +19,9 @@ export const newSpecies = (): Species => {
     return {
         id: 0,
         name: "",
-        unitWeight: "",
-        unitSize: "",
-        typeOfSize: "",
+        unitWeight: "kg",
+        unitSize: "cm",
+        typeOfSize: "length",
     }
 }
 
@@ -46,6 +46,11 @@ const addSpecies = async (species: Species): Promise<Species> => {
     return request.data;
 }
 
+const updateSpecies = async (species: Species): Promise<Species> => {
+    const request = await APIClient.put(`${MAPPING}/${species.id}`, species);
+    return request.data;
+  };
+
 const deleteSpecies = async (id: number): Promise<void> => {
     await APIClient.delete(`${MAPPING}/${id}`);
 }
@@ -56,5 +61,6 @@ const deleteSpecies = async (id: number): Promise<void> => {
 export const SpeciesAPI = {
     getAllSpecies,
     deleteSpecies,
+    updateSpecies,
     addSpecies
 }

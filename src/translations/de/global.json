@@ -77,7 +77,32 @@
         "guinea pig": "Meerschweinchen",
         "hamster": "Hamster",
         "fish": "Fisch",
-        "rabbit": "Hase"
+        "rabbit": "Kaninchen",
+        "mouse": "Maus",
+        "rat": "Ratte",
+        "ferret": "Frettchen",
+        "chinchilla": "Chinchilla",
+        "hedgehog": "Igel",
+        "gecko": "Gecko",
+        "iguana": "Leguan",
+        "agamidae": "Agame",
+        "chameleon": "Chamäleon",
+        "snake": "Schlange",
+        "spider": "Spinne",
+        "scorpion": "Skorpion",
+        "insect": "Insekt",
+        "other": "Andere",
+        "bird": "Vogel",
+        "lizard": "Echse",
+        "turtoise": "Wasserschildkröte",
+        "quail": "Wachtel",
+        "chicken": "Huhn",
+        "duck": "Ente",
+        "frog": "Frosch",
+        "toad": "Kröte",
+        "raccoon": "Waschbär",
+        "axolotl": "Axolotl",
+        "parakeet": "Wellensittich"
     },
     "home": {
         "greeting": "Willkommen!",
@@ -101,7 +126,15 @@
         "furtherInfo": "Weitere Details",
         "allergies": "Allergien",
         "medications": "Medikamente",
-        "disabilities": "Behinderungen"
+        "disabilities": "Behinderungen",
+        "length": "Länge",
+        "height": "Höhe",
+        "shoulderHeight": "Schulterhöhe",
+        "wingSpan": "Flügelspannweite",
+        "grams": "Gramm",
+        "kilograms": "Kilogramm",
+        "centimeters": "Zentimetern",
+        "meters": "Metern"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",
@@ -134,7 +167,14 @@
     "admin": {
         "species": "Spezies",
         "addSpecies": "Spezies hinzufügen",
-        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt"
+        "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt",
+        "exists": "Diese Spezies existiert bereits",
+        "unitSize": "Einheit der Größe",
+        "unitWeight": "Einheit des Gewichts",
+        "typeOfSize": "Typ der Größe",
+        "name": "Name",
+        "update": "Aktualisieren",
+        "updated": "Erfolgreich aktualisiert"
     },
     "card": {
         "more_details": "weitere Infos",

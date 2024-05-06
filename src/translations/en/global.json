@@ -77,7 +77,32 @@
         "guinea pig": "Guinea Pig",
         "hamster": "Hamster",
         "fish": "Fish",
-        "rabbit": "Rabbit"
+        "rabbit": "Rabbit",
+        "mouse": "Mouse",
+        "rat": "Rat",
+        "ferret": "Ferret",
+        "chinchilla": "Chinchilla",
+        "hedgehog": "Hedgehog",
+        "gecko": "Gecko",
+        "iguana": "Iguana",
+        "agamidae": "Agamidae",
+        "chameleon": "Chameleon",
+        "snake": "Snake",
+        "spider": "Spider",
+        "scorpion": "Scorpion",
+        "insect": "Insect",
+        "other": "Other",
+        "bird": "Bird",
+        "lizard": "Lizard",
+        "turtoise": "Turtoise",
+        "quail": "Quail",
+        "chicken": "Chicken",
+        "duck": "Duck",
+        "frog": "Frog",
+        "toad": "Toad",
+        "raccoon": "Raccoon",
+        "axolotl": "Axolotl",
+        "parakeet": "Parakeet"
     },
     "home": {
         "greeting": "Welcome!",
@@ -101,7 +126,15 @@
         "furtherInfo": "Further Information",
         "allergies": "Allergies",
         "medications": "Medications",
-        "disabilities": "Disabilities"
+        "disabilities": "Disabilities",
+        "length": "Length",
+        "height": "height",
+        "shoulderHeight": "Shoulder Height",
+        "wingSpan": "Wing Span",
+        "grams": "Grams",
+        "kilograms": "Kilograms",
+        "centimeters": "Centimeters",
+        "meters": "Meters"
     },
     "addThread": {
         "pageTitle": "New Discussion",
@@ -134,7 +167,14 @@
     "admin": {
         "species": "Species",
         "addSpecies": "Add Species",
-        "addedSpecies": "Successfully added \"{{species}}\" to the database"
+        "addedSpecies": "Successfully added \"{{species}}\" to the database",
+        "exists": "Species already exists",
+        "unitSize": "Unit of Size",
+        "unitWeight": "Unit of Weight",
+        "typeOfSize": "Type of Size",
+        "name": "Name",
+        "update": "Update",
+        "updated": "Successfully updated the species"
     },
     "card": {
         "more_details": "more details",

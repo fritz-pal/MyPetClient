@@ -30,10 +30,22 @@ const AdminAddSpecies = () => {
             setShowFeedback(true);
             setSpeciesFeedback(speciesName);
             setSpeciesName('');
+            setDetailSpecies(null);
         },
         onError: () => {
             setShowFeedback(true);
             setSpeciesFeedback('error');
+        }
+    });
+
+    const speciesUpdate = useMutation({
+        mutationFn: (species: Species) => SpeciesAPI.updateSpecies(species),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["species"]
+            })
+            setShowFeedback(true);
+            setSpeciesFeedback("updated");
         }
     });
 
@@ -62,7 +74,7 @@ const AdminAddSpecies = () => {
                     <input placeholder={t("species")} className="post-input" type="text" value={speciesName} onChange={(e) => setSpeciesName(e.target.value.trim())} />
                     <button className="post-button" onClick={() => speciesAdd.mutate({ id: 0, name: speciesName })} disabled={speciesName == ""}>{t("addSpecies")}</button>
                 </div>
-                <div className={`feedback ${showFeedback ? 'shown' : ''}`}>{speciesFeedback === 'error' ? t("exists") : t("addedSpecies", { species: speciesFeedback })}</div>
+                <div className={`feedback ${showFeedback ? 'shown' : ''}`}>{speciesFeedback === 'error' ? t("exists") : speciesFeedback === 'updated' ? t("updated") : t("addedSpecies", { species: speciesFeedback })}</div>
                 <div className="species-list">
                     {query.isLoading && <div>Loading...</div>}
                     {query.isSuccess && query.data?.map(species =>
@@ -71,10 +83,11 @@ const AdminAddSpecies = () => {
             </div>
             {detailSpecies && <div className="post-form-container">
                 <div className="details-content">
-                    <div>{t("name")}: {detailSpecies.name}</div>
-                    <div>{t("unitWeight")}: {detailSpecies.unitWeight}</div>
-                    <div>{t("unitSize")}: {detailSpecies.unitSize}</div>
-                    <div>{t("typeOfSize")}: {detailSpecies.typeOfSize}</div>
+                    <div>{t("name")}: <input type="text" value={detailSpecies.name} onChange={(e) => setDetailSpecies({ ...detailSpecies, name: e.target.value })} /></div>
+                    <div>{t("unitWeight")}: <input type="text" value={detailSpecies.unitWeight} onChange={(e) => setDetailSpecies({ ...detailSpecies, unitWeight: e.target.value })} /></div>
+                    <div>{t("unitSize")}: <input type="text" value={detailSpecies.unitSize} onChange={(e) => setDetailSpecies({ ...detailSpecies, unitSize: e.target.value })} /></div>
+                    <div>{t("typeOfSize")}: <input type="text" value={detailSpecies.typeOfSize} onChange={(e) => setDetailSpecies({ ...detailSpecies, typeOfSize: e.target.value })} /></div>
+                    <div className="update-button"><button onClick={() => speciesUpdate.mutate(detailSpecies)}>{t("update")}</button></div>
                 </div>
             </div>}
         </div>

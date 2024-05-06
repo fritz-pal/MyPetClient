@@ -104,36 +104,37 @@ const AddPet = () => {
                     </div>
                 </div>
                 <div className="add-pet-collapsing-panels">
-                <div className="add-pet-frame">
+                    <div className="add-pet-frame">
                         <div className="labeled-input">
                             <div>{t("birthday")}:</div>
                             <input type="date" value={dateOfBirth ? dateOfBirth.toISOString().substring(0, 10) : ""} onChange={(e) => setBirthday(new Date(e.target.value))} />{/* Better Date Input */}
                         </div>
                         <div className="labeled-input">
-                            <div>{t("size")}{species?.typeOfSize && species.unitSize ? "(" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
-                            <input type="number" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
+                            <div>{t("size")}{species?.typeOfSize && species.unitSize ? " (" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
+                            <input type="number" min="0" step="0.5" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
                         </div>
                         <div className="labeled-input">
-                            <div>{t("weight")}{species?.unitWeight ? "(" + t("weight") + " in " + t(species.unitWeight) + ")" : ""}:</div>
-                            <input type="number" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
+                            <div>{t("weight")}{species?.unitWeight ? " (" + "in " + t(species.unitWeight) + ")" : ""}:</div>
+                            <input type="number" min="0" step="0.5" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
+                        </div>
                     </div>
-                    </div>
-                </div>
-                <div className="add-pet-frame">
-                    <div className="title-further-info">{t("furtherInfo")}</div>
-                    <div className="title-with-plus">{t("allergies")} <PlusButton onClick={() => {
-                        handleUpdateItem(allergies.length, "", allergies, setAllergies);
-                    }} /> </div>
-                    <EditList list={allergies} setList={setAllergies} />
-                    <div className="title-with-plus">{t("disabilities")} <PlusButton onClick={() => {
-                        handleUpdateItem(disabilities.length, "", disabilities, setDisabilities);
-                    }} /> </div>
-                    <EditList list={disabilities} setList={setDisabilities} />
-                    <div className="title-with-plus">{t("medications")} <PlusButton onClick={() => {
-                        handleUpdateItem(medications.length, "", medications, setMedications);
-                    }} /> </div>
-                    <EditList list={medications} setList={setMedications} />
 
+                    <div className="add-pet-frame">
+                        <div className="title-further-info">{t("furtherInfo")}</div>
+                        <div className="title-with-plus">{t("allergies")} <PlusButton onClick={() => {
+                            handleUpdateItem(allergies.length, "", allergies, setAllergies);
+                        }} /> </div>
+                        <EditList list={allergies} setList={setAllergies} />
+                        <div className="title-with-plus">{t("disabilities")} <PlusButton onClick={() => {
+                            handleUpdateItem(disabilities.length, "", disabilities, setDisabilities);
+                        }} /> </div>
+                        <EditList list={disabilities} setList={setDisabilities} />
+                        <div className="title-with-plus">{t("medications")} <PlusButton onClick={() => {
+                            handleUpdateItem(medications.length, "", medications, setMedications);
+                        }} /> </div>
+                        <EditList list={medications} setList={setMedications} />
+
+                    </div>
                 </div>
             </div>
             <div className="add-pet-required-notice">
@@ -158,10 +159,13 @@ const AddPet = () => {
                         subSpecies: subSpecies,
                         dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
                         size: size,
-                        weight: weight
+                        weight: weight,
+                        disabilities: disabilities,
+                        medications: medications,
+                        allergies: allergies
                     });
                 }}>
-                    {petMut.isPending ? <Loader/> : t("submit")}
+                    {petMut.isPending ? <Loader /> : t("submit")}
                 </Button>
             </div>
         </div>
