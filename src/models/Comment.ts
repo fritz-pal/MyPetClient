@@ -7,6 +7,7 @@ export interface Comment {
   text: string;
   poster: User;
   createdAt: number;
+  imageSource?: string;
   threadID?: number;
   directAnswers?: number;
 }
