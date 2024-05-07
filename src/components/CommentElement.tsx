@@ -29,9 +29,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     );
     const [answersOpen, setAnswersOpen] = useState(false);
     const [answerText, setAnswerText] = useState("");
-
-    const fileHook = useFile(null);
-    
+    const answerImageFile = useFile(null);
 
     const postAnswerMut = useMutation({
         mutationFn: (answer: Comment) =>
@@ -169,19 +167,19 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                         onChange={(e) => setAnswerText(e.target.value)}
                     />
                     <div className="comment-answer-image">
-                        {fileHook.isDone && fileHook.data && <><img src={fileHook.data}/>
-                        <CrossButton className="comment-answer-image-remove" onPress={() => fileHook.setFile(null)}/></>}
-                        {!fileHook.isDone && !fileHook.isLoading &&
+                        {answerImageFile.isDone && answerImageFile.data && <><img src={answerImageFile.data} />
+                            <CrossButton className="comment-answer-image-remove" onPress={() => answerImageFile.setFile(null)} /></>}
+                        {!answerImageFile.isDone && !answerImageFile.isLoading &&
                             <FileTrigger onSelect={(e) => {
-                                let image : null | File = null;
+                                let image: null | File = null;
                                 if (e) {
                                     const item = e.item(0);
                                     if (item)
                                         image = item;
                                 }
-                                fileHook.setFile(image);
+                                answerImageFile.setFile(image);
                             }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
-                                <ImageSelectButton/>
+                                <ImageSelectButton />
                             </FileTrigger>
                         }
                     </div>
@@ -190,7 +188,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                         onPress={() => {
                             setNewAnswerOpen(false);
                             setAnswerText("");
-                            fileHook.setFile(null);
+                            answerImageFile.setFile(null);
                         }}>
                         {t("cancel")}
                     </Button>
@@ -226,7 +224,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     );
 };
 
-const AnswerPage = ({commentId, page}: {commentId: number, page: number}) => {
+const AnswerPage = ({ commentId, page }: { commentId: number, page: number }) => {
     const [t] = useTranslation("comment");
 
     const [nextPageOpen, setNextPageOpen] = useState(false);

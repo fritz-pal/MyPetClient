@@ -14,9 +14,18 @@
   border-style: solid;
 }
 
-.comment-body {}
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
 
 .comment-line {}
+
+.comment-edit-text {
+  resize: none;
+}
+
 
 .editCommentButton {
   border-radius: 3px;
