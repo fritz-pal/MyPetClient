@@ -134,7 +134,10 @@
         "grams": "Gramm",
         "kilograms": "Kilogramm",
         "centimeters": "Zentimetern",
-        "meters": "Metern"
+        "meters": "Metern",
+        "name":"Name",
+        "dosage":"Dosierung",
+        "frequency":"Häufigkeit"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",

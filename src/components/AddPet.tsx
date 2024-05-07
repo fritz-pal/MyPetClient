@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { Species, SpeciesAPI } from "../models/Species";
-import { useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
 import petImage from '/testpet.png';
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
-import { JSONPet, PetAPI } from "../models/Pet";
+import { JSONPet, Medication, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 import { Button } from "react-aria-components";
 
@@ -23,7 +23,7 @@ import { Button } from "react-aria-components";
 const AddPet = () => {
     const queryClient = useQueryClient();
     const { user } = useContext(UserContext);
-    const [t,] = useTranslation("addPet"); // TODO Actually use it
+    const [t,] = useTranslation("addPet");
     const nav = useNavigate();
 
     const [name, setName] = useState<string>("");
@@ -35,7 +35,7 @@ const AddPet = () => {
     const [size, setSize] = useState<number>(0);
     const [weight, setWeight] = useState<number>(0);
     const [disabilities, setDisabilities] = useState<string[]>([]);
-    const [medications, setMedications] = useState<string[]>([]);
+    const [medications, setMedications] = useState<Medication[]>([]);
     const [allergies, setAllergies] = useState<string[]>([]);
 
     const speciesQuery = useQuery({
@@ -130,9 +130,9 @@ const AddPet = () => {
                         }} /> </div>
                         <EditList list={disabilities} setList={setDisabilities} />
                         <div className="title-with-plus">{t("medications")} <PlusButton onClick={() => {
-                            handleUpdateItem(medications.length, "", medications, setMedications);
+                            setMedications([...medications, { id: 0, name: "", dosage: "", frequency: "" }]);
                         }} /> </div>
-                        <EditList list={medications} setList={setMedications} />
+                        <MedicationEditList list={medications} setList={setMedications} />
 
                     </div>
                 </div>
@@ -193,6 +193,47 @@ const EditList = (list: { list: string[], setList: React.Dispatch<React.SetState
             {list.list.map((_, index) => (
                 <div key={index} className="list-item">
                     <input type="text" value={list.list[index]} onChange={(e) => handleUpdateItem(index, e.target.value, list.list, list.setList)} />
+                    <svg onClick={() => {
+                        const newList = [...list.list];
+                        newList.splice(index, 1);
+                        list.setList(newList);
+                    }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="remove-item-button">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+const MedicationEditList = (list: { list: Medication[], setList: React.Dispatch<React.SetStateAction<Medication[]>> }) => {
+    const [t,] = useTranslation("addPet");
+    const handleUpdateItem = (index: number, event: ChangeEvent<HTMLInputElement>, list: Medication[], setList: React.Dispatch<React.SetStateAction<Medication[]>>) => {
+        const newItem = event.target.value;
+        const newList = [...list];
+        switch (event.target.id) {
+            case "name":
+                newList[index].name = newItem;
+                break;
+            case "dosage":
+                newList[index].dosage = newItem;
+                break;
+            case "frequency":
+                newList[index].frequency = newItem;
+                break;
+        }
+        setList(newList);
+    };
+
+    return (
+        <div className="edit-list">
+            {list.list.map((_, index) => (
+                <div key={index} className="list-item">
+                    <div className="medication-inputs">
+                        <input type="text" id="name" placeholder={t("name")} value={list.list[index].name} onChange={(e) => handleUpdateItem(index, e, list.list, list.setList)} />
+                        <input type="text" id="dosage" placeholder={t("dosage")} value={list.list[index].dosage} onChange={(e) => handleUpdateItem(index, e, list.list, list.setList)} />
+                        <input type="text" id="frequency" placeholder={t("frequency")} value={list.list[index].frequency} onChange={(e) => handleUpdateItem(index, e, list.list, list.setList)} />
+                    </div>
                     <svg onClick={() => {
                         const newList = [...list.list];
                         newList.splice(index, 1);

@@ -19,8 +19,8 @@ export const newSpecies = (): Species => {
     return {
         id: 0,
         name: "",
-        unitWeight: "kg",
-        unitSize: "cm",
+        unitWeight: "grams",
+        unitSize: "centimeters",
         typeOfSize: "length",
     }
 }

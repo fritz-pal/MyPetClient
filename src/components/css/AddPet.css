@@ -117,6 +117,13 @@
     font-size: 1.5em;
     font-weight: bold;
 }
+.medication-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
 
 @media(max-width:800px) {
     .add-pet-collapsing-panels {

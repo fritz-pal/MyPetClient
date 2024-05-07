@@ -38,8 +38,15 @@ export interface JSONPet {
     isMale: boolean
     lastVetVisit?: string
     disabilities?: string[]
-    medications?: string[]
+    medications?: Medication[]
     allergies?: string[]
+}
+
+export interface Medication {
+    id: number
+    name: string
+    dosage: string
+    frequency: string
 }
 
 /**
