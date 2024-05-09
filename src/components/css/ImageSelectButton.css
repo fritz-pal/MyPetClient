@@ -1,0 +1,16 @@
+.image-select-button {
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: inherit;
+    color: black;
+    border-radius: 50%;
+}
+
+.image-select-button:hover {
+    color: white;
+}
+
+.image-select-button svg {
+    height: 1.5rem;
+}
