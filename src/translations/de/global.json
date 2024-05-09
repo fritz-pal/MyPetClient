@@ -114,7 +114,7 @@
     "addPet": {
         "petName": "Name",
         "castrated": "Kastriert",
-        "species": "Welche art von Tier hast du?",
+        "species": "Welche Art von Tier hast Du?",
         "speciesLoadError": "Keine Verbindung zur Datenbank, stelle sicher das du eine Internetverbindung hast",
         "subSpecies": "Unterart/Rasse",
         "birthday": "Geburtstag",
@@ -122,7 +122,7 @@
         "weight": "Gewicht",
         "cancel": "Abbrechen",
         "submit": "Speichern",
-        "requieredNotice": "Plichtfeld",
+        "requiredNotice": "Plichtfeld",
         "furtherInfo": "Weitere Details",
         "allergies": "Allergien",
         "medications": "Medikamente",
@@ -137,7 +137,9 @@
         "meters": "Metern",
         "name":"Name",
         "dosage":"Dosierung",
-        "frequency":"Häufigkeit"
+        "frequency":"Häufigkeit",
+        "confirm": "Bestätigen",
+        "confirmDuplicate": "Du hat bereits ein Tier mit dem gleichen Namen. Möchtest Du es trotzdem hinzufügen?"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",

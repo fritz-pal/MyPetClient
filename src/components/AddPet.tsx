@@ -42,6 +42,12 @@ const AddPet = () => {
         queryKey: ["species"],
         queryFn: () => SpeciesAPI.getAllSpecies(),
     });
+
+    const petQuery = useQuery({
+        queryKey: ["pets", user.id],
+        queryFn: () => PetAPI.getAllPetsOfUser(user.id)
+    });
+
     const petMut = useMutation({
         mutationFn: (pet: JSONPet) => PetAPI.addPet(pet),
         onSuccess: () => {
@@ -63,6 +69,69 @@ const AddPet = () => {
             return false;
         return true;
     }
+    
+    //true if new pet isnt duplicate
+    const checkForDuplicate = (): boolean => {
+        if (petQuery.isSuccess) {
+            for (const element of petQuery.data) {
+                if (JSON.stringify(element.species) === JSON.stringify(species) && element.name.toLowerCase() === name.toLowerCase()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    
+    const confirmationPopup = (callback: (confirmed: boolean) => void): void => {
+        const message = t("confirmDuplicate");
+    
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.style.display = "block";
+    
+        const modalContent = document.createElement("div");
+        modalContent.className = "modal-content";
+    
+        const modalMessage = document.createElement("p");
+        modalMessage.className = "modal-message"
+        modalMessage.textContent = message;
+    
+        const confirmButton = document.createElement("button");
+        confirmButton.textContent = t("confirm");
+        confirmButton.onclick = () => {
+            modal.style.display = "none";
+            callback(true);
+        };
+    
+        const closeButton = document.createElement("span");
+        closeButton.className = "close";
+        closeButton.textContent = "×";
+        closeButton.onclick = () => {
+            modal.style.display = "none";
+            callback(false);
+        };
+    
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(modalMessage);
+        modalContent.appendChild(confirmButton);
+        modal.appendChild(modalContent);
+    
+        document.body.appendChild(modal);
+    
+    }
+
+    const validateDuplicate = (callback: (isValid: boolean) => void): void => {
+        if (!checkForDuplicate()){
+            confirmationPopup((confirmed: boolean) => {
+                if (confirmed) callback(true);
+                else callback(false);});
+            }
+        else callback(true)
+    }
+        
+        
+
     return (
         <div className="add-pet-page">
             <div className="add-pet-panels">
@@ -138,7 +207,7 @@ const AddPet = () => {
                 </div>
             </div>
             <div className="add-pet-required-notice">
-                *{t("requieredNotice")}
+                *{t("requiredNotice")}
             </div>
             <div className="add-pet-button-set">
                 <Button onPress={() => nav("/")}>
@@ -149,6 +218,8 @@ const AddPet = () => {
                         return;
                     if (species == null)
                         return;
+                    validateDuplicate((isValid: boolean) => {
+                        if (isValid)  {
                     petMut.mutate({
                         id: 0,
                         name: name,
@@ -164,6 +235,7 @@ const AddPet = () => {
                         medications: medications,
                         allergies: allergies
                     });
+                }});
                 }}>
                     {petMut.isPending ? <Loader /> : t("submit")}
                 </Button>

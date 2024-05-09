@@ -122,7 +122,7 @@
         "weight": "Weight",
         "cancel": "Cancel",
         "submit": "Submit",
-        "requieredNotice": "Requiered",
+        "requiredNotice": "Requiered",
         "furtherInfo": "Further Information",
         "allergies": "Allergies",
         "medications": "Medications",
@@ -137,7 +137,9 @@
         "meters": "Meters",
         "name":"Name",
         "dosage":"Dosage",
-        "frequency":"Frequency"
+        "frequency":"Frequency",
+        "confirm": "Confirm",
+        "confirmDuplicate": "You already have a pet with that name. Do you still want to add it?"
     },
     "addThread": {
         "pageTitle": "New Discussion",
