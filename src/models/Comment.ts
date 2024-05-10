@@ -34,13 +34,16 @@ const updateComment = async (comment: Comment): Promise<Comment> => {
     return request.data;
 };
 
-const answerToComment = async (comment: Comment, parentID: number, file?: Blob): Promise<Page<Comment>> => {
-    const formData = new FormData();
+const answerToComment = async (comment: Comment, parentID: number/*, file?: File*/): Promise<Page<Comment>> => {
+    /*const formData = new FormData();
     formData.append("commentDTO", JSON.stringify(comment));
     if (file) {
-        formData.append("file", file);
-    }
-    const request = await APIClient.post(`${MAPPING}/${parentID}/answers`, formData);
+        formData.append("file", file, file.name);
+    }*/
+    const request = await APIClient.post(`${MAPPING}/${parentID}/answers`, comment/*, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        transformRequest: formData => formData,
+    }*/);
     return request.data;
 };
 
