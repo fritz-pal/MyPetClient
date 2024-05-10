@@ -2,7 +2,7 @@ import Reminders, { Reminder, ReminderAPI } from "../models/Reminder";
 import Loader from "./Loader";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import petImage from "/hund.jpg";
@@ -68,9 +68,7 @@ const ReminderList = () => {
 const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
   const [t, _] = useTranslation("reminders");
   const queryClient = useQueryClient();
-  const [text, setText] = useState("p35d");
   const { user } = useContext(UserContext);
-  const test = true;
   const deleteReminderMut = useMutation({
     mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
     onSuccess: () => {

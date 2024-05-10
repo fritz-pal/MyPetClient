@@ -63,8 +63,13 @@ const getCommentsOfThread = async (threadId: string, page?: number, pageSize?: n
     return request.data;
 }
 
-const postCommentToThread = async (threadId: string, comment: Comment): Promise<Comment> => {
-    const request = await APIClient.post(`${MAPPING}/${threadId}/comments`, comment);
+const postCommentToThread = async (threadId: string, comment: Comment, file?: Blob): Promise<Comment> => {
+    const formData = new FormData();
+    formData.append("commentDTO", JSON.stringify(comment));
+    if (file) {
+        formData.append("file", file);
+    }
+    const request = await APIClient.post(`${MAPPING}/${threadId}/comments`, formData);
     return request.data;
 }
 

@@ -32,8 +32,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     const answerImageFile = useFile(null);
 
     const postAnswerMut = useMutation({
-        mutationFn: (answer: Comment) =>
-            CommentAPI.answerToComment(answer, comment.id),
+        mutationFn: ({answer , file}: {answer: Comment, file?: Blob}) =>
+            CommentAPI.answerToComment(answer, comment.id, file),
         onSuccess: (data) => {
             console.log("posted answer for id:", comment.id, data);
             queryClient.invalidateQueries({
@@ -56,11 +56,13 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     });
 
     const handleAnswerPostClick = () => {
-        postAnswerMut.mutate({
-            id: 0,
-            text: answerText,
-            poster: user,
-            createdAt: Date.now(),
+        postAnswerMut.mutate({answer: {
+                id: 0,
+                text: answerText,
+                poster: user,
+                createdAt: Date.now(),
+            },
+            file: answerImageFile.file ? answerImageFile.file : undefined
         });
     };
 

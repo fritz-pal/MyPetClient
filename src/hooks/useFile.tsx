@@ -46,7 +46,7 @@ const useFile = (initialFile: File | null) => {
         fileEffect()
     }, []);
 
-    return {isDone, isLoading, isError, data, setFile}
+    return {isDone, isLoading, isError, data, setFile, file}
 }
 
 const readFileAsync = (file: File, signal?: AbortSignal): Promise<string> => {
