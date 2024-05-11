@@ -20,6 +20,11 @@
   padding: 5px;
 }
 
+.comment-image {
+  max-height: 50vh;
+  align-self: start;
+}
+
 .comment-line {}
 
 .comment-edit-text {

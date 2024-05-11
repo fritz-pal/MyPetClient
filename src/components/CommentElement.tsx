@@ -133,13 +133,17 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                     </div>
                 )}
                 {!editClicked &&
-                    comment.text.split("\n").map((line) => {
-                        return line != "" ? (
-                            <div className="comment-line">{line}</div>
-                        ) : (
-                            <br />
-                        );
-                    })}
+                    <>
+                        {comment.text.split("\n").map((line) => {
+                            return line != "" ? (
+                                <div className="comment-line">{line}</div>
+                            ) : (
+                                <br />
+                            );
+                        })}
+                        {comment.imageSource ? <img className="comment-image" src={comment.imageSource}/> : <></>}
+                    </>
+                }
             </div>
             {!newAnswerOpen && !editClicked && (
                 <div className="comment-options">
