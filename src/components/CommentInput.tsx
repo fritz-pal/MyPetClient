@@ -1,16 +1,17 @@
 import { Button, FileTrigger } from "react-aria-components";
 import TextareaAutosize from "react-textarea-autosize";
-import ImageSelectButton from "./ImageSelectButton";
+import ImageSelectButton from "./buttons/ImageSelectButton";
 import { useContext, useState } from "react";
 import useFile from "../hooks/useFile";
 import { Comment } from "../models/Comment";
 import { UserContext } from "../context/UserContext";
 import SmallLoader from "./SmallLoader";
 import "./css/CommentInput.css"
-import SubmitButton from "./SubmitButton";
-import CrossButton from "./CrossButton";
+import SubmitButton from "./buttons/SubmitButton";
+import CrossButton from "./buttons/CrossButton";
+import CancelButton from "./buttons/CancelButton";
 
-const CommentInput = ({onSubmit, isDisabled, isLoading, initialComment}: {onSubmit?: (comment: Comment, file?: File) => any, isDisabled?: boolean, isLoading?: boolean, initialComment?: Comment}) => {
+const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment}: {onSubmit?: (comment: Comment, file?: File) => any, onCancel?: () => any, isDisabled?: boolean, isLoading?: boolean, initialComment?: Comment}) => {
     if (isDisabled == undefined)
         isDisabled = false;
     if (isLoading == undefined)
@@ -47,7 +48,7 @@ const CommentInput = ({onSubmit, isDisabled, isLoading, initialComment}: {onSubm
     }
 
     return (
-        <div className="comment-input">
+        <div className={"comment-input" + (onCancel ? " comment-input-with-cancel" : "")}>
             <TextareaAutosize className="comment-input-text" value={text} onChange={(e) => setText(e.target.value)}/>
             <FileTrigger onSelect={(e) => {
                     let image: null | File = null;
@@ -60,6 +61,7 @@ const CommentInput = ({onSubmit, isDisabled, isLoading, initialComment}: {onSubm
                 }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
                 <ImageSelectButton className="comment-input-image-button"/>
             </FileTrigger>
+            {onCancel && <CancelButton className={"comment-input-cancel"} onPress={onCancel}/>}
             {!isLoading && <SubmitButton className="comment-input-submit" isDisabled={!isValid() || isDisabled } onPress={handleButtonClick}/>}
             {isLoading && <Button className="comment-input-submit" isDisabled><SmallLoader/></Button>}
             {

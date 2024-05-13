@@ -10,6 +10,14 @@
     margin: 5px;
 }
 
+.comment-input-with-cancel {
+    grid-template-columns: 1fr min-content min-content min-content;
+    grid-template-areas: 
+        "text imb cb sb"
+        "text none none none"
+        "image image image image";
+}
+
 .comment-input-text {
     resize: none;
     grid-area: text;
@@ -17,6 +25,10 @@
 
 .comment-input-image-button {
     grid-area: imb;
+}
+
+.comment-input-cancel {
+    grid-area: cb;
 }
 
 .comment-input-submit {

@@ -7,12 +7,9 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useState } from "react";
-import { Button, FileTrigger } from "react-aria-components";
-import ReactTextareaAutosize from "react-textarea-autosize";
+import { Button } from "react-aria-components";
 import CommentSection from "./CommentSection";
-import ImageSelectButton from "./ImageSelectButton";
-import useFile from "../hooks/useFile";
-import CrossButton from "./CrossButton";
+import CommentInput from "./CommentInput";
 
 const CommentElement = ({ comment }: { comment: Comment }) => {
     const queryClient = useQueryClient();
@@ -22,14 +19,11 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     const [isDeleted, setIsDeleted] = useState(false);
     const [newAnswerOpen, setNewAnswerOpen] = useState(false);
     const [editClicked, setEditClicked] = useState(false);
-    const [commentText, setCommentText] = useState(comment.text);
 
     const [hasAnswers, setHasAnswers] = useState(
         comment.directAnswers && comment.directAnswers > 0 ? true : false
     );
     const [answersOpen, setAnswersOpen] = useState(false);
-    const [answerText, setAnswerText] = useState("");
-    const answerImageFile = useFile(null);
 
     const postAnswerMut = useMutation({
         mutationFn: ({answer, file}: {answer: Comment, file?: File}) =>
@@ -51,29 +45,20 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
             setNewAnswerOpen(false);
             setHasAnswers(true);
             setAnswersOpen(true);
-            setAnswerText("");
         },
     });
 
-    const handleAnswerPostClick = () => {
-        postAnswerMut.mutate({answer: {
-                id: 0,
-                text: answerText,
-                poster: user,
-                createdAt: Date.now(),
-            },
-            file: answerImageFile.file ? answerImageFile.file : undefined
+    const handleAnswerPostClick = (answer: Comment, file?: File) => {
+        answer.threadID = comment.threadID;
+        postAnswerMut.mutate({
+            answer: answer,
+            file: file
         });
     };
 
     const editCommentMut = useMutation({
-        mutationFn: () =>
-            CommentAPI.updateComment({
-                id: comment.id,
-                text: commentText,
-                poster: user,
-                createdAt: Date.now(),
-            }),
+        mutationFn: ({editedComment}:{editedComment: Comment, file?: File}) =>
+            CommentAPI.updateComment(editedComment),
         onSuccess: (data) => {
             comment.text = data.text;
         },
@@ -100,8 +85,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         }
     };
 
-    const handleEditClick = () => {
-        editCommentMut.mutate();
+    const handleEditClick = (comment: Comment, file?: File) => {
+        editCommentMut.mutate({editedComment: comment, file});
         setEditClicked(false);
     };
 
@@ -114,23 +99,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
             <PosterInfo poster={comment.poster} postedAt={comment.createdAt} />
             <div className="comment-body">
                 {editClicked && (
-                    <div className="comment-edit">
-                        <ReactTextareaAutosize
-                            className="comment-edit-text"
-                            defaultValue={comment.text}
-                            onChange={(e) => setCommentText(e.target.value)}
-                        />
-                        <div className="editCommentButtonOptions">
-                            <Button
-                                className="editCommentButton"
-                                onPress={() => setEditClicked(false)}>
-                                {t("cancel")}
-                            </Button>
-                            <Button className="editCommentButton" onPress={handleEditClick}>
-                                {t("submit")}
-                            </Button>
-                        </div>
-                    </div>
+                    <CommentInput initialComment={comment} onCancel={() => setEditClicked(false)} isLoading={editCommentMut.isPending} onSubmit={handleEditClick} />
                 )}
                 {!editClicked &&
                     <>
@@ -166,44 +135,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                 </div>
             )}
             {newAnswerOpen && (
-                <div className="comment-answer-post">
-                    <ReactTextareaAutosize
-                        className="comment-answer-text"
-                        value={answerText}
-                        onChange={(e) => setAnswerText(e.target.value)}
-                    />
-                    <div className="comment-answer-image">
-                        {answerImageFile.isDone && answerImageFile.data && <><img src={answerImageFile.data} />
-                            <CrossButton className="comment-answer-image-remove" onPress={() => answerImageFile.setFile(null)} /></>}
-                        {!answerImageFile.isDone && !answerImageFile.isLoading &&
-                            <FileTrigger onSelect={(e) => {
-                                let image: null | File = null;
-                                if (e) {
-                                    const item = e.item(0);
-                                    if (item)
-                                        image = item;
-                                }
-                                answerImageFile.setFile(image);
-                            }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
-                                <ImageSelectButton />
-                            </FileTrigger>
-                        }
-                    </div>
-                    <Button
-                        className="comment-answer-button-cancel"
-                        onPress={() => {
-                            setNewAnswerOpen(false);
-                            setAnswerText("");
-                            answerImageFile.setFile(null);
-                        }}>
-                        {t("cancel")}
-                    </Button>
-                    <Button
-                        className="comment-answer-button-submit"
-                        onPress={handleAnswerPostClick}>
-                        {t("answer")}
-                    </Button>
-                </div>
+                <CommentInput onSubmit={handleAnswerPostClick} isLoading={postAnswerMut.isPending} onCancel={() => setNewAnswerOpen(false)}/>
             )}
             {hasAnswers && !answersOpen && (
                 <Button

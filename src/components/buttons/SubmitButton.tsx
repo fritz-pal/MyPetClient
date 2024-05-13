@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "react-aria-components"
-import "./css/SVGButton.css"
+import "../css/SVGButton.css"
 
 const SubmitButton = (buttonProps: ButtonProps & React.RefAttributes<HTMLButtonElement>) => {
     return (

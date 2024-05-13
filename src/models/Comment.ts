@@ -12,6 +12,20 @@ export interface Comment {
     directAnswers?: number;
 }
 
+export interface CommentChanges {
+    id: number;
+    text?: string;
+    deleteImage?: boolean;
+}
+
+export const GetChanges = (oldC: Comment, newC: Comment): CommentChanges => {
+    const changes: CommentChanges = {id: oldC.id};
+    if (oldC.text != newC.text) {
+        changes.text = newC.text;
+    }
+    return changes;
+}
+
 const MAPPING = "/comments";
 
 const deleteComment = async (id: number): Promise<void> => {
@@ -29,7 +43,7 @@ const getAnswers = async (commentId: number, page?: number, pageSize?: number): 
     return request.data;
 };
 
-const updateComment = async (comment: Comment): Promise<Comment> => {
+const updateComment = async (comment: CommentChanges): Promise<Comment> => {
     const request = await APIClient.put(`${MAPPING}/${comment.id}`, comment);
     return request.data;
 };
