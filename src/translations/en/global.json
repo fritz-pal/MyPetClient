@@ -158,7 +158,8 @@
         "edit": "Edit",
         "openAnswers_one": "Show {{count}} answer",
         "openAnswers_other": "Show {{count}} answers",
-        "moreAnswers": "Show more"
+        "moreAnswers": "Show more",
+        "deleteConfirm": "Are you sure you want to delete this comment?"
     },
     "header": {
         "home": "Home",
@@ -181,7 +182,8 @@
         "typeOfSize": "Type of Size",
         "name": "Name",
         "update": "Update",
-        "updated": "Successfully updated the species"
+        "updated": "Successfully updated the species",
+        "delete": "Delete"
     },
     "card": {
         "more_details": "more details",

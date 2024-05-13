@@ -158,7 +158,8 @@
         "edit": "Bearbeiten",
         "openAnswers_one": "Zeige {{count}} Antwort",
         "openAnswers_other": "Zeige {{count}} Antworten",
-        "moreAnswers": "Weitere Antworten"
+        "moreAnswers": "Weitere Antworten",
+        "deleteConfirm": "Bist du dir sicher das du diesen Kommentar löschen möchtest?"
     },
     "header": {
         "home": "Home",
@@ -181,7 +182,8 @@
         "typeOfSize": "Typ der Größe",
         "name": "Name",
         "update": "Aktualisieren",
-        "updated": "Erfolgreich aktualisiert"
+        "updated": "Erfolgreich aktualisiert",
+        "delete": "Löschen"
     },
     "card": {
         "more_details": "weitere Infos",

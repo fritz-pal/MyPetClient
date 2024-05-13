@@ -96,7 +96,7 @@ const ReminderPage = () => {
 
 
     return (
-        <div className="reminder-page">
+        <div className="reminder-page scroll-page">
             <div className="add-reminder-frame">
                 <div className="set-reminder-name">
                     <div className="inputLabel">{t("reminderName")}:</div>
