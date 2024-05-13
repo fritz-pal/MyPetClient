@@ -49,6 +49,11 @@ const PetList = () => {
 export const PetCard = ({ pets }: { pets: Pet[] }) => {
     const [tcard, _card] = useTranslation("card");
     const [k, _k] = useTranslation("species");
+    const navigate = useNavigate();
+
+    const handleClick = (id: string) => {
+        navigate("/pet/" + id);
+    }
 
     return (
         <div className="cards">
@@ -63,6 +68,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                             </header>
                             <img className="pet-image2" src={petImage} alt={pet.name} />
                             <div className="pet_name_css">{k(pet.species.name)}</div>
+                            <div onClick={() => handleClick(pet.id.toString())}>Hier klicken</div>
 
                         </div>
                         <div className="back">

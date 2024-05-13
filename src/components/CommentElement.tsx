@@ -32,7 +32,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     const answerImageFile = useFile(null);
 
     const postAnswerMut = useMutation({
-        mutationFn: ({answer}: {answer: Comment, file?: Blob}) =>
+        mutationFn: ({ answer }: { answer: Comment, file?: Blob }) =>
             CommentAPI.answerToComment(answer, comment.id),
         onSuccess: (data) => {
             console.log("posted answer for id:", comment.id, data);
@@ -56,7 +56,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     });
 
     const handleAnswerPostClick = () => {
-        postAnswerMut.mutate({answer: {
+        postAnswerMut.mutate({
+            answer: {
                 id: 0,
                 text: answerText,
                 poster: user,

@@ -67,7 +67,7 @@ const AdminAddSpecies = () => {
     }
 
     return (
-        <div className="admin-container">
+        <div className="admin-container scroll-page">
             <div className="post-form-container">
                 <div className="title-admin">{t("addSpecies")}</div>
                 <div className="post-form">
