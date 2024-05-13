@@ -1,0 +1,13 @@
+.svg-button {
+    padding: 0.444rem;
+    aspect-ratio: 1/1;
+}
+
+.svg-button:hover {
+    color: white;
+}
+
+.svg-button svg {
+    height: 1.5rem;
+    width: 1.5rem;
+}

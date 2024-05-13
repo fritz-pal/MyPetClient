@@ -1,0 +1,37 @@
+.small-loader {
+    position: relative;
+    height: 1em;
+    width: 2em;
+}
+
+.small-loader div {
+    position: absolute;
+    top: 0.5em;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: currentColor;
+    opacity: 50%;
+    border-radius: 50%;
+    animation: small-loader-bounce 0.5s infinite alternate;
+}
+
+.small-loader div:nth-child(1) {
+    left: 0em;
+}
+
+.small-loader div:nth-child(2) {
+    left: 0.75em;
+    animation-delay: 0.15s;
+}
+
+.small-loader div:nth-child(3) {
+    left: 1.5em;
+    animation-delay: 0.3s;
+}
+
+@keyframes small-loader-bounce {
+    to {
+        top: 0em;
+        opacity: 100%;
+    }
+}

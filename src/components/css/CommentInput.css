@@ -1,0 +1,40 @@
+.comment-input {
+    display: grid;
+    grid-template-columns: 1fr min-content min-content;
+    grid-template-rows: min-content auto min-content;
+    grid-template-areas: 
+        "text imb sb"
+        "text none none"
+        "image image image";
+    grid-gap: 5px;
+    margin: 5px;
+}
+
+.comment-input-text {
+    resize: none;
+    grid-area: text;
+}
+
+.comment-input-image-button {
+    grid-area: imb;
+}
+
+.comment-input-submit {
+    grid-area: sb;
+}
+
+.comment-input-image {
+    grid-area: image;
+    position: relative;
+}
+
+.comment-input-image img {
+    max-height: 50vh;
+    max-width: 100%;
+}
+
+.comment-input-cross {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}

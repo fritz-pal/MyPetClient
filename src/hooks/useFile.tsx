@@ -13,6 +13,7 @@ const useFile = (initialFile: File | null) => {
             setIsLoading(false);
             setIsDone(false);
             setIsError(false);
+            setData(null);
             return;
         }
         setIsLoading(true);
