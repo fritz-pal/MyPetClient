@@ -10,7 +10,7 @@ import { AuthContext } from '../context/AuthContext';
 const HeaderBar = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [t, _] = useTranslation("paths");
+    const [t, _] = useTranslation("header");
     const auth = useContext(AuthContext);
 
     const handleSettingsClick = () => {

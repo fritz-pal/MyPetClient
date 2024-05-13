@@ -160,14 +160,16 @@
         "openAnswers_other": "Show {{count}} answers",
         "moreAnswers": "Show more"
     },
-    "paths": {
+    "header": {
         "home": "Home",
         "newpet": "Add Pet",
         "login": "Login",
         "admin": "Admin",
         "forum": "Forum",
         "reminders": "Reminders",
-        "newreminder": "Add Reminder"
+        "newreminder": "Add Reminder",
+        "myProfile": "My Profile",
+        "logout": "Logout"
     },
     "admin": {
         "species": "Species",
