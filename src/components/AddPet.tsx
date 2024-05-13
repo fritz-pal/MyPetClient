@@ -33,11 +33,25 @@ const AddPet = () => {
     const [species, setSpecies] = useState<null | Species>(null);
     const [subSpecies, setSubSpecies] = useState<string>("");
     const [dateOfBirth, setBirthday] = useState<null | Date>(null);
-    const [size, setSize] = useState<number>(0);
-    const [weight, setWeight] = useState<number>(0);
+    const [size, setSize] = useState("");
+    const [weight, setWeight] = useState("");
     const [disabilities, setDisabilities] = useState<string[]>([]);
     const [medications, setMedications] = useState<Medication[]>([]);
     const [allergies, setAllergies] = useState<string[]>([]);
+
+    const validateAsNumber = (text: string) => {
+        return /^([0-9]*(,|\.)?[0-9]*)$/.test(text);
+    }
+
+    const handleSizeChange = (text: string) => {
+        if (validateAsNumber(text))
+            setSize(text);
+    }
+
+    const handleWeightChange = (text: string) => {
+        if (validateAsNumber(text))
+            setWeight(text);
+    }
 
     const speciesQuery = useQuery({
         queryKey: ["species"],
@@ -181,11 +195,11 @@ const AddPet = () => {
                         </div>
                         <div className="labeled-input">
                             <div>{t("size")}{species?.typeOfSize && species.unitSize ? " (" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
-                            <input type="number" min="0" step="0.5" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
+                            <input type="text" value={size} onChange={(e) => handleSizeChange(e.target.value)} />
                         </div>
                         <div className="labeled-input">
                             <div>{t("weight")}{species?.unitWeight ? " (" + "in " + t(species.unitWeight) + ")" : ""}:</div>
-                            <input type="number" min="0" step="0.5" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
+                            <input type="text" value={weight} onChange={(e) => handleWeightChange(e.target.value)} />
                         </div>
                     </div>
 
@@ -221,22 +235,23 @@ const AddPet = () => {
                         return;
                     validateDuplicate((isValid: boolean) => {
                         if (isValid)  {
-                    petMut.mutate({
-                        id: 0,
-                        name: name,
-                        owner: user,
-                        isMale: isMale,
-                        castrated: castrated,
-                        species: species,
-                        subSpecies: subSpecies,
-                        dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
-                        size: size,
-                        weight: weight,
-                        disabilities: disabilities,
-                        medications: medications,
-                        allergies: allergies
+                            petMut.mutate({
+                                id: 0,
+                                name: name,
+                                owner: user,
+                                isMale: isMale,
+                                castrated: castrated,
+                                species: species,
+                                subSpecies: subSpecies,
+                                dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
+                                size: parseFloat(size.replace(",", ".")),
+                                weight: parseFloat(weight.replace(",", ".")),
+                                disabilities: disabilities,
+                                medications: medications,
+                                allergies: allergies
+                            });
+                        }
                     });
-                }});
                 }}>
                     {petMut.isPending ? <SmallLoader /> : t("submit")}
                 </Button>
