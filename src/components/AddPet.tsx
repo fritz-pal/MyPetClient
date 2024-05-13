@@ -144,16 +144,16 @@ const AddPet = () => {
                             <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
                         </div>
                         <div className="gender-selection">
-                            <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
+                            <Button className={"gender-button " + (isMale ? "selected" : "")} onPress={() => setIsMale(true)}>
                                 <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                                     <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z" />
                                 </svg>
-                            </button>
-                            <button className={"gender-button " + (isMale ? "" : "selected")} onClick={() => setIsMale(false)}>
+                            </Button>
+                            <Button className={"gender-button " + (isMale ? "" : "selected")} onPress={() => setIsMale(false)}>
                                 <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                                     <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z" />
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                         <div className="labeled-checkbox">
                             <input className="normal_checkbox" type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
