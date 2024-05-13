@@ -6,6 +6,7 @@ import { AuthAPI } from "../models/Auth";
 import "./css/LoginPage.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-aria-components";
+import logo from "/logo2.svg"
 
 const LoginPage = () => {
   const [t] = useTranslation("login");
@@ -46,7 +47,7 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-form">
-        <img src="/logo2.svg" alt="logo" className="login-logo"></img>
+        <img src={logo} alt="logo" className="login-logo"></img>
         <h1>{t("title")}</h1>
         <div className="login-input-label-set">
           <label>{t("name")}</label>
