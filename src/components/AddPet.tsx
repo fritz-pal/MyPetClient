@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import { JSONPet, Medication, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 import { Button } from "react-aria-components";
+import SmallLoader from "./SmallLoader";
 
 /**
  * React Component Displaying the form for adding a new Pet.
@@ -213,7 +214,7 @@ const AddPet = () => {
                 <Button onPress={() => nav("/")}>
                     {t("cancel")}
                 </Button>
-                <Button isDisabled={!validate()} onPress={() => {
+                <Button isDisabled={!validate() || petMut.isPending} onPress={() => {
                     if (!validate())
                         return;
                     if (species == null)
@@ -237,7 +238,7 @@ const AddPet = () => {
                     });
                 }});
                 }}>
-                    {petMut.isPending ? <Loader /> : t("submit")}
+                    {petMut.isPending ? <SmallLoader /> : t("submit")}
                 </Button>
             </div>
         </div>

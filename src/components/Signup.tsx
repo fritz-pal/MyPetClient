@@ -6,6 +6,8 @@ import Loader from './Loader';
 import { AuthContext, AuthState } from '../context/AuthContext';
 import { AuthAPI, RegisterData } from '../models/Auth';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'react-aria-components';
+import SmallLoader from './SmallLoader';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -152,7 +154,7 @@ const SignUp = () => {
                     />
                 </div>
                 <div className='button-container'>
-                    <button type="submit">{userMutation.isPending ? <Loader /> : t("signup")}</button>
+                    <Button isDisabled={userMutation.isPending} type="submit">{userMutation.isPending ? <SmallLoader /> : t("signup")}</Button>
                 </div>
             </form>
             <div className="loginQuestion">

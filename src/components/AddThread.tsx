@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import { UserContext } from "../context/UserContext";
 import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "react-aria-components";
+import SmallLoader from "./SmallLoader";
 
 
 
@@ -87,8 +88,8 @@ const AddThread = () => {
                     <Button onPress={() => nav("/forum")}>
                         {t("cancel")}
                     </Button>
-                    <Button isDisabled={!validate()} onPress={apply}>
-                        {t("submit")}
+                    <Button isDisabled={!validate() || addThreadMut.isPending} onPress={apply}>
+                        {addThreadMut.isPending ? <SmallLoader/> : t("submit")}
                     </Button>
                 </div>
             </div>

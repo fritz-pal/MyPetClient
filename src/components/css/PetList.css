@@ -132,7 +132,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  font-family: Poppins;
   font-size: 18px;
   padding: 36px 36px 44px 44px;
   border-radius: 10px;
@@ -178,6 +177,7 @@ input:checked~.card .front {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: space-evenly;
 }
 
 .title_pets {
@@ -185,7 +185,6 @@ input:checked~.card .front {
   font-size: 30px;
   margin: 0;
   color: #ffffff;
-  font-family: "Poppins";
   font-weight: bold;
   text-transform: uppercase;
   background-image: url(/leaves-natural.jpg);
