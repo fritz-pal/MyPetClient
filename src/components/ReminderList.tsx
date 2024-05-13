@@ -7,7 +7,6 @@ import { UserContext } from "../context/UserContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import petImage from "/hund.jpg";
 import "./css/ReminderList.css";
-import React from "react";
 import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
 

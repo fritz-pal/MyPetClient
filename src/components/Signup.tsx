@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import './css/Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Loader from './Loader';
 import { AuthContext, AuthState } from '../context/AuthContext';
 import { AuthAPI, RegisterData } from '../models/Auth';
 import { useTranslation } from 'react-i18next';
