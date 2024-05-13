@@ -13,6 +13,7 @@ import CommentInput from "./CommentInput";
 
 const ThreadView = () => {
     const { id } = useParams();
+    const [t,] = useTranslation("thread");
     const queryClient = useQueryClient();
     
     const threadQuery = useQuery({
@@ -57,7 +58,7 @@ const ThreadView = () => {
                 </div>
                 <hr/>
                 <div className="thread-comment-section">
-                    <CommentInput isLoading={postCommentMut.isPending} onSubmit={handleSubmit}/>
+                    <CommentInput isLoading={postCommentMut.isPending} onSubmit={handleSubmit} placeHolder={t("newComment")}/>
                     <div className="thread-comments-gap">
                         <CommentPage threadID={id ? id : ""} page={1} />
                     </div>

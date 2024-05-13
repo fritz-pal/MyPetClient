@@ -123,7 +123,12 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
             </div>
             <div className="comment-body">
                 {editClicked && (
-                    <CommentInput initialComment={comment} onCancel={() => setEditClicked(false)} isLoading={editCommentMut.isPending} onSubmit={handleEditClick} />
+                    <CommentInput 
+                        initialComment={comment} 
+                        onCancel={() => setEditClicked(false)} 
+                        isLoading={editCommentMut.isPending} 
+                        onSubmit={handleEditClick}
+                        placeHolder={comment.text} />
                 )}
                 {!editClicked &&
                     <>
@@ -139,7 +144,11 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                 }
             </div>
             {newAnswerOpen && (
-                <CommentInput onSubmit={handleAnswerPostClick} isLoading={postAnswerMut.isPending} onCancel={() => setNewAnswerOpen(false)}/>
+                <CommentInput 
+                    onSubmit={handleAnswerPostClick} 
+                    isLoading={postAnswerMut.isPending} 
+                    onCancel={() => setNewAnswerOpen(false)}
+                    placeHolder={t("answer")}/>
             )}
             {hasAnswers && !answersOpen && (
                 <Button

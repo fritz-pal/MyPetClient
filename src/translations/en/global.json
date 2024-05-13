@@ -41,7 +41,8 @@
         "en": "English"
     },
     "thread": {
-        "post": "Post"
+        "post": "Post",
+        "newComment": "New Comment"
     },
     "commentSection": {
         "noPost": "No comments yet. Be the first to comment something!"

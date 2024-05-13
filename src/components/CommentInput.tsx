@@ -11,7 +11,16 @@ import SubmitButton from "./buttons/SubmitButton";
 import CrossButton from "./buttons/CrossButton";
 import CancelButton from "./buttons/CancelButton";
 
-const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment}: {onSubmit?: (comment: Comment, file?: File) => any, onCancel?: () => any, isDisabled?: boolean, isLoading?: boolean, initialComment?: Comment}) => {
+interface CommentInputProps {
+    onSubmit?: (comment: Comment, file?: File) => any, 
+    onCancel?: () => any, 
+    isDisabled?: boolean, 
+    isLoading?: boolean, 
+    initialComment?: Comment
+    placeHolder?: string
+}
+
+const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment, placeHolder}: CommentInputProps) => {
     if (isDisabled == undefined)
         isDisabled = false;
     if (isLoading == undefined)
@@ -49,7 +58,7 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
 
     return (
         <div className={"comment-input" + (onCancel ? " comment-input-with-cancel" : "")}>
-            <TextareaAutosize className="comment-input-text" value={text} onChange={(e) => setText(e.target.value)}/>
+            <TextareaAutosize className="comment-input-text" placeholder={placeHolder} value={text} onChange={(e) => setText(e.target.value)}/>
             <FileTrigger onSelect={(e) => {
                     let image: null | File = null;
                     if (e) {
