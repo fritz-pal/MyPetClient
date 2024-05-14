@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Comment } from "../models/Comment";
+import { Comment, CommentChanges, getCommentChanges } from "../models/Comment";
 import { CommentAPI } from "../models/Comment";
 import PosterInfo from "./PosterInfo";
 import "./css/CommentElement.css";
@@ -59,10 +59,10 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     };
 
     const editCommentMut = useMutation({
-        mutationFn: ({editedComment}:{editedComment: Comment, file?: File}) =>
-            CommentAPI.updateComment(editedComment),
+        mutationFn: ({editedComment, file}:{editedComment: CommentChanges, file?: File}) =>
+            CommentAPI.updateComment(editedComment, file),
         onSuccess: (data) => {
-            comment.text = data.text;
+            comment = data;
         },
     });
 
@@ -79,8 +79,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         },
     });
 
-    const handleEditClick = (comment: Comment, file?: File) => {
-        editCommentMut.mutate({editedComment: comment, file});
+    const handleEditClick = (newComment: Comment, file?: File) => {
+        editCommentMut.mutate({editedComment: getCommentChanges(comment, newComment), file});
         setEditClicked(false);
     };
 

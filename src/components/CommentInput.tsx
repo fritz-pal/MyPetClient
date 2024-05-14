@@ -28,20 +28,21 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
 
     const {user} = useContext(UserContext);
     const [text, setText] = useState(initialComment ? initialComment.text : "");
+    const [removedOldImage, setRemovedOldImage] = useState(false);
     const file = useFile(null);
 
     const isValid = (): boolean => {
         return text.trim() != ""
     }
 
-    const handleButtonClick = () => {
+    const handleSubmitClicked = () => {
         const comment: Comment = 
             initialComment ? {
                 id: initialComment.id,
                 text: text.trim(),
                 poster: initialComment.poster,
                 createdAt: initialComment.createdAt,
-                imageSource: file ? undefined : initialComment.imageSource,
+                imageSource: removedOldImage ? undefined : file.file ? undefined : initialComment.imageSource,
                 threadID: initialComment.threadID,
             } : {
                 id: 0,
@@ -56,6 +57,14 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
             file.setFile(null);
     }
 
+    const handleRemoveImageClicked = () => {
+        if (file.file != null) {
+            file.setFile(null);
+            return;
+        }
+        setRemovedOldImage(true);
+    }
+
     return (
         <div className={"comment-input" + (onCancel ? " comment-input-with-cancel" : "")}>
             <TextareaAutosize className="comment-input-text" placeholder={placeHolder} value={text} onChange={(e) => setText(e.target.value)}/>
@@ -67,22 +76,23 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
                             image = item;
                     }
                     file.setFile(image);
+                    setRemovedOldImage(false);
                 }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
                 <ImageSelectButton className="comment-input-image-button"/>
             </FileTrigger>
             {onCancel && <CancelButton className={"comment-input-cancel"} onPress={onCancel}/>}
-            {!isLoading && <SubmitButton className="comment-input-submit" isDisabled={!isValid() || isDisabled } onPress={handleButtonClick}/>}
+            {!isLoading && <SubmitButton className="comment-input-submit" isDisabled={!isValid() || isDisabled } onPress={handleSubmitClicked}/>}
             {isLoading && <Button className="comment-input-submit" isDisabled><SmallLoader/></Button>}
             {
-                file.data ? 
+                file.data && !removedOldImage ? 
                 <div className="comment-input-image">
                     <img src={file.data}/>  
-                    <CrossButton className="comment-input-cross" onPress={() => file.setFile(null)}/>
+                    <CrossButton className="comment-input-cross" onPress={handleRemoveImageClicked}/>
                 </div>
-                : initialComment?.imageSource ?
+                : initialComment?.imageSource && !removedOldImage ?
                 <div className="comment-input-image">
                     <img src={initialComment.imageSource}/>
-                    <CrossButton className="comment-input-cross" onPress={() => file.setFile(null)}/>
+                    <CrossButton className="comment-input-cross" onPress={handleRemoveImageClicked}/>
                 </div>
                 : <></> 
             }

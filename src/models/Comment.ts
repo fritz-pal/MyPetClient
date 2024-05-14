@@ -18,11 +18,12 @@ export interface CommentChanges {
     deleteImage?: boolean;
 }
 
-export const GetChanges = (oldC: Comment, newC: Comment): CommentChanges => {
+export const getCommentChanges = (oldC: Comment, newC: Comment): CommentChanges => {
     const changes: CommentChanges = {id: oldC.id};
-    if (oldC.text != newC.text) {
+    if (oldC.text != newC.text)
         changes.text = newC.text;
-    }
+    if (oldC.imageSource && !newC.imageSource)
+        changes.deleteImage = true;
     return changes;
 }
 
@@ -43,8 +44,13 @@ const getAnswers = async (commentId: number, page?: number, pageSize?: number): 
     return request.data;
 };
 
-const updateComment = async (comment: CommentChanges): Promise<Comment> => {
-    const request = await APIClient.put(`${MAPPING}/${comment.id}`, comment);
+const updateComment = async (changes: CommentChanges, image?: File): Promise<Comment> => {
+    const formData = new FormData();
+    formData.append("commentDTO", new Blob([JSON.stringify(changes)], {type: 'application/json'}));
+    if (image) {
+        formData.append("file", image, image.name);
+    }
+    const request = await APIClient.put(`${MAPPING}/${changes.id}`, changes);
     return request.data;
 };
 

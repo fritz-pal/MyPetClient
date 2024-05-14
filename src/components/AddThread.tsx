@@ -63,7 +63,7 @@ const AddThread = () => {
     }
 
     return (
-        <div className="add-thread-page scroll-page">
+        <div className="add-thread-page">
             <div className="add-thread-main-grid">
                 <h2 className="add-thread-title">
                     {t("pageTitle")}
