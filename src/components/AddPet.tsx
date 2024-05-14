@@ -3,7 +3,7 @@ import { Species, SpeciesAPI } from "../models/Species";
 import { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
-import petImage from '/testpet.png';
+import placeholderImage from '/placeholderPet.png';
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
@@ -11,6 +11,8 @@ import { JSONPet, Medication, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
+import useFile from "../hooks/useFile";
+import ImageSelector from "./ImageSelector";
 
 /**
  * React Component Displaying the form for adding a new Pet.
@@ -30,6 +32,7 @@ const AddPet = () => {
     const [name, setName] = useState<string>("");
     const [isMale, setIsMale] = useState<boolean>(false);
     const [castrated, setCastrated] = useState<boolean>(false);
+    const petImageFile = useFile(null);
     const [species, setSpecies] = useState<null | Species>(null);
     const [subSpecies, setSubSpecies] = useState<string>("");
     const [dateOfBirth, setBirthday] = useState<null | Date>(null);
@@ -64,7 +67,7 @@ const AddPet = () => {
     });
 
     const petMut = useMutation({
-        mutationFn: (pet: JSONPet) => PetAPI.addPet(pet),
+        mutationFn: ({pet, file}:{pet: JSONPet, file?: File}) => PetAPI.addPet(pet, file),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["pets", user.id] });
             nav("/");
@@ -78,7 +81,7 @@ const AddPet = () => {
     };
 
     const validate = (): boolean => {
-        if (name == "")
+        if (name.trim() == "")
             return false;
         if (species == null)
             return false;
@@ -152,10 +155,10 @@ const AddPet = () => {
             <div className="add-pet-panels">
                 <div className="add-pet-collapsing-panels">
                     <div className="add-pet-frame add-pet-essentials">
-                        <img className="add-pet-image" src={petImage} />
+                        <ImageSelector className="add-pet-image" fileHook={petImageFile} placeHolderImage={placeholderImage} />
                         <div className="labeled-input">
                             <div>*{t("petName")}:</div>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="gender-selection">
                             <Button className={"gender-button " + (isMale ? "selected" : "")} onPress={() => setIsMale(true)}>
@@ -236,19 +239,22 @@ const AddPet = () => {
                     validateDuplicate((isValid: boolean) => {
                         if (isValid)  {
                             petMut.mutate({
-                                id: 0,
-                                name: name,
-                                owner: user,
-                                isMale: isMale,
-                                castrated: castrated,
-                                species: species,
-                                subSpecies: subSpecies,
-                                dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
-                                size: parseFloat(size.replace(",", ".")),
-                                weight: parseFloat(weight.replace(",", ".")),
-                                disabilities: disabilities,
-                                medications: medications,
-                                allergies: allergies
+                                pet: {
+                                    id: 0,
+                                    name: name.trim(),
+                                    owner: user,
+                                    isMale: isMale,
+                                    castrated: castrated,
+                                    species: species,
+                                    subSpecies: subSpecies,
+                                    dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
+                                    size: parseFloat(size.replace(",", ".")),
+                                    weight: parseFloat(weight.replace(",", ".")),
+                                    disabilities: disabilities,
+                                    medications: medications,
+                                    allergies: allergies
+                                },
+                                file: petImageFile.file ? petImageFile.file : undefined
                             });
                         }
                     });

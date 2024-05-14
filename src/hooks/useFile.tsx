@@ -1,6 +1,15 @@
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
-const useFile = (initialFile: File | null) => {
+export interface FileHook {
+    isDone: boolean,
+    isLoading: boolean,
+    isError: boolean,
+    data: string | null,
+    setFile: Dispatch<SetStateAction<File | null>>,
+    file: File | null
+}
+
+const useFile = (initialFile: File | null): FileHook => {
     const [file, setFile] = useState(initialFile);
     const [isLoading, setIsLoading] = useState(false);
     const [isDone, setIsDone] = useState(false);

@@ -1,5 +1,5 @@
 import './css/PetList.css';
-import petImage from '/hund.jpg';
+import placeholderPet from '/placeholderPet.png';
 import Pets, { Pet, PetAPI } from '../models/Pet';
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
@@ -61,7 +61,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                                 <div className="pet-tile">{pet.name}</div>
                                 <span>{tcard("more_details")}</span>
                             </header>
-                            <img className="pet-image2" src={petImage} alt={pet.name} />
+                            <img className="pet-image2" src={placeholderPet} alt={pet.name} />
                             <div className="pet_name_css">{k(pet.species.name)}</div>
 
                         </div>

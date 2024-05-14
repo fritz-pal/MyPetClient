@@ -20,6 +20,7 @@ export interface Pet {
     disabilities?: string[]
     medications?: string[]
     allergies?: string[]
+    imageSource?: string
 }
 
 /**
@@ -40,6 +41,7 @@ export interface JSONPet {
     disabilities?: string[]
     medications?: Medication[]
     allergies?: string[]
+    imageSource?: string
 }
 
 export interface Medication {
@@ -154,8 +156,14 @@ const getAllPetsOfUser = async (userID: number): Promise<JSONPet[]> => {
  * @param species New Pet
  * @returns Promise of added Pet
  */
-const addPet = async (pet: JSONPet): Promise<JSONPet> => {
-    const request = await APIClient.post(MAPPING, pet);
+const addPet = async (pet: JSONPet, image?: File): Promise<JSONPet> => {
+    const formData = new FormData();
+    formData.append("pet", new Blob([JSON.stringify(pet)], {type: 'application/json'}));
+    if (image)
+        formData.append("file", image);
+    const request = await APIClient.post(MAPPING, formData,{
+        transformRequest: formData => formData
+    });
     return request.data;
 }
 

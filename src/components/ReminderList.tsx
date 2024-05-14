@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import petImage from "/hund.jpg";
+import placeholderPet from '/placeholderPet.png';
 import "./css/ReminderList.css";
 import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
@@ -144,7 +144,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
                     {reminder.pets.map((pet) => (
                         <div key={pet.id} className="reminder-pets">
                             {pet.name}
-                            <img className="pet-image3" src={petImage} />
+                            <img className="pet-image3" src={placeholderPet} />
                         </div>
                     ))}
                 </div>
