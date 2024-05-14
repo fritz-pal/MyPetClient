@@ -9,6 +9,7 @@ import placeholderPet from '/placeholderPet.png';
 import "./css/ReminderList.css";
 import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
+import RoundImage from "./RoundImage";
 
 const ReminderList = () => {
     const [t, _] = useTranslation("reminders");
@@ -144,7 +145,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
                     {reminder.pets.map((pet) => (
                         <div key={pet.id} className="reminder-pets">
                             {pet.name}
-                            <img className="pet-image3" src={placeholderPet} />
+                            <RoundImage className="pet-image3" imageSource={pet.imageSource} placeholder={placeholderPet} />
                         </div>
                     ))}
                 </div>

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useQuery } from '@tanstack/react-query';
+import RoundImage from './RoundImage';
 
 const PetList = () => {
     const [t, _] = useTranslation("home");
@@ -61,7 +62,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                                 <div className="pet-tile">{pet.name}</div>
                                 <span>{tcard("more_details")}</span>
                             </header>
-                            <img className="pet-image2" src={placeholderPet} alt={pet.name} />
+                            <RoundImage className="pet-image2" imageSource={pet.imageSource} placeholder={placeholderPet} />
                             <div className="pet_name_css">{k(pet.species.name)}</div>
 
                         </div>
