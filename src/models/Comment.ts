@@ -50,7 +50,9 @@ const updateComment = async (changes: CommentChanges, image?: File): Promise<Com
     if (image) {
         formData.append("file", image, image.name);
     }
-    const request = await APIClient.put(`${MAPPING}/${changes.id}`, changes);
+    const request = await APIClient.put(`${MAPPING}/${changes.id}`, formData, {
+        transformRequest: formData => formData
+    });
     return request.data;
 };
 

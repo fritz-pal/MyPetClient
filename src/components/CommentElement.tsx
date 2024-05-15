@@ -62,7 +62,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         mutationFn: ({editedComment, file}:{editedComment: CommentChanges, file?: File}) =>
             CommentAPI.updateComment(editedComment, file),
         onSuccess: (data) => {
-            comment = data;
+            comment.text = data.text;
+            comment.imageSource = data.imageSource;
         },
     });
 
