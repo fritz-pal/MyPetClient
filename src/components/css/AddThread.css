@@ -31,7 +31,6 @@
     overflow-y: auto;
     flex-direction: column;
     gap: 20px;
-    height: min-content;
     box-shadow: 4px 4px 15px 0px #000000;
 
 }
