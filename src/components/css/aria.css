@@ -1,9 +1,9 @@
-.react-aria-Menu {
+.react-aria-Popover {
     background-color: white;
     box-shadow: 4px 4px 20px 0px #000000;
     color: black;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;

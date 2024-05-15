@@ -7,17 +7,21 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useState } from "react";
-import { Button, Dialog, DialogTrigger, Modal } from "react-aria-components";
+import { Button, Dialog, DialogTrigger, Key, Modal, Popover } from "react-aria-components";
 import CommentSection from "./CommentSection";
 import CommentInput from "./CommentInput";
 import EditButton from "./buttons/EditButton";
 import AnswerButton from "./buttons/AnswerButton";
 import DeleteButton from "./buttons/DeleteButton";
+import useWindowDimensions from "../hooks/useWindowDimensions";
+import MoreButton from "./buttons/MoreButton";
 
 const CommentElement = ({ comment }: { comment: Comment }) => {
     const queryClient = useQueryClient();
     const [t] = useTranslation("comment");
     const { user } = useContext(UserContext);
+    const dimensions = useWindowDimensions();
+    
     const [isDeleted, setIsDeleted] = useState(false);
     const [newAnswerOpen, setNewAnswerOpen] = useState(false);
     const [editClicked, setEditClicked] = useState(false);
@@ -85,6 +89,13 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         setEditClicked(false);
     };
 
+    const menuClick = (id: Key) => {
+        switch(id) {
+            case "answer":
+                () => setNewAnswerOpen(true);
+        }
+    }
+
     if (isDeleted) {
         return <div className="comment">Deleted</div>;
     }
@@ -93,7 +104,24 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         <div className="comment" key={comment.id}>
             <div className="comment-header">
                 <PosterInfo poster={comment.poster} postedAt={comment.createdAt} />
-                {!newAnswerOpen && !editClicked && (
+                {!newAnswerOpen && !editClicked && (dimensions.width && dimensions.width < 500 ? 
+                    <div className="comment-options">
+                        <DialogTrigger>
+                            <MoreButton className="comment-option-button"/>
+                            <Popover>
+                                <Dialog className="comment-option-dialog">
+                                    {({ close }) => (
+                                        <>
+                                            <Button onPress={() => {setNewAnswerOpen(true); close()}}>{t("answer")}</Button>
+                                            <Button className={comment.poster.id != user.id ? "hidden" : undefined} onPress={() => {setEditClicked(true); close()}}>{t("edit")}</Button>
+                                            <Button className={comment.poster.id != user.id ? "hidden" : undefined} onPress={() => {deleteCommentMut.mutate(); close()}}>{t("delete")}</Button>
+                                        </>
+                                    )}
+                                </Dialog>
+                            </Popover>
+                        </DialogTrigger>
+                    </div>
+                    : 
                     <div className="comment-options">
                         <DialogTrigger>
                             <DeleteButton className={`comment-option-button${comment.poster.id != user.id ? " hidden" : ""}`}/>
@@ -119,7 +147,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                             className="comment-option-button"
                             onPress={() => setNewAnswerOpen(true)}>
                         </AnswerButton>
-                    </div>
+                    </div> 
                 )}
             </div>
             <div className="comment-body">
