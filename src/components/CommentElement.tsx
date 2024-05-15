@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useState } from "react";
-import { Button, Dialog, DialogTrigger, Key, Modal, Popover } from "react-aria-components";
+import { Button, Dialog, DialogTrigger, Modal, Popover } from "react-aria-components";
 import CommentSection from "./CommentSection";
 import CommentInput from "./CommentInput";
 import EditButton from "./buttons/EditButton";
@@ -88,13 +88,6 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         editCommentMut.mutate({editedComment: getCommentChanges(comment, newComment), file});
         setEditClicked(false);
     };
-
-    const menuClick = (id: Key) => {
-        switch(id) {
-            case "answer":
-                () => setNewAnswerOpen(true);
-        }
-    }
 
     if (isDeleted) {
         return <div className="comment">Deleted</div>;
