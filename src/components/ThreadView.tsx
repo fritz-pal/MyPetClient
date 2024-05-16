@@ -2,23 +2,19 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router"
 import { ForumAPI } from "../models/Forum";
 import Loader from "./Loader";
-import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useState } from "react";
 import "./css/ThreadView.css"
 import PosterInfo from "./PosterInfo";
 import { useTranslation } from "react-i18next";
 import CommentSection from "./CommentSection";
 import { Comment } from "../models/Comment";
-import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "react-aria-components";
+import CommentInput from "./CommentInput";
 
 const ThreadView = () => {
     const { id } = useParams();
-    const {user} = useContext(UserContext);
     const [t,] = useTranslation("thread");
     const queryClient = useQueryClient();
-
-    const [commentText, setCommentText] = useState("");
     
     const threadQuery = useQuery({
         queryKey: ["threads", id ? id : "err"],
@@ -27,27 +23,18 @@ const ThreadView = () => {
     });
 
     const postCommentMut = useMutation({
-        mutationFn: (comment: Comment) => ForumAPI.postCommentToThread(id ? id : "err", comment),
+        mutationFn: ({comment, file}:{comment: Comment, file?: File}) => ForumAPI.postCommentToThread(id ? id : "err", comment, file),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["threadComments", id ? id : "err"]
             })
         }
-    })
+    });
 
-    const postComment = () => {
-        const text = commentText.trim()
-        if (text == "")
-            return;
-        postCommentMut.mutate({
-            id: 0,
-            text: text,
-            poster: user,
-            createdAt: Date.now(),
-        })
-        setCommentText("");
+    const handleSubmit = (comment: Comment, file?: File) => {
+        comment.threadID = id ? parseInt(id) : 0;
+        postCommentMut.mutate({comment, file});
     }
-
 
     if (threadQuery.isLoading) {
         return (<Loader/>);
@@ -71,10 +58,7 @@ const ThreadView = () => {
                 </div>
                 <hr/>
                 <div className="thread-comment-section">
-                    <div className="thread-post-comment">
-                        <TextareaAutosize className="thread-comment-text" value={commentText} onChange={(e) => setCommentText(e.target.value)}/>
-                        <button disabled={commentText.trim() == ""} onClick={postComment}>{t("post")}</button>
-                    </div>
+                    <CommentInput isLoading={postCommentMut.isPending} onSubmit={handleSubmit} placeHolder={t("newComment")}/>
                     <div className="thread-comments-gap">
                         <CommentPage threadID={id ? id : ""} page={1} />
                     </div>

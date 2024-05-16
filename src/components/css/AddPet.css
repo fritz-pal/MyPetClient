@@ -73,8 +73,6 @@
 
 .add-pet-image {
     width: 150px;
-    aspect-ratio: 1 / 1;
-    border-radius: 100%;
 }
 
 .test_checkbox {

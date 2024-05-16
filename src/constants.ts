@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const API_BASE_URL = process.env.NODE_ENV === 'production' ? "/api" : "http://localhost:8080/api";
+export const API_BASE_URL = process.env.NODE_ENV === 'production' ? "/LabSWP24MyPet/api" : "http://localhost:8080/api";
 
 export const APIClient = axios.create({
     withCredentials: true,

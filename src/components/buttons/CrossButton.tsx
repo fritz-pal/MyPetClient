@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "react-aria-components";
-import "./css/CrossButton.css"
+import "../css/CrossButton.css"
 
 const CrossButton = (buttonProps: ButtonProps & React.RefAttributes<HTMLButtonElement>) => {
     return (

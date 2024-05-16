@@ -1,0 +1,18 @@
+.svg-button {
+    position: relative;
+    width: 2.388em;
+    aspect-ratio: 1/1;
+}
+
+.svg-button:hover {
+    color: white;
+}
+
+.svg-button svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 1.5rem;
+    width: 1.5rem;
+}

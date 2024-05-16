@@ -3,13 +3,16 @@ import { Species, SpeciesAPI } from "../models/Species";
 import { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import './css/AddPet.css'
-import petImage from '/testpet.png';
+import placeholderImage from '/placeholderPet.png';
 import SpeciesList from "./SpeciesList";
 import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import { JSONPet, Medication, PetAPI } from "../models/Pet";
 import { UserContext } from "../context/UserContext";
 import { Button } from "react-aria-components";
+import SmallLoader from "./SmallLoader";
+import useFile from "../hooks/useFile";
+import ImageSelector from "./ImageSelector";
 
 /**
  * React Component Displaying the form for adding a new Pet.
@@ -29,14 +32,29 @@ const AddPet = () => {
     const [name, setName] = useState<string>("");
     const [isMale, setIsMale] = useState<boolean>(false);
     const [castrated, setCastrated] = useState<boolean>(false);
+    const petImageFile = useFile(null);
     const [species, setSpecies] = useState<null | Species>(null);
     const [subSpecies, setSubSpecies] = useState<string>("");
     const [dateOfBirth, setBirthday] = useState<null | Date>(null);
-    const [size, setSize] = useState<number>(0);
-    const [weight, setWeight] = useState<number>(0);
+    const [size, setSize] = useState("");
+    const [weight, setWeight] = useState("");
     const [disabilities, setDisabilities] = useState<string[]>([]);
     const [medications, setMedications] = useState<Medication[]>([]);
     const [allergies, setAllergies] = useState<string[]>([]);
+
+    const validateAsNumber = (text: string) => {
+        return /^([0-9]*(,|\.)?[0-9]*)$/.test(text);
+    }
+
+    const handleSizeChange = (text: string) => {
+        if (validateAsNumber(text))
+            setSize(text);
+    }
+
+    const handleWeightChange = (text: string) => {
+        if (validateAsNumber(text))
+            setWeight(text);
+    }
 
     const speciesQuery = useQuery({
         queryKey: ["species"],
@@ -49,7 +67,7 @@ const AddPet = () => {
     });
 
     const petMut = useMutation({
-        mutationFn: (pet: JSONPet) => PetAPI.addPet(pet),
+        mutationFn: ({pet, file}:{pet: JSONPet, file?: File}) => PetAPI.addPet(pet, file),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["pets", user.id] });
             nav("/");
@@ -63,7 +81,7 @@ const AddPet = () => {
     };
 
     const validate = (): boolean => {
-        if (name == "")
+        if (name.trim() == "")
             return false;
         if (species == null)
             return false;
@@ -137,22 +155,22 @@ const AddPet = () => {
             <div className="add-pet-panels">
                 <div className="add-pet-collapsing-panels">
                     <div className="add-pet-frame add-pet-essentials">
-                        <img className="add-pet-image" src={petImage} />
+                        <ImageSelector className="add-pet-image" fileHook={petImageFile} placeHolderImage={placeholderImage} />
                         <div className="labeled-input">
                             <div>*{t("petName")}:</div>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value.trim())} />
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="gender-selection">
-                            <button className={"gender-button " + (isMale ? "selected" : "")} onClick={() => setIsMale(true)}>
+                            <Button className={"gender-button " + (isMale ? "selected" : "")} onPress={() => setIsMale(true)}>
                                 <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                                     <path fillRule="evenodd" d="M9.5 2a.5.5 0 010-1h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.707L9.871 6.836a5 5 0 11-.707-.707L13.293 2H9.5zM6 6a4 4 0 100 8 4 4 0 000-8z" />
                                 </svg>
-                            </button>
-                            <button className={"gender-button " + (isMale ? "" : "selected")} onClick={() => setIsMale(false)}>
+                            </Button>
+                            <Button className={"gender-button " + (isMale ? "" : "selected")} onPress={() => setIsMale(false)}>
                                 <svg fill="currentColor" viewBox="0 0 16 16" width="1em" height="1em">
                                     <path fillRule="evenodd" d="M8 1a4 4 0 100 8 4 4 0 000-8zM3 5a5 5 0 115.5 4.975V12h2a.5.5 0 010 1h-2v2.5a.5.5 0 01-1 0V13h-2a.5.5 0 010-1h2V9.975A5 5 0 013 5z" />
                                 </svg>
-                            </button>
+                            </Button>
                         </div>
                         <div className="labeled-checkbox">
                             <input className="normal_checkbox" type="checkbox" defaultChecked={castrated} onChange={(e) => setCastrated(e.target.checked)} />
@@ -180,11 +198,11 @@ const AddPet = () => {
                         </div>
                         <div className="labeled-input">
                             <div>{t("size")}{species?.typeOfSize && species.unitSize ? " (" + t(species.typeOfSize) + " in " + t(species.unitSize) + ")" : ""}:</div>
-                            <input type="number" min="0" step="0.5" value={size} onChange={(e) => setSize(e.target.valueAsNumber)} />
+                            <input type="text" value={size} onChange={(e) => handleSizeChange(e.target.value)} />
                         </div>
                         <div className="labeled-input">
                             <div>{t("weight")}{species?.unitWeight ? " (" + "in " + t(species.unitWeight) + ")" : ""}:</div>
-                            <input type="number" min="0" step="0.5" value={weight} onChange={(e) => setWeight(e.target.valueAsNumber)} />
+                            <input type="text" value={weight} onChange={(e) => handleWeightChange(e.target.value)} />
                         </div>
                     </div>
 
@@ -213,31 +231,35 @@ const AddPet = () => {
                 <Button onPress={() => nav("/")}>
                     {t("cancel")}
                 </Button>
-                <Button isDisabled={!validate()} onPress={() => {
+                <Button isDisabled={!validate() || petMut.isPending} onPress={() => {
                     if (!validate())
                         return;
                     if (species == null)
                         return;
                     validateDuplicate((isValid: boolean) => {
                         if (isValid)  {
-                    petMut.mutate({
-                        id: 0,
-                        name: name,
-                        owner: user,
-                        isMale: isMale,
-                        castrated: castrated,
-                        species: species,
-                        subSpecies: subSpecies,
-                        dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
-                        size: size,
-                        weight: weight,
-                        disabilities: disabilities,
-                        medications: medications,
-                        allergies: allergies
+                            petMut.mutate({
+                                pet: {
+                                    id: 0,
+                                    name: name.trim(),
+                                    owner: user,
+                                    isMale: isMale,
+                                    castrated: castrated,
+                                    species: species,
+                                    subSpecies: subSpecies,
+                                    dateOfBirth: dateOfBirth?.toISOString().substring(0, 10),
+                                    size: parseFloat(size.replace(",", ".")),
+                                    weight: parseFloat(weight.replace(",", ".")),
+                                    disabilities: disabilities,
+                                    medications: medications,
+                                    allergies: allergies
+                                },
+                                file: petImageFile.file ? petImageFile.file : undefined
+                            });
+                        }
                     });
-                }});
                 }}>
-                    {petMut.isPending ? <Loader /> : t("submit")}
+                    {petMut.isPending ? <SmallLoader /> : t("submit")}
                 </Button>
             </div>
         </div>

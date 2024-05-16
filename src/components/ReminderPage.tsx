@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Loader from "./Loader";
 import { useNavigate } from "react-router";
 import { JSONReminder, ReminderAPI } from "../models/Reminder";
 import { UserContext } from "../context/UserContext";
 import { Pet } from "../models/Pet";
 import './css/ReminderPage.css'
 import PetSelection from "./PetSelection"
+import SmallLoader from "./SmallLoader";
+import { Button } from "react-aria-components";
 
 
 
@@ -95,7 +96,7 @@ const ReminderPage = () => {
 
 
     return (
-        <div className="reminder-page">
+        <div className="reminder-page scroll-page">
             <div className="add-reminder-frame">
                 <div className="set-reminder-name">
                     <div className="inputLabel">{t("reminderName")}:</div>
@@ -145,10 +146,10 @@ const ReminderPage = () => {
                     </select>
                 </div>
                 <div className="add-reminder-buttons">
-                    <button className="cancel-button" onClick={() => nav("/reminders")}>
+                    <Button className="cancel-button" onPress={() => nav("/reminders")}>
                         {t("cancel")}
-                    </button>
-                    <button className="submit-button" disabled={!validate() || reminderMut.isPending} onClick={async () => {
+                    </Button>
+                    <Button className="submit-button" isDisabled={!validate() || reminderMut.isPending} onPress={async () => {
                         const handleClick = async () => {
                             const datetime = new Date(date);
                             datetime.setHours(time.getHours());
@@ -171,8 +172,8 @@ const ReminderPage = () => {
                         handleClick();
 
                     }}>
-                        {reminderMut.isPending ? <Loader /> : t("submit")}
-                    </button>
+                        {reminderMut.isPending ? <SmallLoader /> : t("submit")}
+                    </Button>
                 </div>
             </div>
         </div>
