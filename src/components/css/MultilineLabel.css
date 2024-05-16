@@ -1,0 +1,9 @@
+.multiline-label {
+    display: grid;
+    grid-template-columns: 100%;
+    max-width: 100%;
+}
+
+.multiline-label-line {
+    word-break: break-word;
+}

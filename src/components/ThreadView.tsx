@@ -10,6 +10,7 @@ import CommentSection from "./CommentSection";
 import { Comment } from "../models/Comment";
 import { Button } from "react-aria-components";
 import CommentInput from "./CommentInput";
+import MultilineLabel from "./MultilineLabel";
 
 const ThreadView = () => {
     const { id } = useParams();
@@ -40,7 +41,7 @@ const ThreadView = () => {
         return (<Loader/>);
     }
 
-    if (threadQuery.isError) {
+    if (!threadQuery.isSuccess) {
         return (<>Error</>)
     }
 
@@ -48,12 +49,12 @@ const ThreadView = () => {
         <div className="scroll-page">
             <div className="thread-main">
                 <div className="thread-head">
-                    {threadQuery.data?.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
+                    {threadQuery.data.creator ? <PosterInfo poster={threadQuery.data?.creator} postedAt={threadQuery.data.createdAt}/> : <></>}
                     <h2 className="thread-title">
-                        {threadQuery.data?.name}
+                        {threadQuery.data.name}
                     </h2>
                     <div className="thread-description">
-                        {threadQuery.data?.description}
+                        <MultilineLabel text={threadQuery.data.description}/>
                     </div>
                 </div>
                 <hr/>
