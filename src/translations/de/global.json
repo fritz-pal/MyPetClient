@@ -41,7 +41,8 @@
         "en": "Englisch"
     },
     "thread": {
-        "post": "Senden"
+        "post": "Senden",
+        "newComment": "Neuer Kommentar"
     },
     "commentSection": {
         "noPost": "Hier sieht es leer aus. Sei der erste der etwas kommentiert!"
@@ -152,22 +153,25 @@
     "comment": {
         "delete": "Löschen",
         "confirm": "Bestätigen",
-        "answer": "Antworten",
+        "answer": "Antwort",
         "cancel": "Abbrechen",
         "submit": "Speichern",
         "edit": "Bearbeiten",
         "openAnswers_one": "Zeige {{count}} Antwort",
         "openAnswers_other": "Zeige {{count}} Antworten",
-        "moreAnswers": "Weitere Antworten"
+        "moreAnswers": "Weitere Antworten",
+        "deleteConfirm": "Bist du dir sicher das du diesen Kommentar löschen möchtest?"
     },
-    "paths": {
+    "header": {
         "home": "Home",
         "newpet": "Tier Hinzufügen",
         "login": "Login",
         "admin": "Admin",
         "forum": "Forum",
         "reminders": "Termine",
-        "newreminder": "Termin hinzufügen"
+        "newreminder": "Termin hinzufügen",
+        "myProfile": "Mein Profil",
+        "logout": "Ausloggen"
     },
     "admin": {
         "species": "Spezies",
@@ -179,7 +183,8 @@
         "typeOfSize": "Typ der Größe",
         "name": "Name",
         "update": "Aktualisieren",
-        "updated": "Erfolgreich aktualisiert"
+        "updated": "Erfolgreich aktualisiert",
+        "delete": "Löschen"
     },
     "card": {
         "more_details": "weitere Infos",

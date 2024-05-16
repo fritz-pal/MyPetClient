@@ -3,18 +3,14 @@
   line-height: 1.5;
   padding: 20px;
   flex-grow: 1;
-  width: 50%;
   min-height: 400px;
   background-color: var(--seventh-color);
   box-shadow: 4px 4px 30px 0px #000000;
-  margin: 20px;
   border-radius: 20px;
   transition: 0.2s;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 20px;
 }
 
 .reminderlist-container {
@@ -60,7 +56,6 @@
   font-size: 30px;
   margin: 0;
   color: #ffffff;
-  font-family: "Poppins";
   font-weight: bold;
   text-transform: uppercase;
   background-image: url(/leaves-natural.jpg);
@@ -76,9 +71,6 @@
 .pet-image3 {
   width: 30px;
   height: 30px;
-  justify-content: center;
-  border-radius: 50%;
-  display: inline;
 }
 
 .pet_reminder_container {
@@ -165,10 +157,6 @@
 }
 
 @media screen and (max-width: 800px) {
-  .my-reminders-module {
-    width: 90%;
-  }
-
   .pet-image3 {
     width: 40px;
     height: 40px;

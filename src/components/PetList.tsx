@@ -1,5 +1,5 @@
 import './css/PetList.css';
-import petImage from '/hund.jpg';
+import placeholderPet from '/placeholderPet.png';
 import Pets, { Pet, PetAPI } from '../models/Pet';
 import Loader from './Loader';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useQuery } from '@tanstack/react-query';
+import RoundImage from './RoundImage';
 
 const PetList = () => {
     const [t, _] = useTranslation("home");
@@ -49,7 +50,6 @@ const PetList = () => {
 export const PetCard = ({ pets }: { pets: Pet[] }) => {
     const [tcard, _card] = useTranslation("card");
     const [k, _k] = useTranslation("species");
-    const [t, _] = useTranslation("addpet");
 
     return (
         <div className="cards">
@@ -62,7 +62,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                                 <div className="pet-tile">{pet.name}</div>
                                 <span>{tcard("more_details")}</span>
                             </header>
-                            <img className="pet-image2" src={petImage} alt={pet.name} />
+                            <RoundImage className="pet-image2" imageSource={pet.imageSource} placeholder={placeholderPet} />
                             <div className="pet_name_css">{k(pet.species.name)}</div>
 
                         </div>

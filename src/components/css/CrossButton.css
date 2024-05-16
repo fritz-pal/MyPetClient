@@ -1,0 +1,37 @@
+.cross-button {
+    padding: 0px;
+    border-style: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: inherit;
+    --cross-color: var(--seventh-color);
+}
+
+.cross-button:hover {
+    --cross-color: red;
+    background-color: inherit;
+}
+
+.cross-button-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.cross-button-content div {
+    position: absolute;
+    background-color: var(--cross-color);
+    width: 3px;
+    border-radius: 1px;
+    height: 100%;
+    left: calc(50% - 1.5px);
+    transform-origin: center;
+}
+
+.cross-button-content div:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.cross-button-content div:nth-child(2) {
+    transform: rotate(-45deg);
+}

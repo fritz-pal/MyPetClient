@@ -1,7 +1,7 @@
 .App {
   color: rgb(255, 255, 255);
   font-family: Arial, sans-serif;
-  height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template-rows: min-content 1fr;
 }
@@ -12,7 +12,7 @@
 }
 
 .no-auth {
-  height: 100vh;
+  height: 100dvh;
   font-family: Arial, sans-serif;
   color: rgb(255, 255, 255);
   display: grid;

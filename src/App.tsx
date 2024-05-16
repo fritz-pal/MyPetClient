@@ -12,7 +12,6 @@ import Settings from './components/Settings';
 import { Card } from './components/Card';
 import ReminderPage from './components/ReminderPage'
 import ReminderHomePage from './components/ReminderHomePage';
-import ReminderList from './components/ReminderList'
 import ForumPage from './components/ForumPage';
 import AddThread from './components/AddThread';
 import ThreadView from './components/ThreadView';

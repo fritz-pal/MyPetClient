@@ -8,6 +8,7 @@ import { PetCard } from "./PetList";
 import Pets, { Pet, PetAPI } from "../models/Pet";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { Button } from "react-aria-components";
 
 const UserView = () => {
     let { id } = useParams();
@@ -43,7 +44,7 @@ const UserView = () => {
                     <div className="user-username">{userQuery.data.username}</div>
                     <div className="user-fullname">{userQuery.data.fullname}</div>
                 </div>
-                <button className="message-button">Message</button>
+                <Button className="message-button">Message</Button>
             </div>
             <div className="user-pet-list">
                 <PetCard pets={pets} />

@@ -7,20 +7,22 @@
 
 .home {
   text-align: center;
-  font-family: "Poppins";
   overflow-y: auto;
   height: 100%;
 }
 
 .homepage-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  gap: 10px;
 }
 
 .full-width-image {
   background-image: url("/Hintergrundtest.jpg"); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Höhe der Viewport-Höhe */
+  height: 100dvh; /* Höhe der Viewport-Höhe */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +38,6 @@
 
 .home_greeting {
   font-size: 100px;
-  font-family: "Poppins";
   color: #ffffff85;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -44,7 +45,6 @@
 .home_title {
   margin-top: -130px;
   font-size: 100px;
-  font-family: "Poppins";
   color: #1a1a1aa8;
   text-shadow: 0px 2px 40px 0px rgba(0, 0, 0, 0.5);
 }
@@ -70,6 +70,7 @@
   }
 
   .homepage-container {
-    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
   }
 }
