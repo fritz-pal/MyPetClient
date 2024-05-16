@@ -4,6 +4,7 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .comment:nth-child(even) {
@@ -25,7 +26,7 @@
 .comment-body {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  gap: 5px;
 }
 
 .comment-image {
@@ -202,3 +203,21 @@
 }
 
 .comment-answers-content {}
+
+@media(max-width:800px) {
+  .comment {
+    padding: 5px;
+  }
+
+  .comment-answers-section {
+    gap: 5px;
+  }
+
+  .comment-body {
+    padding: 2px;
+  }
+
+  .comment-options {
+    margin: 0px;
+  }
+}

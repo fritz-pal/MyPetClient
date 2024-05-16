@@ -32,7 +32,7 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
     const file = useFile(null);
 
     const isValid = (): boolean => {
-        return text.trim() != ""
+        return text.trim() != "" || file.file != null;
     }
 
     const handleSubmitClicked = () => {

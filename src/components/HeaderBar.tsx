@@ -33,13 +33,13 @@ const HeaderBar = () => {
             <BurgerMenu />
             <div className="header-bar-site-title">
                 <h2>
-                    {t(location.pathname === "/" ? "home" : location.pathname.replace("/", ""))}
+                    {t(location.pathname === "/" ? "home" : location.pathname.split("/")?.[1])}
                 </h2>
             </div>
             <div className="header-bar-menu-items">
-                <PathItem path="/" label="Home" />
-                <PathItem path="/forum" label="Forum" />
-                <PathItem path="/reminders" label="Reminders" />
+                <PathItem path="/" label="home" />
+                <PathItem path="/forum" label="forum" />
+                <PathItem path="/reminders" label="reminders" />
                 {/*<PathItem path="/admin" label="Admin" />*/}
             </div>
             <div className="header-bar-user-settings">
@@ -66,9 +66,10 @@ const HeaderBar = () => {
 }
 
 function PathItem({ path, label }: { path: string, label: string }) {
+    const [t, _] = useTranslation("header");
     return (
         <div className="header-bar-menu-item">
-            <Link to={path}>{label}</Link>
+            <Link to={path}>{t(label)}</Link>
         </div>
     )
 }

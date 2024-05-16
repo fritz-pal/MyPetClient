@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Pets, { JSONPet, PetAPI, Pet } from "../models/Pet";
+import { Switch } from "react-aria-components";
+import './css/ReminderPage.css'
 
 interface PetSelectionProps {
     userId: number;
@@ -28,8 +30,7 @@ const PetSelection = ({ userId, setAssociatedPets }: PetSelectionProps) => {
         }
     };
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, checked } = event.target;
+    const handleCheckboxChange = (checked: boolean, value: string) => {
         const updatedSelection = checked
             ? [...selection, value]
             : selection.filter((item) => item !== value);
@@ -45,18 +46,25 @@ const PetSelection = ({ userId, setAssociatedPets }: PetSelectionProps) => {
         <div className="set-reminder-pets">
             <div className="reminderPet-title">{t("reminderPet")}</div>
             {availablePets.map((pet) => (
-                <div className="set-reminder-pet" key={pet.id}>
-                    <div className="reminder-pet-name">{pet.name}</div>
-                    <input
-                        className="pet-checkbox"
-                        type="checkbox"
-                        value={pet.id.toString()}
-                        onChange={handleCheckboxChange}
-                        checked={selection.includes(pet.id.toString())}
-                    />
-                </div>
+                <PetToSelect pet={pet} onChange={handleCheckboxChange} />
             ))}
         </div>
     );
 };
+
+const PetToSelect = ({ pet, onChange }: { pet: Pet, onChange: (checked: boolean, value: string) => void }) => {
+    const setChecked = (checked: boolean) => {
+        onChange(checked, pet.id.toString());
+    };
+    
+    return (
+        <div className="set-reminder-pet" key={pet.id}>
+            <Switch key={pet.id} onChange={setChecked}>
+                <div className="indicator" />
+                {pet.name}
+            </Switch>
+        </div>
+    );
+}
+
 export default PetSelection;
