@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import './css/HeaderBar.css';
 import { useContext } from "react";
 import NavbarContext from "../context/MenuContext";
+import { useTranslation } from "react-i18next";
 
 const MobileNavbar = () => {
     const { isOpen, setIsOpen } = useContext(NavbarContext);
@@ -11,9 +12,9 @@ const MobileNavbar = () => {
     return (
         <div className={`header-bar-navbar ${isOpen ? 'open' : ''}`}>
             <div className="header-bar-navbar-items">
-                <NavbarItem path="/" label="Home" />
-                <NavbarItem path="/forum" label="Forum" />
-                <NavbarItem path="/reminders" label="Reminders" />
+                <NavbarItem path="/" label="home" />
+                <NavbarItem path="/forum" label="forum" />
+                <NavbarItem path="/reminders" label="reminders" />
                 {/*<NavbarItem path="/admin" label="Admin" />*/}
             </div>
         </div>
@@ -22,10 +23,10 @@ const MobileNavbar = () => {
 
 function NavbarItem({ path, label }: { path: string, label: string }) {
     const { setIsOpen } = useContext(NavbarContext);
-
+    const [t, _] = useTranslation("header");
     return (
         <div className="header-bar-navbar-item">
-            <Link onClick={() => setIsOpen(false)} to={path}>{label}</Link>
+            <Link onClick={() => setIsOpen(false)} to={path}>{t(label)}</Link>
         </div>
     )
 }
