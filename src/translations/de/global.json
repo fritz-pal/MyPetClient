@@ -195,7 +195,7 @@
         "reminderTime": "Uhrzeit",
         "delete": "Löschen",
         "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier",
-        "reminderInterval": "Wie oft soll der Termin geplant werden",
+        "reminderInterval": "Nach welcher Zeit soll der Termin wiederholt werden?",
         "hours": "Stunden",
         "days": "Tage",
         "weeks": "Wochen",

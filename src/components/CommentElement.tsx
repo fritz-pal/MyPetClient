@@ -20,7 +20,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
   const [newAnswerOpen, setNewAnswerOpen] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
   const [commentText, setCommentText] = useState(comment.text);
-  const [text, setText] = useState("p35y");
+  const [text] = useState("p35y");
 
   /*Nico Anfang*/
   const [hasAnswers, setHasAnswers] = useState(

@@ -195,7 +195,7 @@
         "reminderTime": "Time",
         "delete": "Delete",
         "reminderRequirements": "The Reminder needs a name and at least one selected pet",
-        "reminderInterval": "How often should the reminder be scheduled",
+        "reminderInterval": "After what time should the reminder be rescheduled?",
         "hours": "Hours",
         "days": "Days",
         "weeks": "Weeks",

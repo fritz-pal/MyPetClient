@@ -95,6 +95,7 @@ const ReminderPage = () => {
 
 
     return (
+        <div className="scroll-page">
         <div className="reminder-page">
             <div className="add-reminder-frame">
                 <div className="set-reminder-name">
@@ -174,6 +175,7 @@ const ReminderPage = () => {
                         {reminderMut.isPending ? <Loader /> : t("submit")}
                     </button>
                 </div>
+            </div>
             </div>
         </div>
     )

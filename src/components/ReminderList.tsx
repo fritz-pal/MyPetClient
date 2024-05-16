@@ -2,7 +2,7 @@ import Reminders, { Reminder, ReminderAPI } from "../models/Reminder";
 import Loader from "./Loader";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import petImage from "/hund.jpg";
@@ -67,10 +67,10 @@ const ReminderList = () => {
 
 const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
   const [t, _] = useTranslation("reminders");
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
   const queryClient = useQueryClient();
-  const [text, setText] = useState("p35d");
   const { user } = useContext(UserContext);
-  const test = true;
   const deleteReminderMut = useMutation({
     mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
     onSuccess: () => {
@@ -108,7 +108,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
     return result;
   }
 
-  function formatDateTime(dateString: string): string {
+  function formatDateTime(dateString: string, locale: string): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
       day: "2-digit",
@@ -119,7 +119,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
     };
     const date = new Date(dateString);
     const formattedDate = date
-      .toLocaleDateString("en-EN", options)
+      .toLocaleDateString(locale, options)
       .replace(",", "");
 
     return formattedDate;
@@ -139,7 +139,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
       <div className="reminder-area" key={reminder.name}>
         <div className="reminder-info"></div>
         <div className="reminder-date">
-          {formatDateTime(reminder.date.toString())}
+          {formatDateTime(reminder.date.toString(), currentLocale)}
         </div>
         <div className="reminder-pets-container">
           {reminder.pets.map((pet, index) => (
