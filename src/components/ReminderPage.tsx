@@ -40,8 +40,6 @@ const ReminderPage = () => {
             return false;
         if (date == null)
             return false;
-        if (associatedPets.length === 0)
-            return false;
         return true;
     }
 
@@ -73,7 +71,7 @@ const ReminderPage = () => {
 
         switch (stringparam) {
             case "hours":
-                updatedInterval = `P${numberparam}H`;
+                updatedInterval = `PT${numberparam}H`;
                 break;
             case "days":
                 updatedInterval = `P${numberparam}D`;
@@ -122,7 +120,7 @@ const ReminderPage = () => {
                 </div>
                 <div className="reminder-interval">
                     <div className="inputLabel">{t("reminderInterval")}</div>
-                    <input
+                    <div className="reminder-interval-data"><input className="reminder-interval-input"
                         type="number"
                         value={intervalNumber}
                         onChange={async (e) => {
@@ -143,7 +141,7 @@ const ReminderPage = () => {
                         <option value="weeks">{t("weeks")}</option>
                         <option value="months">{t("months")}</option>
                         <option value="years">{t("years")}</option>
-                    </select>
+                    </select></div>
                 </div>
                 <div className="add-reminder-buttons">
                     <Button className="cancel-button" onPress={() => nav("/reminders")}>
@@ -157,13 +155,10 @@ const ReminderPage = () => {
                             if (!validate()) return;
                             if (date == null) return;
 
-
-                            console.log("intervalstring was gesendet wird: ", intervalString);
-
                             reminderMut.mutate({
                                 id: 0,
                                 name: name.trimStart().trimEnd(),
-                                date: datetime.toISOString().substring(0, 25),
+                                date: datetime.toISOString(),
                                 pets: associatedPets,
                                 repeatingInterval: intervalString
                             });
