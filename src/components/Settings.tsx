@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next"
 import "./css/Settings.css"
 import { SUPPORTED_LANGS } from "../constants";
-import { Button } from "react-aria-components"
+import { Button, Dialog, DialogTrigger, Popover, Switch } from "react-aria-components"
 
 
 /**
@@ -39,12 +39,23 @@ const Settings = () => {
                 <h2 className="settings-category-title">{settingsT("language")}</h2>
                 <div className={"settings-label " + (langChanged ? "settings-changed" : "")}>{settingsT("language")}:</div>
                 <select value={lang} name="lang" onChange={e => changeLanguage(e.target.value)}>
-                    {SUPPORTED_LANGS.map(element => 
+                    {SUPPORTED_LANGS.map(element =>
                         <option value={element} key={element}>{langT(element)}</option>
                     )}
                 </select>
             </div>
-            <Button className="settings-submit-button" onPress={applySettings} isDisabled={!hasChanges()}>{settingsT("apply")}</Button>
+            <DialogTrigger>
+                <Button className="settings-submit-button" onPress={applySettings} isDisabled={!hasChanges()}>{settingsT("apply")}</Button>
+                <Popover placement="top">
+                    <Dialog>
+                        <div className="flex-col">
+                            <Switch defaultSelected>
+                                <div /> {settingsT("applySuccess")}
+                            </Switch>
+                        </div>
+                    </Dialog>
+                </Popover>
+            </DialogTrigger>
         </div>
     )
 }
