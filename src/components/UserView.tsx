@@ -38,16 +38,18 @@ const UserView = () => {
     }
 
     return (
-        <div className="user-page">
-            <div className="user-top-container">
-                <div className="user-info">
-                    <div className="user-username">{userQuery.data.username}</div>
-                    <div className="user-fullname">{userQuery.data.fullname}</div>
+        <div className="scroll-page">
+            <div className="user-page">
+                <div className="user-top-container">
+                    <div className="user-info">
+                        <div className="user-username">{userQuery.data.username}</div>
+                        <div className="user-fullname">{userQuery.data.fullname}</div>
+                    </div>
+                    <Button className="message-button">Message</Button>
                 </div>
-                <Button className="message-button">Message</Button>
-            </div>
-            <div className="user-pet-list">
-                <PetCard pets={pets} />
+                <div className="user-pet-list">
+                    <PetCard pets={pets} />
+                </div>
             </div>
         </div>
     );

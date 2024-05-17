@@ -12,14 +12,17 @@
 }
 
 .homepage-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  gap: 10px;
 }
 
 .full-width-image {
   background-image: url("/Hintergrundtest.jpg"); /* Ersetzen Sie 'pfad/zum/bild.jpg' durch den tatsächlichen Pfad zu Ihrem Bild */
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Höhe der Viewport-Höhe */
+  height: 100dvh; /* Höhe der Viewport-Höhe */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +70,7 @@
   }
 
   .homepage-container {
-    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
   }
 }

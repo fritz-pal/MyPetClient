@@ -50,3 +50,13 @@
     top: 5px;
     left: 5px;
 }
+
+@media(max-width:800px) {
+    .comment-input-with-cancel {
+        grid-template-columns: 1fr min-content min-content;
+        grid-template-areas: 
+            "text imb sb"
+            "text none cb"
+            "image image image";
+    }
+}

@@ -1,4 +1,6 @@
-.scroll-page {
-    overflow-y: auto;
-    height: 100%;
+.reminder-page .my-reminders-module {
+    margin: 0 auto;
+    min-width: 50%;
+    max-width: calc(100% - 20px);
+    width: 900px;
 }

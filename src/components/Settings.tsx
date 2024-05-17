@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next"
 import "./css/Settings.css"
 import { SUPPORTED_LANGS } from "../constants";
-import { Button, Dialog, DialogTrigger, Popover, Switch } from 'react-aria-components';
+import { Button, Dialog, DialogTrigger, Popover, Switch } from "react-aria-components"
 
 
 /**
@@ -50,7 +50,7 @@ const Settings = () => {
                     <Dialog>
                         <div className="flex-col">
                             <Switch defaultSelected>
-                                <div className="indicator" color="green" /> {settingsT("applySuccess")}
+                                <div /> {settingsT("applySuccess")}
                             </Switch>
                         </div>
                     </Dialog>

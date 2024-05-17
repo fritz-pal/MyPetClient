@@ -15,6 +15,7 @@ import AnswerButton from "./buttons/AnswerButton";
 import DeleteButton from "./buttons/DeleteButton";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import MoreButton from "./buttons/MoreButton";
+import MultilineLabel from "./MultilineLabel";
 
 const CommentElement = ({ comment }: { comment: Comment }) => {
     const queryClient = useQueryClient();
@@ -99,43 +100,52 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                 <PosterInfo poster={comment.poster} postedAt={comment.createdAt} />
                 {!newAnswerOpen && !editClicked && (dimensions.width && dimensions.width < 500 ?
                     <div className="comment-options">
-                        <DialogTrigger>
-                            <MoreButton className="comment-option-button" />
-                            <Popover>
-                                <Dialog className="comment-option-dialog">
-                                    {({ close }) => (
-                                        <>
-                                            <Button onPress={() => { setNewAnswerOpen(true); close() }}>{t("answer")}</Button>
-                                            <Button className={comment.poster.id != user.id ? "hidden" : undefined} onPress={() => { setEditClicked(true); close() }}>{t("edit")}</Button>
-                                            <Button className={comment.poster.id != user.id ? "hidden" : undefined} onPress={() => { deleteCommentMut.mutate(); close() }}>{t("delete")}</Button>
-                                        </>
-                                    )}
-                                </Dialog>
-                            </Popover>
-                        </DialogTrigger>
+                        {
+                            comment.poster.id == user.id ?
+                                <DialogTrigger>
+                                    <MoreButton className="comment-option-button" />
+                                    <Popover>
+                                        <Dialog className="comment-option-dialog">
+                                            {({ close }) => (
+                                                <>
+                                                    <Button onPress={() => { setNewAnswerOpen(true); close() }}>{t("answer")}</Button>
+                                                    <Button onPress={() => { setEditClicked(true); close() }}>{t("edit")}</Button>
+                                                    <Button onPress={() => { deleteCommentMut.mutate(); close() }}>{t("delete")}</Button>
+                                                </>
+                                            )}
+                                        </Dialog>
+                                    </Popover>
+                                </DialogTrigger> :
+                                <AnswerButton
+                                    className="comment-option-button"
+                                    onPress={() => setNewAnswerOpen(true)}>
+                                </AnswerButton>
+                        }
                     </div>
                     :
                     <div className="comment-options">
-                        <DialogTrigger>
-                            <DeleteButton className={`comment-option-button${comment.poster.id != user.id ? " hidden" : ""}`} />
-                            <Modal>
-                                <Dialog>
-                                    {({ close }) => (
-                                        <div>
-                                            {t("deleteConfirm")}
-                                            <div className="comment-options">
-                                                <Button onPress={close}>{t("cancel")}</Button>
-                                                <Button onPress={() => { deleteCommentMut.mutate(); close(); }}>{t("delete")}</Button>
+                        {comment.poster.id == user.id && <>
+                            <DialogTrigger>
+                                <DeleteButton className={"comment-option-button"} />
+                                <Modal>
+                                    <Dialog>
+                                        {({ close }) => (
+                                            <div>
+                                                {t("deleteConfirm")}
+                                                <div className="comment-options">
+                                                    <Button onPress={close}>{t("cancel")}</Button>
+                                                    <Button onPress={() => { deleteCommentMut.mutate(); close(); }}>{t("delete")}</Button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )}
-                                </Dialog>
-                            </Modal>
-                        </DialogTrigger>
-                        <EditButton
-                            className={`comment-option-button${comment.poster.id != user.id ? " hidden" : ""}`}
-                            onPress={() => setEditClicked(true)}>
-                        </EditButton>
+                                        )}
+                                    </Dialog>
+                                </Modal>
+                            </DialogTrigger>
+                            <EditButton
+                                className={"comment-option-button"}
+                                onPress={() => setEditClicked(true)}>
+                            </EditButton>
+                        </>}
                         <AnswerButton
                             className="comment-option-button"
                             onPress={() => setNewAnswerOpen(true)}>
@@ -154,14 +164,8 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                 )}
                 {!editClicked &&
                     <>
-                        {comment.text.split("\n").map((line) => {
-                            return line != "" ? (
-                                <div className="comment-line">{line}</div>
-                            ) : (
-                                <br />
-                            );
-                        })}
-                        {comment.imageSource ? <img className="comment-image" src={comment.imageSource} /> : <></>}
+                        {comment.text != "" && <MultilineLabel text={comment.text} />}
+                        {comment.imageSource && <img className="comment-image" src={comment.imageSource} />}
                     </>
                 }
             </div>
