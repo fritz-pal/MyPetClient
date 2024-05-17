@@ -85,6 +85,19 @@ const AddPet = () => {
             return false;
         if (species == null)
             return false;
+        if (dateOfBirth) {
+            
+            const now = new Date();
+            if (dateOfBirth.getUTCFullYear() > now.getUTCFullYear()) {
+                return false;
+            } else if (dateOfBirth.getUTCFullYear() == now.getUTCFullYear()) {
+                if (dateOfBirth.getUTCMonth() > now.getUTCMonth()) {
+                    return false;
+                } else if (dateOfBirth.getUTCMonth() == now.getUTCMonth() && dateOfBirth.getUTCDate() > now.getUTCDate()) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
     
