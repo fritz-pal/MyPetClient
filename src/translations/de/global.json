@@ -34,7 +34,8 @@
     "settings": {
         "settings": "Einstellungen",
         "language": "Sprache",
-        "apply": "Übernehmen"
+        "apply": "Übernehmen",
+        "applySuccess": "Einstellungen erfolgreich gespeichert"
     },
     "language": {
         "de": "Deutsch",
@@ -136,9 +137,9 @@
         "kilograms": "Kilogramm",
         "centimeters": "Zentimetern",
         "meters": "Metern",
-        "name":"Name",
-        "dosage":"Dosierung",
-        "frequency":"Häufigkeit",
+        "name": "Name",
+        "dosage": "Dosierung",
+        "frequency": "Häufigkeit",
         "confirm": "Bestätigen",
         "confirmDuplicate": "Du hat bereits ein Tier mit dem gleichen Namen. Möchtest Du es trotzdem hinzufügen?"
     },

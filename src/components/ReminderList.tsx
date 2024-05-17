@@ -157,7 +157,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
                 onPress={() => deleteReminder(reminder.id)}
                 isDisabled={deleteReminderMut.isPending}
             >
-                {deleteReminderMut.isPending ? <SmallLoader/> : t("delete")}
+                {deleteReminderMut.isPending ? <SmallLoader /> : t("delete")}
             </Button>
             <hr />
         </>

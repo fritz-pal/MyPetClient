@@ -34,7 +34,8 @@
     "settings": {
         "settings": "Settings",
         "language": "Language",
-        "apply": "Apply"
+        "apply": "Apply",
+        "applySuccess": "Saved changes"
     },
     "language": {
         "de": "German",
@@ -136,9 +137,9 @@
         "kilograms": "Kilograms",
         "centimeters": "Centimeters",
         "meters": "Meters",
-        "name":"Name",
-        "dosage":"Dosage",
-        "frequency":"Frequency",
+        "name": "Name",
+        "dosage": "Dosage",
+        "frequency": "Frequency",
         "confirm": "Confirm",
         "confirmDuplicate": "You already have a pet with that name. Do you still want to add it?"
     },

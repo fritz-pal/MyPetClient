@@ -48,7 +48,30 @@
     padding-bottom: 20px;
     box-shadow: 1px 1px 1px 1px grey;
     border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.pet-profile-attribute {
     width: 100%;
+}
+
+.pet-profile-reminder {
+    width: 100%;
+}
+
+.reminder-tag-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 
@@ -79,4 +102,10 @@
     margin-top: 20px;
     gap: 50px;
 
+}
+
+.pet-profile-main {
+    text-align: center;
+    overflow-y: auto;
+    height: 100%;
 }

@@ -60,7 +60,7 @@ const updateReminder = async (reminder: JSONReminder): Promise<JSONReminder> => 
 }
 
 const getReminderByPetID = async (petID: Number): Promise<JSONReminder[]> => {
-    const request = await APIClient.get(`${MAPPING}/pet?petId=${petID}/`);
+    const request = await APIClient.get(`${MAPPING}/pet?petId=${petID}`);
     return request.data;
 }
 
