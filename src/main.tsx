@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import i18next from 'i18next'
+import HttpBackend from 'i18next-http-backend'
 import global_de from './translations/de/global.json'
 import global_en from './translations/en/global.json'
 import { I18nextProvider } from 'react-i18next'
@@ -10,16 +11,21 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { SUPPORTED_LANGS } from './constants.ts'
 import { CookiesProvider } from 'react-cookie'
 
-i18next.use(LanguageDetector).init({
-  fallbackLng: 'en',
-  debug: true,
-  interpolation: { escapeValue: false },
-  supportedLngs: SUPPORTED_LANGS,
-  resources: {
-    "en": global_en,
-    "de": global_de
-  }
-})
+i18next
+  .use(HttpBackend)
+  .use(LanguageDetector)
+  .init({
+    fallbackLng: 'en',
+    debug: true,
+    interpolation: { escapeValue: false },
+    supportedLngs: SUPPORTED_LANGS,
+    resources: {
+      en: { global: global_en },
+      de: { global: global_de }
+    },
+    ns: ['global', 'species'],
+    defaultNS: 'global',  
+  })
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(

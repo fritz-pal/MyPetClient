@@ -176,6 +176,8 @@
     },
     "admin": {
         "species": "Spezies",
+        "speciesEn": "Englischer Name",
+        "speciesDe": "Deutscher Name",
         "addSpecies": "Spezies hinzufügen",
         "addedSpecies": "\"{{species}}\" wurde erfolgreich der Datenbank hinzugefügt",
         "exists": "Diese Spezies existiert bereits",

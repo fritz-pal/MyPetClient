@@ -176,6 +176,8 @@
     },
     "admin": {
         "species": "Species",
+        "speciesEn": "English Name",
+        "speciesDe": "German Name",
         "addSpecies": "Add Species",
         "addedSpecies": "Successfully added \"{{species}}\" to the database",
         "exists": "Species already exists",
