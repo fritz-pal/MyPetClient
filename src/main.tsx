@@ -19,13 +19,19 @@ i18next
     debug: true,
     interpolation: { escapeValue: false },
     supportedLngs: SUPPORTED_LANGS,
+    backend: {
+      loadPath: (lng: string, ns: string) => {
+        if (ns === 'species') {
+          return `/api/lang/${lng}/species`;
+        }
+        return global_en;
+      }
+    },
     resources: {
       en: { global: global_en },
-      de: { global: global_de }
-    },
-    ns: ['global', 'species'],
-    defaultNS: 'global',  
-  })
+      de: { global: global_de },
+    }
+  });
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
