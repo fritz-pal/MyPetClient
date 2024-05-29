@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import LanguageDetector from "i18next-browser-languagedetector";
 import { SUPPORTED_LANGS } from './constants.ts'
 import { CookiesProvider } from 'react-cookie'
+import { TranslationAPI } from './models/Translation.ts'
 
 i18next
   .use(HttpBackend)
@@ -24,14 +25,27 @@ i18next
         if (ns === 'species') {
           return `/api/lang/${lng}/species`;
         }
-        return global_en;
+        return `/translations/${lng}/global.json`;
       }
     },
     resources: {
-      en: { global: global_en },
-      de: { global: global_de },
+      "en": global_en,
+      "de": global_de
     }
   });
+
+const loadBackendTranslations = async (lang: string, namespaces: string[]) => {
+  for (const ns of namespaces) {
+    if (ns === 'species') {
+      const translations = await TranslationAPI.getTranslation(lang, ns);
+      i18next.addResourceBundle(lang, ns, translations);
+    }
+  }
+};
+
+SUPPORTED_LANGS.forEach(lang => {
+  loadBackendTranslations(lang, ['species']);
+});
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(

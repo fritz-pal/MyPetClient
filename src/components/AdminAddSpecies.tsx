@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import SpeciesElement from './SpeciesElement';
 import { Button } from 'react-aria-components';
 import SmallLoader from './SmallLoader';
+import { TranslationAPI } from '../models/Translation';
 
 /**
  * React Component that displays a Admin Page for adding a species
@@ -28,7 +29,11 @@ const AdminAddSpecies = () => {
 
     const speciesAdd = useMutation({
         mutationFn: (species: Species) => SpeciesAPI.addSpecies(species),
-        onSuccess: () => {
+        onSuccess: async () => {
+            await Promise.all([
+                TranslationAPI.postTranslation('en', { namespace: 'species', key: speciesName, value: speciesNameEn}),
+                TranslationAPI.postTranslation('de', {namespace: 'species', key: speciesName, value: speciesNameDe}),
+            ]);
             queryClient.invalidateQueries({ queryKey: ["species"] });
             setShowFeedback(true);
             setSpeciesFeedback(speciesName);
@@ -45,7 +50,7 @@ const AdminAddSpecies = () => {
 
     const speciesUpdate = useMutation({
         mutationFn: (species: Species) => SpeciesAPI.updateSpecies(species),
-        onSuccess: () => {
+        onSuccess: async () => {
             queryClient.invalidateQueries({
                 queryKey: ["species"]
             });
@@ -111,8 +116,6 @@ const AdminAddSpecies = () => {
                 {detailSpecies && <div className="post-form-container">
                     <div className="details-content">
                         <div>{t("name")}: <input type="text" value={detailSpecies.name} onChange={(e) => setDetailSpecies({ ...detailSpecies, name: e.target.value })} /></div>
-                        <div>{t("nameEn")}: <input type="text" value={speciesNameEn} /></div>
-                        <div>{t("nameDe")}: <input type="text" value={speciesNameDe} /></div>
                         <div>{t("unitWeight")}: <input type="text" value={detailSpecies.unitWeight} onChange={(e) => setDetailSpecies({ ...detailSpecies, unitWeight: e.target.value })} /></div>
                         <div>{t("unitSize")}: <input type="text" value={detailSpecies.unitSize} onChange={(e) => setDetailSpecies({ ...detailSpecies, unitSize: e.target.value })} /></div>
                         <div>{t("typeOfSize")}: <input type="text" value={detailSpecies.typeOfSize} onChange={(e) => setDetailSpecies({ ...detailSpecies, typeOfSize: e.target.value })} /></div>
