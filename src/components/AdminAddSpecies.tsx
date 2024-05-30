@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './css/AdminAddSpecies.css';
 import { Species, SpeciesAPI } from '../models/Species';
 import './css/AdminAddSpecies.css';
@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import SpeciesElement from './SpeciesElement';
 import { Button } from 'react-aria-components';
 import SmallLoader from './SmallLoader';
+import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router';
 
 /**
  * React Component that displays a Admin Page for adding a species
@@ -16,9 +18,17 @@ const AdminAddSpecies = () => {
     const [speciesFeedback, setSpeciesFeedback] = useState('');
     const [showFeedback, setShowFeedback] = useState(false);
     const [detailSpecies, setDetailSpecies] = useState<Species | null>(null);
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const [t,] = useTranslation("admin");
     const queryClient = useQueryClient();
+
+    useEffect(() => {
+        if (user.role !== "ROLE_ADMIN") {
+            navigate("/");
+        }
+    }, []);
 
     const query = useQuery({
         queryKey: ["species"],
@@ -71,7 +81,7 @@ const AdminAddSpecies = () => {
                 <div className="title-admin">{t("addSpecies")}</div>
                 <div className="post-form">
                     <input placeholder={t("species")} className="post-input" type="text" value={speciesName} onChange={(e) => setSpeciesName(e.target.value.trim())} />
-                    <Button className="post-button" isDisabled={speciesAdd.isPending || speciesName == ""} onPress={() => speciesAdd.mutate({ id: 0, name: speciesName })}>{speciesUpdate.isPending ? <SmallLoader/> : t("addSpecies")}</Button>
+                    <Button className="post-button" isDisabled={speciesAdd.isPending || speciesName == ""} onPress={() => speciesAdd.mutate({ id: 0, name: speciesName })}>{speciesUpdate.isPending ? <SmallLoader /> : t("addSpecies")}</Button>
                 </div>
                 <div className={`feedback ${showFeedback ? 'shown' : ''}`}>{speciesFeedback === 'error' ? t("exists") : speciesFeedback === 'updated' ? t("updated") : t("addedSpecies", { species: speciesFeedback })}</div>
                 <div className="species-list">
@@ -88,10 +98,10 @@ const AdminAddSpecies = () => {
                     <div>{t("typeOfSize")}: <input type="text" value={detailSpecies.typeOfSize} onChange={(e) => setDetailSpecies({ ...detailSpecies, typeOfSize: e.target.value })} /></div>
                     <div className="update-button">
                         <Button isDisabled={deleteSpeciesMut.isPending || speciesUpdate.isPending} onPress={() => deleteSpeciesMut.mutate(detailSpecies.id)}>
-                            {deleteSpeciesMut.isPending ? <SmallLoader/> : t("delete")}
+                            {deleteSpeciesMut.isPending ? <SmallLoader /> : t("delete")}
                         </Button>
                         <Button isDisabled={speciesUpdate.isPending || deleteSpeciesMut.isPending} onPress={() => speciesUpdate.mutate(detailSpecies)}>
-                            {speciesUpdate.isPending ? <SmallLoader/> : t("update")}
+                            {speciesUpdate.isPending ? <SmallLoader /> : t("update")}
                         </Button>
                     </div>
                 </div>

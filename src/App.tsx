@@ -22,6 +22,7 @@ import UserView from './components/UserView';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  
   return (
     <Router basename={process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/'}>
       <AuthProvider>

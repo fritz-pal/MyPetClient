@@ -6,12 +6,14 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Key, Menu, MenuItem, MenuTrigger, Popover } from 'react-aria-components';
 import { AuthContext } from '../context/AuthContext';
+import { UserContext } from '../context/UserContext';
 
 const HeaderBar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [t, _] = useTranslation("header");
     const auth = useContext(AuthContext);
+    const { user } = useContext(UserContext);
 
     const handleSettingsClick = () => {
         navigate('/settings');
@@ -40,7 +42,7 @@ const HeaderBar = () => {
                 <PathItem path="/" label="home" />
                 <PathItem path="/forum" label="forum" />
                 <PathItem path="/reminders" label="reminders" />
-                {/*<PathItem path="/admin" label="Admin" />*/}
+                {user.role === "ROLE_ADMIN" && <PathItem path="/admin" label="Admin" />}
             </div>
             <div className="header-bar-user-settings">
                 <svg onClick={handleSettingsClick} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
