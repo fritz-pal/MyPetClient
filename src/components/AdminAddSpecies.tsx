@@ -41,6 +41,7 @@ const AdminAddSpecies = () => {
             setDetailSpecies(null);
             setSpeciesNameEn('');
             setSpeciesNameDe('');
+            window.location.reload();
         },
         onError: () => {
             setShowFeedback(true);
