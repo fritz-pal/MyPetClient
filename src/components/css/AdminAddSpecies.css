@@ -1,14 +1,14 @@
 .post-form {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin: 50px auto 10px auto;
 }
 
 .post-button {
     margin: 0 0 10px 10px;
-    width: 280px;
+    height: 50%;
 }
 
 .post-input {
