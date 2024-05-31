@@ -38,12 +38,12 @@
 
 .home_greeting {
   font-size: 100px;
-  color: #ffffff85;
+  color: #1a1a1aa8;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .home_title {
-  margin-top: -130px;
+  margin-top: -120px;
   font-size: 100px;
   color: #1a1a1aa8;
   text-shadow: 0px 2px 40px 0px rgba(0, 0, 0, 0.5);
