@@ -1,0 +1,179 @@
+.pet-profile-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    box-shadow: 4px 4px 20px 0px #000000;
+    border-radius: 50%;
+    animation: rotate 5s linear infinite;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+@keyframes jump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.jump {
+    animation: jump 0.5s ease;
+}
+
+.pet-profile {
+    font-size: 20px;
+    font-weight: bold;
+    color: #404040;
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 2px 2px 2px 1px rgb(110, 110, 110);
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    background: #dadada;
+}
+
+.reminder-area-w {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #404040;
+}
+
+.reminder-name-w {
+    justify-content: center;
+    display: grid;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #404040;
+}
+
+.pet-profile-reminder-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #404040;
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 2px 2px 2px 1px rgb(110, 110, 110);
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background: #dadada;
+}
+
+.pet-profile-attribute {
+    width: 100%;
+    padding-bottom: 20px;
+    background: #9d9d9d;
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 2px 1px 1px rgb(139, 139, 139);
+}
+
+.pet-profile-reminder {
+    width: 100%;
+    padding-bottom: 20px;
+    background: #9d9d9d;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    height: 100%;
+    box-shadow: 1px 2px 1px 1px rgb(139, 139, 139);
+}
+
+.pet-profile-text {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: left;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(213, 213, 213);
+    border-radius: 5px;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.reminder-tag-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 1px 1px 1px rgb(213, 213, 213);
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    background: #dadada;
+    margin-top: 10px;
+}
+
+.test-button-jump {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: black;
+    background: white;
+    width: 60%;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+.test-button-jump:hover {
+    background: #5e5e5e;
+    color: #404040;
+    box-shadow: 3px 3px 5px 2px grey;
+    transform: scale(1.02);
+}
+
+.test-button-jump:active {
+    background: #4747d9;
+    box-shadow: inset 1px 1px 2px black;
+    transform: scale(0.95);
+}
+
+.pet-profile-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+
+}
+
+.pet-profile-main {
+    text-align: center;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.scroll-page {
+    overflow-y: auto;
+    height: 100%;
+}

@@ -1,5 +1,5 @@
 import { APIClient } from "../constants"
-import {Pet} from "./Pet"
+import { Pet } from "./Pet"
 
 export interface Reminder {
     id: number
@@ -31,7 +31,7 @@ const ReminderToJSONReminder = (data: Reminder) => {
     }
 }
 
-const newReminder = () : Reminder => {
+const newReminder = (): Reminder => {
     return {
         id: 0,
         name: "",
@@ -59,6 +59,11 @@ const updateReminder = async (reminder: JSONReminder): Promise<JSONReminder> => 
     return request.data;
 }
 
+const getReminderByPetID = async (petID: Number): Promise<JSONReminder[]> => {
+    const request = await APIClient.get(`${MAPPING}/pet?petId=${petID}`);
+    return request.data;
+}
+
 const deleteReminder = async (id: Number): Promise<void> => {
     const request = await APIClient.delete(`${MAPPING}/${id}`);
     return request.data;
@@ -80,7 +85,8 @@ export const ReminderAPI = {
     getReminderByID,
     deleteReminder,
     updateReminder,
-    addReminder
+    addReminder,
+    getReminderByPetID
 }
 
 export default Reminders

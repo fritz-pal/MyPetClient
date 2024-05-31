@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: black;
 }
 
 .reminder-name {
@@ -32,6 +33,7 @@
   display: grid;
   font-size: 1.2em;
   font-weight: bold;
+  color: black;
 }
 
 .reminder-tag-name {

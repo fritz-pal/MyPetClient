@@ -141,7 +141,11 @@
         "dosage": "Dosage",
         "frequency": "Frequency",
         "confirm": "Confirm",
-        "confirmDuplicate": "You already have a pet with that name. Do you still want to add it?"
+        "confirmDuplicate": "You already have a pet with that name. Do you still want to add it?",
+        "notSpecified": "Not Specified",
+        "gender": "Gender",
+        "username": "Username",
+        "speciesType": "Species"
     },
     "addThread": {
         "pageTitle": "New Discussion",

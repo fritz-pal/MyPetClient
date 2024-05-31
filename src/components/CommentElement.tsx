@@ -22,7 +22,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     const [t] = useTranslation("comment");
     const { user } = useContext(UserContext);
     const dimensions = useWindowDimensions();
-    
+
     const [isDeleted, setIsDeleted] = useState(false);
     const [newAnswerOpen, setNewAnswerOpen] = useState(false);
     const [editClicked, setEditClicked] = useState(false);
@@ -33,7 +33,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     const [answersOpen, setAnswersOpen] = useState(false);
 
     const postAnswerMut = useMutation({
-        mutationFn: ({answer, file}: {answer: Comment, file?: File}) =>
+        mutationFn: ({ answer, file }: { answer: Comment, file?: File }) =>
             CommentAPI.answerToComment(answer, comment.id, file),
         onSuccess: (data) => {
             console.log("posted answer for id:", comment.id, data);
@@ -64,7 +64,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     };
 
     const editCommentMut = useMutation({
-        mutationFn: ({editedComment, file}:{editedComment: CommentChanges, file?: File}) =>
+        mutationFn: ({ editedComment, file }: { editedComment: CommentChanges, file?: File }) =>
             CommentAPI.updateComment(editedComment, file),
         onSuccess: (data) => {
             comment.text = data.text;
@@ -86,7 +86,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
     });
 
     const handleEditClick = (newComment: Comment, file?: File) => {
-        editCommentMut.mutate({editedComment: getCommentChanges(comment, newComment), file});
+        editCommentMut.mutate({ editedComment: getCommentChanges(comment, newComment), file });
         setEditClicked(false);
     };
 
@@ -98,35 +98,35 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
         <div className="comment" key={comment.id}>
             <div className="comment-header">
                 <PosterInfo poster={comment.poster} postedAt={comment.createdAt} />
-                {!newAnswerOpen && !editClicked && (dimensions.width && dimensions.width < 500 ? 
+                {!newAnswerOpen && !editClicked && (dimensions.width && dimensions.width < 500 ?
                     <div className="comment-options">
                         {
                             comment.poster.id == user.id ?
-                            <DialogTrigger>
-                                <MoreButton className="comment-option-button"/>
-                                <Popover>
-                                    <Dialog className="comment-option-dialog">
-                                        {({ close }) => (
-                                            <>
-                                                <Button onPress={() => {setNewAnswerOpen(true); close()}}>{t("answer")}</Button>
-                                                <Button onPress={() => {setEditClicked(true); close()}}>{t("edit")}</Button>
-                                                <Button onPress={() => {deleteCommentMut.mutate(); close()}}>{t("delete")}</Button>
-                                            </>
-                                        )}
-                                    </Dialog>
-                                </Popover>
-                            </DialogTrigger> :
-                            <AnswerButton
-                                className="comment-option-button"
-                                onPress={() => setNewAnswerOpen(true)}>
-                            </AnswerButton>
+                                <DialogTrigger>
+                                    <MoreButton className="comment-option-button" />
+                                    <Popover>
+                                        <Dialog className="comment-option-dialog">
+                                            {({ close }) => (
+                                                <>
+                                                    <Button onPress={() => { setNewAnswerOpen(true); close() }}>{t("answer")}</Button>
+                                                    <Button onPress={() => { setEditClicked(true); close() }}>{t("edit")}</Button>
+                                                    <Button onPress={() => { deleteCommentMut.mutate(); close() }}>{t("delete")}</Button>
+                                                </>
+                                            )}
+                                        </Dialog>
+                                    </Popover>
+                                </DialogTrigger> :
+                                <AnswerButton
+                                    className="comment-option-button"
+                                    onPress={() => setNewAnswerOpen(true)}>
+                                </AnswerButton>
                         }
                     </div>
-                    : 
+                    :
                     <div className="comment-options">
-                        { comment.poster.id == user.id && <>
+                        {comment.poster.id == user.id && <>
                             <DialogTrigger>
-                                <DeleteButton className={"comment-option-button"}/>
+                                <DeleteButton className={"comment-option-button"} />
                                 <Modal>
                                     <Dialog>
                                         {({ close }) => (
@@ -134,7 +134,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                                                 {t("deleteConfirm")}
                                                 <div className="comment-options">
                                                     <Button onPress={close}>{t("cancel")}</Button>
-                                                    <Button onPress={() => {deleteCommentMut.mutate(); close();}}>{t("delete")}</Button>
+                                                    <Button onPress={() => { deleteCommentMut.mutate(); close(); }}>{t("delete")}</Button>
                                                 </div>
                                             </div>
                                         )}
@@ -150,31 +150,31 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                             className="comment-option-button"
                             onPress={() => setNewAnswerOpen(true)}>
                         </AnswerButton>
-                    </div> 
+                    </div>
                 )}
             </div>
             <div className="comment-body">
                 {editClicked && (
-                    <CommentInput 
-                        initialComment={comment} 
-                        onCancel={() => setEditClicked(false)} 
-                        isLoading={editCommentMut.isPending} 
+                    <CommentInput
+                        initialComment={comment}
+                        onCancel={() => setEditClicked(false)}
+                        isLoading={editCommentMut.isPending}
                         onSubmit={handleEditClick}
                         placeHolder={comment.text} />
                 )}
                 {!editClicked &&
                     <>
-                        {comment.text != "" && <MultilineLabel text={comment.text}/>}
-                        {comment.imageSource && <img className="comment-image" src={comment.imageSource}/>}
+                        {comment.text != "" && <MultilineLabel text={comment.text} />}
+                        {comment.imageSource && <img className="comment-image" src={comment.imageSource} />}
                     </>
                 }
             </div>
             {newAnswerOpen && (
-                <CommentInput 
-                    onSubmit={handleAnswerPostClick} 
-                    isLoading={postAnswerMut.isPending} 
+                <CommentInput
+                    onSubmit={handleAnswerPostClick}
+                    isLoading={postAnswerMut.isPending}
                     onCancel={() => setNewAnswerOpen(false)}
-                    placeHolder={t("answer")}/>
+                    placeHolder={t("answer")} />
             )}
             {hasAnswers && !answersOpen && (
                 <Button
@@ -203,9 +203,9 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
 
 const AnswerPage = ({ commentId, page }: { commentId: number, page: number }) => {
     const [t] = useTranslation("comment");
-    
+
     const [nextPageOpen, setNextPageOpen] = useState(false);
-    
+
     const answerQuery = useQuery({
         queryKey: ["comments", commentId, "answers", page],
         queryFn: () => CommentAPI.getAnswers(commentId, page),
