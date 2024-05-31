@@ -22,6 +22,8 @@ const PetProfile = () => {
     };
 
     const [t, _] = useTranslation("reminders");
+    const [z, _z] = useTranslation("addPet");
+    const [k, _k] = useTranslation("species");
 
     function removeFirstLast(text: string) {
         let result = text.slice(1, -1) + t("day"); // Default-Wert
@@ -94,15 +96,31 @@ const PetProfile = () => {
                     <div className="pet-profile">{petQuery.data?.name}</div>
                     <RoundImage className={`pet-profile-image ${isJumping ? 'jump' : ''}`} imageSource={petQuery.data?.imageSource} placeholder={placeholderPet} />
                     <button className="test-button-jump" onClick={handleClick}>HEY</button>
-                    <div className="pet-profile">{petQuery.data?.dateOfBirth}</div>
+                    <div className="pet-profile-text">{z("birthday")}</div>
+                    <div className="pet-profile">{petQuery.data?.dateOfBirth?.length === 0 ? "-" : petQuery.data?.dateOfBirth}</div>
+                    <div className="pet-profile-text">{z("castrated")}</div>
                     <div className="pet-profile">{petQuery.data?.castrated ? "Kastriert" : "nicht Kastriert"}</div>
-                    <div className="pet-profile">{petQuery.data?.owner.username}</div>
-                    <div className="pet-profile">{petQuery.data?.subSpecies}</div>
-                    <div className="pet-profile">{petQuery.data?.weight}</div>
+                    <div className="pet-profile-text">{z("username")}</div>
+                    <div className="pet-profile">{petQuery.data?.owner.username.length === 0 ? "-" : petQuery.data?.owner.username}</div>
+                    <div className="pet-profile-text">{z("subSpecies")}</div>
+                    <div className="pet-profile">{petQuery.data?.subSpecies.length === 0 ? "-" : petQuery.data?.subSpecies}</div>
+                    <div className="pet-profile-text">{z("weight")}</div>
+                    <div className="pet-profile">{petQuery.data?.weight === 0 ? "-" : petQuery.data?.weight + " " + petQuery.data?.species?.unitWeight}</div>
+                    <div className="pet-profile-text">{z("gender")}</div>
                     <div className="pet-profile">{petQuery.data?.isMale ? "Männlich" : "Weiblich"}</div>
+                    <div className="pet-profile-text">{z("allergies")}</div>
+                    <div className="pet-profile">{petQuery.data?.allergies?.length === 0 ? "-" : petQuery.data?.allergies}</div>
+                    <div className="pet-profile-text">{z("disabilities")}</div>
+                    <div className="pet-profile">{petQuery.data?.disabilities?.length === 0 ? "-" : petQuery.data?.disabilities}</div>
+                    <div className="pet-profile-text">{z("speciesType")}</div>
+                    <div className="pet-profile">{petQuery.data?.species.name.length != null ? k(petQuery.data?.species.name) : "-"}</div>
+                    <div className="pet-profile-text">{z("size")}</div>
+                    <div className="pet-profile">{petQuery.data?.size === 0 ? "-" : petQuery.data?.species.typeOfSize + ": " + petQuery.data?.size + " " + petQuery.data?.species.unitSize}</div>
+
+
                 </div>
                 <div className="pet-profile-reminder">
-                    <div className="pet-profile">Reminder</div>
+                    <div className="pet-profile-reminder-title">Reminder</div>
                     {petReminderQuery.isLoading && (
                         <div className="load">
                             <Loader />
@@ -113,14 +131,14 @@ const PetProfile = () => {
                             {petReminderQuery.data.map((reminder) => (
                                 <div className="reminder-tag-container">
                                     <div className="reminder-tag-name">
-                                        <div className="reminder-name">
+                                        <div className="reminder-name-w">
                                             {reminder.name}
                                         </div>
                                         <div className="reminder-tag">
                                             {reminder.repeatingInterval != null ? `${removeFirstLast(reminder.repeatingInterval?.toString())}` : ""}
                                         </div>
                                     </div>
-                                    <div className="reminder-area" key={reminder.name}>
+                                    <div className="reminder-area-w" key={reminder.name}>
                                         <div className="reminder-info"></div>
                                         <div className="reminder-date">
                                             {formatDateTime(reminder.date.toString())}

@@ -141,7 +141,11 @@
         "dosage": "Dosierung",
         "frequency": "Häufigkeit",
         "confirm": "Bestätigen",
-        "confirmDuplicate": "Du hat bereits ein Tier mit dem gleichen Namen. Möchtest Du es trotzdem hinzufügen?"
+        "confirmDuplicate": "Du hat bereits ein Tier mit dem gleichen Namen. Möchtest Du es trotzdem hinzufügen?",
+        "notSpecified": "nicht angegeben",
+        "gender": "Geschlecht",
+        "username": "Benutzername",
+        "speciesType": "Spezies"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",
