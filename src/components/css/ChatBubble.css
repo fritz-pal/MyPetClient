@@ -1,0 +1,19 @@
+.chat-bubble-incoming,
+.chat-bubble-outgoing {
+    max-width: calc(100% - 50px);
+    word-break: break-word;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0.5em;
+}
+
+.chat-bubble-incoming {
+    background-color: white;
+    align-self: start;
+    border-radius: 0.75em 0.75em 0.75em 0em;
+}
+
+.chat-bubble-outgoing {
+    background-color: lightblue;
+    align-self: end;
+    border-radius: 0.75em 0.75em 0em 0.75em;
+}

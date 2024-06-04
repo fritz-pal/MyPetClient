@@ -4,12 +4,12 @@
     width: 1.5rem;
     height: 1.5rem;
     background-color: inherit;
-    --cross-color: var(--seventh-color);
+    --filter: none;
 }
 
 .cross-button:hover {
-    --cross-color: red;
     background-color: inherit;
+    --filter: brightness(150%);
 }
 
 .cross-button-content {
@@ -20,12 +20,13 @@
 
 .cross-button-content div {
     position: absolute;
-    background-color: var(--cross-color);
+    background-color: red;
     width: 3px;
     border-radius: 1px;
     height: 100%;
     left: calc(50% - 1.5px);
     transform-origin: center;
+    filter: var(--filter);
 }
 
 .cross-button-content div:nth-child(1) {

@@ -1,0 +1,43 @@
+.chat-input {
+    display: grid;
+    grid-template-columns: 1fr min-content min-content;
+    grid-template-rows: min-content min-content auto;
+    grid-template-areas: 
+        "image image image"
+        "text imb sb"
+        "text none none";
+    grid-gap: 5px;
+    padding: 5px 10px;
+    background-color: var(--fourth-color);
+    border-radius: 10px 10px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.chat-input-text {
+    resize: none;
+    grid-area: text;
+}
+
+.chat-input-image-button {
+    grid-area: imb;
+}
+
+.chat-input-submit {
+    grid-area: sb;
+}
+
+.chat-input-image {
+    grid-area: image;
+    position: relative;
+}
+
+.chat-input-cross {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.chat-input-image img {
+    max-height: 30vh;
+    max-width: 100%;
+}

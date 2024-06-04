@@ -20,6 +20,7 @@ import UserContextProvider from './context/UserContext';
 import "./components/css/aria.css"
 import UserView from './components/UserView';
 import PetProfile from './components/PetProfile';
+import PrivateChat from './components/PrivateChat';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/newreminder" element={<ReminderPage />} />
                 <Route path="/user/:id" element={<UserView />} />
                 <Route path="/pet/:id" element={<PetProfile />} />
+                <Route path="/chat/:id" element={<PrivateChat />} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
             </div>

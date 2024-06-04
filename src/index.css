@@ -12,6 +12,10 @@ body {
   box-sizing: inherit;
 }
 
+*:focus {
+  outline: currentColor solid 1px;
+}
+
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;

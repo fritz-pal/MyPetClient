@@ -1,0 +1,38 @@
+.private-chat-page {
+    height: 100%;
+    width: 100%;
+    color: black;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+}
+
+.private-chat-header {
+    display: flex;
+    padding: 5px;
+    background-color: var(--fourth-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.private-chat-profile-picture {
+    height: 3em;
+}
+
+.private-chat-name {
+    margin: auto 10px;
+    font-size: 1.5em;
+}
+
+.private-chat-main {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    overflow: auto;
+    width: min(100%, 1000px);
+    gap: 10px;
+    justify-self: center;
+    padding: 20px;
+}
+
+.private-chat-footer {
+    
+}
