@@ -17,7 +17,7 @@ const useStomp = <T,>(topic: string, callback: (message: T) => void) => {
         wsContext.stompClient.send(topic, {}, data);
     }   
 
-    return [sendData];
+    return sendData;
 }
 
 export default useStomp

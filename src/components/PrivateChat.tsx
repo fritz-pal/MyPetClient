@@ -8,15 +8,12 @@ import ChatInput from "./ChatInput"
 import RoundImage from "./RoundImage"
 import noIcon from '/no-profile-picture-icon.webp';
 import useStomp from "../hooks/useStomp"
-import { Button } from "react-aria-components"
 
 
 const otherUserExample: User = {id: 999999, username: "OtherUser"}
 
 const PrivateChat = () => {
     const {user} = useContext(UserContext);
-
-    const [sendData] = useStomp<string>("/topic/echo", (data) => { console.log(data); })
 
     const exampleMessages: ChatMessage[] = [
         {id: 1, from: user, to: user, createdAt: 0, text: "Was zur Hölle soll das heißen"}, 
