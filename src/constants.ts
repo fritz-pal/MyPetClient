@@ -14,6 +14,6 @@ export const WS_BASE_URL = process.env.NODE_ENV === 'production' ? "/LabSWP24MyP
 export const WSClient = new SockJS(WS_BASE_URL);
 WSClient.onopen = () => { console.log("WSClient connected"); }
 
-export const StompClient = Stomp.over(WSClient);
+export const StompClient = Stomp.over(() => WSClient);
 
 export const SUPPORTED_LANGS = ["en", "de"];

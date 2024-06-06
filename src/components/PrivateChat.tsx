@@ -44,8 +44,7 @@ const PrivateChat = () => {
                     })
                 }
             </div>
-            {/*<ChatInput otherUser={otherUserExample}></ChatInput>*/}
-            <Button onPress={() => sendData("Hi")}>Send Hi</Button>
+            <ChatInput otherUser={otherUserExample}></ChatInput>
         </div>
     )
 }
