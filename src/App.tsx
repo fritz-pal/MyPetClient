@@ -21,12 +21,14 @@ import "./components/css/aria.css"
 import UserView from './components/UserView';
 import PetProfile from './components/PetProfile';
 import PrivateChat from './components/PrivateChat';
+import WebsocketClient from './components/WebsocketClient';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
     <Router basename={process.env.NODE_ENV === 'production' ? '/LabSWP24MyPet' : '/'}>
+      <WebsocketClient>
       <AuthProvider>
         <UserContextProvider>
           <div className="App">
@@ -55,6 +57,7 @@ function App() {
           </div>
         </UserContextProvider>
       </AuthProvider>
+      </WebsocketClient>
     </Router>
   );
 }
