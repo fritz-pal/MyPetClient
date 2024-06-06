@@ -7,8 +7,6 @@ import ChatBubble from "./ChatBubble"
 import ChatInput from "./ChatInput"
 import RoundImage from "./RoundImage"
 import noIcon from '/no-profile-picture-icon.webp';
-import useStomp from "../hooks/useStomp"
-
 
 const otherUserExample: User = {id: 999999, username: "OtherUser"}
 
