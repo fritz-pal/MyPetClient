@@ -170,8 +170,8 @@
         "cancel": "Abbrechen",
         "reminderTime": "Uhrzeit",
         "delete": "Löschen",
-        "reminderRequirements": "Der Termin braucht einen Namen und mind. ein zugewiesenes Tier",
-        "reminderInterval": "Nach welcher Zeit soll der Termin wiederholt werden?",
+        "reminderRequirements": "Der Termin braucht einen Namen",
+        "reminderInterval": "Intervall für Wiederholung?",
         "hours": "Stunden",
         "days": "Tage",
         "weeks": "Wochen",
@@ -186,6 +186,7 @@
         "everySingle": "jede",
         "everySingle2": "jeden",
         "everySingle3": "jedes",
-        "selectTimeUnit": "Dauer wählen..."
+        "selectTimeUnit": "Zeitspanne...",
+        "setReminderInterval": "Wiederkehrender Termin?"
     }
 }

@@ -69,4 +69,31 @@
   .inputLabel {
     font-size: 15px;
   }
+
+  .reminder-interval-data {
+    display: grid;
+  }
+
+  .reminder-interval-input,
+  select {
+    width: 80%;
+  }
 }
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reminder-interval-data {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.reminder-interval-input,
+select {
+  width: 40%;
+}
+
