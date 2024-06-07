@@ -25,6 +25,7 @@ const ReminderPage = () => {
     const [intervalString, setIntervalString] = useState<string>("")
     const [selectedTimeUnit, setSelectedTimeUnit] = useState('');
     const [intervalNumber, setIntervalNumber] = useState<number>(0);
+    const [isIntervalVisible, setIsIntervalVisible] = useState<boolean>(false);
 
 
     const reminderMut = useMutation({
@@ -36,7 +37,7 @@ const ReminderPage = () => {
     })
 
     const validate = (): boolean => {
-        if (name == "")
+        if (name == "" || name.length > 50)
             return false;
         if (date == null)
             return false;
@@ -64,8 +65,9 @@ const ReminderPage = () => {
     };
 
     const updateIntervalString = (numberparam: number, stringparam: string) => {
-        console.log("selectedTimeUnit:", stringparam);
-        console.log("intervalNumber:", numberparam);
+        if(numberparam === 0){
+            return;
+        }
 
         let updatedInterval = "";
 
@@ -88,7 +90,6 @@ const ReminderPage = () => {
             default:
                 break;
         }
-        console.log("updatedInterval: ", updatedInterval)
         setIntervalString(updatedInterval);
     };
 
@@ -118,30 +119,47 @@ const ReminderPage = () => {
                 <div className="inputLabel">
                     <PetSelection userId={user.id} setAssociatedPets={setAssociatedPets} />
                 </div>
-                <div className="reminder-interval">
-                    <div className="inputLabel">{t("reminderInterval")}</div>
-                    <div className="reminder-interval-data"><input className="reminder-interval-input"
-                        type="number"
-                        value={intervalNumber}
-                        onChange={async (e) => {
-                            setIntervalNumber(e.target.valueAsNumber)
-                            updateIntervalString(e.target.valueAsNumber, selectedTimeUnit);
-                        }}
-                    />
-                    <select
-                        id="timeUnit"
-                        value={selectedTimeUnit}
-                        onChange={async e => {
-                            setSelectedTimeUnit(e.target.value)
-                            updateIntervalString(intervalNumber, e.target.value);
-                        }}>
-                        <option value="">{t("selectTimeUnit")}</option>
-                        <option value="hours">{t("hours")}</option>
-                        <option value="days">{t("days")}</option>
-                        <option value="weeks">{t("weeks")}</option>
-                        <option value="months">{t("months")}</option>
-                        <option value="years">{t("years")}</option>
-                    </select></div>
+                <div className="accordion-section">
+                    <div className="accordion-header">
+                        <div className="inputLabel">{t("setReminderInterval")}</div>
+                    <ExpandButton onClick={() => setIsIntervalVisible(!isIntervalVisible)} isOpen={isIntervalVisible} />
+                    </div>
+                    {isIntervalVisible && (
+                        <div className="reminder-interval">
+                            <div >{t("reminderInterval")}</div>
+                            <div className="reminder-interval-data">
+                            <input
+                                className="reminder-interval-input"
+                                type="number"
+                                value={intervalNumber}
+                                min="0"
+                                inputMode="numeric"
+                                onChange={(e) => {
+                                    const newValue = parseInt(e.target.value);
+                                    if (!isNaN(newValue) && newValue >= 0) {
+                                        setIntervalNumber(newValue);
+                                        updateIntervalString(newValue, selectedTimeUnit);
+                                    }
+                                }}
+                            />
+                                <select
+                                    id="timeUnit"
+                                    value={selectedTimeUnit}
+                                    onChange={async (e) => {
+                                        setSelectedTimeUnit(e.target.value);
+                                        updateIntervalString(intervalNumber, e.target.value);
+                                    }}>
+                                    <option value="">{t("selectTimeUnit")}</option>
+                                    <option value="hours">{t("hours")}</option>
+                                    <option value="days">{t("days")}</option>
+                                    <option value="weeks">{t("weeks")}</option>
+                                    <option value="months">{t("months")}</option>
+                                    <option value="years">{t("years")}</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+                    
                 </div>
                 <div className="add-reminder-buttons">
                     <Button className="cancel-button" onPress={() => nav("/reminders")}>
@@ -175,4 +193,14 @@ const ReminderPage = () => {
     )
 }
 
+const ExpandButton = ({onClick, isOpen}: { onClick: () => void, isOpen: boolean }) => {
+    return (
+        <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="plus-button" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+    );
+}
+
 export default ReminderPage;
+
+

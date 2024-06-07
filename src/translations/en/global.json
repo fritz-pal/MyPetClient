@@ -169,8 +169,8 @@
         "cancel": "Cancel",
         "reminderTime": "Time",
         "delete": "Delete",
-        "reminderRequirements": "The Reminder needs a name and at least one selected pet",
-        "reminderInterval": "After what time should the reminder be rescheduled?",
+        "reminderRequirements": "The Reminder needs a name",
+        "reminderInterval": "Interval for recurrence?",
         "hours": "Hours",
         "days": "Days",
         "weeks": "Weeks",
@@ -185,6 +185,7 @@
         "everySingle": "every",
         "everySingle2": "every",
         "everySingle3": "every",
-        "selectTimeUnit": "Select Duration..."
+        "selectTimeUnit": "Timeframe...",
+        "setReminderInterval": "Recurring reminder?"
     }
 }
