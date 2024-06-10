@@ -1,4 +1,3 @@
-import { Button } from "react-aria-components";
 import { ChatRoom, getOtherUserInChat } from "../models/Chat";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";

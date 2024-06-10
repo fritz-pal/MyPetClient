@@ -1,6 +1,5 @@
-import { Button, FileTrigger, PressEvent } from "react-aria-components";
+import { Button, FileTrigger } from "react-aria-components";
 import TextareaAutosize from "react-textarea-autosize";
-import ImageSelectButton from "./buttons/ImageSelectButton";
 import { useContext, useState } from "react";
 import useFile from "../hooks/useFile";
 import { UserContext } from "../context/UserContext";
@@ -8,9 +7,7 @@ import SmallLoader from "./SmallLoader";
 import "./css/ChatInput.css"
 import SubmitButton from "./buttons/SubmitButton";
 import CrossButton from "./buttons/CrossButton";
-import CancelButton from "./buttons/CancelButton";
 import { ChatMessage } from "../models/Chat";
-import { User } from "../models/User";
 
 interface ChatInputProps {
     onSubmit?: (message: ChatMessage, file?: File) => any, 
@@ -32,7 +29,7 @@ const ChatInput = ({onSubmit, isDisabled, isLoading}: ChatInputProps) => {
         return text.trim() != "" || file.file != null;
     }
 
-    const handleSubmitClicked = (e: PressEvent) => {
+    const handleSubmitClicked = () => {
         
         const message: ChatMessage = {
             id: 0,
