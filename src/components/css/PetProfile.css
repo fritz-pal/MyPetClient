@@ -29,7 +29,6 @@
 .pet-profile {
     font-size: 20px;
     font-weight: bold;
-    color: #404040;
     text-align: center;
     margin-top: 20px;
     padding-left: 60px;
@@ -38,10 +37,10 @@
     padding-bottom: 20px;
     box-shadow: 2px 2px 2px 1px rgb(110, 110, 110);
     border-radius: 10px;
-    width: 80%;
     margin: 0 auto;
     margin-top: 10px;
-    background: #dadada;
+    background: #555555;
+    color: white;
 }
 
 .reminder-area-w {
@@ -82,7 +81,7 @@
 .pet-profile-attribute {
     width: 100%;
     padding-bottom: 20px;
-    background: #9d9d9d;
+    background: white;
     padding: 20px;
     margin-left: 20px;
     border-radius: 20px;
@@ -94,7 +93,7 @@
 .pet-profile-reminder {
     width: 100%;
     padding-bottom: 20px;
-    background: #9d9d9d;
+    background: white;
     padding: 20px;
     margin-right: 20px;
     border-radius: 20px;
@@ -105,7 +104,8 @@
 .pet-profile-text {
     font-size: 15px;
     font-weight: bold;
-    color: #ffffff;
+    color: #404040;
+    background: #e5e5e5;
     text-align: left;
     margin-top: 20px;
     padding-left: 10px;
@@ -114,8 +114,7 @@
     padding-bottom: 10px;
     box-shadow: 1px 1px 1px 1px rgb(213, 213, 213);
     border-radius: 5px;
-    margin-left: 10%;
-    width: 80%;
+    width: 100%;
 }
 
 .reminder-tag-container {
@@ -146,17 +145,13 @@
     box-shadow: 1px 1px 1px 1px grey;
 }
 
-.test-button-jump:hover {
-    background: #5e5e5e;
-    color: #404040;
-    box-shadow: 3px 3px 5px 2px grey;
-    transform: scale(1.02);
+.test-button-jump:focus {
+    outline: none;
+    border: none;
 }
 
-.test-button-jump:active {
-    background: #4747d9;
-    box-shadow: inset 1px 1px 2px black;
-    transform: scale(0.95);
+.test-button-jump:hover {
+    background: none;
 }
 
 .pet-profile-container {
@@ -176,4 +171,47 @@
 .scroll-page {
     overflow-y: auto;
     height: 100%;
+}
+
+.pet-profile-text-container {
+    background: rgb(226 226 226);
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px 1px rgb(213, 213, 213);
+}
+
+.poster-info-pet {
+    background-color: inherit;
+    width: min-content;
+    height: min-content;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.7em;
+    padding: 5px;
+    border-radius: 1px;
+    white-space: nowrap;
+    color: #2b2b2b;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 1px 1px 5px 1px #cccccc;
+}
+
+.reminder_title_profile {
+    padding-bottom: 20px;
+    font-size: 30px;
+    margin: 0;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #555555;
+    text-align: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 30px;
+    margin-top: 32.8px;
 }

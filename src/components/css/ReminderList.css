@@ -60,14 +60,14 @@
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
-  background-image: url(/leaves-natural.jpg);
-  background-repeat: repeat;
+  background: #555555;
   text-align: center;
   align-items: center;
   padding-top: 20px;
   margin-left: -20px;
   margin-right: -20px;
   margin-bottom: 30px;
+  margin-top: 4px;
 }
 
 .pet-image3 {

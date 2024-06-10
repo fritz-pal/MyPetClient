@@ -1,6 +1,6 @@
-import { useParams } from "react-router"
-import { PetAPI } from "../models/Pet";
-import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router"
+import { JSONPet, Pet, PetAPI, getPetChanges, Pets } from "../models/Pet";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import RoundImage from "./RoundImage";
 import placeholderPet from '/placeholderPet.png';
 import './css/PetProfile.css';
@@ -8,11 +8,17 @@ import { useState } from "react";
 import { ReminderAPI } from "../models/Reminder";
 import Loader from "./Loader";
 import { useTranslation } from "react-i18next";
+import noIcon from '/no-profile-picture-icon.webp';
+import { Button, Input, TextArea } from "react-aria-components";
 
 
 
 const PetProfile = () => {
     const [isJumping, setIsJumping] = useState(false);
+    const navigate = useNavigate();
+    const [editClicked, setEditClicked] = useState(false);
+    const [editPet, setEditPet] = useState<Pet | null>(null);
+    const [queryClient] = useState(() => new QueryClient());
 
     const handleClick = () => {
         if (!isJumping) {
@@ -20,6 +26,10 @@ const PetProfile = () => {
             setTimeout(() => setIsJumping(false), 500); // Animation dauert 0.5s
         }
     };
+
+    const openUser = () => {
+        navigate("/user/" + petQuery.data?.owner.id);
+    }
 
     const [t, _] = useTranslation("reminders");
     const [z, _z] = useTranslation("addPet");
@@ -53,6 +63,15 @@ const PetProfile = () => {
         return result;
     }
 
+    const petUpdate = useMutation({
+        mutationFn: (newPet: Pet) => PetAPI.updatePet(Pets.PetToJSONPet(newPet)),
+        onSuccess: async () => {
+            queryClient.invalidateQueries({
+                queryKey: ["pets", id]
+            });
+        }
+    });
+
     function formatDateTime(dateString: string): string {
         const options: Intl.DateTimeFormatOptions = {
             weekday: "long",
@@ -69,6 +88,7 @@ const PetProfile = () => {
 
         return formattedDate;
     }
+
     const { id } = useParams();
 
     const petQuery = useQuery({
@@ -93,34 +113,49 @@ const PetProfile = () => {
         <div className="pet-profile-main scroll-page">
             <div className="pet-profile-container">
                 <div className="pet-profile-attribute">
-                    <div className="pet-profile">{petQuery.data?.name}</div>
+                    <Button className="poster-info-pet" onPress={openUser}>
+                        <img className="poster-info-image" src={noIcon} />
+
+
+                    </Button>
+                    <div>{t("unitWeight")}: <input type="text" value={petQuery.data?.name} onChange={(e) => setEditPet({ ...editPet, name: e.target.value })} /></div>
+                    <div className="title_pets">{petQuery.data?.name}</div>
+                    <Button onPress={() => { setEditClicked(true); close() }}>{t("edit")}</Button>
                     <RoundImage className={`pet-profile-image ${isJumping ? 'jump' : ''}`} imageSource={petQuery.data?.imageSource} placeholder={placeholderPet} />
                     <button className="test-button-jump" onClick={handleClick}>HEY</button>
-                    <div className="pet-profile-text">{z("birthday")}</div>
-                    <div className="pet-profile">{petQuery.data?.dateOfBirth?.length === 0 ? "-" : petQuery.data?.dateOfBirth}</div>
-                    <div className="pet-profile-text">{z("castrated")}</div>
-                    <div className="pet-profile">{petQuery.data?.castrated ? "Kastriert" : "nicht Kastriert"}</div>
-                    <div className="pet-profile-text">{z("username")}</div>
-                    <div className="pet-profile">{petQuery.data?.owner.username.length === 0 ? "-" : petQuery.data?.owner.username}</div>
-                    <div className="pet-profile-text">{z("subSpecies")}</div>
-                    <div className="pet-profile">{petQuery.data?.subSpecies.length === 0 ? "-" : petQuery.data?.subSpecies}</div>
-                    <div className="pet-profile-text">{z("weight")}</div>
-                    <div className="pet-profile">{petQuery.data?.weight === 0 ? "-" : petQuery.data?.weight + " " + petQuery.data?.species?.unitWeight}</div>
-                    <div className="pet-profile-text">{z("gender")}</div>
-                    <div className="pet-profile">{petQuery.data?.isMale ? "Männlich" : "Weiblich"}</div>
-                    <div className="pet-profile-text">{z("allergies")}</div>
-                    <div className="pet-profile">{petQuery.data?.allergies?.length === 0 ? "-" : petQuery.data?.allergies}</div>
-                    <div className="pet-profile-text">{z("disabilities")}</div>
-                    <div className="pet-profile">{petQuery.data?.disabilities?.length === 0 ? "-" : petQuery.data?.disabilities}</div>
-                    <div className="pet-profile-text">{z("speciesType")}</div>
-                    <div className="pet-profile">{petQuery.data?.species.name.length != null ? k(petQuery.data?.species.name) : "-"}</div>
-                    <div className="pet-profile-text">{z("size")}</div>
-                    <div className="pet-profile">{petQuery.data?.size === 0 ? "-" : petQuery.data?.species.typeOfSize + ": " + petQuery.data?.size + " " + petQuery.data?.species.unitSize}</div>
-
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("birthday")}</div>
+                        <div className="pet-profile">{petQuery.data?.dateOfBirth?.length === 0 ? "-" : petQuery.data?.dateOfBirth}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("castrated")}</div>
+                        <div className="pet-profile">{petQuery.data?.castrated ? "Kastriert" : "nicht Kastriert"}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("subSpecies")}</div>
+                        <div className="pet-profile">{petQuery.data?.subSpecies.length === 0 ? "-" : petQuery.data?.subSpecies}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("weight")}</div>
+                        <div className="pet-profile">{petQuery.data?.weight === 0 ? "-" : petQuery.data?.weight + " " + z(petQuery.data ? petQuery.data.species.unitWeight ? petQuery.data.species.unitWeight : "" : "")}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("gender")}</div>
+                        <div className="pet-profile">{petQuery.data?.isMale ? "Männlich" : "Weiblich"}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("allergies")}</div>
+                        <div className="pet-profile">{petQuery.data?.allergies?.length === 0 ? "-" : petQuery.data?.allergies}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("disabilities")}</div>
+                        <div className="pet-profile">{petQuery.data?.disabilities?.length === 0 ? "-" : petQuery.data?.disabilities}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("speciesType")}</div>
+                        <div className="pet-profile">{petQuery.data?.species.name.length != null ? k(petQuery.data?.species.name) : "-"}</div>
+                    </div>
+                    <div className="pet-profile-text-container">
+                        <div className="pet-profile-text">{z("size")}</div>
+                        <div className="pet-profile">{petQuery.data?.size === 0 ? "-" : z(petQuery.data ? petQuery.data.species.typeOfSize ? petQuery.data.species.typeOfSize : "" : "") + ": " + petQuery.data?.size + " " + z(petQuery.data ? petQuery.data.species.unitSize ? petQuery.data.species.unitSize : "" : "")}</div>
+                    </div>
+                    <div className="pet-profile-text-container"><div className="pet-profile-text">{z("medications")}</div></div>
 
                 </div>
                 <div className="pet-profile-reminder">
-                    <div className="pet-profile-reminder-title">Reminder</div>
+                    <div className="reminder_title_profile">Reminder</div>
                     {petReminderQuery.isLoading && (
                         <div className="load">
                             <Loader />
