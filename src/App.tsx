@@ -50,7 +50,8 @@ function App() {
                 <Route path="/newreminder" element={<ReminderPage />} />
                 <Route path="/user/:id" element={<UserView />} />
                 <Route path="/pet/:id" element={<PetProfile />} />
-                <Route path="/chat/:id" element={<PrivateChat />} />
+                <Route path="/chat/:chatId" element={<PrivateChat />} />
+                <Route path="/chat/user/:userId" element={<PrivateChat />} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
             </div>

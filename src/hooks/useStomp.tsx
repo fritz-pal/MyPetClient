@@ -2,12 +2,12 @@ import { useContext, useEffect, useRef } from "react"
 import { WebsocketContext } from "../components/WebsocketClient"
 import { StompSubscription } from "@stomp/stompjs";
 
-const useStomp = <T,>(topic: string, callback: (message: T) => void) => {
+const useStomp = (topic: string, callback: (message: string) => void) => {
     const wsContext = useContext(WebsocketContext);
     const stompSubscription = useRef<StompSubscription | null>(null);
     
     useEffect(() => {
-        stompSubscription.current = wsContext.stompClient.subscribe(topic, (message) => { callback(message.body as T)  });
+        stompSubscription.current = wsContext.stompClient.subscribe(topic, (message) => { callback(message.body)  });
         return () => {
             stompSubscription.current?.unsubscribe();
         };
