@@ -1,0 +1,19 @@
+.chat-list-element {
+    color: black;
+    padding: 10px 10px;
+    transition: background-color 0.25s;
+}
+
+.chat-list-element:hover {
+    background-color: var(--ninth-color);
+}
+
+.chat-list-element-title {
+    font-size: 1.5rem;
+}
+
+.chat-list-element-message-preview {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

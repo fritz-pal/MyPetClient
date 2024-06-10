@@ -1,0 +1,28 @@
+.chat-list-page {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    max-height: 100%;
+}
+
+.chat-list-header {
+    display: flex;
+    justify-content: end;
+    background-color: gray;
+    padding: 10px;
+}
+
+.chat-list-header input {
+    width: 300px;
+}
+
+.chat-list-main {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background-color: white;
+    max-height: 100%;
+}
+
+
+
+
