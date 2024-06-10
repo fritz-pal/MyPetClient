@@ -4,7 +4,7 @@ import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import RoundImage from "./RoundImage";
 import placeholderPet from '/placeholderPet.png';
 import './css/PetProfile.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReminderAPI } from "../models/Reminder";
 import Loader from "./Loader";
 import { useTranslation } from "react-i18next";
@@ -17,7 +17,7 @@ const PetProfile = () => {
     const [isJumping, setIsJumping] = useState(false);
     const navigate = useNavigate();
     const [editClicked, setEditClicked] = useState(false);
-    const [editPet, setEditPet] = useState<Pet | null>(null);
+    const [editPet, setEditPet] = useState<Pet | null>();
     const [queryClient] = useState(() => new QueryClient());
 
     const handleClick = () => {
@@ -96,6 +96,12 @@ const PetProfile = () => {
         queryFn: () => PetAPI.getPetByID(id ? Number(id) : 0)
     });
 
+    useEffect(() => {
+        if (petQuery.isSuccess && petQuery.data) {
+          setEditPet(Pets.JSONPetToPet(petQuery.data));
+        }
+      }, [petQuery.isSuccess, petQuery.data]);
+
     const petReminderQuery = useQuery({
         queryKey: ["pet-reminders", id],
         queryFn: () => ReminderAPI.getReminderByPetID(Number(id))
@@ -118,9 +124,9 @@ const PetProfile = () => {
 
 
                     </Button>
-                    <div>{t("unitWeight")}: <input type="text" value={petQuery.data?.name} onChange={(e) => setEditPet({ ...editPet, name: e.target.value })} /></div>
+                    <div>{t("unitWeight")}: <input type="text" value={editPet?.name} onChange={(e) => {if(editPet) setEditPet({ ...editPet, name: e.target.value })}} /></div>
                     <div className="title_pets">{petQuery.data?.name}</div>
-                    <Button onPress={() => { setEditClicked(true); close() }}>{t("edit")}</Button>
+                    <Button onPress={() => {if(editPet) petUpdate.mutate(editPet) }}>{t("edit")}</Button>
                     <RoundImage className={`pet-profile-image ${isJumping ? 'jump' : ''}`} imageSource={petQuery.data?.imageSource} placeholder={placeholderPet} />
                     <button className="test-button-jump" onClick={handleClick}>HEY</button>
                     <div className="pet-profile-text-container"><div className="pet-profile-text">{z("birthday")}</div>
