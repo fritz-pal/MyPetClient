@@ -140,7 +140,8 @@
         "reminders": "Termine",
         "newreminder": "Termin hinzufügen",
         "myProfile": "Mein Profil",
-        "logout": "Ausloggen"
+        "logout": "Ausloggen",
+        "chat": "Chat"
     },
     "admin": {
         "species": "Spezies",

@@ -42,6 +42,7 @@ const HeaderBar = () => {
                 <PathItem path="/" label="home" />
                 <PathItem path="/forum" label="forum" />
                 <PathItem path="/reminders" label="reminders" />
+                <PathItem path="/chat" label="chat" />
                 {user.role === "ROLE_ADMIN" && <PathItem path="/admin" label="Admin" />}
             </div>
             <div className="header-bar-user-settings">

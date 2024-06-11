@@ -62,7 +62,10 @@ const ChatInput = ({onSubmit, isDisabled, isLoading}: ChatInputProps) => {
                 }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
                 {/*<ImageSelectButton className="chat-input-image-button"/>*/}
             </FileTrigger>
-            {!isLoading && <SubmitButton className="chat-input-submit" isDisabled={!isValid() || isDisabled } onPress={handleSubmitClicked}/>}
+            {!isLoading && <SubmitButton 
+                className="chat-input-submit" 
+                isDisabled={!isValid() || isDisabled }
+                onPress={handleSubmitClicked}/>}
             {isLoading && <Button className="chat-input-submit" isDisabled><SmallLoader/></Button>}
             {
                 file.data && 

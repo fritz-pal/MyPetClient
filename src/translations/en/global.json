@@ -53,7 +53,7 @@
         "newThread": "New Thread",
         "by": "created by",
         "you": "you",
-        "noSearchResults": "We couldn’t find any results for \"{{query}}\" :(",
+        "noSearchResults": "We couldn't find any results for \"{{query}}\" :(",
         "searchResults": "Found {{count}} results for \"{{query}}\""
     },
     "time": {
@@ -139,7 +139,8 @@
         "reminders": "Reminders",
         "newreminder": "Add Reminder",
         "myProfile": "My Profile",
-        "logout": "Logout"
+        "logout": "Logout",
+        "chat": "Chat"
     },
     "admin": {
         "species": "Species",
