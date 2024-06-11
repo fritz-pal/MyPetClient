@@ -17,3 +17,9 @@
     align-self: end;
     border-radius: 0.75em 0.75em 0em 0.75em;
 }
+
+.chat-bubble-timestamp {
+    color: var(--secondary-color);
+    font-size: 0.7rem;
+    text-align: end;
+}
