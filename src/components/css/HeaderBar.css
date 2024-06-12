@@ -67,7 +67,9 @@
   text-transform: uppercase;
 }
 
-.header-bar-menu-item a:hover {
+.header-bar-menu-item a:hover,
+.header-bar-menu-item a:focus {
+  outline: none;
   font-weight: bolder;
   color: var(--tenth-color);
 }

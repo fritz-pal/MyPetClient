@@ -3,7 +3,7 @@ import "./css/PrivateChat.css"
 import ChatInput from "./ChatInput"
 import RoundImage from "./RoundImage"
 import noIcon from '/no-profile-picture-icon.webp';
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useContext, useState } from "react";
 import ErrorPage from "./ErrorPage";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -14,10 +14,12 @@ import ChatBubble from "./ChatBubble";
 import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
 import useStomp from "../hooks/useStomp";
+import { useTranslation } from "react-i18next";
 
 const PrivateChat = () => {
     const { chatId, userId } = useParams();
     const { user } = useContext(UserContext);
+    const nav = useNavigate();
 
     const [id, setId] = useState(chatId ? parseInt(chatId) : 0);
 
@@ -61,6 +63,7 @@ const PrivateChat = () => {
         },
         onSuccess: (data) => {
             if (!id) {
+                nav("/chat/" + data.chatRoomId);
                 setId(data.chatRoomId);
             }
         }
@@ -91,6 +94,8 @@ const PrivateChat = () => {
 }
 
 const MessagePage = ({ chatroomId, page, offset }: { chatroomId: number, page: number, offset: number }) => {
+    const [t] = useTranslation("chat");
+    
     const [nextPageOpen, setNextPageOpen] = useState(false);
 
     const pageQuery = useQuery({
@@ -109,7 +114,7 @@ const MessagePage = ({ chatroomId, page, offset }: { chatroomId: number, page: n
                             <ChatBubble key={message.id} message={message}></ChatBubble>
                         )
                     }
-                    {pageQuery.data.maxPage > page && !nextPageOpen && <Button onPress={() => setNextPageOpen(true)}>more...</Button>}
+                    {pageQuery.data.maxPage > page && !nextPageOpen && <Button className={"private-chat-more-button"} onPress={() => setNextPageOpen(true)}>{t("more")}</Button>}
                     {nextPageOpen && <MessagePage chatroomId={chatroomId} page={page + 1} offset={offset}></MessagePage>}
                 </>
             }

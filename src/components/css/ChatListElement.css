@@ -4,6 +4,10 @@
     transition: background-color 0.25s;
 }
 
+.chat-list-element:not(:first-child) {
+    border-top: 1px solid black;
+}
+
 .chat-list-element:hover {
     background-color: var(--ninth-color);
 }
@@ -16,4 +20,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.chat-list-element-timestamp {
+    text-align: end;
+    font-size: 0.8em;
+    color: var(--secondary-color);
 }

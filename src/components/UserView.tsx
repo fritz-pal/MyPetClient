@@ -46,7 +46,7 @@ const UserView = () => {
                         <div className="user-username">{userQuery.data.username}</div>
                         <div className="user-fullname">{userQuery.data.fullname}</div>
                     </div>
-                    <Button className="message-button" onPress={() => nav("/chat/user/" + id)}>Message</Button>
+                    {(String(user.id) != id) && <Button className="message-button" onPress={() => nav("/chat/user/" + id)}>Message</Button>}
                 </div>
                 <div className="user-pet-list">
                     <PetCard pets={pets} />

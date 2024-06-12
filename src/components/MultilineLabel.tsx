@@ -3,11 +3,11 @@ import "./css/MultilineLabel.css";
 const MultilineLabel = ({text, className}: {text: string, className?: string}) => {
     return (
         <div className={className ? "multiline-label " + className : "multiline-label"}>
-            {text.split("\n").map((line) => {
+            {text.split("\n").map((line, i) => {
                 return line != "" ? (
-                    <div className="multiline-label-line">{line}</div>
+                    <div key={i} className="multiline-label-line">{line}</div>
                 ) : (
-                    <br />
+                    <br key={i}/>
                 );
             })}
         </div>

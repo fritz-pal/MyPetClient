@@ -56,6 +56,9 @@
         "noSearchResults": "Es gibt keine Ergebnisse für \"{{query}}\" :(",
         "searchResults": "{{count}} Ergebnisse gefunden für \"{{query}}\""
     },
+    "chat": {
+        "more": "Weitere Nachrichten laden"
+    },
     "time": {
         "minutes": "vor {{number}} Minuten",
         "hours": "vor {{number}} Stunden",

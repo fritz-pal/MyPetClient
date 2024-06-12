@@ -42,7 +42,7 @@ const ForumPage = () => {
             {(query.isLoading || query.isError) && <div className='load'><Loader /></div>}
             {query.isSuccess &&
                 <div className={`forum-threads ${searched ? "results" : ""}`}>
-                    {query.data?.map(thread => <ThreadCard thread={thread} byUser={thread.creator?.id === user.id} />)}
+                    {query.data?.map(thread => <ThreadCard key={thread.id} thread={thread} byUser={thread.creator?.id === user.id} />)}
                 </div>
             }
             <div className="new-thread-button-container">
