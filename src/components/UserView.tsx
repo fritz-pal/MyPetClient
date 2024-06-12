@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import Loader from "./Loader";
 import "./css/UserView.css";
 
@@ -12,6 +12,7 @@ import { Button } from "react-aria-components";
 
 const UserView = () => {
     let { id } = useParams();
+    const nav = useNavigate();
     const { user } = useContext(UserContext);
     if(id === "me") {
         id = user.id.toString();
@@ -45,7 +46,7 @@ const UserView = () => {
                         <div className="user-username">{userQuery.data.username}</div>
                         <div className="user-fullname">{userQuery.data.fullname}</div>
                     </div>
-                    <Button className="message-button">Message</Button>
+                    <Button className="message-button" onPress={() => nav("/chat/user/" + id)}>Message</Button>
                 </div>
                 <div className="user-pet-list">
                     <PetCard pets={pets} />

@@ -1,6 +1,5 @@
-import { Button, FileTrigger, PressEvent } from "react-aria-components";
+import { Button, FileTrigger } from "react-aria-components";
 import TextareaAutosize from "react-textarea-autosize";
-import ImageSelectButton from "./buttons/ImageSelectButton";
 import { useContext, useState } from "react";
 import useFile from "../hooks/useFile";
 import { UserContext } from "../context/UserContext";
@@ -8,18 +7,15 @@ import SmallLoader from "./SmallLoader";
 import "./css/ChatInput.css"
 import SubmitButton from "./buttons/SubmitButton";
 import CrossButton from "./buttons/CrossButton";
-import CancelButton from "./buttons/CancelButton";
 import { ChatMessage } from "../models/Chat";
-import { User } from "../models/User";
 
 interface ChatInputProps {
     onSubmit?: (message: ChatMessage, file?: File) => any, 
     isDisabled?: boolean, 
     isLoading?: boolean, 
-    otherUser: User
 }
 
-const ChatInput = ({onSubmit, isDisabled, isLoading, otherUser}: ChatInputProps) => {
+const ChatInput = ({onSubmit, isDisabled, isLoading}: ChatInputProps) => {
     if (isDisabled == undefined)
         isDisabled = false;
     if (isLoading == undefined)
@@ -33,20 +29,19 @@ const ChatInput = ({onSubmit, isDisabled, isLoading, otherUser}: ChatInputProps)
         return text.trim() != "" || file.file != null;
     }
 
-    const handleSubmitClicked = (e: PressEvent) => {
+    const handleSubmitClicked = () => {
         
-        const message: ChatMessage = 
-            {
-                id: 0,
-                text: text.trim(),
-                from: user,
-                to: otherUser,
-                createdAt: Date.now(),
-            }
-            if (onSubmit)
-                onSubmit(message, file.file ? file.file : undefined);
-            setText("");
-            file.setFile(null);
+        const message: ChatMessage = {
+            id: 0,
+            text: text.trim(),
+            from: user,
+            chatRoomId: 0,
+            createdAt: Date.now(),
+        };
+        if (onSubmit)
+            onSubmit(message, file.file ? file.file : undefined);
+        setText("");
+        file.setFile(null);
     }
 
     const handleRemoveImageClicked = () => {
@@ -65,7 +60,7 @@ const ChatInput = ({onSubmit, isDisabled, isLoading, otherUser}: ChatInputProps)
                     }
                     file.setFile(image);
                 }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
-                <ImageSelectButton className="chat-input-image-button"/>
+                {/*<ImageSelectButton className="chat-input-image-button"/>*/}
             </FileTrigger>
             {!isLoading && <SubmitButton className="chat-input-submit" isDisabled={!isValid() || isDisabled } onPress={handleSubmitClicked}/>}
             {isLoading && <Button className="chat-input-submit" isDisabled><SmallLoader/></Button>}

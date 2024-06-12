@@ -22,6 +22,7 @@ import UserView from './components/UserView';
 import PetProfile from './components/PetProfile';
 import PrivateChat from './components/PrivateChat';
 import WebsocketClient from './components/WebsocketClient';
+import ChatList from './components/ChatList';
 import NotificationContainer from './components/NotificationContainer';
 
 function App() {
@@ -52,7 +53,9 @@ function App() {
                   <Route path="/newreminder" element={<ReminderPage />} />
                   <Route path="/user/:id" element={<UserView />} />
                   <Route path="/pet/:id" element={<PetProfile />} />
-                  <Route path="/chat/:id" element={<PrivateChat />} />
+                  <Route path="/chat/:chatId" element={<PrivateChat />} />
+                <Route path="/chat/user/:userId" element={<PrivateChat />} />
+                <Route path="/chat" element={<ChatList />} />
                   <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </div>
