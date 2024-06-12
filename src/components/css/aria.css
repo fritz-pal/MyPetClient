@@ -14,8 +14,10 @@
     border-radius: 5px;
 }
 
-.react-aria-MenuItem:hover {
+.react-aria-MenuItem:hover,
+.react-aria-MenuItem:focus {
     background-color: var(--ninth-color);
+    outline: none;
 }
 
 .react-aria-Button {

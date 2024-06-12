@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput"
 import RoundImage from "./RoundImage"
 import noIcon from '/no-profile-picture-icon.webp';
 import { useNavigate, useParams } from "react-router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ErrorPage from "./ErrorPage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ChatAPI, ChatMessage, getOtherUserInChat } from "../models/Chat";
@@ -41,6 +41,20 @@ const PrivateChat = () => {
         queryKey: ["chat", id],
         enabled: Boolean(id)
     });
+
+    const chatFromUserQuery = useMutation({
+        mutationFn: (id: number) => ChatAPI.getChatWithUser(id),
+        onSuccess: (data) => {
+            nav("/chat/" + data.id)
+            setId(data.id);
+        }
+    });
+
+    useEffect(() => {
+        if (!id) {
+            chatFromUserQuery.mutate(Number(userId));
+        }
+    }, []);
 
     const userQuery = useQuery({
         queryFn: () => {

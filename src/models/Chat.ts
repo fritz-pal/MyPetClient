@@ -35,6 +35,11 @@ const getChat = async (id: number): Promise<ChatRoom> => {
     return request.data;
 }
 
+const getChatWithUser = async (id: number): Promise<ChatRoom> => {
+    const request = await APIClient.get(`${MAPPING}/user/${id}`);
+    return request.data;
+}
+
 const getAllChats = async (): Promise<ChatRoom[]> => {
     const request = await APIClient.get(MAPPING);
     return request.data;
@@ -77,6 +82,7 @@ const startNewChat = async (targetUser: number, message: ChatMessage, file?: Fil
 
 export const ChatAPI = {
     getChat,
+    getChatWithUser,
     getAllChats,
     getChatMessages,
     sendChatMessage,
