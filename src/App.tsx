@@ -54,8 +54,8 @@ function App() {
                   <Route path="/user/:id" element={<UserView />} />
                   <Route path="/pet/:id" element={<PetProfile />} />
                   <Route path="/chat/:chatId" element={<PrivateChat />} />
-                <Route path="/chat/user/:userId" element={<PrivateChat />} />
-                <Route path="/chat" element={<ChatList />} />
+                  <Route path="/chat/user/:userId" element={<PrivateChat />} />
+                  <Route path="/chat" element={<ChatList />} />
                   <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </div>

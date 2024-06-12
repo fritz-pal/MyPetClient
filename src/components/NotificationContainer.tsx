@@ -4,14 +4,17 @@ import useStomp from "../hooks/useStomp";
 import { UserContext } from "../context/UserContext";
 
 interface Notification {
-    title: string,
+    type: string,
     message: string;
+    sender?: string;
+    chatId?: number;
 }
 
 const NotificationContainer = () => {
     const user = useContext(UserContext);
     useStomp("/user/" + user.user.id + "/queue/notifications", (message: string) => {
-        // addNotification({ title: "New Notification", message: message})
+    const notif = JSON.parse(message) as Notification;
+        addNotification(notif)
         console.log("Received notification: " + message)
     })
     const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -36,7 +39,6 @@ const NotificationContainer = () => {
 
     return (
         <>
-            <button onClick={() => addNotification({ title: "Hello", message: "World" + new Date().getMilliseconds() })}>Add Notification</button>
             <div className="notification-container">
                 {notifications.map((notification, index) => (
                     <div key={index} className="notification" onClick={() => handleNotificationClick(notification)}>
@@ -55,7 +57,7 @@ const NotificationContainer = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                         <div className="notification-text">
-                            <div className="notification-title">{notification.title}</div>
+                            <div className="notification-title">{notification.type}</div>
                             <div className="notification-message">{notification.message}</div>
                         </div>
                         <div className="notification-loading-bar"></div>
