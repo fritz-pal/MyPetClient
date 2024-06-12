@@ -44,13 +44,22 @@ const ChatInput = ({onSubmit, isDisabled, isLoading}: ChatInputProps) => {
         file.setFile(null);
     }
 
+    const handleKeyDownInText = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key == 'Enter') {
+            if (!e.shiftKey) {
+                e.preventDefault();
+                handleSubmitClicked();
+            }
+        }
+    }
+
     const handleRemoveImageClicked = () => {
         file.setFile(null);
     }
 
     return (
         <div className={"chat-input"}>
-            <TextareaAutosize className="chat-input-text" value={text} onChange={(e) => setText(e.target.value)}/>
+            <TextareaAutosize className="chat-input-text" value={text} onKeyDown={handleKeyDownInText} onChange={(e) => setText(e.target.value)}/>
             <FileTrigger onSelect={(e) => {
                     let image: null | File = null;
                     if (e) {

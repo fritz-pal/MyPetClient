@@ -6,7 +6,7 @@ import noIcon from '/no-profile-picture-icon.webp';
 import { useNavigate, useParams } from "react-router";
 import { useContext, useState } from "react";
 import ErrorPage from "./ErrorPage";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ChatAPI, ChatMessage, getOtherUserInChat } from "../models/Chat";
 import { UserContext } from "../context/UserContext";
 import Loader from "./Loader";
@@ -17,6 +17,7 @@ import useStomp from "../hooks/useStomp";
 import { useTranslation } from "react-i18next";
 
 const PrivateChat = () => {
+    const queryClient = useQueryClient();
     const { chatId, userId } = useParams();
     const { user } = useContext(UserContext);
     const nav = useNavigate();
@@ -66,6 +67,9 @@ const PrivateChat = () => {
                 nav("/chat/" + data.chatRoomId);
                 setId(data.chatRoomId);
             }
+            queryClient.invalidateQueries({
+                queryKey: ["chats"]
+            });
         }
     });
 
@@ -114,7 +118,12 @@ const MessagePage = ({ chatroomId, page, offset }: { chatroomId: number, page: n
                             <ChatBubble key={message.id} message={message}></ChatBubble>
                         )
                     }
-                    {pageQuery.data.maxPage > page && !nextPageOpen && <Button className={"private-chat-more-button"} onPress={() => setNextPageOpen(true)}>{t("more")}</Button>}
+                    {
+                        pageQuery.data.maxPage > page && !nextPageOpen && 
+                            <Button className={"private-chat-more-button"} onPress={() => setNextPageOpen(true)}>
+                                {t("more")}
+                            </Button>
+                    }
                     {nextPageOpen && <MessagePage chatroomId={chatroomId} page={page + 1} offset={offset}></MessagePage>}
                 </>
             }

@@ -65,9 +65,18 @@ const CommentInput = ({onSubmit, onCancel, isDisabled, isLoading, initialComment
         setRemovedOldImage(true);
     }
 
+    const handleKeyDownInText = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key == 'Enter') {
+            if (!e.shiftKey) {
+                e.preventDefault();
+                handleSubmitClicked();
+            }
+        }
+    }
+
     return (
         <div className={"comment-input" + (onCancel ? " comment-input-with-cancel" : "")}>
-            <TextareaAutosize className="comment-input-text" placeholder={placeHolder} value={text} onChange={(e) => setText(e.target.value)}/>
+            <TextareaAutosize className="comment-input-text" onKeyDown={handleKeyDownInText} placeholder={placeHolder} value={text} onChange={(e) => setText(e.target.value)}/>
             <FileTrigger onSelect={(e) => {
                     let image: null | File = null;
                     if (e) {
