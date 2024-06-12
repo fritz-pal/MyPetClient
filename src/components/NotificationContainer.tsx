@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./css/Notification.css"
 import useStomp from "../hooks/useStomp";
-import { IMessage } from "@stomp/stompjs";
+import { UserContext } from "../context/UserContext";
 
 interface Notification {
     title: string,
@@ -9,8 +9,10 @@ interface Notification {
 }
 
 const NotificationContainer = () => {
-    useStomp("/queue/notifications", (message: IMessage) => {
-        addNotification({ title: "New Notification", message: message.body})
+    const user = useContext(UserContext);
+    useStomp("/user/" + user.user.id + "/queue/notifications", (message: string) => {
+        // addNotification({ title: "New Notification", message: message})
+        console.log("Received notification: " + message)
     })
     const [notifications, setNotifications] = useState<Notification[]>([]);
 
