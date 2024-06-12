@@ -130,7 +130,7 @@ const CommentElement = ({ comment }: { comment: Comment }) => {
                                 <Modal>
                                     <Dialog>
                                         {({ close }) => (
-                                            <div>
+                                            <div className="comment-delete-dialog">
                                                 {t("deleteConfirm")}
                                                 <div className="comment-options">
                                                     <Button onPress={close}>{t("cancel")}</Button>

@@ -99,7 +99,9 @@
   color: var(--tenth-color);
 }
 
-.header-bar-user-menu:hover {
+.header-bar-user-menu:hover,
+.header-bar-user-menu:focus {
+  outline: none;
   color: var(--tenth-color);
   border-color: transparent;
   background-color: inherit;
