@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./css/Notification.css"
+import useStomp from "../hooks/useStomp";
+import { IMessage } from "@stomp/stompjs";
 
 interface Notification {
     title: string,
@@ -7,6 +9,9 @@ interface Notification {
 }
 
 const NotificationContainer = () => {
+    useStomp("/queue/notifications", (message: IMessage) => {
+        addNotification({ title: "New Notification", message: message.body})
+    })
     const [notifications, setNotifications] = useState<Notification[]>([]);
 
     const addNotification = (notification: Notification) => {
@@ -37,7 +42,8 @@ const NotificationContainer = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                         </svg>
                         <svg onClick={
-                            () => {
+                            (event) => {
+                                event.stopPropagation();
                                 setNotifications((prevNotifications) =>
                                     prevNotifications.filter((notif, _) => notif !== notification)
                                 );
