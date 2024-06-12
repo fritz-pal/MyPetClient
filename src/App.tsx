@@ -22,7 +22,7 @@ import UserView from './components/UserView';
 import PetProfile from './components/PetProfile';
 import PrivateChat from './components/PrivateChat';
 import WebsocketClient from './components/WebsocketClient';
-import Notification from './components/Notification';
+import NotificationContainer from './components/NotificationContainer';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ function App() {
                 <HeaderBar />
                 <MobileNavbar />
               </NavbarContext.Provider>
-              <Notification />
+              <NotificationContainer />
               <div className="content">
                 <Routes>
                   <Route path="/" element={<Homepage />} />
