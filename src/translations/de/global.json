@@ -57,7 +57,8 @@
         "searchResults": "{{count}} Ergebnisse gefunden für \"{{query}}\""
     },
     "chat": {
-        "more": "Weitere Nachrichten laden"
+        "more": "Weitere Nachrichten laden",
+        "search": "Nach Chats suchen..."
     },
     "time": {
         "minutes": "vor {{number}} Minuten",

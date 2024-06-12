@@ -4,9 +4,11 @@ import "./css/ChatList.css"
 import { useContext, useState } from "react"
 import ChatListElement from "./ChatListElement"
 import { UserContext } from "../context/UserContext"
+import { useTranslation } from "react-i18next"
 
 const ChatList = () => {
     const {user} = useContext(UserContext);
+    const [t] = useTranslation("chat");
 
     const [search, setSearch] = useState("");
 
@@ -18,7 +20,7 @@ const ChatList = () => {
     return (
         <div className="chat-list-page">
             <div className="chat-list-header">
-                <input type="text" placeholder="&#x1F50D;" value={search} onChange={(e) => setSearch(e.target.value)}></input>
+                <input type="text" placeholder={t("search")} value={search} onChange={(e) => setSearch(e.target.value)}></input>
             </div>
             <div className="chat-list-main">
                 {chatQuery.isSuccess && chatQuery.data.filter((chat) => {
