@@ -11,7 +11,7 @@ import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
 import RoundImage from "./RoundImage";
 
-const ReminderList = () => {
+const ReminderList = ({ id }: { id: number }) => {
     const [t, _] = useTranslation("reminders");
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
@@ -30,20 +30,48 @@ const ReminderList = () => {
         navigate('/newreminder');
     }
 
+    let petReminders: Array<Reminder> = [];
+
+    const petReminderQuery = useQuery({
+        queryKey: ["pet-reminders", id],
+        queryFn: () => ReminderAPI.getReminderByPetID(Number(id))
+    });
+
+    if (petReminderQuery.isSuccess) {
+        petReminderQuery.data?.forEach(element => {
+            petReminders.push(Reminders.JSONReminderToReminder(element))
+        })
+    }
+
     return (
         <div className="my-reminders-module">
             <div className="reminder_title">{t("reminderListTitle")}</div>
-            {reminderQuery.isLoading && (
+            {reminderQuery.isLoading && !id && (
                 <div className="load">
                     <Loader />
                 </div>
             )}
-            {reminderQuery.isSuccess && (
+            {reminderQuery.isSuccess && !id && (
                 <div className="reminders">
                     {reminders.map((reminder) => (
                         <ReminderListItem
                             reminder={reminder}
                             key={reminder.id}
+                        ></ReminderListItem>
+                    ))}
+                </div>
+            )}
+            {petReminderQuery.isLoading && id && (
+                <div className="load">
+                    <Loader />
+                </div>
+            )}
+            {petReminderQuery.isSuccess && id && (
+                <div className="reminders">
+                    {petReminders.map((reminders) => (
+                        <ReminderListItem
+                            reminder={reminders}
+                            key={reminders.id}
                         ></ReminderListItem>
                     ))}
                 </div>
@@ -68,19 +96,20 @@ const ReminderList = () => {
 };
 
 const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
-  const [t, _] = useTranslation("reminders");
-  const { i18n } = useTranslation();
-  const currentLocale = i18n.language;
-  const queryClient = useQueryClient();
-  const { user } = useContext(UserContext);
-  const deleteReminderMut = useMutation({
-    mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["reminders", user.id],
-      });
-    },
-  });
+    const [t, _] = useTranslation("reminders");
+    const { i18n } = useTranslation();
+    const currentLocale = i18n.language;
+    const queryClient = useQueryClient();
+    const { user } = useContext(UserContext);
+
+    const deleteReminderMut = useMutation({
+        mutationFn: (id: number) => ReminderAPI.deleteReminder(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["reminders", user.id],
+            });
+        },
+    });
 
     function removeFirstLast(text: string) {
         let result = text.slice(1, -1) + t("day"); // Default-Wert
@@ -110,23 +139,23 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
         return result;
     }
 
-  function formatDateTime(dateString: string, locale: string, reminderName: string): string {
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    const date = new Date(dateString);
-    if (reminderName !== "Birthday"){
-    const offset = date.getTimezoneOffset();
-    date.setMinutes(date.getMinutes() - offset)
-    }
-    const formattedDate = date
-      .toLocaleDateString(locale, options)
-      .replace(",", "");
+    function formatDateTime(dateString: string, locale: string, reminderName: string): string {
+        const options: Intl.DateTimeFormatOptions = {
+            weekday: "long",
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+        };
+        const date = new Date(dateString);
+        if (reminderName !== "Birthday") {
+            const offset = date.getTimezoneOffset();
+            date.setMinutes(date.getMinutes() - offset)
+        }
+        const formattedDate = date
+            .toLocaleDateString(locale, options)
+            .replace(",", "");
 
         return formattedDate;
     }
@@ -145,7 +174,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
             <div className="reminder-area" key={reminder.name}>
                 <div className="reminder-info"></div>
                 <div className="reminder-date">
-                    {formatDateTime(reminder.date.toString(),currentLocale,reminder.name)}
+                    {formatDateTime(reminder.date.toString(), currentLocale, reminder.name)}
                 </div>
                 <div className="reminder-pets-container">
                     {reminder.pets.map((pet) => (

@@ -48,7 +48,6 @@ const PetList = () => {
 };
 
 export const PetCard = ({ pets }: { pets: Pet[] }) => {
-    const [tcard, _card] = useTranslation("card");
     const [k, _k] = useTranslation("species");
     const navigate = useNavigate();
 
