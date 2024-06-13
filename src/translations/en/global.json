@@ -192,5 +192,8 @@
         "everySingle3": "every",
         "selectTimeUnit": "Timeframe...",
         "setReminderInterval": "Recurring reminder?"
+    },
+    "notification": {
+        "reminder": "Reminder"
     }
 }

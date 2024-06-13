@@ -44,6 +44,7 @@ const HeaderBar = () => {
                 <PathItem path="/reminders" label="reminders" />
                 <PathItem path="/chat" label="chat" />
                 {user.role === "ROLE_ADMIN" && <PathItem path="/admin" label="Admin" />}
+
             </div>
             <div className="header-bar-user-settings">
                 <svg onClick={handleSettingsClick} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
