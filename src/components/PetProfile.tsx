@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import { Medication, Pet, PetAPI, Pets } from "../models/Pet";
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import RoundImage from "./RoundImage";
 import placeholderPet from '/placeholderPet.png';
 import './css/PetProfile.css';
@@ -16,6 +16,9 @@ const PetProfile = () => {
     const [isJumping, setIsJumping] = useState(false);
     const navigate = useNavigate();
     const [petMedication, setPetMedication] = useState<Medication[]>([]);
+    const { id } = useParams();
+    const queryClient = useQueryClient();
+
     const handleClick = () => {
         if (!isJumping) {
             setIsJumping(true);
@@ -26,11 +29,20 @@ const PetProfile = () => {
     const openUser = () => {
         navigate("/user/" + petQuery.data?.owner.id);
     }
-    const { id } = useParams();
 
     const petQuery = useQuery({
         queryKey: ["pets", id],
         queryFn: () => PetAPI.getPetByID(id ? Number(id) : 0)
+    });
+
+
+    const petUpdate = useMutation({
+        mutationFn: (pet: Pet) => PetAPI.updatePet(Pets.PetToJSONPet(pet)),
+        onSuccess: async () => {
+            queryClient.invalidateQueries({
+                queryKey: ["pets", id]
+            });
+        }
     });
 
     if (petQuery.isLoading) {
@@ -53,13 +65,18 @@ const PetProfile = () => {
                     <Button onPress={() => { setPetMedication(petQuery.data?.medications ? petQuery.data.medications : []); console.log(petMedication) }}></Button>
                     <PetAttributeElement
                         key="name"
+                        attributeKey="name"
                         value={petQuery.data?.name}
+                        onSave={(newValue) => {
+                            if (petQuery.data) {
+                                const updatedPet = { ...petQuery.data, name: newValue };
+                                petUpdate.mutate(Pets.JSONPetToPet(updatedPet));
+                            }
+                        }}
                     />
                     <div className="pet-profile">{petQuery.data?.dateOfBirth}</div>
                 </div>
-                <ReminderList id={Number(petQuery.data?.id)}>
-                </ReminderList>
-
+                <ReminderList id={Number(petQuery.data?.id)}/>
             </div>
         </div>
     );
@@ -67,22 +84,27 @@ const PetProfile = () => {
 
 export default PetProfile;
 
-const PetAttributeElement = ({ key, value }: { key: string, value: string | undefined }) => {
+const PetAttributeElement = ({ attributeKey, value, onSave }: { attributeKey: string, value: string | undefined, onSave: (newValue: string) => void }) => {
 
     const [isButtonPressed, setIsButtonPressed] = useState(false);
     const [t, _] = useTranslation("reminders");
     const [z, _z] = useTranslation("addPet");
-    const { id } = useParams();
+    const [inputValue, setInputValue] = useState(value);
 
     return (
-        <div className="pet-profile-text-container"><div className="pet-profile-text">{z(key)}</div>
+        <div className="pet-profile-text-container"><div className="pet-profile-text">{z(attributeKey)}</div>
             <div className="pet-profile">
                 {isButtonPressed && (
                     <div>
-                        <input type="text" defaultValue={value} onChange={(e) => { value = e.target.value }
-                        }
-                        } />
-                        <Button onPress={() => { setIsButtonPressed(false) }}>Save</Button>
+                        <input 
+                            type="text" 
+                            defaultValue={value} 
+                            onChange={(e) => setInputValue(e.target.value)}
+                         />
+                        <Button 
+                            onPress={() => {
+                                setIsButtonPressed(false);
+                                onSave(inputValue || ""); }}>Save</Button>
                     </div>
 
                 )}
