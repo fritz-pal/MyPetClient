@@ -23,6 +23,7 @@ const ChatBubble = ({ message }: { message: ChatMessage }) => {
     return (
         <div className={"chat-bubble-" + (user.id == message.from.id ? "outgoing" : "incoming")}>
             { message.text && <MultilineLabel text={message.text}></MultilineLabel>}
+            { message.imageSource && <img className="chat-bubble-image" src={message.imageSource}></img> }
             <div className="chat-bubble-timestamp">
                 {getTimeString()}
             </div>

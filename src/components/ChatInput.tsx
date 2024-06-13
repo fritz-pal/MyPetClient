@@ -8,6 +8,7 @@ import "./css/ChatInput.css"
 import SubmitButton from "./buttons/SubmitButton";
 import CrossButton from "./buttons/CrossButton";
 import { ChatMessage } from "../models/Chat";
+import ImageSelectButton from "./buttons/ImageSelectButton";
 
 interface ChatInputProps {
     onSubmit?: (message: ChatMessage, file?: File) => any, 
@@ -69,7 +70,7 @@ const ChatInput = ({onSubmit, isDisabled, isLoading}: ChatInputProps) => {
                     }
                     file.setFile(image);
                 }} acceptedFileTypes={["image/png", "image/jpeg", "image/gif"]}>
-                {/*<ImageSelectButton className="chat-input-image-button"/>*/}
+                <ImageSelectButton className="chat-input-image-button"/>
             </FileTrigger>
             {!isLoading && <SubmitButton 
                 className="chat-input-submit" 
