@@ -15,8 +15,8 @@ export interface ChatMessage {
     from: User,
     createdAt: number,
     chatRoomId: number,
-    text?: String,
-    imageSource?: String
+    text?: string,
+    imageSource?: string
 }
 
 export const getOtherUserInChat = (chatroom: ChatRoom, me: User) => {

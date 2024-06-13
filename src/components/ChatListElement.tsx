@@ -26,7 +26,7 @@ const ChatListElement = ({chat} : {chat: ChatRoom}) => {
             <div className="chat-list-element-title">{otherUser.username}</div>
             <div className="chat-list-element-message-preview">{lastMessage?.text}</div>
             {lastMessage && (() => {
-                const date = new Date(lastMessage.createdAt);
+                const date = new Date(lastMessage.createdAt * 1000);
                 return (
                     <div className="chat-list-element-timestamp">
                         {`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}

@@ -43,107 +43,11 @@
 .forum-threads {
     grid-area: threads;
     display: flex;
+    gap: 30px;
     flex-wrap: wrap;
     padding: 20px;
     height: 100%;
     overflow-y: auto;
-}
-
-.thread-card {
-    line-height: 1.5;
-    color: var(--primary-color);
-    padding: 20px;
-    flex-grow: 1;
-    width: 500px;
-    height: 300px;
-    background-color: var(--seventh-color);
-    margin: 20px;
-    border-radius: 20px;
-    transition: 0.2s;
-    position: relative;
-    box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 20px;
-}
-
-.creator-icon {
-    width: 30px;
-    height: 30px;
-    color: var(--tenth-color);
-    position: absolute;
-    left: 20px;
-    top: 20px;
-}
-
-.thread-card.own {
-    border: 2px solid var(--tenth-color);
-}
-
-.thread-card:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    background-color: var(--eighth-color);
-}
-
-.thread-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3px;
-}
-
-.thread-timestamp {
-    color: var(--third-color);
-    font-size: 0.8em;
-} 
-
-.thread-timestamp.own {
-    margin-left: 40px;
-}
-
-.thread-species {
-    color: var(--tenth-color);
-    font-size: 1.2em;
-    font-weight: bold;
-    background-color: var(--eighth-color);
-    padding: 2px 4px;
-    border-radius: 3px;
-    transition: 0.2s;
-}
-
-.thread-card:hover .thread-species {
-    background-color: var(--seventh-color);
-}
-
-.thread-creator {
-    color: var(--third-color);
-    font-size: 0.8em;
-    margin-bottom: 8px;
-    position: absolute;
-    right: 12px;
-    bottom: 5px;
-    padding: 2px 4px;
-    opacity: 0;
-    background-color: inherit;
-    transition: opacity 0.2s ease;
-}
-
-.thread-card:hover .thread-creator {
-    transition-delay: 0.2s;
-    opacity: 1;
-}
-
-.thread-name {
-    color: var(--primary-color);
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-.thread-description {
-    color: var(--secondary-color);
-    font-size: 1em;
-    max-height: 185px;
-    text-overflow: ellipsis;
-    overflow: auto;
 }
 
 .new-thread-button {
@@ -181,21 +85,10 @@
 }
 
 @media screen and (max-width: 600px) {
-    .thread-card {
-        width: 90%;
-    }
     .search-input {
         width: 80%;
     }
     .search-results {
         width: 90%;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .thread-card {
-        width: 95%;
-        padding: 10px;
-        margin: 10px auto;
     }
 }

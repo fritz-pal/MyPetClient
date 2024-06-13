@@ -1,0 +1,108 @@
+.thread-card {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    gap: 10px;
+    color: var(--primary-color);
+    padding: 20px;
+    flex-grow: 1;
+    width: 500px;
+    height: 300px;
+    background-color: var(--seventh-color);
+    border-radius: 20px;
+    transition: 0.2s;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 20px;
+    overflow: hidden;
+}
+
+.thread-card-creator-icon {
+    grid-row: 1;
+    grid-column: 1;
+    width: 30px;
+    height: 30px;
+    color: var(--tenth-color);
+}
+
+.thread-card.own {
+    border: 2px solid var(--tenth-color);
+}
+
+.thread-card:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    background-color: var(--eighth-color);
+}
+
+.thread-card-info {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thread-card-timestamp {
+    color: var(--third-color);
+    font-size: 0.8em;
+}
+
+.thread-card-species {
+    color: var(--tenth-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: var(--eighth-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+
+.thread-card:hover .thread-species {
+    background-color: var(--seventh-color);
+}
+
+.thread-card-content {
+    grid-row: 2 / 4;
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.thread-card-creator {
+    grid-row: 3;
+    grid-column: 2;
+    color: var(--third-color);
+    font-size: 0.8em;
+    padding: 2px 4px;
+    opacity: 0;
+    background-color: inherit;
+    transition: opacity 0.2s ease;
+    justify-self: end;
+}
+
+.thread-card:hover .thread-card-creator {
+    transition-delay: 0.2s;
+    opacity: 1;
+}
+
+.thread-card-name {
+    color: var(--primary-color);
+    overflow: hidden;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.thread-card-description {
+    color: var(--secondary-color);
+    font-size: 1em;
+    overflow: auto;
+}
+
+@media screen and (max-width: 450px) {
+    .thread-card {
+        padding: 10px;
+    }
+}
