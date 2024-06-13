@@ -19,11 +19,9 @@ const NotificationContainer = () => {
     useStomp("/user/" + user.user.id + "/queue/notifications", (message: string) => {
         const notif = JSON.parse(message) as Notification;
         let currentLocation = window.location.pathname;
-        console.log("params: " + currentLocation)
-        if (!(notif.type === "chat" && currentLocation === "/chat/" + notif.chatId)) {
+        if (!(notif.type === "chat" && currentLocation.endsWith("/chat/" + notif.chatId))) {
             addNotification(notif);
         }
-        console.log("Received notification: " + message);
     })
     const [notifications, setNotifications] = useState<Notification[]>([]);
 
