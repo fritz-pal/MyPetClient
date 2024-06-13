@@ -45,8 +45,10 @@ const PrivateChat = () => {
     const chatFromUserQuery = useMutation({
         mutationFn: (id: number) => ChatAPI.getChatWithUser(id),
         onSuccess: (data) => {
-            nav("/chat/" + data.id)
-            setId(data.id);
+            if (data) {
+                nav("/chat/" + data.id)
+                setId(data.id);
+            }
         }
     });
 
