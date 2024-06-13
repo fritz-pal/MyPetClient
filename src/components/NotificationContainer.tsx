@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import "./css/Notification.css"
 import useStomp from "../hooks/useStomp";
 import { UserContext } from "../context/UserContext";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 interface Notification {
     type: string,
@@ -12,10 +14,16 @@ interface Notification {
 
 const NotificationContainer = () => {
     const user = useContext(UserContext);
+    const [t,] = useTranslation("notification");
+    const navigate = useNavigate();
     useStomp("/user/" + user.user.id + "/queue/notifications", (message: string) => {
-    const notif = JSON.parse(message) as Notification;
-        addNotification(notif)
-        console.log("Received notification: " + message)
+        const notif = JSON.parse(message) as Notification;
+        let currentLocation = window.location.pathname;
+        console.log("params: " + currentLocation)
+        if (!(notif.type === "chat" && currentLocation === "/chat/" + notif.chatId)) {
+            addNotification(notif);
+        }
+        console.log("Received notification: " + message);
     })
     const [notifications, setNotifications] = useState<Notification[]>([]);
 
@@ -24,7 +32,11 @@ const NotificationContainer = () => {
     };
 
     const handleNotificationClick = (notification: Notification) => {
-        console.log(`Notification clicked: ${notification.message}`);
+        if (notification.type === "reminder") {
+            navigate("/reminders");
+        } else if (notification.type === "chat") {
+            navigate("/chat/" + notification.chatId);
+        }
     };
 
     useEffect(() => {
@@ -52,12 +64,12 @@ const NotificationContainer = () => {
                                     prevNotifications.filter((notif, _) => notif !== notification)
                                 );
                             }
-                        
+
                         } className="notification-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                         <div className="notification-text">
-                            <div className="notification-title">{notification.type}</div>
+                            <div className="notification-title">{notification.type === "reminder" ? t("reminder") : notification.sender}</div>
                             <div className="notification-message">{notification.message}</div>
                         </div>
                         <div className="notification-loading-bar"></div>

@@ -188,5 +188,8 @@
         "everySingle3": "jedes",
         "selectTimeUnit": "Zeitspanne...",
         "setReminderInterval": "Wiederkehrender Termin?"
+    },
+    "notification": {
+        "reminder": "Termin"
     }
 }
