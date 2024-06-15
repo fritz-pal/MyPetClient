@@ -44,6 +44,25 @@ export interface JSONPet {
     imageSource?: string
 }
 
+export interface UpdatePet {
+    id: number
+    name: string
+    species: Species
+    subSpecies: string
+    owner: User
+    dateOfBirth?: Date
+    size?: number
+    weight?: number
+    castrated?: boolean
+    isMale: boolean
+    lastVetVisit?: Date
+    disabilities?: string[]
+    medications?: Medication[]
+    allergies?: string[]
+    imageSource?: string
+    delete?: boolean
+}
+
 export interface Medication {
     id: number
     name: string
@@ -70,6 +89,14 @@ const JSONPetToPet = (data: JSONPet) => {
  * @returns Converted JSONPet
  */
 const PetToJSONPet = (data: Pet) => {
+    return {
+        ...data,
+        dateOfBirth: data.dateOfBirth ? data.dateOfBirth.toISOString() : undefined,
+        lastVetVisit: data.lastVetVisit ? data.lastVetVisit.toISOString() : undefined
+    }
+}
+
+const PetToJsonUpdatePet = (data: UpdatePet) => {
     return {
         ...data,
         dateOfBirth: data.dateOfBirth ? data.dateOfBirth.toISOString() : undefined,
@@ -150,7 +177,11 @@ const getPetByID = async (id: Number): Promise<JSONPet> => {
  * @param species Updated Species
  * @returns Promise of updated Species
  */
-const updatePet = async (pet: JSONPet): Promise<JSONPet> => {
+const updatePet = async (pet: JSONPet, image?: File): Promise<JSONPet> => {
+    const formData = new FormData();
+    formData.append("pet", new Blob([JSON.stringify(pet)], { type: 'application/json' }));
+    if (image)
+        formData.append("file", image);
     const request = await APIClient.put(`${MAPPING}/${pet.id}`, pet);
     return request.data;
 }
