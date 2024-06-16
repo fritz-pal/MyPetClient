@@ -59,7 +59,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
     return (
         <div className="cards">
             {pets.map((pet) => (
-                <label key={pet.name} id={pet.name}>
+                <label key={pet.id} id={pet.name}>
                     <input className="novision" type="checkbox" />
                     <div className="card">
                         <div className="front">

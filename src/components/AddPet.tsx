@@ -13,6 +13,8 @@ import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
 import useFile from "../hooks/useFile";
 import ImageSelector from "./ImageSelector";
+import useHelp from "../hooks/useHelp";
+import { HelpParagraphType } from "../context/HelpContext";
 
 /**
  * React Component Displaying the form for adding a new Pet.
@@ -28,6 +30,12 @@ const AddPet = () => {
     const { user } = useContext(UserContext);
     const [t,] = useTranslation("addPet");
     const nav = useNavigate();
+
+    useHelp([
+        {type: HelpParagraphType.TITLE, content: "translationKey"},
+        {type: HelpParagraphType.SECTION_TITLE, content: "translationKey"},
+        {type: HelpParagraphType.TEXT, content: "translationKey"},
+    ]);
 
     const [name, setName] = useState<string>("");
     const [isMale, setIsMale] = useState<boolean>(false);

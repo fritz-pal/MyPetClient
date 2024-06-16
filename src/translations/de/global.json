@@ -196,5 +196,8 @@
     },
     "notification": {
         "reminder": "Termin"
+    },
+    "help": {
+        "close": "Schließen"
     }
 }

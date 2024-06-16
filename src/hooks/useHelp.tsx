@@ -8,7 +8,7 @@ const useHelp = (paragraphs: HelpParagraph[]) => {
     useEffect(() => {
         id.current = addParagraphs(paragraphs);
         return () => removeParagraphs(id.current);
-    }, [])
+    }, []);
 }
 
 export default useHelp

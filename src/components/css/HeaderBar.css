@@ -4,8 +4,8 @@
   background-color: var(--seventh-color);
   color: #000000;
   position: sticky;
-  top: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content min-content min-content 1fr;
   align-items: center;
   z-index: 100;
   text-transform: uppercase;
@@ -33,9 +33,15 @@
 }
 
 .header-bar-site-title {
+  grid-column: 2;
   font-size: 24px;
   margin: 0;
   margin-left: 20px;
+}
+
+.header-bar-site-title h2 {
+  margin: 0;
+  text-wrap: nowrap;
 }
 
 .header-bar-menu-items {
@@ -77,10 +83,6 @@
 .header-bar-user-menu {
   width: 50px;
   height: 50px;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
   cursor: pointer;
   padding: 0;
   background-color: inherit;
@@ -90,8 +92,6 @@
 .header-bar-user-settings {
   width: 40px;
   height: 40px;
-  position: absolute;
-  right: 80px;
   cursor: pointer;
 }
 
@@ -142,4 +142,13 @@
 
 .header-bar-navbar-item a:hover {
   color: var(--tenth-color);
+}
+
+.header-bar-buttons {
+  display: flex;
+  grid-column: 4;
+  justify-content: end;
+  align-items: center;
+  gap: 5px;
+  padding-right: 20px;
 }

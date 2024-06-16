@@ -15,13 +15,13 @@ export interface HelpParagraph {
 interface HelpContextProps {
     addParagraphs: (paragraphs: HelpParagraph[]) => number,
     removeParagraphs: (key: number) => void,
-    getParagraphs: HelpParagraph[]
+    paragraphs: HelpParagraph[]
 }
 
 const HelpContext = createContext<HelpContextProps>({
     addParagraphs: () => 0,
     removeParagraphs: () => {},
-    getParagraphs: []
+    paragraphs: []
 });
 
 export default HelpContext

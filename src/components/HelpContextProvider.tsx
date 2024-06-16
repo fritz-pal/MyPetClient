@@ -16,12 +16,11 @@ const HelpContextProvider = ({children}: {children: JSX.Element}) => {
             newParagraphs.set(nextID.current, paragraphs);
             return newParagraphs;
         });
+        console.log("Added Paragraphs id " + nextID.current)
         return nextID.current++;
     }
 
     const removeParagraphs = (key: number) => {
-        if (!paragraphMap.has(key))
-            return;
         setParagraphMap((prevParagraphs) => {
             const newParagraphs = new Map(prevParagraphs);
             newParagraphs.delete(key);
@@ -33,7 +32,7 @@ const HelpContextProvider = ({children}: {children: JSX.Element}) => {
         <HelpContext.Provider value={{
             addParagraphs: addParagraphs,
             removeParagraphs: removeParagraphs,
-            getParagraphs: paragraphs,
+            paragraphs: paragraphs,
         }}>
             {children}
         </HelpContext.Provider>

@@ -1,0 +1,35 @@
+.react-aria-Modal.help-modal-dialog {
+    width: calc(100% - 10px);
+    max-height: calc(100% - 50px);
+    max-width: 1000px;
+    overflow: auto;
+}
+
+.help-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.help-modal-close-button {
+    align-self: flex-end;
+}
+
+.help-modal-button {
+    background-color: transparent;
+    color: black;
+}
+
+.help-modal-button:hover,
+.help-modal-button:focus {
+    color: var(--tenth-color) !important;
+    background-color: transparent !important;
+    border-color: transparent;
+    outline: none;
+}
+
+.help-modal-button svg {
+    width: 2.388em !important;
+    height: 2.388em !important;
+}
