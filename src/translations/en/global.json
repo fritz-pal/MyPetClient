@@ -79,6 +79,9 @@
     "addPet": {
         "petName": "Name",
         "castrated": "Castrated",
+        "castratedNo": "not castrated",
+        "isMale": "Male",
+        "isFemale": "Female",
         "species": "What kind of pet do you have?",
         "speciesLoadError": "No connection to the database, please make sure you have internet connection",
         "subSpecies": "Subspecies/Race",

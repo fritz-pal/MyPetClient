@@ -177,11 +177,7 @@ const getPetByID = async (id: Number): Promise<JSONPet> => {
  * @param species Updated Species
  * @returns Promise of updated Species
  */
-const updatePet = async (pet: JSONPet, image?: File): Promise<JSONPet> => {
-    const formData = new FormData();
-    formData.append("pet", new Blob([JSON.stringify(pet)], { type: 'application/json' }));
-    if (image)
-        formData.append("file", image);
+const updatePet = async (pet: JSONPet): Promise<JSONPet> => {
     const request = await APIClient.put(`${MAPPING}/${pet.id}`, pet);
     return request.data;
 }

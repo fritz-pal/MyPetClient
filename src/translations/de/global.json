@@ -69,7 +69,6 @@
         "year": "vor {{number}} Jahr",
         "justNow": "gerade eben"
     },
-    
     "home": {
         "greeting": "Willkommen!",
         "petlisttitle": "Meine Haustiere"
@@ -80,6 +79,9 @@
     "addPet": {
         "petName": "Name",
         "castrated": "Kastriert",
+        "castratedNo": "Nicht Kastriert",
+        "isMale": "Männlich",
+        "isFemale": "Weiblich",
         "species": "Welche Art von Tier hast Du?",
         "speciesLoadError": "Keine Verbindung zur Datenbank, stelle sicher das du eine Internetverbindung hast",
         "subSpecies": "Unterart/Rasse",
