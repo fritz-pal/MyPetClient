@@ -14,7 +14,7 @@ export interface Pet {
     dateOfBirth?: Date
     size?: number
     weight?: number
-    castrated?: boolean
+    castrated: boolean
     isMale: boolean
     lastVetVisit?: Date
     disabilities?: string[]
@@ -35,7 +35,7 @@ export interface JSONPet {
     dateOfBirth?: string
     size?: number
     weight?: number
-    castrated?: boolean
+    castrated: boolean
     isMale: boolean
     lastVetVisit?: string
     disabilities?: string[]
@@ -45,16 +45,13 @@ export interface JSONPet {
 }
 
 export interface UpdatePet {
-    id: number
-    name: string
-    species: Species
-    subSpecies: string
-    owner: User
+    name?: string
+    subSpecies?: string
     dateOfBirth?: Date
     size?: number
     weight?: number
     castrated?: boolean
-    isMale: boolean
+    isMale?: boolean
     lastVetVisit?: Date
     disabilities?: string[]
     medications?: Medication[]
