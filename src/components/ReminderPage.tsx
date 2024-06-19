@@ -50,6 +50,7 @@ const ReminderPage = () => {
         const updatedTime = new Date(date);
         updatedTime.setHours(parseInt(hours, 10));
         updatedTime.setMinutes(parseInt(minutes, 10));
+        updatedTime.setSeconds(0,0);
         setTime(updatedTime);
     };
 
