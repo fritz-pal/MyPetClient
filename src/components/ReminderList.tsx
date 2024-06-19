@@ -110,7 +110,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
         return result;
     }
 
-  function formatDateTime(dateString: string, locale: string, reminderName: string): string {
+  function formatDateTime(dateString: string, locale: string): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
       day: "2-digit",
@@ -120,10 +120,6 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
       minute: "2-digit",
     };
     const date = new Date(dateString);
-    if (reminderName !== "Birthday"){
-    const offset = date.getTimezoneOffset();
-    date.setMinutes(date.getMinutes() - offset)
-    }
     const formattedDate = date
       .toLocaleDateString(locale, options)
       .replace(",", "");
@@ -145,7 +141,7 @@ const ReminderListItem = ({ reminder }: { reminder: Reminder }) => {
             <div className="reminder-area" key={reminder.name}>
                 <div className="reminder-info"></div>
                 <div className="reminder-date">
-                    {formatDateTime(reminder.date.toString(),currentLocale,reminder.name)}
+                    {formatDateTime(reminder.date.toString(),currentLocale)}
                 </div>
                 <div className="reminder-pets-container">
                     {reminder.pets.map((pet) => (
