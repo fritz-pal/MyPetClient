@@ -78,7 +78,6 @@ select {
 }
 
 input {
-  width: 100%;
   padding: 12px 20px;
   border: 2px solid #ccc;
   border-radius: 25px;

@@ -74,8 +74,7 @@
     display: grid;
   }
 
-  .reminder-interval-input,
-  select {
+  .reminder-interval-input select {
     width: 80%;
   }
 }
@@ -92,8 +91,7 @@
   justify-content: center; 
 }
 
-.reminder-interval-input,
-select {
+.reminder-interval-input select {
   width: 40%;
 }
 
