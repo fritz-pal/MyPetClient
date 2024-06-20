@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import { PetAPI, Pets, Pet } from "../models/Pet";
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { PetAPI } from "../models/Pet";
+import { useQuery } from "@tanstack/react-query";
 import './css/PetProfile.css';
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -17,26 +17,26 @@ import { UserContext } from "../context/UserContext";
 const PetProfile = () => {
     const { user } = useContext(UserContext);
     const { id } = useParams();
-    const queryClient = useQueryClient();
+    //const queryClient = useQueryClient();
     const petImageFile = useFile(null);
     const [t] = useTranslation("petProfile");
     const [s] = useTranslation("species"); 
 
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing/*, setIsEditing*/] = useState(false);
 
     const [name, setName] = useState("");
     const [isMale, setIsMale] = useState(false);
     const [isCastrated, setIsCastrated] = useState(false);
     const [subSpecies, setSubSpecies] = useState("");
-    const [size, setSize] = useState<number | undefined>(0);
-    const [weight, setWeight] = useState<number | undefined>(0);
+    //const [,setSize] = useState<number | undefined>(0);
+    //const [,setWeight] = useState<number | undefined>(0);
 
     const petQuery = useQuery({
         queryKey: ["pets", id],
         queryFn: () => PetAPI.getPetByID(id ? Number(id) : 0)
     });
 
-    const openEdit = () => {
+    /*const openEdit = () => {
         if (petQuery.data) {
             setName(petQuery.data.name);
             setIsMale(petQuery.data.isMale);
@@ -46,16 +46,16 @@ const PetProfile = () => {
             setWeight(petQuery.data.weight);
         }
         setIsEditing(true);
-    }
+    }*/
 
-    const petUpdate = useMutation({
+    /*const petUpdate = useMutation({
         mutationFn: (pet: Pet) => PetAPI.updatePet(Pets.PetToJSONPet(pet)),
         onSuccess: async () => {
             queryClient.invalidateQueries({
                 queryKey: ["pets", id]
             });
         }
-    });
+    });*/
 
     if (petQuery.isLoading) {
         return <Loader/>;

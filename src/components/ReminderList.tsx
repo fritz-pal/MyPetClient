@@ -11,7 +11,7 @@ import { Button } from "react-aria-components";
 import SmallLoader from "./SmallLoader";
 import RoundImage from "./RoundImage";
 
-const ReminderList = ({ id }: { id: number }) => {
+const ReminderList = ({ id }: { id?: number }) => {
     const [t, _] = useTranslation("reminders");
     const navigate = useNavigate();
     const { user } = useContext(UserContext);

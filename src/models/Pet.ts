@@ -93,14 +93,6 @@ const PetToJSONPet = (data: Pet) => {
     }
 }
 
-const PetToJsonUpdatePet = (data: UpdatePet) => {
-    return {
-        ...data,
-        dateOfBirth: data.dateOfBirth ? data.dateOfBirth.toISOString() : undefined,
-        lastVetVisit: data.lastVetVisit ? data.lastVetVisit.toISOString() : undefined
-    }
-}
-
 export const getPetChanges = (oldP: JSONPet, newP: JSONPet): JSONPet => {
     const changes: JSONPet = { id: oldP.id, isMale: oldP.isMale, owner: oldP.owner, species: oldP.species, medications: oldP.medications, disabilities: oldP.disabilities, name: oldP.name, allergies: oldP.allergies, castrated: oldP.castrated, imageSource: oldP.imageSource, subSpecies: oldP.subSpecies, dateOfBirth: oldP.dateOfBirth, lastVetVisit: oldP.lastVetVisit, size: oldP.size, weight: oldP.weight };
 

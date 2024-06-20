@@ -4,9 +4,7 @@ import { Button, Dialog, DialogTrigger, Modal } from "react-aria-components";
 import { useTranslation } from "react-i18next";
 import MultilineLabel from "./MultilineLabel";
 import "./css/HelpModal.css"
-import CrossButton from "./buttons/CrossButton";
 import HelpButton from "./buttons/HelpButton";
-import EditButton from "./buttons/EditButton";
 
 const HelpModal = () => {
     const [t] = useTranslation("help");
