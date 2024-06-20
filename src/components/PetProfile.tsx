@@ -74,7 +74,7 @@ const PetProfile = () => {
             <div className="pet-profile-main">
                 <PosterInfo poster={petQuery.data.owner}/>
                 { !isEditing ? 
-                    <RoundImage imageSource={petQuery.data.imageSource} placeholder={placeholderImage}/> :
+                    <RoundImage className="pet-profile-image" imageSource={petQuery.data.imageSource} placeholder={placeholderImage}/> :
                     <ImageSelector
                         className="pet-profile-image"
                         fileHook={petImageFile}

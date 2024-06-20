@@ -140,20 +140,21 @@
 }
 
 .cards {
-  width: 350px;
-  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .testtesttest {
   display: inline-block;
-  width: 100%;
+  width: 350px;
   gap: 20px;
   padding: 10px;
   cursor: pointer;
 }
 
 .pets {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  
 }
