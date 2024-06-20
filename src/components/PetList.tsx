@@ -67,7 +67,7 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
                         <div className="pet_name_css">{k(pet.species.name)}</div>
                     </div>
                     <div className="frontBottom">
-                        <div className="pet_sub_css">{k(pet.subSpecies)}</div>
+                        <div className="pet_sub_css">{pet.subSpecies.length ? k(pet.subSpecies) : "\ufeff"}</div>
                     </div>
                 </label>
             ))}

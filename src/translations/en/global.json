@@ -113,6 +113,25 @@
         "username": "Username",
         "speciesType": "Species"
     },
+    "petProfile": {
+        "name": "Name",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "castrated": "Castrated",
+        "species": "Spezies",
+        "subSpecies": "Race/Subspecies",
+        "length": "Length",
+        "height": "Height",
+        "shoulderHeight": "Shoulder Height",
+        "wingSpan": "Wing span",
+        "size": "Size",
+        "weight": "Weight",
+        "grams": "g",
+        "kilograms": "kg",
+        "centimeters": "cm",
+        "meters": "m"
+    },
     "addThread": {
         "pageTitle": "New Discussion",
         "title": "Title",

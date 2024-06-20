@@ -113,6 +113,25 @@
         "username": "Benutzername",
         "speciesType": "Spezies"
     },
+    "petProfile": {
+        "name": "Name",
+        "gender": "Geschlecht",
+        "male": "Männlich",
+        "female": "Weiblich",
+        "castrated": "Kastriert",
+        "species": "Tierart",
+        "subSpecies": "Rasse/Subspezies",
+        "length": "Länge",
+        "height": "Höhe",
+        "shoulderHeight": "Schulterhöhe",
+        "wingSpan": "Flügelspannweite",
+        "size": "Größe",
+        "weight": "Gewicht",
+        "grams": "g",
+        "kilograms": "kg",
+        "centimeters": "cm",
+        "meters": "m"
+    },
     "addThread": {
         "pageTitle": "Neue Diskussion",
         "title": "Titel",

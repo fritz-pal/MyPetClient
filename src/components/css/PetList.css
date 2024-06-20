@@ -139,12 +139,21 @@
   color: rgb(212, 212, 212);
 }
 
-.cards {}
+.cards {
+  width: 350px;
+  overflow: hidden;
+}
 
 .testtesttest {
-  width: 50%;
   display: inline-block;
-  width: 50%;
+  width: 100%;
   gap: 20px;
   padding: 10px;
+  cursor: pointer;
+}
+
+.pets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

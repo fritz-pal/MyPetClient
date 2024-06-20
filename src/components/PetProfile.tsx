@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { PetAPI, Pets, Pet } from "../models/Pet";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import './css/PetProfile.css';
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReminderList from "./ReminderList";
 import ImageSelector from "./ImageSelector";
@@ -11,14 +11,18 @@ import placeholderImage from '/placeholderPet.png';
 import PosterInfo from "./PosterInfo";
 import Loader from "./Loader";
 import RoundImage from "./RoundImage";
+import { Button } from "react-aria-components";
+import { UserContext } from "../context/UserContext";
 
 const PetProfile = () => {
+    const { user } = useContext(UserContext);
     const { id } = useParams();
     const queryClient = useQueryClient();
     const petImageFile = useFile(null);
     const [t] = useTranslation("petProfile");
+    const [s] = useTranslation("species"); 
 
-    const [isEditing, setIsEditing] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
 
     const [name, setName] = useState("");
     const [isMale, setIsMale] = useState(false);
@@ -41,7 +45,6 @@ const PetProfile = () => {
             setSize(petQuery.data.size);
             setWeight(petQuery.data.weight);
         }
-
         setIsEditing(true);
     }
 
@@ -107,7 +110,7 @@ const PetProfile = () => {
                 <div className="pet-profile-text-container">
                     <div className="pet-profile-text">{t("species")}</div>
                     <div className="pet-profile-attribute">
-                        {petQuery.data.species.name}
+                        {s(petQuery.data.species.name)}
                     </div>
                 </div>
 
@@ -146,6 +149,16 @@ const PetProfile = () => {
                         </div>
                     }
                 </div>
+
+                {(petQuery.data.owner.id == user.id) && <div className="pet-profile-button-bar">
+                    {!isEditing ?
+                        <Button>{t("edit")}</Button> :
+                        <>
+                            {/*<Button>{t("cancel")}</Button>
+                            <Button>{t("save")}</Button>*/}
+                        </>
+                    }
+                </div>}
             </div>
             <ReminderList id={petQuery.data.id} />
         </div>
