@@ -48,7 +48,6 @@ const PetList = () => {
 };
 
 export const PetCard = ({ pets }: { pets: Pet[] }) => {
-    const [tcard, _card] = useTranslation("card");
     const [k, _k] = useTranslation("species");
     const navigate = useNavigate();
 
@@ -59,28 +58,16 @@ export const PetCard = ({ pets }: { pets: Pet[] }) => {
     return (
         <div className="cards">
             {pets.map((pet) => (
-                <label key={pet.id} id={pet.name}>
-                    <input className="novision" type="checkbox" />
-                    <div className="card">
-                        <div className="front">
-                            <header>
-                                <div className="pet-tile">{pet.name}</div>
-                                <span>{tcard("more_details")}</span>
-                            </header>
-                            <RoundImage className="pet-image2" imageSource={pet.imageSource} placeholder={placeholderPet} />
-                            <div className="pet_name_css">{k(pet.species.name)}</div>
-                            <div onClick={() => handleClick(pet.id.toString())}>Hier klicken</div>
-
-                        </div>
-                        <div className="back">
-                            <header>
-                                <div className="pet-tile">{pet.name}</div>
-                                <span>{tcard("more_details")}</span>
-                            </header>
-                            <h2>{pet.subSpecies}</h2>
-                            <div className="pet_name_css">{k(pet.species.name)}</div>
-
-                        </div>
+                <label onClick={() => handleClick(pet.id.toString())} key={pet.name} id={pet.name} className="testtesttest">
+                    <div className="frontUp">
+                        <header>
+                            <div className="pet-tile">{pet.name}</div>
+                        </header>
+                        <RoundImage className="pet-image2" imageSource={pet.imageSource} placeholder={placeholderPet} />
+                        <div className="pet_name_css">{k(pet.species.name)}</div>
+                    </div>
+                    <div className="frontBottom">
+                        <div className="pet_sub_css">{pet.subSpecies.length ? k(pet.subSpecies) : "\ufeff"}</div>
                     </div>
                 </label>
             ))}

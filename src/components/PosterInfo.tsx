@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-aria-components";
 
 const PosterInfo = ({poster, postedAt}: {poster: User, postedAt?: number}) => {
-    const [t,] = useTranslation("time")
+    const [t,] = useTranslation("time");
     const navigate = useNavigate();
     const openUser = () => {
         navigate("/user/" + poster.id);

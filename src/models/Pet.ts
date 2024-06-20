@@ -14,11 +14,11 @@ export interface Pet {
     dateOfBirth?: Date
     size?: number
     weight?: number
-    castrated?: boolean
+    castrated: boolean
     isMale: boolean
     lastVetVisit?: Date
     disabilities?: string[]
-    medications?: string[]
+    medications?: Medication[]
     allergies?: string[]
     imageSource?: string
 }
@@ -35,13 +35,29 @@ export interface JSONPet {
     dateOfBirth?: string
     size?: number
     weight?: number
-    castrated?: boolean
+    castrated: boolean
     isMale: boolean
     lastVetVisit?: string
     disabilities?: string[]
     medications?: Medication[]
     allergies?: string[]
     imageSource?: string
+}
+
+export interface UpdatePet {
+    name?: string
+    subSpecies?: string
+    dateOfBirth?: Date
+    size?: number
+    weight?: number
+    castrated?: boolean
+    isMale?: boolean
+    lastVetVisit?: Date
+    disabilities?: string[]
+    medications?: Medication[]
+    allergies?: string[]
+    imageSource?: string
+    delete?: boolean
 }
 
 export interface Medication {
@@ -77,11 +93,41 @@ const PetToJSONPet = (data: Pet) => {
     }
 }
 
+const PetToJsonUpdatePet = (data: UpdatePet) => {
+    return {
+        ...data,
+        dateOfBirth: data.dateOfBirth ? data.dateOfBirth.toISOString() : undefined,
+        lastVetVisit: data.lastVetVisit ? data.lastVetVisit.toISOString() : undefined
+    }
+}
+
+export const getPetChanges = (oldP: JSONPet, newP: JSONPet): JSONPet => {
+    const changes: JSONPet = { id: oldP.id, isMale: oldP.isMale, owner: oldP.owner, species: oldP.species, medications: oldP.medications, disabilities: oldP.disabilities, name: oldP.name, allergies: oldP.allergies, castrated: oldP.castrated, imageSource: oldP.imageSource, subSpecies: oldP.subSpecies, dateOfBirth: oldP.dateOfBirth, lastVetVisit: oldP.lastVetVisit, size: oldP.size, weight: oldP.weight };
+
+    if (oldP.name !== newP.name) changes.name = newP.name;
+    if (oldP.species !== newP.species) changes.species = newP.species;
+    if (oldP.subSpecies !== newP.subSpecies) changes.subSpecies = newP.subSpecies;
+    if (oldP.owner !== newP.owner) changes.owner = newP.owner;
+    if (oldP.dateOfBirth !== newP.dateOfBirth) changes.dateOfBirth = newP.dateOfBirth;
+    if (oldP.size !== newP.size) changes.size = newP.size;
+    if (oldP.weight !== newP.weight) changes.weight = newP.weight;
+    if (oldP.castrated !== newP.castrated) changes.castrated = newP.castrated;
+    if (oldP.isMale !== newP.isMale) changes.isMale = newP.isMale;
+    if (oldP.lastVetVisit !== newP.lastVetVisit) changes.lastVetVisit = newP.lastVetVisit;
+    if (JSON.stringify(oldP.disabilities) !== JSON.stringify(newP.disabilities)) changes.disabilities = newP.disabilities;
+    if (JSON.stringify(oldP.medications) !== JSON.stringify(newP.medications)) changes.medications = newP.medications;
+    if (JSON.stringify(oldP.allergies) !== JSON.stringify(newP.allergies)) changes.allergies = newP.allergies;
+    if (oldP.imageSource !== newP.imageSource) changes.imageSource = newP.imageSource;
+
+    return changes;
+}
+
+
 /**
  * Creates a empty Pet
  * @returns A new Pet
  */
-const newPet = () : Pet => {
+const newPet = (): Pet => {
     return {
         id: 0,
         name: "",
@@ -104,11 +150,12 @@ const newPet = () : Pet => {
     }
 }
 
-const Pets = {
+export const Pets = {
     JSONPetToPet,
     PetToJSONPet,
     newPet
 }
+
 
 const MAPPING = "/pets"
 
@@ -158,10 +205,10 @@ const getAllPetsOfUser = async (userID: number): Promise<JSONPet[]> => {
  */
 const addPet = async (pet: JSONPet, image?: File): Promise<JSONPet> => {
     const formData = new FormData();
-    formData.append("pet", new Blob([JSON.stringify(pet)], {type: 'application/json'}));
+    formData.append("pet", new Blob([JSON.stringify(pet)], { type: 'application/json' }));
     if (image)
         formData.append("file", image);
-    const request = await APIClient.post(MAPPING, formData,{
+    const request = await APIClient.post(MAPPING, formData, {
         transformRequest: formData => formData
     });
     return request.data;

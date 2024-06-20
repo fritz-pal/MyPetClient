@@ -73,7 +73,6 @@
         "year": "vor {{number}} Jahr",
         "justNow": "gerade eben"
     },
-    
     "home": {
         "greeting": "Willkommen!",
         "petlisttitle": "Meine Haustiere"
@@ -84,6 +83,9 @@
     "addPet": {
         "petName": "Name",
         "castrated": "Kastriert",
+        "castratedNo": "Nicht Kastriert",
+        "isMale": "Männlich",
+        "isFemale": "Weiblich",
         "species": "Welche Art von Tier hast Du?",
         "speciesLoadError": "Keine Verbindung zur Datenbank, stelle sicher das du eine Internetverbindung hast",
         "subSpecies": "Unterart/Rasse",
@@ -114,6 +116,25 @@
         "gender": "Geschlecht",
         "username": "Benutzername",
         "speciesType": "Spezies"
+    },
+    "petProfile": {
+        "name": "Name",
+        "gender": "Geschlecht",
+        "male": "Männlich",
+        "female": "Weiblich",
+        "castrated": "Kastriert",
+        "species": "Tierart",
+        "subSpecies": "Rasse/Subspezies",
+        "length": "Länge",
+        "height": "Höhe",
+        "shoulderHeight": "Schulterhöhe",
+        "wingSpan": "Flügelspannweite",
+        "size": "Größe",
+        "weight": "Gewicht",
+        "grams": "g",
+        "kilograms": "kg",
+        "centimeters": "cm",
+        "meters": "m"
     },
     "addThread": {
         "pageTitle": "Neue Diskussion",

@@ -17,17 +17,6 @@
     width: 50px;
     height: 50px;
   }
-
-  .cards {
-    justify-content: center;
-  }
-
-  .card {
-    position: relative;
-    perspective: 500px;
-    width: 200px;
-    height: 200px;
-  }
 }
 
 .my-pets-module h2 {
@@ -41,6 +30,7 @@
   font-size: 30px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .load {
@@ -58,6 +48,12 @@
 }
 
 .pet_name_css {
+  font-size: 25px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.pet_sub_css {
   font-size: 25px;
   margin: 0;
 }
@@ -101,76 +97,6 @@
   align-items: right;
 }
 
-.card {
-  position: relative;
-  perspective: 1000px;
-  width: 300px;
-  height: 300px;
-}
-
-.card header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
-.card .front,
-.card .back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-size: 18px;
-  padding: 36px 36px 44px 44px;
-  border-radius: 10px;
-  transition: 0.6s;
-  cursor: pointer;
-  backface-visibility: hidden;
-  text-align: center;
-  line-height: 185%;
-  color: rgba(62, 62, 62, 0.837);
-  background-color: var(--fourth-color);
-}
-
-.back {
-  transform: rotateY(180deg);
-}
-
-input:checked~.card .back {
-  transform: rotateY(0);
-}
-
-input:checked~.card .front {
-  transform: rotateY(-180deg);
-}
-
-#summary :is(var, h3) {
-  color: #000000;
-}
-
-.card :is(h4, p) {
-  opacity: 0.6;
-  font-size: 20px;
-}
-
-.card p {
-  margin-top: 76px;
-}
-
-.novision {
-  display: none;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-evenly;
-}
-
 .title_pets {
   padding-bottom: 20px;
   font-size: 30px;
@@ -178,12 +104,57 @@ input:checked~.card .front {
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
-  background-image: url(/leaves-natural.jpg);
-  background-repeat: repeat;
   text-align: center;
   align-items: center;
   padding-top: 20px;
   margin-left: -20px;
   margin-right: -20px;
   margin-bottom: 30px;
+  background: #555555;
+}
+
+.frontUp {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: #e5e5e5;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.frontBottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: rgb(60, 60, 60);
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: rgb(212, 212, 212);
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.testtesttest {
+  display: inline-block;
+  width: 350px;
+  gap: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.pets {
+  
 }

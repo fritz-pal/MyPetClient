@@ -83,6 +83,9 @@
     "addPet": {
         "petName": "Name",
         "castrated": "Castrated",
+        "castratedNo": "not castrated",
+        "isMale": "Male",
+        "isFemale": "Female",
         "species": "What kind of pet do you have?",
         "speciesLoadError": "No connection to the database, please make sure you have internet connection",
         "subSpecies": "Subspecies/Race",
@@ -113,6 +116,25 @@
         "gender": "Gender",
         "username": "Username",
         "speciesType": "Species"
+    },
+    "petProfile": {
+        "name": "Name",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "castrated": "Castrated",
+        "species": "Spezies",
+        "subSpecies": "Race/Subspecies",
+        "length": "Length",
+        "height": "Height",
+        "shoulderHeight": "Shoulder Height",
+        "wingSpan": "Wing span",
+        "size": "Size",
+        "weight": "Weight",
+        "grams": "g",
+        "kilograms": "kg",
+        "centimeters": "cm",
+        "meters": "m"
     },
     "addThread": {
         "pageTitle": "New Discussion",

@@ -87,7 +87,6 @@ input {
   transition: border-color 0.3s ease;
   background: white;
   color: black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   /* Änderung von Henri (steht noch zur diskussion)*/
   padding: 10px;

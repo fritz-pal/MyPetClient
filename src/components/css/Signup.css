@@ -39,13 +39,6 @@ h1 {
   width: 100%;
 }
 
-label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
 .signup-input {
   padding: 10px;
   border: 1px solid #ccc;
