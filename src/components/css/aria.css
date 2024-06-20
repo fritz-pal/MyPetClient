@@ -12,6 +12,7 @@
 .react-aria-MenuItem {
     padding: 5px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .react-aria-MenuItem:hover {
