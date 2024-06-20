@@ -22,7 +22,8 @@
   align-self: flex-end;
 }
 
-.login-input-label-set {
+.login-input-label-set input{
+  width: 100%;
 }
 
 .login-logo {
